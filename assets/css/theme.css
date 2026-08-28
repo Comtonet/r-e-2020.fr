@@ -1,0 +1,17 @@
+:root{--blue:#38227E;--blue-dark:#38227E;--blue-ink:#38227E;--green:#98BF24;--green-dark:#98BF24;--mint:#f4f8e8;--sky:#f7f5fb;--shadow:0 20px 60px rgba(56,34,126,.10)}
+.topbar,.site-footer,.hero-card,.dark-card,.cta-band,.ai-head,.ai-launcher{background:#38227E!important}
+.btn,.ai-form button{background:#98BF24!important}
+.btn:hover{background:#98BF24!important}
+.brand-mark{background:#38227E!important}
+.hero-card .mini-label,.step-row b,.card-link,.eyebrow.light,.ai-launcher span{color:#98BF24!important}
+.cta-band:after,.hero:before{background:rgba(152,191,36,.16)!important}
+.hero-glow{background:radial-gradient(circle,rgba(56,34,126,.11),transparent 70%)!important}
+.price-card.featured{border-color:#98BF24!important;box-shadow:0 22px 55px rgba(152,191,36,.14)!important}
+.process-proof,.process-number,.process-final-card{background:#38227E!important}
+.process-step:nth-of-type(even) .process-number,.process-final-card .btn{background:#98BF24!important}
+.process-timeline-line{background:linear-gradient(#98BF24,#38227E)!important}
+.process-summary-foot strong,.process-card a,.process-after a,.breadcrumb,.breadcrumbs a,.dossier-category strong,.dossier-group-head>a,.dossier-link{color:#38227E!important}
+.process-summary-card li b,.process-tag,.process-list.check li:before,.dossier-count{color:#98BF24!important}
+.process-callout{border-left-color:#38227E!important}.process-callout.green{border-left-color:#98BF24!important}
+.process-final-kicker{color:#98BF24!important}
+.article-cta{background:#38227E!important}
