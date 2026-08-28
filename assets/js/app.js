@@ -11,6 +11,47 @@ document.addEventListener('DOMContentLoaded',()=>{
     main.parentNode.insertBefore(strip,main);
   }
 
+  /* KeePote : assistant transversal Keeplanet. */
+  const aiLauncher=document.querySelector('.ai-launcher');
+  const aiPanel=document.querySelector('.ai-panel');
+  const aiHead=aiPanel?aiPanel.querySelector('.ai-head strong'):null;
+  const aiBody=aiPanel?aiPanel.querySelector('.ai-body'):null;
+  if(aiLauncher){aiLauncher.innerHTML='<span>✦</span> KeePote';aiLauncher.setAttribute('aria-label','Ouvrir KeePote, l\'assistant Keeplanet');}
+  if(aiHead) aiHead.textContent='KeePote · Assistant Keeplanet';
+  if(aiBody){aiBody.innerHTML='<p><strong>Bonjour 👋 Je suis KeePote, l’assistant Keeplanet.</strong></p><p>Je suis entraîné sur la RE2020 et la documentation validée de Keeplanet. Je peux vous orienter, expliquer des notions réglementaires et, dans votre espace client, vous aider à comprendre vos rapports et documents.</p><div class="ai-note">KeePote complète l’accompagnement de nos thermiciens : l’équipe Keeplanet reste disponible dès que vous avez besoin d’un avis humain.</div>';}
+
+  const keepoteCopies={
+    general:{title:'Besoin d’aide ? Demandez à KeePote.',body:'KeePote est l’assistant Keeplanet entraîné sur la RE2020 et notre documentation validée. Il peut vous orienter, expliquer les notions réglementaires et vous aider à comprendre les étapes de votre projet.'},
+    tarifs:{title:'Vous hésitez entre plusieurs prestations ? Demandez à KeePote.',body:'KeePote peut vous aider à comprendre les différences entre les packs, les livrables et les étapes de l’étude RE2020. Si votre situation nécessite un avis humain, notre équipe reste bien entendu disponible.'},
+    suivi:{title:'KeePote vous accompagne aussi après la commande.',body:'Dans votre espace client, KeePote pourra vous aider à comprendre un rapport, expliquer un indicateur comme le Bbio, le Cep ou le DH, résumer un document et vous guider dans le suivi de votre dossier.'},
+    livrables:{title:'Un rapport vous paraît trop technique ? Demandez à KeePote.',body:'KeePote peut vous aider à lire vos documents RE2020, reformuler les résultats et expliquer les principaux indicateurs. Il complète l’accompagnement de Keeplanet ; il ne remplace pas votre thermicien.'}
+  };
+
+  function makeKeepoteBlock(type){
+    const copy=keepoteCopies[type]||keepoteCopies.general;
+    const section=document.createElement('section');
+    section.className='keepote-block';
+    section.innerHTML='<div class="container keepote-inner"><div class="keepote-icon" aria-hidden="true">✦</div><div class="keepote-copy"><span class="eyebrow">KeePote · Assistant Keeplanet</span><h2>'+copy.title+'</h2><p>'+copy.body+'</p><p class="keepote-human"><strong>Besoin d’un humain ?</strong> Nos thermiciens et l’équipe Keeplanet restent disponibles par téléphone, message ou depuis votre espace client.</p></div><button class="btn keepote-open" type="button" data-keepote-open>Parler à KeePote</button></div>';
+    return section;
+  }
+
+  function insertKeepote(){
+    if(!main||document.querySelector('.keepote-block')) return;
+    const path=window.location.pathname;
+    let type=null;
+    if(path==='/') type='general';
+    else if(path.includes('/tarifs-etude-thermique-re-2020/maison-individuelle-extensions')) type='suivi';
+    else if(path==='/tarifs-etude-thermique-re-2020/'||path.includes('/tarifs-etude-thermique-re-2020/collectif-tertiaire')) type='tarifs';
+    else if(path.includes('/exemples-livrables-re2020')) type='livrables';
+    else if(path.includes('/questions-frequentes-re2020')||path.includes('/processus-de-realisation-dune-etude-re2020')) type='suivi';
+    if(!type) return;
+    const block=makeKeepoteBlock(type);
+    const cta=main.querySelector('.cta-band');
+    if(cta) main.insertBefore(block,cta);
+    else main.appendChild(block);
+  }
+  insertKeepote();
+
   /* Popup unique de création de compte.
      Le traitement serveur de /inscription-en-cours/ sera branché ultérieurement. */
   const modal=document.createElement('div');
@@ -70,10 +111,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const explicit=link.getAttribute('data-signup-choice');
     if(explicit) return explicit;
     const pack=link.closest('.house-pack,.price-card,.card,.pricing-choice');
-    if(pack){
-      const title=pack.querySelector('h2,h3');
-      if(title) return title.textContent.trim();
-    }
+    if(pack){const title=pack.querySelector('h2,h3');if(title) return title.textContent.trim();}
     return (link.textContent||'').trim();
   }
 
@@ -84,30 +122,20 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.documentElement.classList.add('signup-open');
     window.setTimeout(()=>nameInput&&nameInput.focus(),20);
   }
-
-  function closeSignup(){
-    modal.hidden=true;
-    document.documentElement.classList.remove('signup-open');
-    if(previousFocus&&typeof previousFocus.focus==='function') previousFocus.focus();
-  }
+  function closeSignup(){modal.hidden=true;document.documentElement.classList.remove('signup-open');if(previousFocus&&typeof previousFocus.focus==='function') previousFocus.focus();}
 
   document.addEventListener('click',e=>{
+    const keepote=e.target.closest('[data-keepote-open]');
+    if(keepote&&aiPanel){e.preventDefault();aiPanel.hidden=false;return;}
     const link=e.target.closest('a,button');
-    if(link&&isSignupTrigger(link)){
-      e.preventDefault();
-      openSignup(link);
-      return;
-    }
+    if(link&&isSignupTrigger(link)){e.preventDefault();openSignup(link);return;}
     if(e.target.closest('[data-signup-close]')) closeSignup();
   });
-
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden) closeSignup();});
 
-  const launch=document.querySelector('.ai-launcher');
-  const panel=document.querySelector('.ai-panel');
   const close=document.querySelector('.ai-close');
   const form=document.querySelector('.ai-form');
-  if(launch&&panel){launch.addEventListener('click',()=>{panel.hidden=false;});}
-  if(close&&panel){close.addEventListener('click',()=>{panel.hidden=true;});}
-  if(form){form.addEventListener('submit',e=>{e.preventDefault();const body=document.querySelector('.ai-body');if(body){body.innerHTML='<p><strong>Le chatbot sera connecté à la base IA validée lors de la prochaine étape.</strong></p><p>Pour le moment, vous pouvez contacter directement un thermicien au <a href="tel:0806110559">0806 110 559</a>.</p>';}});}
+  if(aiLauncher&&aiPanel){aiLauncher.addEventListener('click',()=>{aiPanel.hidden=false;});}
+  if(close&&aiPanel){close.addEventListener('click',()=>{aiPanel.hidden=true;});}
+  if(form){form.addEventListener('submit',e=>{e.preventDefault();const body=document.querySelector('.ai-body');if(body){body.innerHTML='<p><strong>KeePote sera connecté à la base IA validée lors de la prochaine étape.</strong></p><p>En attendant, l’équipe Keeplanet reste disponible au <a href="tel:0806110559">0806 110 559</a>.</p>';}});}
 });
