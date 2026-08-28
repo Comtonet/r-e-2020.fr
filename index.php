@@ -24,6 +24,9 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 <meta property="og:url" content="<?= h($canonical) ?>">
 <meta name="theme-color" content="#0b4f83">
 <link rel="stylesheet" href="/assets/css/app.css?v=1">
+<?php if ($path === '/processus-de-realisation/'): ?>
+<link rel="stylesheet" href="/assets/css/process.css?v=1">
+<?php endif; ?>
 <script type="application/ld+json"><?= json_encode(schema_for($page, $canonical), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
 </head>
 <body>
@@ -42,7 +45,7 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
     </nav>
   </div>
 </header>
-<main><?= render_page($page, $path) ?></main>
+<main><?php if ($path === '/processus-de-realisation/') { require __DIR__ . '/pages/processus.php'; } else { echo render_page($page, $path); } ?></main>
 <footer class="site-footer">
   <div class="container footer-grid">
     <div><div class="brand brand-footer"><span class="brand-mark">RE</span><span><strong>r-e-2020.fr</strong><small>Un service Keeplanet</small></span></div><p>Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.</p></div>
