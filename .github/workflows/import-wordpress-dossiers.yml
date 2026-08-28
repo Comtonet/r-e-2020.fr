@@ -1,0 +1,46 @@
+name: Import historical WordPress dossiers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import_wordpress_dossiers.php'
+      - '.github/workflows/import-wordpress-dossiers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, dom, mbstring
+
+      - name: Import all historical dossier bodies
+        run: php scripts/import_wordpress_dossiers.php
+
+      - name: Validate generated PHP
+        run: php -l content/dossier_bodies.php
+
+      - name: Commit imported content
+        shell: bash
+        run: |
+          if git diff --quiet -- content/dossier_bodies.php; then
+            echo "No dossier content change detected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/dossier_bodies.php
+          git commit -m "Import full historical dossier contents"
+          git push origin HEAD:main
