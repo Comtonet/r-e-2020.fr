@@ -3,6 +3,7 @@ $catalog = $GLOBALS['dossier_catalog'];
 $route = $GLOBALS['dossier_route'];
 $categories = $catalog['categories'];
 $articles = $catalog['articles'];
+$dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
 $dossiersIndex = '/dossiers-decryptages-re2020/';
 
 function dossier_articles_for($articles, $category) {
@@ -33,7 +34,13 @@ function dossier_articles_for($articles, $category) {
 <?php foreach ($items as $article): ?><article class="dossier-card"><span class="pill"><?= h($cat['name']) ?></span><h2><a href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/"><?= h($article['title']) ?></a></h2><p><?= h($article['excerpt']) ?></p><a class="dossier-link" href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/">Lire le dossier →</a></article><?php endforeach; ?>
 </div></div></section>
 
-<?php elseif ($route['type'] === 'article'): $article = $route['article']; $cat = $categories[$article['category']]; ?>
+<?php elseif ($route['type'] === 'article'): $article = $route['article']; $cat = $categories[$article['category']]; $body = $dossierBodies[$article['slug']] ?? ''; ?>
 <article class="dossier-article"><header class="dossier-article-hero"><div class="container narrow"><div class="breadcrumbs"><a href="<?= h($dossiersIndex) ?>">Dossiers</a><span>›</span><a href="/<?= h($article['category']) ?>/"><?= h($cat['name']) ?></a></div><span class="pill"><?= h($cat['name']) ?></span><h1><?= h($article['title']) ?></h1><p><?= h($article['excerpt']) ?></p></div></header>
-<section class="section"><div class="container narrow article-body"><div class="migration-note"><strong>Dossier historique intégré à la nouvelle arborescence.</strong><p>Cette URL est conservée à l’identique. Le contenu éditorial complet est en cours de reprise depuis l’ancien site ; sa catégorie, son titre, son positionnement SEO et son maillage sont déjà intégrés à la nouvelle architecture.</p></div><div class="article-cta"><div><span class="eyebrow">Besoin d’aller plus loin ?</span><h2>Faites valider votre projet par un thermicien.</h2></div><a class="btn" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Démarrer mon étude</a></div></div></section></article>
+<section class="section"><div class="container narrow article-body">
+<?php if ($body): ?>
+  <div class="article-copy"><?= $body ?></div>
+<?php else: ?>
+  <div class="migration-note"><strong>Contenu temporairement indisponible.</strong><p>Cette URL historique est bien conservée, mais son corps éditorial n’a pas encore été associé au catalogue.</p></div>
+<?php endif; ?>
+<div class="article-cta"><div><span class="eyebrow">Besoin d’aller plus loin ?</span><h2>Faites valider votre projet par un thermicien.</h2></div><a class="btn" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Démarrer mon étude</a></div></div></section></article>
 <?php endif; ?>
