@@ -2,6 +2,7 @@
 /**
  * One-shot migration of historical dossier bodies from the legacy WordPress REST API.
  * Source IDs and slugs come from content/dossiers.php.
+ * Triggered on main to snapshot the historical content before the legacy WordPress disappears.
  *
  * Usage: php scripts/import_wordpress_dossiers.php
  */
