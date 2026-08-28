@@ -1,6 +1,9 @@
 DirectoryIndex index.php
 RewriteEngine On
 
+# Preserve the historic SEO URL for the process page.
+RewriteRule ^processus-de-realisation/?$ /processus-de-realisation-dune-etude-re2020/ [R=301,L]
+
 # Preserve real files and directories.
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
