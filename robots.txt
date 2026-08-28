@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://r-e-2020.fr/sitemap.xml
