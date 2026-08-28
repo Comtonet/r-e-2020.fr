@@ -2,8 +2,16 @@
 return [
     // Chiffres globaux affichés sur le site.
     'projects_count' => 89000,
+    'experience_years' => 16,
     'google_rating' => 4.6,
     'google_reviews' => 319,
+
+    // Qualifications / preuves publiques.
+    'opqibi_1331' => true,
+    'opqibi_1332' => true,
+    'opqibi_1905' => true,
+    'opqibi_1911' => true,
+    'opqibi_profile_url' => 'https://www.opqibi.com/fiche/3545',
 
     // Délais : toutes les valeurs sont modifiables ici.
     'delay_standard_days' => 1,
