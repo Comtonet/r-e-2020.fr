@@ -1,4 +1,9 @@
 <?php
+/*
+ * Catalogue des dossiers RE2020.
+ * Règle de publication : tout nouveau dossier doit obligatoirement utiliser
+ * une catégorie déclarée ci-dessous. Son URL est /{categorie}/{slug}/.
+ */
 return [
     'categories' => [
         'reglementaire' => [
@@ -19,7 +24,7 @@ return [
             'category' => 'reglementaire',
             'slug' => 'zones-climatiques-calcul-re2020',
             'title' => 'Zones climatiques RE2020 : l’impact de la géographie sur vos obligations',
-            'excerpt' => 'Comprendre les zones H1 à H3, les modulations géographiques, l’altitude et leur influence sur le Bbiomax.',
+            'excerpt' => 'Comprendre les zones climatiques, les modulations géographiques, l’altitude et leur influence sur le Bbiomax.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/zones-climatiques-calcul-re2020/',
         ],
         [
@@ -63,6 +68,27 @@ return [
             'title' => 'Attestation Bbio RE2020 : contenu et rôle du bureau d’études',
             'excerpt' => 'Ce que contient l’attestation pour le permis et comment les données de l’étude permettent son édition.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/attestation-bbio-re2020-contenu-lien-bureau-etudes/',
+        ],
+        [
+            'category' => 'reglementaire',
+            'slug' => 'difference-cep-cepnr-calcul-re2020',
+            'title' => 'Cep et Cep,nr en RE2020 : comprendre la différence',
+            'excerpt' => 'Énergie primaire, part non renouvelable et impact des systèmes : comprendre les deux indicateurs de consommation.',
+            'source_url' => 'https://r-e-2020.fr/reglementaire/difference-cep-cepnr-calcul-re2020/',
+        ],
+        [
+            'category' => 'reglementaire',
+            'slug' => 'evolution-seuils-acv-re2020',
+            'title' => 'Évolution des seuils ACV en RE2020',
+            'excerpt' => 'Comprendre le durcissement progressif des seuils carbone et ses conséquences sur les choix de construction.',
+            'source_url' => 'https://r-e-2020.fr/reglementaire/evolution-seuils-acv-re2020/',
+        ],
+        [
+            'category' => 'reglementaire',
+            'slug' => 'exemple-etude-thermique-re2020',
+            'title' => 'Exemple d’étude thermique RE2020',
+            'excerpt' => 'Comprendre les principaux résultats, livrables et indicateurs que contient une étude thermique RE2020.',
+            'source_url' => 'https://r-e-2020.fr/reglementaire/exemple-etude-thermique-re2020/',
         ],
         [
             'category' => 'equipements-solutions-techniques',
