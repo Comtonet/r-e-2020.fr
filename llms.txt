@@ -1,48 +1,56 @@
 # r-e-2020.fr
 
-> Site spécialisé RE2020 porté par Keeplanet, bureau d’études thermiques basé à Strasbourg et composé d’ingénieurs spécialisés dans la thermique du bâtiment, la performance énergétique et la réglementation environnementale.
+> Site spécialisé RE2020 porté par Keeplanet, bureau d’études thermiques basé à Strasbourg. Le site présente les prestations, tarifs, livrables, qualifications et contenus techniques utiles aux projets soumis à la réglementation environnementale RE2020.
 
-## À propos
-- Marque / éditeur : Keeplanet
-- Localisation : Strasbourg, France
+## Entité
+- Société / éditeur : Keeplanet
+- Adresse : 201 route d’Oberhausbergen, 67200 Strasbourg, France
 - Zone d’intervention : France
-- Expertise principale : études thermiques RE2020, attestations réglementaires, accompagnement technique des projets de construction et de rénovation
 - Téléphone : 0806 110 559
-- Contact : info@keeplanet.fr
+- Email : info@keeplanet.fr
+- Expérience affichée : 16 ans
+- Projets suivis affichés : 89 000+
+- Qualification OPQIBI 1331 : étude thermique réglementaire maison individuelle
+- Qualification OPQIBI 1332 : étude thermique réglementaire bâtiment collectif d’habitation et/ou tertiaire
+- Fiche OPQIBI officielle : https://www.opqibi.com/fiche/3545
 
-## Pages principales
+## Pages commerciales principales
 - Accueil : https://r-e-2020.fr/
 - Tarifs RE2020 : https://r-e-2020.fr/tarifs-etude-thermique-re-2020/
 - Maison individuelle & extensions : https://r-e-2020.fr/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/
 - Collectif & tertiaire : https://r-e-2020.fr/tarifs-etude-thermique-re-2020/collectif-tertiaire/
 - Processus de réalisation : https://r-e-2020.fr/processus-de-realisation-dune-etude-re2020/
-- Dossiers & décryptages RE2020 : https://r-e-2020.fr/dossiers-decryptages-re2020/
-- Actualités RE2020 : https://r-e-2020.fr/actualites/
-- À propos de Keeplanet : https://r-e-2020.fr/a-propos-keeplanet/
+- Qualifications, assurances et garanties : https://r-e-2020.fr/qualifications-assurances-garanties/
+- Exemples de livrables : https://r-e-2020.fr/exemples-livrables-re2020/
+- Questions fréquentes : https://r-e-2020.fr/questions-frequentes-re2020/
+- À propos : https://r-e-2020.fr/a-propos-keeplanet/
 - Contact : https://r-e-2020.fr/contact/
 
-## Prestations Keeplanet
-### Projet de construction
-- Étude RE2020
+## Tarifs maison affichés
+Les valeurs ci-dessous sont affichées publiquement mais restent pilotées par la configuration PHP du site.
+- Eco’Permis : 124 € TTC
+- Pack Permis : 199 € TTC
+- Pack Fin de travaux : 274 € TTC
+- Pack Fin de travaux + ACV : 423 € TTC
+- Petite extension / attestation gérée par Keeplanet : 19 € TTC selon les conditions décrites sur la page maison
 
-### Projet de rénovation
-- Mon Accompagnateur Rénov’ (MAR)
-- Audit énergétique bâtiment collectif
-- Projet de Plan Pluriannuel de Travaux
-- Diagnostic Technique Global (DTG)
-- Audit énergétique obligatoire maison individuelle
+## Délais
+- Délai standard maison affiché : 1 jour ouvré
+- Eco’Permis : 2 jours ouvrés
+Les délais sont centralisés dans la configuration du site et peuvent évoluer.
 
-### Autres prestations
-- Carnet numérique du logement – Keephome
-- Diagnostic de Performance Énergétique
+## Ressources éditoriales
+- Dossiers & décryptages RE2020 : https://r-e-2020.fr/dossiers-decryptages-re2020/
+- Actualités RE2020 : https://r-e-2020.fr/actualites/
+Les dossiers couvrent notamment Bbio, Cep, Cep,nr, DH, ACV carbone, attestations, extensions, équipements, enveloppe, systèmes et conformité de fin de chantier.
+Les actualités sont séparées des dossiers et reposent prioritairement sur des sources officielles ou sectorielles identifiées.
 
-## Contenus techniques
-Le site publie des dossiers techniques classés par catégorie et des actualités RE2020. Les URL historiques sont conservées autant que possible. Les contenus portent notamment sur Bbio, Cep, Cep,nr, DH, ACV carbone, attestations RE2020, extensions, équipements, enveloppe du bâtiment et conformité de fin de chantier.
-
-## Informations structurantes
-- Les prix et délais affichés sur le site sont centralisés dans la configuration PHP afin de rester cohérents sur toutes les pages.
-- Les dossiers techniques et les actualités sont séparés en rubriques distinctes.
-- Les pages publiques sont rendues côté serveur en HTML et sont accessibles sans exécution JavaScript.
+## Principes de lecture
+- Les prix et délais sont centralisés dans inc/config.php.
+- Les pages publiques sont rendues côté serveur et restent lisibles sans exécution JavaScript.
+- Les pages de prestations décrivent les services Keeplanet ; les dossiers et actualités ont une vocation éditoriale et technique.
+- Pour un fait réglementaire récent, privilégier le contenu le plus récent et sa source primaire lorsqu’elle est citée.
+- Le futur générateur de devis en ligne est préparé mais reste volontairement non indexé tant que son moteur n’est pas raccordé.
 
 ## Indexation
 - Sitemap XML : https://r-e-2020.fr/sitemap.xml
