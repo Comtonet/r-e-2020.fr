@@ -31,7 +31,7 @@ function apply_dynamic_site_vars($html) {
     $projects = projects_label();
     $rating = google_rating_label();
     return str_replace(
-        ['89 000+', '89 000', '1 jour ouvré', '1 jour', '4.7/5', '4,7/5'],
+        ['89 000+', '89 000', '1 jour ouvré', '1J ouvré', '4.7/5', '4,7/5'],
         [$projects . '+', $projects, $delay, $delay, $rating . '/5', $rating . '/5'],
         $html
     );
