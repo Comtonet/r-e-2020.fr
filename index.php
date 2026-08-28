@@ -9,6 +9,7 @@ if ($path !== '/') { $path .= '/'; }
 $legacyProcessPath = '/processus-de-realisation/';
 $processPath = '/processus-de-realisation-dune-etude-re2020/';
 $dossiersPath = '/dossiers-decryptages-re2020/';
+$actualitesPath = '/actualites/';
 $aboutPath = '/a-propos-keeplanet/';
 
 if ($path === $legacyProcessPath) {
@@ -41,6 +42,19 @@ if ($path === $dossiersPath) {
     }
 }
 
+$GLOBALS['actualites_catalog'] = require __DIR__ . '/content/actualites.php';
+$GLOBALS['actualites_route'] = null;
+if ($path === $actualitesPath) {
+    $GLOBALS['actualites_route'] = ['type' => 'index'];
+} else {
+    foreach ($GLOBALS['actualites_catalog'] as $actualite) {
+        if ($path === '/actualites/' . $actualite['slug'] . '/') {
+            $GLOBALS['actualites_route'] = ['type' => 'article', 'article' => $actualite];
+            break;
+        }
+    }
+}
+
 $lookupPath = $path === $processPath ? $legacyProcessPath : $path;
 $page = null;
 
@@ -52,6 +66,26 @@ if ($path === $aboutPath) {
         'h1' => 'À propos de Keeplanet',
         'lead' => 'Un bureau d’études thermiques spécialisé dans la RE2020, avec une approche rapide, fiable et accessible.'
     ];
+} elseif ($GLOBALS['actualites_route']) {
+    $route = $GLOBALS['actualites_route'];
+    if ($route['type'] === 'index') {
+        $page = [
+            'title' => 'Actualités RE2020 | Réglementation, moteur de calcul, INIES',
+            'description' => 'Suivez les évolutions de la RE2020, des moteurs de calcul, de la base INIES et des règles qui impactent vos projets.',
+            'type' => 'actualites',
+            'h1' => 'L’actualité RE2020 qui impacte vraiment vos projets',
+            'lead' => 'Nous décryptons les changements réglementaires et techniques avec un regard opérationnel.'
+        ];
+    } else {
+        $article = $route['article'];
+        $page = [
+            'title' => $article['title'] . ' | Actualités RE2020',
+            'description' => $article['excerpt'],
+            'type' => 'actualite_article',
+            'h1' => $article['title'],
+            'lead' => $article['excerpt']
+        ];
+    }
 } elseif ($GLOBALS['dossier_route']) {
     $route = $GLOBALS['dossier_route'];
     if ($route['type'] === 'index') {
@@ -106,7 +140,7 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 <meta name="theme-color" content="#38227E">
 <link rel="stylesheet" href="/assets/css/app.css?v=3">
 <?php if ($path === $processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?>
-<?php if ($GLOBALS['dossier_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=1"><?php endif; ?>
+<?php if ($GLOBALS['dossier_route'] || $GLOBALS['actualites_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=1"><?php endif; ?>
 <?php if ($path === $aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?>
 <link rel="stylesheet" href="/assets/css/theme.css?v=1">
 <link rel="stylesheet" href="/assets/css/identity.css?v=1">
@@ -135,6 +169,8 @@ if ($path === $processPath) {
     require __DIR__ . '/pages/processus.php';
 } elseif ($path === $aboutPath) {
     require __DIR__ . '/pages/a-propos-keeplanet.php';
+} elseif ($GLOBALS['actualites_route']) {
+    require __DIR__ . '/pages/actualites.php';
 } elseif ($GLOBALS['dossier_route']) {
     require __DIR__ . '/pages/dossiers.php';
 } else {
