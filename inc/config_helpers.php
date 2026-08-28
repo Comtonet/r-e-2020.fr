@@ -10,8 +10,25 @@ function working_days_label($days) {
     return $days . ' jour' . ($days > 1 ? 's' : '') . ' ouvré' . ($days > 1 ? 's' : '');
 }
 
+function hours_label($hours) {
+    $hours = (int)$hours;
+    return $hours . ' heure' . ($hours > 1 ? 's' : '') . ' ouvrée' . ($hours > 1 ? 's' : '');
+}
+
 function standard_delay_label() {
     return working_days_label(cfg('delay_standard_days', 1));
+}
+
+function eco_delay_label() {
+    return working_days_label(cfg('delay_eco_days', 2));
+}
+
+function small_extension_delay_label() {
+    return hours_label(cfg('delay_small_extension_hours', 2));
+}
+
+function price_ttc_label($key, $default = 0) {
+    return number_format((float)cfg($key, $default), 0, ',', ' ') . ' € TTC';
 }
 
 function projects_label() {
