@@ -9,6 +9,7 @@ if ($path !== '/') { $path .= '/'; }
 $legacyProcessPath = '/processus-de-realisation/';
 $processPath = '/processus-de-realisation-dune-etude-re2020/';
 $dossiersPath = '/dossiers-decryptages-re2020/';
+$aboutPath = '/a-propos-keeplanet/';
 
 if ($path === $legacyProcessPath) {
     header('Location: ' . $processPath, true, 301);
@@ -43,7 +44,15 @@ if ($path === $dossiersPath) {
 $lookupPath = $path === $processPath ? $legacyProcessPath : $path;
 $page = null;
 
-if ($GLOBALS['dossier_route']) {
+if ($path === $aboutPath) {
+    $page = [
+        'title' => 'À propos de Keeplanet | Bureau d’études thermiques RE2020',
+        'description' => 'Découvrez Keeplanet, bureau d’études thermiques spécialisé en RE2020, études thermiques, attestations réglementaires et accompagnement des projets de construction.',
+        'type' => 'about',
+        'h1' => 'À propos de Keeplanet',
+        'lead' => 'Un bureau d’études thermiques spécialisé dans la RE2020, avec une approche rapide, fiable et accessible.'
+    ];
+} elseif ($GLOBALS['dossier_route']) {
     $route = $GLOBALS['dossier_route'];
     if ($route['type'] === 'index') {
         $page = [
@@ -98,20 +107,23 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 <link rel="stylesheet" href="/assets/css/app.css?v=3">
 <?php if ($path === $processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?>
 <?php if ($GLOBALS['dossier_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=1"><?php endif; ?>
+<?php if ($path === $aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?>
 <link rel="stylesheet" href="/assets/css/theme.css?v=1">
+<link rel="stylesheet" href="/assets/css/identity.css?v=1">
 <script type="application/ld+json"><?= json_encode(schema_for($page, $canonical), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
 </head>
 <body>
 <header class="site-header">
   <div class="topbar"><div class="container topbar-inner"><span>Keeplanet · Bureau d’études thermiques qualifié OPQIBI · <?= h(projects_label()) ?>+ projets</span><a href="tel:0806110559">0806 110 559</a></div></div>
   <div class="container nav-wrap">
-    <a class="brand" href="/" aria-label="Accueil r-e-2020.fr"><img class="brand-logo" src="/assets/img/logo-re2020.svg?v=2" alt="R-E-2020.fr" width="240" height="37"></a>
+    <a class="brand" href="/" aria-label="Accueil r-e-2020.fr"><span class="brand-text-logo"><span class="brand-text-main">r-e-2020</span><span class="brand-text-fr">.fr</span></span></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
     <nav id="main-nav" class="main-nav">
       <a href="/tarifs-etude-thermique-re-2020/">Tarifs</a>
       <a href="/processus-de-realisation-dune-etude-re2020/">Comment ça marche</a>
       <a href="/dossiers-decryptages-re2020/">Dossiers</a>
       <a href="/actualites/">Actualités</a>
+      <a href="/a-propos-keeplanet/">À propos</a>
       <a href="/contact/">Contact</a>
       <a class="btn btn-small" href="https://espace-client.keeplanet.fr/">Espace client</a>
     </nav>
@@ -121,6 +133,8 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 ob_start();
 if ($path === $processPath) {
     require __DIR__ . '/pages/processus.php';
+} elseif ($path === $aboutPath) {
+    require __DIR__ . '/pages/a-propos-keeplanet.php';
 } elseif ($GLOBALS['dossier_route']) {
     require __DIR__ . '/pages/dossiers.php';
 } else {
@@ -130,9 +144,9 @@ echo apply_dynamic_site_vars(ob_get_clean());
 ?></main>
 <footer class="site-footer">
   <div class="container footer-grid">
-    <div><a class="brand brand-footer" href="/"><img class="brand-logo brand-logo-footer" src="/assets/img/logo-re2020.svg?v=2" alt="R-E-2020.fr" width="220" height="34"></a><p>Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.</p><p class="footer-trust">★★★★★ <?= h(google_rating_label()) ?>/5 · <?= h(google_reviews_label()) ?> avis Google · <?= h(projects_label()) ?>+ projets</p></div>
+    <div><a class="brand brand-footer" href="/"><span class="brand-text-logo brand-text-logo-footer"><span class="brand-text-main">r-e-2020</span><span class="brand-text-fr">.fr</span></span></a><p>Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.</p><p class="footer-trust">★★★★★ <?= h(google_rating_label()) ?>/5 · <?= h(google_reviews_label()) ?> avis Google · <?= h(projects_label()) ?>+ projets</p></div>
     <div><h3>Votre projet</h3><a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Maison & extension</a><a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Collectif & tertiaire</a><a href="/processus-de-realisation-dune-etude-re2020/">Processus</a></div>
-    <div><h3>Ressources</h3><a href="/dossiers-decryptages-re2020/">Dossiers techniques</a><a href="/actualites/">Actualités</a><a href="/contact/">Contact</a></div>
+    <div><h3>Ressources</h3><a href="/dossiers-decryptages-re2020/">Dossiers techniques</a><a href="/actualites/">Actualités</a><a href="/a-propos-keeplanet/">À propos de Keeplanet</a><a href="/contact/">Contact</a></div>
     <div><h3>Nous contacter</h3><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><p>201 route d’Oberhausbergen<br>67200 Strasbourg</p></div>
   </div>
   <div class="container footer-bottom"><span>© <?= date('Y') ?> r-e-2020.fr · Keeplanet</span><span><a href="/conditions-generales-de-vente/">CGV</a> · <a href="/mentions-legales/">Mentions légales</a></span></div>
