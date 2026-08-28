@@ -11,6 +11,7 @@ $processPath = '/processus-de-realisation-dune-etude-re2020/';
 $dossiersPath = '/dossiers-decryptages-re2020/';
 $actualitesPath = '/actualites/';
 $aboutPath = '/a-propos-keeplanet/';
+$maisonPath = '/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/';
 
 if ($path === $legacyProcessPath) {
     header('Location: ' . $processPath, true, 301);
@@ -58,7 +59,15 @@ if ($path === $actualitesPath) {
 $lookupPath = $path === $processPath ? $legacyProcessPath : $path;
 $page = null;
 
-if ($path === $aboutPath) {
+if ($path === $maisonPath) {
+    $page = [
+        'title' => 'Étude RE2020 maison dès ' . price_ttc_label('price_eco_permis_ttc') . ' | Attestation permis',
+        'description' => 'Étude thermique RE2020 pour maison individuelle : Eco’Permis, Pack Permis, étude complète et ACV. Keeplanet, bureau d’études à Strasbourg, qualifié OPQIBI.',
+        'type' => 'maison',
+        'h1' => 'Votre attestation RE2020 pour le permis, sans perdre de temps.',
+        'lead' => 'Déposez vos plans en ligne : les ingénieurs thermiques Keeplanet réalisent votre étude RE2020 et vous accompagnent jusqu’aux documents nécessaires à votre permis.'
+    ];
+} elseif ($path === $aboutPath) {
     $page = [
         'title' => 'À propos de Keeplanet | Bureau d’études thermiques RE2020',
         'description' => 'Découvrez Keeplanet, bureau d’études thermiques spécialisé en RE2020, études thermiques, attestations réglementaires et accompagnement des projets de construction.',
@@ -142,6 +151,7 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 <?php if ($path === $processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?>
 <?php if ($GLOBALS['dossier_route'] || $GLOBALS['actualites_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=1"><?php endif; ?>
 <?php if ($path === $aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?>
+<?php if ($path === $maisonPath): ?><link rel="stylesheet" href="/assets/css/maison.css?v=1"><?php endif; ?>
 <link rel="stylesheet" href="/assets/css/theme.css?v=1">
 <link rel="stylesheet" href="/assets/css/identity.css?v=1">
 <script type="application/ld+json"><?= json_encode(schema_for($page, $canonical), JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
@@ -165,7 +175,9 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 </header>
 <main><?php
 ob_start();
-if ($path === $processPath) {
+if ($path === $maisonPath) {
+    require __DIR__ . '/pages/maison.php';
+} elseif ($path === $processPath) {
     require __DIR__ . '/pages/processus.php';
 } elseif ($path === $aboutPath) {
     require __DIR__ . '/pages/a-propos-keeplanet.php';
