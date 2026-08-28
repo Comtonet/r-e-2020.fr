@@ -8,8 +8,14 @@ if ($path !== '/') { $path .= '/'; }
 
 $legacyProcessPath = '/processus-de-realisation/';
 $processPath = '/processus-de-realisation-dune-etude-re2020/';
+$dossiersPath = '/dossiers-decryptages-re2020/';
+
 if ($path === $legacyProcessPath) {
     header('Location: ' . $processPath, true, 301);
+    exit;
+}
+if ($path === '/dossiers/') {
+    header('Location: ' . $dossiersPath, true, 301);
     exit;
 }
 
@@ -18,11 +24,7 @@ $GLOBALS['dossier_catalog'] = require __DIR__ . '/content/dossiers.php';
 $GLOBALS['dossier_route'] = null;
 $dossierCatalog = $GLOBALS['dossier_catalog'];
 
-if ($path === '/dossiers/' || $path === '/dossiers-decryptages-re2020/') {
-    if ($path === '/dossiers-decryptages-re2020/') {
-        header('Location: /dossiers/', true, 301);
-        exit;
-    }
+if ($path === $dossiersPath) {
     $GLOBALS['dossier_route'] = ['type' => 'index'];
 } else {
     foreach ($dossierCatalog['categories'] as $categorySlug => $category) {
@@ -108,7 +110,7 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
     <nav id="main-nav" class="main-nav">
       <a href="/tarifs-etude-thermique-re-2020/">Tarifs</a>
       <a href="/processus-de-realisation-dune-etude-re2020/">Comment ça marche</a>
-      <a href="/dossiers/">Dossiers</a>
+      <a href="/dossiers-decryptages-re2020/">Dossiers</a>
       <a href="/actualites/">Actualités</a>
       <a href="/contact/">Contact</a>
       <a class="btn btn-small" href="https://espace-client.keeplanet.fr/">Espace client</a>
@@ -130,7 +132,7 @@ echo apply_dynamic_site_vars(ob_get_clean());
   <div class="container footer-grid">
     <div><a class="brand brand-footer" href="/"><img class="brand-logo brand-logo-footer" src="/assets/img/logo-re2020.svg?v=1" alt="R-E-2020.fr" width="220" height="34"></a><p>Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.</p><p class="footer-trust">★★★★★ <?= h(google_rating_label()) ?>/5 · <?= h(google_reviews_label()) ?> avis Google · <?= h(projects_label()) ?>+ projets</p></div>
     <div><h3>Votre projet</h3><a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Maison & extension</a><a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Collectif & tertiaire</a><a href="/processus-de-realisation-dune-etude-re2020/">Processus</a></div>
-    <div><h3>Ressources</h3><a href="/dossiers/">Dossiers techniques</a><a href="/actualites/">Actualités</a><a href="/contact/">Contact</a></div>
+    <div><h3>Ressources</h3><a href="/dossiers-decryptages-re2020/">Dossiers techniques</a><a href="/actualites/">Actualités</a><a href="/contact/">Contact</a></div>
     <div><h3>Nous contacter</h3><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><p>201 route d’Oberhausbergen<br>67200 Strasbourg</p></div>
   </div>
   <div class="container footer-bottom"><span>© <?= date('Y') ?> r-e-2020.fr · Keeplanet</span><span><a href="/conditions-generales-de-vente/">CGV</a> · <a href="/mentions-legales/">Mentions légales</a></span></div>
