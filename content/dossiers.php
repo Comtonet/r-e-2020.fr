@@ -26,6 +26,7 @@ return [
             'title' => 'Zones climatiques RE2020 : l’impact de la géographie sur vos obligations',
             'excerpt' => 'Comprendre les zones climatiques, les modulations géographiques, l’altitude et leur influence sur le Bbiomax.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/zones-climatiques-calcul-re2020/',
+            'wp_id' => 1675,
         ],
         [
             'category' => 'reglementaire',
@@ -33,6 +34,7 @@ return [
             'title' => 'Degrés-Heures (DH) RE2020 : maîtriser le confort d’été',
             'excerpt' => 'Pourquoi l’indicateur DH a remplacé la Tic et comment limiter la surchauffe estivale.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/calcul-degres-heures-dh-re2020/',
+            'wp_id' => 1330,
         ],
         [
             'category' => 'reglementaire',
@@ -40,6 +42,7 @@ return [
             'title' => 'Contrôle de fin de chantier et test d’étanchéité à l’air RE2020',
             'excerpt' => 'Test d’infiltrométrie, contrôle de ventilation et cohérence entre le chantier et le fichier réglementaire.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/controle-fin-chantier-etancheite-air-re2020/',
+            'wp_id' => 1810,
         ],
         [
             'category' => 'reglementaire',
@@ -47,6 +50,7 @@ return [
             'title' => 'VMC Hygro-B vs Double Flux : le match réglementaire RE2020',
             'excerpt' => 'Bbio, Cep, auxiliaires et confort : ce que le moteur réglementaire valorise réellement.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/vmc-hygro-b-vs-double-flux-re2020/',
+            'wp_id' => 1385,
         ],
         [
             'category' => 'reglementaire',
@@ -54,6 +58,15 @@ return [
             'title' => 'ACV carbone RE2020 et permis de construire',
             'excerpt' => 'Le rôle de l’analyse de cycle de vie dans la RE2020 et son articulation avec les étapes du projet.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/acv-carbone-re2020-permis-construire/',
+            'wp_id' => 1345,
+        ],
+        [
+            'category' => 'reglementaire',
+            'slug' => 'extension-re2020-seuils-surface',
+            'title' => 'Extension et RE2020 : seuils de surface et obligations selon votre projet',
+            'excerpt' => 'Les différents seuils de surface et les obligations thermiques applicables aux extensions de maison.',
+            'source_url' => 'https://r-e-2020.fr/reglementaire/extension-re2020-seuils-surface/',
+            'wp_id' => 1336,
         ],
         [
             'category' => 'reglementaire',
@@ -61,6 +74,7 @@ return [
             'title' => 'Compacité du bâti et performance RE2020',
             'excerpt' => 'Pourquoi la forme du bâtiment influence les déperditions, le Bbio et les choix constructifs.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/compacite-bati-re2020/',
+            'wp_id' => 1416,
         ],
         [
             'category' => 'reglementaire',
@@ -82,6 +96,7 @@ return [
             'title' => 'Évolution des seuils ACV en RE2020',
             'excerpt' => 'Comprendre le durcissement progressif des seuils carbone et ses conséquences sur les choix de construction.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/evolution-seuils-acv-re2020/',
+            'wp_id' => 1818,
         ],
         [
             'category' => 'reglementaire',
@@ -89,6 +104,15 @@ return [
             'title' => 'Exemple d’étude thermique RE2020',
             'excerpt' => 'Comprendre les principaux résultats, livrables et indicateurs que contient une étude thermique RE2020.',
             'source_url' => 'https://r-e-2020.fr/reglementaire/exemple-etude-thermique-re2020/',
+            'wp_id' => 1793,
+        ],
+        [
+            'category' => 'reglementaire',
+            'slug' => 'calcul-surface-reference-thermique-srt',
+            'title' => 'De la SHONrt à la Srt RE2020 : comprendre la surface de référence',
+            'excerpt' => 'Comprendre la Srt / Su et la surface réglementaire qui sert notamment à moduler les plafonds de consommation.',
+            'source_url' => 'https://r-e-2020.fr/reglementaire/calcul-surface-reference-thermique-srt/',
+            'wp_id' => 1683,
         ],
         [
             'category' => 'equipements-solutions-techniques',
@@ -96,6 +120,7 @@ return [
             'title' => 'Effet Joule en RE2020 : pourquoi le radiateur électrique classique pénalise le Cep',
             'excerpt' => 'Le coefficient de conversion électrique et les raisons pour lesquelles l’effet Joule devient difficile à valider.',
             'source_url' => 'https://r-e-2020.fr/equipements-solutions-techniques/interdiction-effet-joule-re2020/',
+            'wp_id' => 1411,
         ],
         [
             'category' => 'equipements-solutions-techniques',
@@ -110,6 +135,7 @@ return [
             'title' => 'Surface vitrée RE2020 : règle des 1/6 et facteur solaire',
             'excerpt' => 'Surface minimale de baies, facteur solaire, orientation et protections pour équilibrer Bbio et confort d’été.',
             'source_url' => 'https://r-e-2020.fr/equipements-solutions-techniques/regle-un-sixieme-surface-vitree-re2020/',
+            'wp_id' => 1405,
         ],
         [
             'category' => 'couts-optimisation-budgetaire',
@@ -117,6 +143,7 @@ return [
             'title' => 'Prix d’une maison RE2020 : optimiser le budget sans perdre la conformité',
             'excerpt' => 'Identifier les leviers les plus économiques pour corriger un projet et éviter les surdimensionnements inutiles.',
             'source_url' => 'https://r-e-2020.fr/couts-optimisation-budgetaire/prix-maison-re2020/',
+            'wp_id' => 1785,
         ],
     ],
 ];
