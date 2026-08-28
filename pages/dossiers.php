@@ -5,42 +5,13 @@ $categories = $catalog['categories'];
 $articles = $catalog['articles'];
 $dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
 $dossiersIndex = '/dossiers-decryptages-re2020/';
-
-function dossier_articles_for($articles, $category) {
-    return array_values(array_filter($articles, function($a) use ($category) { return $a['category'] === $category; }));
-}
+function dossier_articles_for($articles, $category) { return array_values(array_filter($articles, function($a) use ($category) { return $a['category'] === $category; })); }
 ?>
 <?php if ($route['type'] === 'index'): ?>
-<section class="dossier-hero"><div class="container"><span class="eyebrow">Dossiers & décryptages RE2020</span><h1>Comprendre la RE2020, sujet par sujet</h1><p>Retrouvez nos dossiers techniques classés par catégorie. Chaque nouveau dossier publié est obligatoirement rattaché à l’une de ces catégories pour conserver une arborescence SEO cohérente.</p></div></section>
-<section class="section dossier-section"><div class="container">
-  <div class="dossier-categories">
-    <?php foreach ($categories as $slug => $category): $count = count(dossier_articles_for($articles, $slug)); ?>
-      <a class="dossier-category" href="/<?= h($slug) ?>/"><span class="dossier-count"><?= $count ?> dossier<?= $count > 1 ? 's' : '' ?></span><h2><?= h($category['name']) ?></h2><p><?= h($category['description']) ?></p><strong>Voir la catégorie →</strong></a>
-    <?php endforeach; ?>
-  </div>
-  <?php foreach ($categories as $slug => $category): $items = dossier_articles_for($articles, $slug); ?>
-    <section class="dossier-group"><div class="dossier-group-head"><div><span class="eyebrow"><?= h($category['name']) ?></span><h2>Derniers dossiers</h2></div><a href="/<?= h($slug) ?>/">Tout voir →</a></div>
-    <div class="dossier-grid">
-      <?php foreach ($items as $article): ?>
-        <article class="dossier-card"><span class="pill"><?= h($category['name']) ?></span><h3><a href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/"><?= h($article['title']) ?></a></h3><p><?= h($article['excerpt']) ?></p><a class="dossier-link" href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/">Lire le dossier →</a></article>
-      <?php endforeach; ?>
-    </div></section>
-  <?php endforeach; ?>
-</div></section>
-
+<section class="dossier-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Dossiers</span></div><span class="eyebrow">Dossiers & décryptages RE2020</span><h1>Comprendre la RE2020, sujet par sujet</h1><p>Retrouvez nos dossiers techniques classés par catégorie. Chaque nouveau dossier publié est obligatoirement rattaché à l’une de ces catégories pour conserver une arborescence SEO cohérente.</p></div></section>
+<section class="section dossier-section"><div class="container"><div class="dossier-categories"><?php foreach ($categories as $slug => $category): $count = count(dossier_articles_for($articles, $slug)); ?><a class="dossier-category" href="/<?= h($slug) ?>/"><span class="dossier-count"><?= $count ?> dossier<?= $count > 1 ? 's' : '' ?></span><h2><?= h($category['name']) ?></h2><p><?= h($category['description']) ?></p><strong>Voir la catégorie →</strong></a><?php endforeach; ?></div><?php foreach ($categories as $slug => $category): $items = dossier_articles_for($articles, $slug); ?><section class="dossier-group"><div class="dossier-group-head"><div><span class="eyebrow"><?= h($category['name']) ?></span><h2>Derniers dossiers</h2></div><a href="/<?= h($slug) ?>/">Tout voir →</a></div><div class="dossier-grid"><?php foreach ($items as $article): ?><article class="dossier-card"><span class="pill"><?= h($category['name']) ?></span><h3><a href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/"><?= h($article['title']) ?></a></h3><p><?= h($article['excerpt']) ?></p><a class="dossier-link" href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/">Lire le dossier →</a></article><?php endforeach; ?></div></section><?php endforeach; ?><div class="article-cta"><div><span class="eyebrow">Suivre les changements</span><h2>Consultez aussi les actualités RE2020.</h2></div><a class="btn" href="/actualites/">Voir les actualités</a></div></div></section>
 <?php elseif ($route['type'] === 'category'): $cat = $categories[$route['category']]; $items = dossier_articles_for($articles, $route['category']); ?>
-<section class="dossier-hero compact"><div class="container"><a class="breadcrumb" href="<?= h($dossiersIndex) ?>">Dossiers</a><span class="eyebrow"><?= h($cat['name']) ?></span><h1><?= h($cat['name']) ?></h1><p><?= h($cat['description']) ?></p></div></section>
-<section class="section dossier-section"><div class="container"><div class="dossier-grid">
-<?php foreach ($items as $article): ?><article class="dossier-card"><span class="pill"><?= h($cat['name']) ?></span><h2><a href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/"><?= h($article['title']) ?></a></h2><p><?= h($article['excerpt']) ?></p><a class="dossier-link" href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/">Lire le dossier →</a></article><?php endforeach; ?>
-</div></div></section>
-
+<section class="dossier-hero compact"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><a href="<?= h($dossiersIndex) ?>">Dossiers</a></div><span class="eyebrow"><?= h($cat['name']) ?></span><h1><?= h($cat['name']) ?></h1><p><?= h($cat['description']) ?></p></div></section><section class="section dossier-section"><div class="container"><div class="dossier-grid"><?php foreach ($items as $article): ?><article class="dossier-card"><span class="pill"><?= h($cat['name']) ?></span><h2><a href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/"><?= h($article['title']) ?></a></h2><p><?= h($article['excerpt']) ?></p><a class="dossier-link" href="/<?= h($article['category']) ?>/<?= h($article['slug']) ?>/">Lire le dossier →</a></article><?php endforeach; ?></div></div></section>
 <?php elseif ($route['type'] === 'article'): $article = $route['article']; $cat = $categories[$article['category']]; $body = $dossierBodies[$article['slug']] ?? ''; ?>
-<article class="dossier-article"><header class="dossier-article-hero"><div class="container narrow"><div class="breadcrumbs"><a href="<?= h($dossiersIndex) ?>">Dossiers</a><span>›</span><a href="/<?= h($article['category']) ?>/"><?= h($cat['name']) ?></a></div><span class="pill"><?= h($cat['name']) ?></span><h1><?= h($article['title']) ?></h1><p><?= h($article['excerpt']) ?></p></div></header>
-<section class="section"><div class="container narrow article-body">
-<?php if ($body): ?>
-  <div class="article-copy"><?= $body ?></div>
-<?php else: ?>
-  <div class="migration-note"><strong>Contenu temporairement indisponible.</strong><p>Cette URL historique est bien conservée, mais son corps éditorial n’a pas encore été associé au catalogue.</p></div>
-<?php endif; ?>
-<div class="article-cta"><div><span class="eyebrow">Besoin d’aller plus loin ?</span><h2>Faites valider votre projet par un thermicien.</h2></div><a class="btn" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Démarrer mon étude</a></div></div></section></article>
+<article class="dossier-article"><header class="dossier-article-hero"><div class="container narrow"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><a href="<?= h($dossiersIndex) ?>">Dossiers</a><span>›</span><a href="/<?= h($article['category']) ?>/"><?= h($cat['name']) ?></a></div><span class="pill"><?= h($cat['name']) ?></span><h1><?= h($article['title']) ?></h1><p><?= h($article['excerpt']) ?></p></div></header><section class="section"><div class="container narrow article-body"><?php if ($body): ?><div class="article-copy"><?= $body ?></div><?php else: ?><div class="migration-note"><strong>Contenu temporairement indisponible.</strong><p>Cette URL historique est bien conservée, mais son corps éditorial n’a pas encore été associé au catalogue.</p></div><?php endif; ?><div class="related-resources"><strong>À lire aussi :</strong> <a href="/actualites/">Actualités RE2020</a> · <a href="/questions-frequentes-re2020/">FAQ RE2020</a> · <a href="/exemples-livrables-re2020/">Exemples de livrables</a></div><div class="article-cta"><div><span class="eyebrow">Besoin d’aller plus loin ?</span><h2>Faites valider votre projet par un thermicien.</h2></div><a class="btn" href="/tarifs-etude-thermique-re-2020/">Voir les prestations</a></div></div></section></article>
 <?php endif; ?>
