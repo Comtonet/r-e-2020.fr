@@ -12,6 +12,7 @@ $dossiersPath = '/dossiers-decryptages-re2020/';
 $actualitesPath = '/actualites/';
 $aboutPath = '/a-propos-keeplanet/';
 $maisonPath = '/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/';
+$devisPath = '/devis-en-ligne/';
 
 if ($path === $legacyProcessPath) {
     header('Location: ' . $processPath, true, 301);
@@ -66,6 +67,14 @@ if ($path === $maisonPath) {
         'type' => 'maison',
         'h1' => 'Votre attestation RE2020 pour le permis, sans perdre de temps.',
         'lead' => 'Déposez vos plans en ligne : les ingénieurs thermiques Keeplanet réalisent votre étude RE2020 et vous accompagnent jusqu’aux documents nécessaires à votre permis.'
+    ];
+} elseif ($path === $devisPath) {
+    $page = [
+        'title' => 'Générateur de devis RE2020 en ligne | Keeplanet',
+        'description' => 'Préparation du futur générateur de devis en ligne Keeplanet pour les études RE2020 et prestations associées.',
+        'type' => 'devis',
+        'h1' => 'Votre devis RE2020 directement en ligne.',
+        'lead' => 'Le futur générateur permettra de configurer votre projet et d’obtenir un devis adapté.'
     ];
 } elseif ($path === $aboutPath) {
     $page = [
@@ -142,6 +151,7 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 <title><?= h($page['title']) ?></title>
 <meta name="description" content="<?= h($page['description']) ?>">
 <link rel="canonical" href="<?= h($canonical) ?>">
+<?php if ($path === $devisPath): ?><meta name="robots" content="noindex,nofollow"><?php endif; ?>
 <meta property="og:type" content="website">
 <meta property="og:title" content="<?= h($page['title']) ?>">
 <meta property="og:description" content="<?= h($page['description']) ?>">
@@ -177,6 +187,8 @@ $canonical = 'https://r-e-2020.fr' . ($path === '/' ? '/' : $path);
 ob_start();
 if ($path === $maisonPath) {
     require __DIR__ . '/pages/maison.php';
+} elseif ($path === $devisPath) {
+    require __DIR__ . '/pages/devis-en-ligne.php';
 } elseif ($path === $processPath) {
     require __DIR__ . '/pages/processus.php';
 } elseif ($path === $aboutPath) {
