@@ -1,5 +1,8 @@
 <?php
 ?>
+<style>
+.keepote-proof-card{position:relative;overflow:hidden;padding-top:150px}.keepote-proof-visual{position:absolute;right:-18px;top:-34px;width:190px;height:190px;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(56,34,126,.12));pointer-events:none}.keepote-visual-wrap{width:112px;height:112px;display:grid;place-items:center}.keepote-visual{width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 10px 16px rgba(56,34,126,.16))}.keepote-inner{grid-template-columns:120px minmax(0,1fr) auto!important}@media(max-width:900px){.keepote-inner{grid-template-columns:100px 1fr!important}.keepote-visual-wrap,.keepote-visual{width:96px;height:96px}.keepote-open{grid-column:2!important}}@media(max-width:720px){.keepote-proof-card{padding-top:132px}.keepote-proof-visual{width:165px;height:165px;right:-12px;top:-28px}.keepote-inner{grid-template-columns:82px 1fr!important;align-items:center}.keepote-visual-wrap,.keepote-visual{width:78px;height:78px}.keepote-copy{grid-column:2}.keepote-open{grid-column:1/-1!important}}
+</style>
 <section class="hero commercial-hero">
   <div class="container hero-grid">
     <div class="hero-copy">
