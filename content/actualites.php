@@ -7,6 +7,38 @@
  */
 return [
     [
+        'slug' => 'barometre-inies-2026-7500-declarations-fdes-pep-acv-re2020',
+        'title' => 'Baromètre INIES 2026 : 7 500 déclarations, quels impacts pour l’ACV RE2020 ?',
+        'excerpt' => 'Le Baromètre INIES 2026 confirme l’accélération des FDES et PEP. Ce que cette dynamique change concrètement pour les ACV et choix produits en RE2020.',
+        'date' => '2026-08-29',
+        'source_name' => 'INIES — Baromètre 2026',
+        'source_url' => 'https://www.inies.fr/barometre-2026-de-la-base-inies/',
+        'secondary_source_url' => 'https://www.inies.fr/report-de-larchivage-des-fdes-etablies-selon-la-norme-nf-en-15804a1/',
+        'body' => <<<'HTML'
+<p>La donnée environnementale devient un véritable paramètre de conception. Publié le <strong>8 juillet 2026</strong>, le Baromètre INIES 2026 montre à quel point la base nationale utilisée pour les analyses de cycle de vie du bâtiment s’est enrichie : INIES indique avoir franchi le cap des <strong>7 500 déclarations environnementales en mai 2026</strong>, contre 5 000 deux ans plus tôt.</p>
+<p>Pour les projets soumis à la RE2020, cette progression n’est pas un simple indicateur statistique. Elle signifie davantage de <strong>FDES</strong> pour les produits de construction et de <strong>PEP</strong> pour les équipements, donc davantage de possibilités de travailler avec des données spécifiques et vérifiées au lieu de recourir à des données par défaut potentiellement plus pénalisantes.</p>
+<h2>INIES 2026 : une croissance très rapide des données environnementales</h2>
+<p>Le Baromètre 2026 met en avant plusieurs tendances fortes. La base a dépassé 7 500 déclarations environnementales au printemps 2026 et les produits biosourcés poursuivent leur progression avec <strong>747 FDES</strong>, soit environ <strong>13 % des FDES</strong> recensées dans le baromètre. INIES mentionne également <strong>212 déclarants internationaux</strong>, signe que la base française s’inscrit de plus en plus dans une chaîne de données environnementales qui dépasse le seul marché national.</p>
+<p>La gouvernance évolue elle aussi : 2026 marque la création de l’association INIES, qui reprend la gouvernance de la base. L’objectif affiché est de conforter son rôle de référence pour les données environnementales des produits, équipements et services de la construction, tout en préparant les évolutions liées au nouveau règlement européen sur les produits de construction.</p>
+<h2>Pourquoi plus de FDES et de PEP peut améliorer une ACV RE2020</h2>
+<p>Dans une <a href="/reglementaire/acv-carbone-re2020-permis-construire/">ACV réglementaire RE2020</a>, le résultat carbone dépend notamment des données affectées aux produits et équipements du projet. Lorsqu’une donnée spécifique correspondant réellement au produit retenu est disponible et utilisable, elle permet de représenter plus finement son impact environnemental.</p>
+<p>Cette précision est particulièrement importante lorsque le projet se rapproche d’un seuil réglementaire. Deux solutions techniques proches en performance thermique peuvent produire des résultats carbone différents selon leurs quantités, leur durée de vie, les remplacements considérés et les déclarations environnementales associées.</p>
+<p>La multiplication des données ne dispense donc pas d’une analyse technique. Au contraire, elle augmente le nombre d’arbitrages possibles : composition d’une paroi, type d’isolant, structure, revêtement, équipements de chauffage, ventilation ou production d’eau chaude sanitaire. Retrouvez également notre dossier sur les <a href="/reglementaire/fdes-donnees-environnementales-acv-carbone/">FDES, données environnementales et ACV carbone</a>.</p>
+<h2>Attention : le nombre de déclarations disponibles n’est pas figé</h2>
+<p>Une FDES ou un PEP possède un cycle de vie documentaire. Une déclaration peut expirer, être remplacée ou être archivée. C’est un point essentiel pour les études qui s’étalent sur plusieurs mois.</p>
+<p>INIES avait ainsi annoncé le retrait au <strong>1er juillet 2026</strong> de certaines FDES établies selon la norme NF EN 15804+A1, après un report demandé par la DHUP pour les besoins de la RE2020. Cette transition rappelle qu’une donnée visible lors d’une première simulation n’est pas nécessairement celle qui sera disponible ou pertinente lors d’une mise à jour ultérieure du projet.</p>
+<p>Le compteur public d’INIES illustre d’ailleurs le caractère vivant de la base : au <strong>29 août 2026</strong>, le site affiche <strong>5 268 FDES et 1 819 PEP</strong>, représentant plus de <strong>341 000 références commerciales</strong> pour les produits de construction. Les entrées sont continuellement publiées, mises à jour et archivées.</p>
+<h2>Les bonnes pratiques pour sécuriser une étude carbone</h2>
+<p>Pour Keeplanet, l’enjeu n’est pas de rechercher systématiquement la donnée affichant le plus faible impact, mais de construire une ACV cohérente avec le projet réellement prévu. Quelques réflexes deviennent déterminants : identifier les produits structurants dès la conception, vérifier la validité des déclarations utilisées, conserver la traçabilité des références retenues et mettre à jour l’étude lorsque des choix importants changent.</p>
+<p>Il est également préférable de ne pas figer trop tôt une référence commerciale lorsqu’elle n’est pas encore décidée. L’ACV doit suivre le niveau de définition du projet : une étude en phase permis sert à sécuriser la conformité et orienter les choix, puis les données peuvent être affinées à mesure que les matériaux et équipements sont arrêtés.</p>
+<h2>Un enjeu encore plus fort avec les seuils carbone qui se resserrent</h2>
+<p>La trajectoire RE2020 prévoit des niveaux d’exigence carbone progressifs. Dans ce contexte, la richesse croissante d’INIES devient un outil d’optimisation de plus en plus important. Le bon produit ne se choisit toutefois jamais uniquement sur une valeur carbone : performances thermiques, disponibilité, contraintes de mise en œuvre, durabilité, coût et cohérence globale du système constructif doivent rester intégrés à l’arbitrage.</p>
+<p>Pour un projet collectif, tertiaire ou plus complexe, l’intérêt d’une simulation en amont est donc double : vérifier la conformité réglementaire et identifier les postes sur lesquels un changement de solution ou de donnée environnementale peut réellement produire un gain utile.</p>
+<h2>Faire réaliser votre étude RE2020 et votre ACV</h2>
+<p>Keeplanet réalise les études énergétiques et environnementales RE2020 avec analyse des indicateurs énergie et carbone et accompagnement sur les choix techniques. Pour un bâtiment collectif ou tertiaire, vous pouvez <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/"><strong>demander votre étude RE2020 collectif / tertiaire</strong></a>. Pour une maison individuelle ou une extension, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">tarifs d’étude RE2020 maison</a>.</p>
+HTML
+    ],
+    [
         'slug' => 're2020-seuils-juillet-2026-ce-qui-change',
         'title' => 'RE2020 : ce qui change depuis le 1er juillet 2026',
         'excerpt' => 'Balcons, hauteurs sous plafond, IGH et réseaux de chaleur : les principaux ajustements RE2020 applicables aux permis déposés depuis le 1er juillet 2026.',
