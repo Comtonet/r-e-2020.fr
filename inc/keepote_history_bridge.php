@@ -20,6 +20,34 @@ function keepote_bridge_settings(): array
     return $settings;
 }
 
+function keepote_current_origin(): string
+{
+    $host=preg_replace('/[^A-Za-z0-9.:-]/','',(string)($_SERVER['HTTP_HOST']??''));
+    if($host==='') return '';
+    $scheme=(!empty($_SERVER['HTTPS'])&&$_SERVER['HTTPS']!=='off')?'https':'http';
+    return $scheme.'://'.$host;
+}
+
+function keepote_register_site_origin(): void
+{
+    static $done=false;
+    if($done) return;
+    $done=true;
+    $cfg=keepote_bridge_settings();
+    $origin=keepote_current_origin();
+    if($cfg['base_url']===''||$cfg['token']===''||$origin===''||!function_exists('curl_init')) return;
+    $ch=curl_init($cfg['base_url'].'/api/keepote-site-register.php');
+    curl_setopt_array($ch,[
+        CURLOPT_POST=>true,
+        CURLOPT_RETURNTRANSFER=>true,
+        CURLOPT_CONNECTTIMEOUT=>2,
+        CURLOPT_TIMEOUT=>4,
+        CURLOPT_HTTPHEADER=>['Authorization: Bearer '.$cfg['token'],'X-Keepote-Token: '.$cfg['token'],'Content-Type: application/json','Accept: application/json'],
+        CURLOPT_POSTFIELDS=>json_encode(['site_origin'=>$origin],JSON_UNESCAPED_SLASHES),
+    ]);
+    curl_exec($ch);curl_close($ch);
+}
+
 function keepote_pending_file(): string
 {
     $dir = dirname(__DIR__) . '/data/ai';
@@ -117,6 +145,7 @@ function keepote_log_exchange(string $conversationId,string $question,string $an
         'model'=>$model,
         'response_id'=>$responseId,
     ];
+    keepote_register_site_origin();
     keepote_flush_pending();
     $res=keepote_bridge_post('/api/keepote-log.php',$payload,2);
     if($res&& !empty($res['ok'])) return true;
