@@ -17,6 +17,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
 
 require_once __DIR__ . '/../inc/config_helpers.php';
 require_once __DIR__ . '/../inc/keepote_site_index.php';
+require_once __DIR__ . '/../inc/keepote_history_bridge.php';
 
 function keepote_reply(int $status, array $payload): never {
     http_response_code($status);
@@ -108,13 +109,9 @@ function keepote_knowledge(string $question): string {
             if($score>0) $scored[]=['score'=>$score,'text'=>$chunk];
         }
     }
-
-    // Index automatique du contenu public : pages, dossiers et actualités sont lus
-    // directement depuis les fichiers du site à chaque requête.
     foreach(keepote_site_index_chunks($tokens) as $row){
         $scored[]=['score'=>(int)$row['score']+1,'text'=>(string)$row['text']];
     }
-
     usort($scored,static fn($a,$b)=>$b['score']<=>$a['score']);
     $selected=array_slice($scored,0,30);
 
@@ -152,13 +149,17 @@ keepote_rate_limit();
 $input=json_decode((string)file_get_contents('php://input'),true);
 if(!is_array($input)) keepote_reply(400,['ok'=>false,'error'=>'Requête invalide.']);
 $question=trim((string)($input['message']??''));
+$page=mb_substr(trim((string)($input['page']??'')),0,500);
 if($question==='') keepote_reply(422,['ok'=>false,'error'=>'Posez une question à KeePote.']);
 if(mb_strlen($question)>2500) keepote_reply(422,['ok'=>false,'error'=>'Votre question est trop longue.']);
 
 $apiKey=keepote_api_key();
 if($apiKey==='') keepote_reply(503,['ok'=>false,'error'=>'KeePote est momentanément indisponible : la clé API serveur n’est pas configurée.']);
 
+$conversationId=keepote_conversation_id();
 $knowledge=keepote_knowledge($question);
+$adminCorrections=keepote_admin_corrections($question);
+if($adminCorrections!=='') $knowledge.="\n\n".$adminCorrections;
 $history=keepote_history($input['history']??[]);
 $history[]=['role'=>'user','content'=>[['type'=>'input_text','text'=>$question]]];
 
@@ -168,6 +169,7 @@ Tu réponds en français, clairement, simplement et professionnellement.
 
 RÈGLES IMPÉRATIVES :
 - Pour Keeplanet (coordonnées, prix, délais, prestations, processus), utilise uniquement le CONTEXTE fourni.
+- Les corrections validées par la direction sont prioritaires sur toute autre formulation ancienne ou ambiguë.
 - Le contenu public actuel du site fait partie du contexte et peut être utilisé pour répondre aux questions sur les coordonnées, pages, offres, dossiers et informations affichées.
 - Pour une règle RE2020 précise, ne présente comme certaine que ce qui est dans le contexte validé. Si cela dépend du projet, précise-le.
 - N'invente jamais un prix, un délai, un seuil, une qualification, une prestation ou une capacité de Keeplanet.
@@ -182,8 +184,9 @@ CONTEXTE :
 {$knowledge}
 TXT;
 
+$model=(string)cfg('ai_model','gpt-5.6-luna');
 $payload=[
-    'model'=>(string)cfg('ai_model','gpt-5.6-luna'),
+    'model'=>$model,
     'instructions'=>$instructions,
     'input'=>$history,
     'max_output_tokens'=>(int)cfg('ai_max_output_tokens',700),
@@ -211,4 +214,6 @@ if($status<200||$status>=300||!is_array($response)){
 }
 $answer=keepote_extract_text($response);
 if($answer==='') keepote_reply(502,['ok'=>false,'error'=>'KeePote n’a pas pu générer de réponse.']);
-keepote_reply(200,['ok'=>true,'answer'=>$answer,'response_id'=>(string)($response['id']??'')]);
+$responseId=(string)($response['id']??'');
+keepote_log_exchange($conversationId,$question,$answer,$page,$model,$responseId);
+keepote_reply(200,['ok'=>true,'answer'=>$answer,'response_id'=>$responseId]);
