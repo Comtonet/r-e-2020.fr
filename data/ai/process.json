@@ -1,1 +1,18 @@
-{"version":1,"updated_at":null,"entries":[]}
+{
+  "version": 2,
+  "updated_at": "2026-08-30",
+  "entries": [
+    {
+      "id": "process-fonctionnement-general",
+      "title": "Fonctionnement général Keeplanet",
+      "content": "Keeplanet est un bureau d’études thermiques spécialisé notamment dans la RE2020. Le site r-e-2020.fr permet de commander et suivre des études thermiques en ligne pour les maisons individuelles, extensions, logements collectifs et bâtiments tertiaires. Le parcours standard est : choisir la prestation ou le pack adapté ; créer son compte ou accéder à l’espace client ; commander l’étude ; transmettre les informations et documents du projet ; laisser le thermicien réaliser l’étude ; récupérer le rendu et les documents réglementaires dans l’espace client. L’espace client centralise les informations du projet, documents transmis, échanges et rendus. Selon le projet, le client renseigne notamment les données administratives, caractéristiques techniques prévues (murs, toiture, isolation), systèmes envisagés (chauffage, eau chaude sanitaire, ventilation) et plans disponibles. Si le projet n’est pas conforme, le thermicien peut proposer des adaptations techniques visant la conformité avec des solutions cohérentes et économiquement raisonnables. Keeplanet peut poursuivre l’accompagnement jusqu’à la fin des travaux. Pour les prix, délais ou règles susceptibles d’évoluer, utiliser les valeurs validées actuelles et non une valeur mémorisée dans un ancien contenu.",
+      "source_drive_id": "1uh65GecLrbqpowHey6kVEbPDlrFeS_gMNDHSW9xE6bE"
+    },
+    {
+      "id": "process-commande-paiement-pieces-rendu",
+      "title": "Commande, paiement, pièces et rendu",
+      "content": "Le client choisit la prestation adaptée puis commande depuis son espace client. Les moyens de paiement prévus sont la carte bancaire, le virement et le chèque. Une option second logement identique existe pour certains projets de deux maisons jumelées ; d’autres particularités peuvent donner lieu à une option spécifique sur demande. Après commande, le client transmet les informations administratives, caractéristiques constructives prévues, systèmes techniques envisagés et plans disponibles. Le délai annoncé démarre après réception d’éléments nécessaires et exploitables, pas au simple paiement si les pièces manquent. Le thermicien réalise l’étude à partir des éléments fournis et peut proposer des ajustements techniques si le projet n’est pas conforme. Le rendu final et l’attestation correspondante sont mis à disposition dans l’espace client lorsque la prestation le prévoit. Si les matériaux, équipements, systèmes ou caractéristiques changent en cours de projet, l’étude peut nécessiter une mise à jour. Keeplanet peut accompagner le projet après le permis jusqu’à la fin des travaux. Pour une liste de documents propre à un cas particulier, identifier d’abord le type de projet avant d’affirmer qu’une pièce spécifique est obligatoire.",
+      "source_drive_id": "1w9Rj4u7oue8kUpg2T0iaVd9e1Z5bqyCOGkSCW2vV5XI"
+    }
+  ]
+}
