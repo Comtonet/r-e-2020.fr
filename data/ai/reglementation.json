@@ -1,1 +1,18 @@
-{"version":1,"updated_at":null,"entries":[]}
+{
+  "version": 2,
+  "updated_at": "2026-08-30",
+  "entries": [
+    {
+      "id": "reglementation-permis-attestations-surfaces-extensions",
+      "title": "Permis, attestations, surfaces et extensions",
+      "content": "L’attestation RE2020 du permis est une pièce réglementaire pour les bâtiments neufs et extensions soumis à la réglementation. Elle est générée à partir du fichier de calcul réglementaire RSEE/XML produit par le bureau d’études et reprend des données administratives, géographiques et résultats réglementaires utiles à la phase permis. Le bureau d’études réalise les calculs et produit le fichier réglementaire ; l’engagement administratif de l’attestation revient au maître d’ouvrage ou à son mandataire. Le fichier RSEE est le cœur numérique de l’étude : il contient données d’enveloppe, systèmes et résultats du calcul. En maison individuelle, la surface de référence thermique Srt correspond à la surface habitable SHAB dans les contenus validés. Les volumes non chauffés comme certains garages ou celliers restent hors de cette surface mais leurs parois communes avec le volume chauffé peuvent intervenir dans les déperditions. En logement collectif, la surface de référence peut intégrer les parties communes chauffées. En tertiaire, la Surface Utile (Su) sert de base à plusieurs indicateurs. Pour les extensions, plusieurs régimes existent selon surface et caractéristiques : identifier au minimum nature du bâtiment, surface de l’extension et si nécessaire surface existante avant de donner une orientation. En cas de doute sur un seuil ou situation atypique, demander une vérification par un thermicien.",
+      "source_drive_id": "1Jdbhk_W3ImxWFDDdZrpqslI6oIvbzq9aEPu83MdfQdY"
+    },
+    {
+      "id": "reglementation-fin-chantier-controles",
+      "title": "Fin de chantier, étanchéité, ventilation, conformité et sanctions",
+      "content": "Il faut conserver une cohérence entre l’étude et les éléments réellement installés : isolation, menuiseries, équipements, matériaux et systèmes. Une modification importante en cours de chantier doit être signalée et, si nécessaire, intégrée dans une mise à jour de l’étude. Le test d’infiltrométrie avec porte soufflante contrôle la perméabilité de l’enveloppe ; les points sensibles incluent jonctions de membranes, menuiseries, coffres de volets, trappes et passages de câbles ou tuyauteries. Un test intermédiaire hors d’eau / hors d’air peut permettre de corriger les défauts avant fermeture des doublages. La fin de chantier comprend également des contrôles de cohérence et de fonctionnement de la ventilation. Keeplanet ne réalise pas lui-même les contrôles finaux d’étanchéité et de ventilation afin de préserver l’indépendance réglementaire, mais peut orienter vers des partenaires qualifiés. Après réussite des contrôles et vérification de la cohérence, l’attestation finale RE2020 est destinée à être jointe à la DAACT. Un échec peut nécessiter corrections et nouveau contrôle. Une incohérence importante peut retarder ou bloquer l’attestation finale. Pour les sanctions, ne jamais annoncer une peine ou une amende précise sans source officielle validée. Pour toute modification importante du chantier, conseiller une vérification du dossier par le bureau d’études avant la fin des travaux.",
+      "source_drive_id": "1mna9ffmIkJimn5j5rEKXGnbpKI-RAdRVCrwhyODCkZ8"
+    }
+  ]
+}
