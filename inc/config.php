@@ -31,4 +31,8 @@ return [
     // Valeurs commerciales affichées lorsqu'elles sont mentionnées.
     'value_keephome_ttc' => 50,
     'value_heating_sizing_ttc' => 50,
+
+    // KeePote : la clé API reste hors Git (OPENAI_API_KEY ou inc/secrets.php).
+    'ai_model' => 'gpt-5.6-luna',
+    'ai_max_output_tokens' => 700,
 ];
