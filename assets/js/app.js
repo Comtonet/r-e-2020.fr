@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  const chatCss=document.createElement('link');
+  chatCss.rel='stylesheet';
+  chatCss.href='/assets/css/keepote-chat.css?v=1';
+  document.head.appendChild(chatCss);
+
   const toggle=document.querySelector('.nav-toggle');
   const nav=document.querySelector('.main-nav');
   if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
@@ -11,14 +16,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     main.parentNode.insertBefore(strip,main);
   }
 
-  /* KeePote : assistant transversal Keeplanet. */
+  const mascot='/assets/img/keepote-nu-assis-simple.png';
   const aiLauncher=document.querySelector('.ai-launcher');
   const aiPanel=document.querySelector('.ai-panel');
   const aiHead=aiPanel?aiPanel.querySelector('.ai-head strong'):null;
   const aiBody=aiPanel?aiPanel.querySelector('.ai-body'):null;
   if(aiLauncher){aiLauncher.innerHTML='<span>✦</span> KeePote';aiLauncher.setAttribute('aria-label','Ouvrir KeePote, l\'assistant Keeplanet');}
   if(aiHead) aiHead.textContent='KeePote · Assistant Keeplanet';
-  if(aiBody){aiBody.innerHTML='<p><strong>Bonjour 👋 Je suis KeePote, l’assistant Keeplanet.</strong></p><p>Je suis entraîné sur la RE2020 et la documentation validée de Keeplanet. Je peux vous orienter, expliquer des notions réglementaires et, dans votre espace client, vous aider à comprendre vos rapports et documents.</p><div class="ai-note">KeePote complète l’accompagnement de nos thermiciens : l’équipe Keeplanet reste disponible dès que vous avez besoin d’un avis humain.</div>';}
+  if(aiBody){
+    aiBody.innerHTML='<div class="ai-welcome"><img src="'+mascot+'" alt="KeePote"><div><p><strong>Bonjour 👋 Je suis KeePote.</strong></p><p>Posez-moi votre question sur la RE2020, les tarifs ou votre projet.</p><div class="ai-note">Je m’appuie sur la documentation validée de Keeplanet.</div></div></div>';
+  }
 
   const keepoteCopies={
     general:{title:'Besoin d’aide ? Demandez à KeePote.',body:'KeePote est l’assistant Keeplanet entraîné sur la RE2020 et notre documentation validée. Il peut vous orienter, expliquer les notions réglementaires et vous aider à comprendre les étapes de votre projet.'},
@@ -47,13 +54,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!type) return;
     const block=makeKeepoteBlock(type);
     const cta=main.querySelector('.cta-band');
-    if(cta) main.insertBefore(block,cta);
-    else main.appendChild(block);
+    if(cta) main.insertBefore(block,cta); else main.appendChild(block);
   }
   insertKeepote();
 
-  /* Popup unique de création de compte.
-     Le traitement serveur de /inscription-en-cours/ sera branché ultérieurement. */
   const modal=document.createElement('div');
   modal.className='signup-modal';
   modal.hidden=true;
@@ -68,23 +72,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         <input type="hidden" name="origine" value="site-re2020">
         <input type="hidden" name="choix" value="" data-signup-choice>
         <input type="hidden" name="url_origine" value="${window.location.pathname}">
-        <div class="signup-field">
-          <label for="signup-name">Nom</label>
-          <input id="signup-name" name="nom" type="text" autocomplete="name" required>
-        </div>
-        <div class="signup-field">
-          <label for="signup-email">E-mail</label>
-          <input id="signup-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="signup-field">
-          <label for="signup-phone">Téléphone <span>facultatif</span></label>
-          <input id="signup-phone" name="telephone" type="tel" autocomplete="tel">
-        </div>
-        <fieldset class="signup-profile">
-          <legend>Vous êtes</legend>
-          <label><input type="radio" name="profil" value="particulier" required><span>Particulier</span></label>
-          <label><input type="radio" name="profil" value="professionnel" required><span>Professionnel</span></label>
-        </fieldset>
+        <div class="signup-field"><label for="signup-name">Nom</label><input id="signup-name" name="nom" type="text" autocomplete="name" required></div>
+        <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="signup-field"><label for="signup-phone">Téléphone <span>facultatif</span></label><input id="signup-phone" name="telephone" type="tel" autocomplete="tel"></div>
+        <fieldset class="signup-profile"><legend>Vous êtes</legend><label><input type="radio" name="profil" value="particulier" required><span>Particulier</span></label><label><input type="radio" name="profil" value="professionnel" required><span>Professionnel</span></label></fieldset>
         <button class="btn signup-submit" type="submit">Créer mon compte et continuer</button>
         <p class="signup-reassurance">Aucun paiement à cette étape.</p>
       </form>
@@ -106,7 +97,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(href.includes('espace-client.keeplanet.fr')&&link.closest('main')&&!text.includes('accéder à mon espace')&&!text.includes('espace client')) return true;
     return false;
   }
-
   function deriveChoice(link){
     const explicit=link.getAttribute('data-signup-choice');
     if(explicit) return explicit;
@@ -114,15 +104,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(pack){const title=pack.querySelector('h2,h3');if(title) return title.textContent.trim();}
     return (link.textContent||'').trim();
   }
-
-  function openSignup(link){
-    previousFocus=document.activeElement;
-    if(choiceInput) choiceInput.value=deriveChoice(link);
-    modal.hidden=false;
-    document.documentElement.classList.add('signup-open');
-    window.setTimeout(()=>nameInput&&nameInput.focus(),20);
-  }
-  function closeSignup(){modal.hidden=true;document.documentElement.classList.remove('signup-open');if(previousFocus&&typeof previousFocus.focus==='function') previousFocus.focus();}
+  function openSignup(link){previousFocus=document.activeElement;if(choiceInput)choiceInput.value=deriveChoice(link);modal.hidden=false;document.documentElement.classList.add('signup-open');window.setTimeout(()=>nameInput&&nameInput.focus(),20);}
+  function closeSignup(){modal.hidden=true;document.documentElement.classList.remove('signup-open');if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();}
 
   document.addEventListener('click',e=>{
     const keepote=e.target.closest('[data-keepote-open]');
@@ -131,7 +114,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(link&&isSignupTrigger(link)){e.preventDefault();openSignup(link);return;}
     if(e.target.closest('[data-signup-close]')) closeSignup();
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden) closeSignup();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeSignup();});
 
   const close=document.querySelector('.ai-close');
   const form=document.querySelector('.ai-form');
@@ -143,20 +126,61 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(aiLauncher&&aiPanel){aiLauncher.addEventListener('click',()=>{aiPanel.hidden=false;if(aiInput)window.setTimeout(()=>aiInput.focus(),20);});}
   if(close&&aiPanel){close.addEventListener('click',()=>{aiPanel.hidden=true;});}
 
+  function escapeHtml(value){
+    return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+  }
+
+  function renderMarkdown(text){
+    let src=escapeHtml(String(text||'')).replace(/\\\*\\\*/g,'**').replace(/\\-/g,'-');
+    src=src.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/__(.+?)__/g,'<strong>$1</strong>');
+    src=src.replace(/`([^`]+)`/g,'<code>$1</code>');
+    const lines=src.split(/\r?\n/);
+    let html='';
+    let listType=null;
+    function closeList(){if(listType){html+='</'+listType+'>';listType=null;}}
+    lines.forEach(line=>{
+      const trimmed=line.trim();
+      let m=trimmed.match(/^[-•]\s+(.+)$/);
+      if(m){if(listType!=='ul'){closeList();html+='<ul>';listType='ul';}html+='<li>'+m[1]+'</li>';return;}
+      m=trimmed.match(/^\d+[.)]\s+(.+)$/);
+      if(m){if(listType!=='ol'){closeList();html+='<ol>';listType='ol';}html+='<li>'+m[1]+'</li>';return;}
+      closeList();
+      if(!trimmed){html+='<div class="ai-spacer"></div>';return;}
+      if(/^###\s+/.test(trimmed)){html+='<p><strong>'+trimmed.replace(/^###\s+/,'')+'</strong></p>';return;}
+      if(/^##?\s+/.test(trimmed)){html+='<p><strong>'+trimmed.replace(/^##?\s+/,'')+'</strong></p>';return;}
+      html+='<p>'+trimmed+'</p>';
+    });
+    closeList();
+    return html;
+  }
+
   function appendAiMessage(role,text,extraClass=''){
     if(!aiBody)return null;
     const message=document.createElement('div');
     message.className='ai-message ai-message-'+role+(extraClass?' '+extraClass:'');
-    const label=document.createElement('strong');
+    if(role==='assistant'){
+      const avatar=document.createElement('div');
+      avatar.className='ai-avatar';
+      avatar.innerHTML='<img src="'+mascot+'" alt="">';
+      message.appendChild(avatar);
+    }
+    const wrap=document.createElement('div');
+    wrap.className='ai-message-wrap';
+    const label=document.createElement('span');
+    label.className='ai-message-author';
     label.textContent=role==='user'?'Vous':'KeePote';
     const content=document.createElement('div');
     content.className='ai-message-text';
-    content.textContent=text;
-    message.appendChild(label);
-    message.appendChild(content);
-    aiBody.appendChild(message);
-    aiBody.scrollTop=aiBody.scrollHeight;
-    return message;
+    content.innerHTML=role==='assistant'?renderMarkdown(text):'<p>'+escapeHtml(text)+'</p>';
+    wrap.appendChild(label);wrap.appendChild(content);message.appendChild(wrap);aiBody.appendChild(message);aiBody.scrollTop=aiBody.scrollHeight;return message;
+  }
+
+  function appendThinking(){
+    if(!aiBody)return null;
+    const message=document.createElement('div');
+    message.className='ai-message ai-message-assistant ai-thinking';
+    message.innerHTML='<div class="ai-avatar"><img src="'+mascot+'" alt=""></div><div class="ai-message-wrap"><span class="ai-message-author">KeePote</span><div class="ai-message-text"><span class="keepote-infinity" aria-hidden="true"></span><span class="keepote-thinking-label">KeePote réfléchit…</span></div></div>';
+    aiBody.appendChild(message);aiBody.scrollTop=aiBody.scrollHeight;return message;
   }
 
   if(form){form.addEventListener('submit',async e=>{
@@ -164,24 +188,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(aiBusy||!aiInput||!aiBody)return;
     const message=aiInput.value.trim();
     if(!message)return;
-
     if(!aiBody.querySelector('.ai-message'))aiBody.innerHTML='';
-    appendAiMessage('user',message);
-    aiInput.value='';
-    aiBusy=true;
-    if(aiSubmit){aiSubmit.disabled=true;aiSubmit.textContent='…';}
-    const loading=appendAiMessage('assistant','Je cherche dans la base KeePote…','ai-message-loading');
-
+    appendAiMessage('user',message);aiInput.value='';aiBusy=true;if(aiSubmit)aiSubmit.disabled=true;
+    const loading=appendThinking();
     try{
-      const response=await fetch('/api/keepote.php',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        credentials:'same-origin',
-        body:JSON.stringify({message,history:aiHistory.slice(-8),page:window.location.pathname})
-      });
+      const response=await fetch('/api/keepote.php',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'same-origin',body:JSON.stringify({message,history:aiHistory.slice(-8),page:window.location.pathname})});
       const data=await response.json().catch(()=>({}));
       if(loading)loading.remove();
-      if(!response.ok||!data.ok){throw new Error(data.error||'KeePote est momentanément indisponible.');}
+      if(!response.ok||!data.ok)throw new Error(data.error||'KeePote est momentanément indisponible.');
       const answer=String(data.answer||'').trim();
       appendAiMessage('assistant',answer||'Je n’ai pas pu générer de réponse.');
       aiHistory.push({role:'user',text:message},{role:'assistant',text:answer});
@@ -189,10 +203,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     }catch(error){
       if(loading&&loading.isConnected)loading.remove();
       appendAiMessage('assistant',error&&error.message?error.message:'Une erreur est survenue. Réessayez dans quelques instants.','ai-message-error');
-    }finally{
-      aiBusy=false;
-      if(aiSubmit){aiSubmit.disabled=false;aiSubmit.textContent='Envoyer';}
-      aiInput.focus();
-    }
+    }finally{aiBusy=false;if(aiSubmit)aiSubmit.disabled=false;aiInput.focus();}
   });}
 });
