@@ -1,0 +1,4 @@
+# Secrets locaux serveur — ne jamais versionner
+/inc/secrets.php
+.env
+.env.*
