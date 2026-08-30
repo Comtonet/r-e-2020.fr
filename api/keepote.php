@@ -39,16 +39,73 @@ function keepote_api_key(): string {
 function keepote_rate_limit(): void {
     $dir=sys_get_temp_dir().'/keepote-rate-limit';
     if(!is_dir($dir)) @mkdir($dir,0700,true);
-    $file=$dir.'/'.hash('sha256',(string)($_SERVER['REMOTE_ADDR']??'unknown')).'.json';
-    $now=time(); $state=['start'=>$now,'count'=>0];
-    if(is_file($file)){
-        $d=json_decode((string)@file_get_contents($file),true);
-        if(is_array($d)) $state=array_merge($state,$d);
+    $key=hash('sha256',(string)($_SERVER['REMOTE_ADDR']??'unknown'));
+    $now=time();
+
+    $minuteFile=$dir.'/'.$key.'-minute.json';
+    $minute=['start'=>$now,'count'=>0];
+    if(is_file($minuteFile)){
+        $d=json_decode((string)@file_get_contents($minuteFile),true);
+        if(is_array($d)) $minute=array_merge($minute,$d);
     }
-    if(($now-(int)$state['start'])>=60) $state=['start'=>$now,'count'=>0];
-    $state['count']=(int)$state['count']+1;
-    @file_put_contents($file,json_encode($state),LOCK_EX);
-    if($state['count']>12) keepote_reply(429,['ok'=>false,'error'=>'Trop de demandes. Réessayez dans quelques instants.']);
+    if(($now-(int)$minute['start'])>=60) $minute=['start'=>$now,'count'=>0];
+    $minute['count']=(int)$minute['count']+1;
+    @file_put_contents($minuteFile,json_encode($minute),LOCK_EX);
+    if($minute['count']>8) keepote_reply(429,['ok'=>false,'error'=>'Trop de demandes. Réessayez dans quelques instants.']);
+
+    $hourFile=$dir.'/'.$key.'-hour.json';
+    $hour=['start'=>$now,'count'=>0];
+    if(is_file($hourFile)){
+        $d=json_decode((string)@file_get_contents($hourFile),true);
+        if(is_array($d)) $hour=array_merge($hour,$d);
+    }
+    if(($now-(int)$hour['start'])>=3600) $hour=['start'=>$now,'count'=>0];
+    $hour['count']=(int)$hour['count']+1;
+    @file_put_contents($hourFile,json_encode($hour),LOCK_EX);
+    if($hour['count']>60) keepote_reply(429,['ok'=>false,'error'=>'Limite de demandes atteinte. Réessayez plus tard.']);
+}
+
+function keepote_normalize(string $text): string {
+    $text=mb_strtolower(trim($text),'UTF-8');
+    $ascii=@iconv('UTF-8','ASCII//TRANSLIT//IGNORE',$text);
+    if(is_string($ascii)&&$ascii!=='') $text=strtolower($ascii);
+    $text=preg_replace('/\s+/u',' ',$text)??$text;
+    return trim($text);
+}
+
+function keepote_is_obvious_spam(string $question): bool {
+    $q=keepote_normalize($question);
+    if($q==='') return true;
+    if(preg_match('/(.)\1{8,}/u',$q)) return true;
+    if(preg_match_all('~https?://|www\.~i',$q,$m)>=2) return true;
+    if(preg_match('/\b(?:casino|viagra|crypto\s*airdrop|forex\s*signal|backlinks?|seo\s*links?|guest\s*post|porn|xxx)\b/i',$q)) return true;
+    $letters=preg_replace('/[^a-z]/i','',$q)??'';
+    if(strlen($letters)>=18 && !str_contains($q,' ') && preg_match('/[bcdfghjklmnpqrstvwxz]{9,}/i',$letters)) return true;
+    return false;
+}
+
+function keepote_local_answer(string $question, mixed $history): ?string {
+    $q=keepote_normalize($question);
+
+    $greetings=['bonjour','bonsoir','salut','hello','coucou','hey','bjr'];
+    if(in_array($q,$greetings,true)) return 'Bonjour 👋 Je suis **KeePote**, l’assistant KeePlanet. Posez-moi une question sur votre étude RE2020, nos prestations, tarifs, délais ou démarches.';
+    if(in_array($q,['merci','merci beaucoup','ok merci','super merci','parfait merci'],true)) return 'Avec plaisir !';
+
+    $allowed=[
+        're2020','re 2020','rt2012','rt 2012','keeplanet','keepote','etude','thermique','thermicien','maison','construction','extension','collectif','tertiaire','permis','attestation','travaux','chantier','controle','fdc','acv','carbone','fd es','fdes','inies','bbio','cep','cepnr','cep,nr','dh','srt','shab','surface','vmc','chauffage','pompe a chaleur','pac','photovolta','isolation','vitrage','fenetre','etancheite','ventilation','rsee','xml','opqibi','prix','tarif','cout','coute','combien','devis','delai','livraison','pack','eco','paiement','payer','commande','commander','document','piece','plan','contact','email','mail','telephone','tel','adresse','horaire','client','projet','reglement','reglementation','norme','conforme','conformite','sanction','bureau d etudes','bureau etudes','service','prestation'
+    ];
+    foreach($allowed as $term){if(str_contains($q,$term)) return null;}
+
+    if(is_array($history)){
+        foreach(array_slice($history,-4) as $item){
+            if(!is_array($item)) continue;
+            $h=keepote_normalize((string)($item['text']??''));
+            foreach($allowed as $term){if(str_contains($h,$term)) return null;}
+        }
+    }
+
+    if(mb_strlen($q)<3) return 'Posez-moi une question sur **KeePlanet ou la RE2020**.';
+    return 'Je suis l’assistant de **KeePlanet** : je réponds uniquement aux questions liées à la RE2020, aux études thermiques, à nos prestations, tarifs, délais et démarches.';
 }
 
 function keepote_history(mixed $history): array {
@@ -152,6 +209,14 @@ $question=trim((string)($input['message']??''));
 $page=mb_substr(trim((string)($input['page']??'')),0,500);
 if($question==='') keepote_reply(422,['ok'=>false,'error'=>'Posez une question à KeePote.']);
 if(mb_strlen($question)>2500) keepote_reply(422,['ok'=>false,'error'=>'Votre question est trop longue.']);
+
+if(keepote_is_obvious_spam($question)){
+    keepote_reply(403,['ok'=>false,'error'=>'Message bloqué par la protection anti-spam.']);
+}
+$localAnswer=keepote_local_answer($question,$input['history']??[]);
+if($localAnswer!==null){
+    keepote_reply(200,['ok'=>true,'answer'=>$localAnswer,'local'=>true,'response_id'=>'']);
+}
 
 $apiKey=keepote_api_key();
 if($apiKey==='') keepote_reply(503,['ok'=>false,'error'=>'KeePote est momentanément indisponible : la clé API serveur n’est pas configurée.']);
