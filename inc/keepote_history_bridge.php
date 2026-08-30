@@ -4,16 +4,27 @@ declare(strict_types=1);
 
 function keepote_bridge_settings(): array
 {
-    $settings = ['base_url'=>'','token'=>''];
+    $settings = [
+        'base_url' => 'https://priceless-mahavira.51-77-215-132.plesk.page',
+        'token' => '',
+    ];
     $file = __DIR__ . '/secrets.php';
     if (is_file($file)) {
         $s = require $file;
         if (is_array($s)) {
-            $settings['base_url'] = rtrim(trim((string)($s['keepote_log_url'] ?? '')), '/');
+            $customUrl = rtrim(trim((string)($s['keepote_log_url'] ?? '')), '/');
+            if ($customUrl !== '') $settings['base_url'] = $customUrl;
             $settings['token'] = trim((string)($s['keepote_log_token'] ?? ''));
         }
     }
     return $settings;
+}
+
+function keepote_pending_file(): string
+{
+    $dir = dirname(__DIR__) . '/data/ai';
+    if (is_dir($dir) && is_writable($dir)) return $dir . '/keepote-pending.ndjson';
+    return sys_get_temp_dir() . '/keepote-pending.ndjson';
 }
 
 function keepote_bridge_post(string $path, array $payload, int $timeout = 3): ?array
@@ -34,9 +45,35 @@ function keepote_bridge_post(string $path, array $payload, int $timeout = 3): ?a
         CURLOPT_POSTFIELDS=>json_encode($payload,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES),
     ]);
     $body=curl_exec($ch);$status=(int)curl_getinfo($ch,CURLINFO_RESPONSE_CODE);$error=curl_error($ch);curl_close($ch);
-    if($body===false||$error!==''||$status<200||$status>=300) return null;
+    if($body===false||$error!==''||$status<200||$status>=300){
+        error_log('[KeePote history bridge] '.$path.' failed HTTP '.$status.($error!==''?' '.$error:''));
+        return null;
+    }
     $json=json_decode((string)$body,true);
     return is_array($json)?$json:null;
+}
+
+function keepote_queue_exchange(array $payload): void
+{
+    $line=json_encode($payload,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    if($line!==false) @file_put_contents(keepote_pending_file(),$line."\n",FILE_APPEND|LOCK_EX);
+}
+
+function keepote_flush_pending(): void
+{
+    $file=keepote_pending_file();
+    if(!is_file($file)||filesize($file)===0) return;
+    $lines=@file($file,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+    if(!is_array($lines)||!$lines) return;
+    $remaining=[];$sent=0;
+    foreach(array_slice($lines,0,50) as $line){
+        $payload=json_decode($line,true);
+        if(!is_array($payload)){continue;}
+        $res=keepote_bridge_post('/api/keepote-log.php',$payload,2);
+        if($res&& !empty($res['ok'])){$sent++;}else{$remaining[]=$line;}
+    }
+    foreach(array_slice($lines,50) as $line)$remaining[]=$line;
+    if($sent>0) @file_put_contents($file,$remaining?implode("\n",$remaining)."\n":'',LOCK_EX);
 }
 
 function keepote_conversation_id(): string
@@ -68,9 +105,9 @@ function keepote_admin_corrections(string $question): string
     return count($lines)>1?implode("\n",$lines):'';
 }
 
-function keepote_log_exchange(string $conversationId,string $question,string $answer,string $page,string $model,string $responseId): void
+function keepote_log_exchange(string $conversationId,string $question,string $answer,string $page,string $model,string $responseId): bool
 {
-    keepote_bridge_post('/api/keepote-log.php',[
+    $payload=[
         'conversation_id'=>$conversationId,
         'visitor_hash'=>hash('sha256',(string)($_SERVER['REMOTE_ADDR']??'unknown')),
         'page_path'=>$page,
@@ -78,5 +115,10 @@ function keepote_log_exchange(string $conversationId,string $question,string $an
         'answer'=>$answer,
         'model'=>$model,
         'response_id'=>$responseId,
-    ],2);
+    ];
+    keepote_flush_pending();
+    $res=keepote_bridge_post('/api/keepote-log.php',$payload,2);
+    if($res&& !empty($res['ok'])) return true;
+    keepote_queue_exchange($payload);
+    return false;
 }
