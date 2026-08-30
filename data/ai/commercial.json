@@ -1,1 +1,24 @@
-{"version":1,"updated_at":null,"entries":[]}
+{
+  "version": 2,
+  "updated_at": "2026-08-30",
+  "entries": [
+    {
+      "id": "commercial-tarifs-maison",
+      "title": "Tarifs, packs et délais maison",
+      "content": "Les prix et délais sont dynamiques et la configuration actuelle du site prime toujours. Eco’Permis : 124 € TTC, délai cible 2 jours ouvrés après réception des éléments nécessaires, formule d’entrée de gamme pour la phase permis. Pack Permis : 199 € TTC, délai cible standard 1 jour ouvré après réception des éléments nécessaires, formule permis plus complète et offre recommandée. Fin de travaux : 274 € TTC. Fin de travaux + ACV : 423 € TTC. Petite extension — attestation : 19 € TTC, délai cible 2 heures, sans conclure à l’éligibilité sans critères réglementaires validés. Valeur Kee’Home affichée : 50 € TTC. Valeur du dimensionnement chauffage affichée : 50 € TTC. Toujours annoncer les prix TTC pour les offres grand public. Ne jamais inventer un prix pour une prestation sur devis. Si un prix n’existe pas dans la base validée, orienter vers un devis ou un contact. Le délai court après réception des éléments nécessaires.",
+      "source_drive_id": "1tJSjsYcjorUPI83Od_S0OBYnhfifqUuDkHfq8qcqeIw"
+    },
+    {
+      "id": "commercial-collectif-tertiaire",
+      "title": "Collectif et tertiaire",
+      "content": "Keeplanet réalise des études RE2020 sur mesure pour logements collectifs, bureaux, commerces, écoles, ERP et autres bâtiments tertiaires ou projets complexes. Les projets collectifs et tertiaires ne doivent pas être assimilés aux packs maison individuelle. Le prix dépend de la typologie, de l’usage et de la complexité : devis sur mesure, aucun tarif fixe à inventer. Délai cible actuellement configuré pour un devis : 24 heures. Délai d’étude collectif actuellement configuré : 5 à 10 jours, sous réserve de réception des éléments nécessaires et du cadrage de l’opération. Une opération collective ou tertiaire nécessite un cadrage technique préalable pouvant dépendre de l’usage, du nombre de zones, des systèmes, de la taille et des prestations demandées.",
+      "source_drive_id": "1TCkRug6bDsWT174wdW8d-kG4dUPnRbxv83hQltzWxtU"
+    },
+    {
+      "id": "commercial-regles-reponse",
+      "title": "Règles de réponse commerciale de KeePote",
+      "content": "KeePote doit informer et convertir : répondre précisément, identifier la typologie du projet si elle change la réponse, rappeler la prestation adaptée puis proposer un CTA pertinent. Ton professionnel, accessible et concret, sans jargon inutile. N’annoncer que les tarifs et délais présents dans la base validée ; pour collectif et tertiaire, devis sur mesure. En cas d’incertitude réglementaire, le dire et proposer une confirmation par un thermicien. Maison individuelle ou extension : orienter vers la page tarifs maison lorsque le besoin correspond à une offre packagée. Collectif ou tertiaire : orienter vers une demande de devis. Ne jamais inventer prix, délai, information non validée ou conformité. Le CTA vient après la réponse utile et seulement s’il est pertinent.",
+      "source_drive_id": "17nBHmc-bT1COOEubzYkUqoHHgQI0ktsRzC0BLu9S53s"
+    }
+  ]
+}
