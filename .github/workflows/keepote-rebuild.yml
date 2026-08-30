@@ -1,0 +1,30 @@
+name: Rebuild exact KeePote PNG
+
+on:
+  push:
+    paths:
+      - '.github/workflows/keepote-rebuild.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild PNG from exact Drive bytes
+        shell: bash
+        run: |
+          cat .tmp/keepote.part1 .tmp/keepote.part2 .tmp/keepote.part3 .tmp/keepote.part4 | base64 -d > assets/img/keepote-nu-assis-simple.png
+          test "$(stat -c%s assets/img/keepote-nu-assis-simple.png)" = "23838"
+          file assets/img/keepote-nu-assis-simple.png | grep -q 'PNG image data, 420 x 420'
+      - name: Commit exact PNG
+        shell: bash
+        run: |
+          git config user.name "Comtonet"
+          git config user.email "info@comtonet.fr"
+          git add assets/img/keepote-nu-assis-simple.png
+          git commit -m "Reconstruit le PNG KeePote exact du Drive" || exit 0
+          git push
