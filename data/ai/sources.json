@@ -1,7 +1,57 @@
 {
-  "version": 2,
+  "version": 3,
   "updated_at": "2026-08-30",
-  "entries": [
+  "site_index": {
+    "identity": {
+      "site": "r-e-2020.fr",
+      "company": "Keeplanet",
+      "activity": "Bureau d’études thermiques spécialisé notamment en RE2020",
+      "coverage": "France",
+      "website": "https://r-e-2020.fr/"
+    },
+    "contact": {
+      "email": "info@keeplanet.fr",
+      "phone": "0806 110 559",
+      "address": "201 route d’Oberhausbergen, 67200 Strasbourg",
+      "contact_page": "https://r-e-2020.fr/contact/",
+      "client_area": "https://espace-client.keeplanet.fr/"
+    },
+    "main_pages": [
+      {"url":"https://r-e-2020.fr/","title":"Bureau d’étude thermique RE2020 | Attestation permis","summary":"Étude RE2020 et attestation pour permis de construire. Maison, extension, collectif ou tertiaire. Dépôt des pièces en ligne et accompagnement par les thermiciens Keeplanet."},
+      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/","title":"Tarifs étude thermique RE2020","summary":"Page d’orientation entre les offres maison individuelle / extension et les études sur mesure collectif / tertiaire."},
+      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/","title":"Étude RE2020 maison & extension","summary":"Offres packagées maison et extension : Eco’Permis, Pack Permis, fin de travaux et fin de travaux + ACV. Les prix et délais doivent être lus dans la configuration dynamique du site."},
+      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/collectif-tertiaire/","title":"Étude RE2020 collectif & tertiaire","summary":"Études sur mesure pour logements collectifs, bureaux, commerces, écoles, ERP et bâtiments tertiaires. Chiffrage sur devis."},
+      {"url":"https://r-e-2020.fr/processus-de-realisation-dune-etude-re2020/","title":"Processus étude RE2020","summary":"Le client choisit sa prestation, transmet les informations et plans, le thermicien réalise l’étude puis les documents sont rendus dans l’espace client."},
+      {"url":"https://r-e-2020.fr/questions-frequentes-re2020/","title":"Questions fréquentes RE2020","summary":"FAQ sur permis, Bbio, étude, délais, packs et fin de travaux."},
+      {"url":"https://r-e-2020.fr/exemples-livrables-re2020/","title":"Exemples de livrables RE2020","summary":"Présentation des documents remis selon la prestation : attestations et documents issus de l’étude réglementaire."},
+      {"url":"https://r-e-2020.fr/qualifications-assurances-garanties/","title":"Qualifications et assurances","summary":"Présentation des qualifications OPQIBI et éléments de confiance de Keeplanet."},
+      {"url":"https://r-e-2020.fr/a-propos-keeplanet/","title":"À propos de Keeplanet","summary":"Présentation du bureau d’études Keeplanet, de son activité RE2020 et de son accompagnement."},
+      {"url":"https://r-e-2020.fr/contact/","title":"Contact Keeplanet","summary":"Pour une question technique ou commerciale, contacter Keeplanet par e-mail à info@keeplanet.fr ou par téléphone au 0806 110 559."}
+    ],
+    "footer": {
+      "description": "Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.",
+      "email": "info@keeplanet.fr",
+      "phone": "0806 110 559",
+      "address": "201 route d’Oberhausbergen, 67200 Strasbourg"
+    },
+    "technical_content": [
+      {"title":"Qu’est-ce qu’une FDES ? Comprendre l’ACV Carbone RE2020","url":"https://r-e-2020.fr/reglementaire/fdes-donnees-environnementales-acv-carbone/","summary":"Rôle des FDES dans l’analyse de cycle de vie et le calcul carbone RE2020."},
+      {"title":"PAC et RE2020","url":"https://r-e-2020.fr/equipements-solutions-techniques/pompe-a-chaleur-re2020-interdiction-effet-joule/","summary":"COP, Cep, Cep,nr, PAC air-eau ou air-air et intérêt réglementaire d’un système thermodynamique."},
+      {"title":"Photovoltaïque RE2020","url":"https://r-e-2020.fr/equipements-solutions-techniques/photovoltaique-re2020-impact-sur-le-bbio-et-lic-construction/","summary":"Impact du photovoltaïque sur les indicateurs réglementaires et carbone."},
+      {"title":"Cep et Cep,nr en RE2020","url":"https://r-e-2020.fr/reglementaire/difference-cep-cepnr-calcul-re2020/","summary":"Énergie primaire, part non renouvelable et influence des systèmes."},
+      {"title":"Attestation Bbio RE2020","url":"https://r-e-2020.fr/reglementaire/attestation-bbio-re2020-contenu-lien-bureau-etudes/","summary":"Contenu de l’attestation pour le permis et lien avec l’étude du bureau d’études."},
+      {"title":"Qui signe l’attestation Bbio ?","url":"https://r-e-2020.fr/reglementaire/qui-doit-signer-attestation-bbio-permis-construire/","summary":"Rôle du maître d’ouvrage, du mandataire et du bureau d’études dans l’attestation permis."},
+      {"title":"Zones climatiques RE2020","url":"https://r-e-2020.fr/reglementaire/zones-climatiques-calcul-re2020/","summary":"Influence de la géographie, de l’altitude et des modulations réglementaires."},
+      {"title":"Degrés-Heures DH RE2020","url":"https://r-e-2020.fr/reglementaire/calcul-degres-heures-dh-re2020/","summary":"Confort d’été et limitation des surchauffes estivales."},
+      {"title":"Contrôle de fin de chantier et étanchéité","url":"https://r-e-2020.fr/reglementaire/controle-fin-chantier-etancheite-air-re2020/","summary":"Infiltrométrie, ventilation et cohérence entre chantier et fichier réglementaire."},
+      {"title":"VMC Hygro-B vs Double Flux","url":"https://r-e-2020.fr/reglementaire/vmc-hygro-b-vs-double-flux-re2020/","summary":"Bbio, Cep, auxiliaires et confort selon le système de ventilation."},
+      {"title":"Extension et RE2020","url":"https://r-e-2020.fr/reglementaire/extension-re2020-seuils-surface/","summary":"Régimes et obligations thermiques applicables aux extensions selon le projet."},
+      {"title":"Compacité du bâti et performance RE2020","url":"https://r-e-2020.fr/reglementaire/compacite-bati-re2020/","summary":"Influence de la forme du bâtiment sur les déperditions et le Bbio."},
+      {"title":"Surface de référence thermique","url":"https://r-e-2020.fr/reglementaire/calcul-surface-reference-thermique-srt/","summary":"Comprendre Srt, Su et les surfaces utilisées par le calcul réglementaire."},
+      {"title":"Surface vitrée RE2020 : règle des 1/6","url":"https://r-e-2020.fr/equipements-solutions-techniques/regle-un-sixieme-surface-vitree-re2020/","summary":"Baies, orientation, facteur solaire et protections solaires."}
+    ]
+  },
+  "validated_training_sources": [
     {"title":"Fonctionnement général Keeplanet","drive_id":"1uh65GecLrbqpowHey6kVEbPDlrFeS_gMNDHSW9xE6bE","status":"valide"},
     {"title":"Tarifs, packs et délais maison","drive_id":"1tJSjsYcjorUPI83Od_S0OBYnhfifqUuDkHfq8qcqeIw","status":"valide"},
     {"title":"Commande, paiement, pièces et rendu","drive_id":"1w9Rj4u7oue8kUpg2T0iaVd9e1Z5bqyCOGkSCW2vV5XI","status":"valide"},
