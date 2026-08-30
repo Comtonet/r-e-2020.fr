@@ -39,6 +39,7 @@ function keepote_bridge_post(string $path, array $payload, int $timeout = 3): ?a
         CURLOPT_TIMEOUT=>$timeout,
         CURLOPT_HTTPHEADER=>[
             'Authorization: Bearer '.$cfg['token'],
+            'X-Keepote-Token: '.$cfg['token'],
             'Content-Type: application/json',
             'Accept: application/json',
         ],
