@@ -22,7 +22,7 @@ function keepote_block($context = 'general') {
     ob_start(); ?>
     <section class="keepote-block">
       <div class="container keepote-inner">
-        <div class="keepote-visual"><img src="/assets/img/keepote-nu-assis-simple.png?v=6" width="360" height="360" alt="KeePote assis, assistant Keeplanet" loading="lazy"></div>
+        <div class="keepote-visual"><img src="https://raw.githubusercontent.com/Comtonet/r-e-2020.fr/main/assets/img/keepote-nu-assis-simple.png" alt="KeePote assis, assistant Keeplanet" loading="lazy"></div>
         <div class="keepote-copy">
           <span class="eyebrow">KeePote · Assistant Keeplanet</span>
           <h2><?= h($copy['title']) ?></h2>
