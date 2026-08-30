@@ -135,7 +135,64 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   const close=document.querySelector('.ai-close');
   const form=document.querySelector('.ai-form');
-  if(aiLauncher&&aiPanel){aiLauncher.addEventListener('click',()=>{aiPanel.hidden=false;});}
+  const aiInput=form?form.querySelector('input'):null;
+  const aiSubmit=form?form.querySelector('button[type="submit"]'):null;
+  const aiHistory=[];
+  let aiBusy=false;
+
+  if(aiLauncher&&aiPanel){aiLauncher.addEventListener('click',()=>{aiPanel.hidden=false;if(aiInput)window.setTimeout(()=>aiInput.focus(),20);});}
   if(close&&aiPanel){close.addEventListener('click',()=>{aiPanel.hidden=true;});}
-  if(form){form.addEventListener('submit',e=>{e.preventDefault();const body=document.querySelector('.ai-body');if(body){body.innerHTML='<p><strong>KeePote sera connecté à la base IA validée lors de la prochaine étape.</strong></p><p>En attendant, l’équipe Keeplanet reste disponible au <a href="tel:0806110559">0806 110 559</a>.</p>';}});}
+
+  function appendAiMessage(role,text,extraClass=''){
+    if(!aiBody)return null;
+    const message=document.createElement('div');
+    message.className='ai-message ai-message-'+role+(extraClass?' '+extraClass:'');
+    const label=document.createElement('strong');
+    label.textContent=role==='user'?'Vous':'KeePote';
+    const content=document.createElement('div');
+    content.className='ai-message-text';
+    content.textContent=text;
+    message.appendChild(label);
+    message.appendChild(content);
+    aiBody.appendChild(message);
+    aiBody.scrollTop=aiBody.scrollHeight;
+    return message;
+  }
+
+  if(form){form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(aiBusy||!aiInput||!aiBody)return;
+    const message=aiInput.value.trim();
+    if(!message)return;
+
+    if(!aiBody.querySelector('.ai-message'))aiBody.innerHTML='';
+    appendAiMessage('user',message);
+    aiInput.value='';
+    aiBusy=true;
+    if(aiSubmit){aiSubmit.disabled=true;aiSubmit.textContent='…';}
+    const loading=appendAiMessage('assistant','Je cherche dans la base KeePote…','ai-message-loading');
+
+    try{
+      const response=await fetch('/api/keepote.php',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        credentials:'same-origin',
+        body:JSON.stringify({message,history:aiHistory.slice(-8),page:window.location.pathname})
+      });
+      const data=await response.json().catch(()=>({}));
+      if(loading)loading.remove();
+      if(!response.ok||!data.ok){throw new Error(data.error||'KeePote est momentanément indisponible.');}
+      const answer=String(data.answer||'').trim();
+      appendAiMessage('assistant',answer||'Je n’ai pas pu générer de réponse.');
+      aiHistory.push({role:'user',text:message},{role:'assistant',text:answer});
+      if(aiHistory.length>8)aiHistory.splice(0,aiHistory.length-8);
+    }catch(error){
+      if(loading&&loading.isConnected)loading.remove();
+      appendAiMessage('assistant',error&&error.message?error.message:'Une erreur est survenue. Réessayez dans quelques instants.','ai-message-error');
+    }finally{
+      aiBusy=false;
+      if(aiSubmit){aiSubmit.disabled=false;aiSubmit.textContent='Envoyer';}
+      aiInput.focus();
+    }
+  });}
 });
