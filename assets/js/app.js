@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     main.parentNode.insertBefore(strip,main);
   }
 
-  const mascot='/assets/img/keepote-nu-assis-simple.png';
+  const mascot='/assets/img/keepote.png';
+  const chatMascot='/assets/img/keepote-tete.png';
   const aiLauncher=document.querySelector('.ai-launcher');
   const aiPanel=document.querySelector('.ai-panel');
   const aiHead=aiPanel?aiPanel.querySelector('.ai-head strong'):null;
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(aiLauncher){aiLauncher.innerHTML='<span>✦</span> KeePote';aiLauncher.setAttribute('aria-label','Ouvrir KeePote, l\'assistant Keeplanet');}
   if(aiHead) aiHead.textContent='KeePote · Assistant Keeplanet';
   if(aiBody){
-    aiBody.innerHTML='<div class="ai-welcome"><img src="'+mascot+'" alt="KeePote"><div><p><strong>Bonjour 👋 Je suis KeePote.</strong></p><p>Posez-moi votre question sur la RE2020, les tarifs ou votre projet.</p><div class="ai-note">Je m’appuie sur la documentation validée de Keeplanet.</div></div></div>';
+    aiBody.innerHTML='<div class="ai-welcome"><img src="'+chatMascot+'" alt="KeePote"><div><p><strong>Bonjour 👋 Je suis KeePote.</strong></p><p>Posez-moi votre question sur la RE2020, les tarifs ou votre projet.</p><div class="ai-note">Je m’appuie sur la documentation validée de Keeplanet.</div></div></div>';
   }
 
   const keepoteCopies={
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(role==='assistant'){
       const avatar=document.createElement('div');
       avatar.className='ai-avatar';
-      avatar.innerHTML='<img src="'+mascot+'" alt="">';
+      avatar.innerHTML='<img src="'+chatMascot+'" alt="">';
       message.appendChild(avatar);
     }
     const wrap=document.createElement('div');
@@ -179,7 +180,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!aiBody)return null;
     const message=document.createElement('div');
     message.className='ai-message ai-message-assistant ai-thinking';
-    message.innerHTML='<div class="ai-avatar"><img src="'+mascot+'" alt=""></div><div class="ai-message-wrap"><span class="ai-message-author">KeePote</span><div class="ai-message-text"><span class="keepote-infinity" aria-hidden="true"></span><span class="keepote-thinking-label">KeePote réfléchit…</span></div></div>';
+    message.innerHTML='<div class="ai-avatar"><img src="'+chatMascot+'" alt=""></div><div class="ai-message-wrap"><span class="ai-message-author">KeePote</span><div class="ai-message-text"><span class="keepote-infinity" aria-hidden="true"></span><span class="keepote-thinking-label">KeePote réfléchit…</span></div></div>';
     aiBody.appendChild(message);aiBody.scrollTop=aiBody.scrollHeight;return message;
   }
 
