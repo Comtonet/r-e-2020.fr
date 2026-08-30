@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updated_at": "2026-08-30",
   "entries": [
     {
@@ -11,8 +11,14 @@
     {
       "id": "process-commande-paiement-pieces-rendu",
       "title": "Commande, paiement, pièces et rendu",
-      "content": "Le client choisit la prestation adaptée puis commande depuis son espace client. Les moyens de paiement prévus sont la carte bancaire, le virement et le chèque. Une option second logement identique existe pour certains projets de deux maisons jumelées ; d’autres particularités peuvent donner lieu à une option spécifique sur demande. Après commande, le client transmet les informations administratives, caractéristiques constructives prévues, systèmes techniques envisagés et plans disponibles. Le délai annoncé démarre après réception d’éléments nécessaires et exploitables, pas au simple paiement si les pièces manquent. Le thermicien réalise l’étude à partir des éléments fournis et peut proposer des ajustements techniques si le projet n’est pas conforme. Le rendu final et l’attestation correspondante sont mis à disposition dans l’espace client lorsque la prestation le prévoit. Si les matériaux, équipements, systèmes ou caractéristiques changent en cours de projet, l’étude peut nécessiter une mise à jour. Keeplanet peut accompagner le projet après le permis jusqu’à la fin des travaux. Pour une liste de documents propre à un cas particulier, identifier d’abord le type de projet avant d’affirmer qu’une pièce spécifique est obligatoire.",
+      "content": "Le client choisit la prestation adaptée puis commande depuis son espace client. Les moyens de paiement prévus sont la carte bancaire, le virement et le chèque. Une option second logement identique existe pour certains projets de deux maisons jumelées ; d’autres particularités peuvent donner lieu à une option spécifique sur demande. Après commande, le client transmet les informations administratives, caractéristiques constructives prévues, systèmes techniques envisagés et plans disponibles. Le délai annoncé démarre après réception d’éléments nécessaires et exploitables, pas au simple paiement si les pièces manquent. Le thermicien réalise l’étude à partir des éléments fournis et peut proposer des ajustements techniques si le projet n’est pas conforme. Le rendu de l’étude correspondant à la prestation est mis à disposition dans l’espace client. Si les matériaux, équipements, systèmes ou caractéristiques changent en cours de projet, l’étude peut nécessiter une mise à jour. Keeplanet peut accompagner le projet après le permis jusqu’à la fin des travaux. Pour une liste de documents propre à un cas particulier, identifier d’abord le type de projet avant d’affirmer qu’une pièce spécifique est obligatoire.",
       "source_drive_id": "1w9Rj4u7oue8kUpg2T0iaVd9e1Z5bqyCOGkSCW2vV5XI"
+    },
+    {
+      "id": "process-fin-travaux-controle-attestation",
+      "title": "Fin de travaux : étude Keeplanet, contrôle indépendant et attestation finale",
+      "content": "RÈGLE PRIORITAIRE : Keeplanet NE réalise PAS l’attestation RE2020 finale de fin de travaux et NE réalise PAS le contrôle réglementaire final. Keeplanet réalise l’étude RE2020 complète de fin de travaux (FDC), met à jour et finalise les données réglementaires nécessaires, puis fournit les éléments permettant leur transmission à l’opérateur indépendant chargé du contrôle de fin de chantier. L’opérateur de contrôle vérifie ensuite le chantier, notamment les éléments requis par la réglementation, et établit l’attestation finale lorsqu’il est habilité à le faire. Cette séparation est nécessaire afin que Keeplanet, qui a réalisé l’étude, ne soit pas à la fois juge et partie. Si un visiteur demande « faites-vous l’attestation de fin de travaux ? », KeePote doit répondre NON, puis expliquer que Keeplanet réalise l’étude complète nécessaire en amont du contrôle et de l’attestation finale par un opérateur indépendant. Ne jamais présenter la prestation commerciale « Fin de travaux » comme la réalisation de l’attestation finale elle-même.",
+      "source": "instruction Keeplanet validée 2026-08-30"
     }
   ]
 }
