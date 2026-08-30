@@ -1,1 +1,30 @@
-{"version":1,"updated_at":null,"entries":[]}
+{
+  "version": 2,
+  "updated_at": "2026-08-30",
+  "entries": [
+    {
+      "id": "technique-indicateurs-re2020",
+      "title": "Indicateurs RE2020 : Bbio, Cep, Cep,nr et DH",
+      "content": "Le Bbio mesure le besoin bioclimatique du bâtiment et traduit surtout la qualité de conception de l’enveloppe : isolation, orientation, baies, ponts thermiques, inertie et compacité. Il est comparé à un Bbiomax modulé notamment selon zone climatique, altitude et surface. Le Cep représente la consommation conventionnelle d’énergie primaire des usages réglementaires, notamment chauffage, eau chaude sanitaire, refroidissement, éclairage et auxiliaires. Le Cep,nr isole la part non renouvelable de l’énergie primaire ; un projet peut respecter le Cep global et échouer sur Cep,nr. Les contenus validés utilisent un coefficient de conversion de l’électricité en énergie primaire de 2,3. Une pompe à chaleur réduit généralement les consommations grâce à son coefficient de performance. Le DH est l’indicateur de confort d’été. Les seuils validés transmis sont : sous 350 DH, zone de confort passif ; entre 350 et 1250 DH, projet encore conforme mais avec pénalité forfaitaire de climatisation fictive intégrée au Cep ; au-delà de 1250 DH, non-conformité. KeePote ne doit jamais conclure qu’un projet est conforme à partir d’une simple description : seule une étude réglementaire permet de le confirmer.",
+      "source_drive_id": "15MclqvhQXnpOZFbIVxKkio648CNWzVLIaLVmTvPI_6Y"
+    },
+    {
+      "id": "technique-acv-fdes-inies",
+      "title": "ACV carbone, FDES et INIES",
+      "content": "L’Analyse de Cycle de Vie évalue l’impact environnemental des produits, matériaux et équipements du bâtiment sur leur cycle de vie et contribue notamment à l’indicateur IC Construction. Une FDES est une Fiche de Déclaration Environnementale et Sanitaire normalisée. INIES est la base de référence des données environnementales utilisées en France pour les calculs réglementaires. Une FDES spécifique correspond à un produit ou fabricant précis ; une FDES collective représente une donnée moyenne d’une filière ou famille de produits. En l’absence de donnée adaptée, une Donnée Environnementale par Défaut (DED) peut être utilisée ; elle est volontairement pénalisante. Les PEP Ecopassport concernent de nombreux équipements électriques, électroniques et CVC. Les données environnementales sélectionnées doivent rester cohérentes avec les produits réellement retenus. Le photovoltaïque a lui-même un impact carbone intégré à l’ACV. Pour choisir précisément une FDES ou optimiser IC Construction, orienter vers une étude ACV si les références produits et le calcul du projet ne sont pas connus.",
+      "source_drive_id": "1WFgbzI292h_0YwH4JNYjoiqrzo5_j2F1d7WpK4GHEps"
+    },
+    {
+      "id": "technique-equipements",
+      "title": "Chauffage, VMC et photovoltaïque",
+      "content": "Le radiateur électrique à effet Joule n’est pas interdit en soi par la RE2020, mais il peut être fortement pénalisé dans le calcul, notamment sur Cep et Cep,nr. Les contenus validés utilisent un coefficient d’énergie primaire de 2,3 pour l’électricité. La pompe à chaleur est un levier important grâce à son coefficient de performance. La PAC air-eau peut alimenter un réseau hydraulique et éventuellement l’eau chaude sanitaire ; la PAC air-air nécessite un arbitrage séparé pour l’eau chaude sanitaire. Ne jamais conseiller une puissance ou un modèle précis sans dimensionnement. La VMC Hygro-B utilise extraction mécanique et entrées d’air passives avec modulation selon l’humidité. La VMC Double Flux utilise deux réseaux et un échangeur pour récupérer une partie de la chaleur de l’air extrait ; elle n’améliore pas directement le Bbio, la différence se joue surtout sur Cep/Cep,nr, confort et qualité de l’air. Les ventilateurs permanents peuvent augmenter les auxiliaires. Le photovoltaïque ne corrige pas directement un mauvais Bbio et ne doit pas être présenté comme un moyen universel de rendre conforme un projet mal conçu. Pour choisir PAC, ventilation ou quantité de panneaux, expliquer les principes puis proposer une simulation ou une étude si le choix dépend du projet.",
+      "source_drive_id": "1hfze1rR4UFwknAZASclCTjDbarXmhQe-JJ-vmzUDaS8"
+    },
+    {
+      "id": "technique-enveloppe-climat-confort",
+      "title": "Enveloppe, vitrages, compacité, climat et confort d’été",
+      "content": "Un bâtiment compact limite généralement les surfaces déperditives par rapport au volume chauffé et facilite l’obtention d’un bon Bbio à qualité d’isolation égale. Les formes très découpées et nombreuses surfaces extérieures peuvent augmenter les déperditions. La règle des 1/6 est présentée comme une exigence de surface minimale de baies rapportée à la surface habitable, sous réserve des cas particuliers réglementaires ; ne pas la transformer en prescription absolue. Orientation, facteur solaire, protections solaires et performances des menuiseries influencent l’équilibre du projet. Les baies apportent des gains solaires en hiver mais peuvent provoquer des surchauffes en été. Les exigences sont modulées selon localisation et altitude ; demander la commune ou au minimum la localisation avant de prétendre comparer précisément un projet à ses seuils. Les leviers de confort d’été incluent protections solaires, inertie, orientation, maîtrise des apports et surventilation nocturne. Un équipement performant ne remplace pas une enveloppe correctement conçue. Pour des valeurs précises d’isolation, de vitrages ou une conclusion sur la surchauffe, proposer une étude si cela dépend de la géométrie, localisation, matériaux ou orientation.",
+      "source_drive_id": "1IzWN6t_LJap9Fxqmzih0ps4omvYNNFsOGHMOiHeaOu8"
+    }
+  ]
+}
