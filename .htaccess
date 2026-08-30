@@ -6,6 +6,9 @@ RewriteRule ^processus-de-realisation/?$ /processus-de-realisation-dune-etude-re
 RewriteRule ^dossiers/processus-de-realisation-dune-etude-re2020/?$ /processus-de-realisation-dune-etude-re2020/ [R=301,L]
 RewriteRule ^dossiers/?$ /dossiers-decryptages-re2020/ [R=301,L]
 
+# Serve KeePote from the exact PNG source stored in Git.
+RewriteRule ^assets/img/keepote-nu-assis-simple\.png$ assets/img/keepote-nu-assis-simple.php [L]
+
 # Preserve real files and directories.
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
