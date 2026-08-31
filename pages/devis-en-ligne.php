@@ -15,15 +15,12 @@ $quoteConfig = [
 ?>
 <link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=3">
 <style>
-/* Performance : aucune police externe sur le calculateur. */
 .devis-app{
   --display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
-/* Les planches sous la ligne de flottaison ne sont peintes que lorsqu'elles approchent du viewport. */
 .devis-app .planche{content-visibility:auto;contain-intrinsic-size:360px}
-/* Les flous fixes coûtent cher au GPU, surtout pendant le scroll. */
 .devis-app .top,.devis-app .bar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 </style>
 
@@ -68,4 +65,4 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=3" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=4" defer></script>
