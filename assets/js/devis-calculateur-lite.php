@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/javascript; charset=UTF-8');
-header('Cache-Control: public, max-age=300');
 
 $source = __DIR__ . '/devis-calculateur.js';
 if (!is_file($source)) {
@@ -9,14 +8,30 @@ if (!is_file($source)) {
     exit;
 }
 
+/*
+ * Le moteur change uniquement lors d'un déploiement Git : on autorise donc
+ * un cache navigateur/CDN long. La version dans l'URL est incrémentée lors
+ * des modifications pour invalider immédiatement l'ancien fichier.
+ */
+$mtime = (int) @filemtime($source);
+$etag = '"devis-' . md5($mtime . ':' . (int) @filesize($source)) . '"';
+header('Cache-Control: public, max-age=31536000, immutable');
+header('ETag: ' . $etag);
+if ($mtime > 0) {
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $mtime) . ' GMT');
+}
+if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) === $etag) {
+    http_response_code(304);
+    exit;
+}
+
 $js = file_get_contents($source);
 
 /*
- * Les PNG détaillés fournis pour les planches sont très lourds à décoder dans
- * le navigateur (plusieurs Mo chacun). On conserve exactement le moteur et
- * les libellés, mais on utilise les aperçus JPG légers pour l'écran d'accueil.
- * Les fichiers source détaillés restent disponibles dans Git pour une future
- * génération de miniatures optimisées.
+ * Les visuels détaillés originaux pèsent jusqu'à plusieurs Mo chacun.
+ * Pour l'écran de sélection, on utilise les quatre aperçus JPG légers déjà
+ * présents dans Git. Le navigateur ne télécharge donc que quatre images,
+ * même si elles apparaissent plusieurs fois dans les planches.
  */
 $replacements = [
     'Collectif/Collectif classique.png' => 'Collectif.jpg',
@@ -34,7 +49,11 @@ $replacements = [
 ];
 $js = strtr($js, $replacements);
 
-/* Décodage non bloquant des images. */
-$js = str_replace(' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low">', $js);
+/* Décodage non bloquant, priorité réseau basse et dimensions réservées. */
+$js = str_replace(
+    ' loading="lazy">',
+    ' loading="lazy" decoding="async" fetchpriority="low" width="320" height="180">',
+    $js
+);
 
 echo $js;
