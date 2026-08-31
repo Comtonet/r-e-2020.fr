@@ -28,6 +28,22 @@ return [
     'price_fin_travaux_acv_ttc' => 423,
     'price_small_extension_attestation_ttc' => 19,
 
+    // Moteur du calculateur de devis RE2020 hors logement collectif.
+    // Valeurs reprises du moteur transmis et regroupées ici pour faciliter les mises à jour.
+    'quote_mi_forfait' => 50,
+    'quote_mi_logement' => 75,
+    'quote_mi_modele' => 74,
+    'quote_mi_complete_forfait' => 125,
+    'quote_mi_complete_unite' => 149,
+    'quote_ext_permis' => 199,
+    'quote_ext_complete' => 423,
+    'quote_article_metre' => 100,
+    'quote_social_m2' => 1.25,
+    'quote_vestiaire_forfait' => 130,
+    'quote_tertiaire_complete_complement' => 429,
+    'quote_power_a' => 39.18,
+    'quote_power_k' => 0.43,
+
     // Valeurs commerciales affichées lorsqu'elles sont mentionnées.
     'value_keephome_ttc' => 50,
     'value_heating_sizing_ttc' => 50,
