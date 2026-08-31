@@ -1,6 +1,12 @@
 DirectoryIndex index.php
 RewriteEngine On
 
+# Temporary password protection for the development site.
+# access.php is the only public entry point until the access cookie is present.
+RewriteCond %{REQUEST_URI} !^/access\.php$ [NC]
+RewriteCond %{HTTP:Cookie} !(^|;[[:space:]]*)keeplanet_site_access=kp_6f41c8e2a73d91b4f06e(;|$) [NC]
+RewriteRule ^ /access.php [R=302,L]
+
 # Preserve historic SEO URLs.
 RewriteRule ^processus-de-realisation/?$ /processus-de-realisation-dune-etude-re2020/ [R=301,L]
 RewriteRule ^dossiers/processus-de-realisation-dune-etude-re2020/?$ /processus-de-realisation-dune-etude-re2020/ [R=301,L]
