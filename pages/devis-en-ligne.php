@@ -65,4 +65,4 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=4" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=5" defer></script>
