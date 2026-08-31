@@ -60,3 +60,4 @@ $quoteConfig = [
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur.js?v=2" defer></script>
+<script src="/assets/js/devis-calculateur-fidelite.js?v=1" defer></script>
