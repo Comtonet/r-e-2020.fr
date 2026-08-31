@@ -13,10 +13,19 @@ $quoteConfig = [
     'power_k' => (float) cfg('quote_power_k', 0.43),
 ];
 ?>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=2">
+<link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=3">
+<style>
+/* Performance : aucune police externe sur le calculateur. */
+.devis-app{
+  --display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+/* Les planches sous la ligne de flottaison ne sont peintes que lorsqu'elles approchent du viewport. */
+.devis-app .planche{content-visibility:auto;contain-intrinsic-size:360px}
+/* Les flous fixes coûtent cher au GPU, surtout pendant le scroll. */
+.devis-app .top,.devis-app .bar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+</style>
 
 <section class="devis-app" id="devis-app">
   <header class="top noprint">
@@ -59,4 +68,4 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=2" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=3" defer></script>
