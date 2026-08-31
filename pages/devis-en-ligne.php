@@ -13,15 +13,39 @@ $quoteConfig = [
     'power_k' => (float) cfg('quote_power_k', 0.43),
 ];
 ?>
-<link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=3">
+<link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=4">
 <style>
 .devis-app{
   --display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --paper:#f7f8fb;
+  --card:#fff;
+  --shadow-s:0 1px 3px rgba(19,26,46,.05);
+  --shadow-m:0 4px 14px rgba(19,26,46,.07);
 }
-.devis-app .planche{content-visibility:auto;contain-intrinsic-size:360px}
 .devis-app .top,.devis-app .bar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.devis-app .wrap{padding-top:24px}
+.devis-app .hero{margin-bottom:26px}
+.devis-app .block{margin-bottom:26px}
+.devis-app .panel{box-shadow:var(--shadow-s);padding:18px;margin-bottom:12px}
+.devis-app .planche{box-shadow:none;transform:none!important;padding:14px;margin-bottom:10px;content-visibility:auto;contain-intrinsic-size:220px}
+.devis-app .planche:hover{box-shadow:var(--shadow-s)}
+.devis-app .planche-h{margin-bottom:8px}
+.devis-app .tiles-lite{grid-template-columns:1fr!important}
+.devis-app .tiles-lite .tile{display:grid;grid-template-columns:150px 1fr;align-items:center;padding:6px}
+.devis-app .tiles-lite .thumb{height:88px}
+.devis-app .tiles-lite img{max-height:84px}
+.devis-app .tiles-lite .cap{margin:0;padding:10px;border-top:0;border-left:1px solid var(--line2)}
+.devis-app .final-prestation-lite{margin-top:24px;border:2px solid var(--indigo-soft);background:#fff}
+.devis-app .final-presta-grid .opt em{display:block;margin-top:8px;color:var(--indigo);font-style:normal;font-size:18px;font-weight:700}
+.devis-app .permit-info-lite{margin-top:18px;background:#f8fafc}
+@media(max-width:700px){
+  .devis-app .tiles-lite .tile{grid-template-columns:100px 1fr}
+  .devis-app .tiles-lite .thumb{height:68px}
+  .devis-app .tiles-lite img{max-height:64px}
+  .devis-app .final-presta-grid{grid-template-columns:1fr!important}
+}
 </style>
 
 <section class="devis-app" id="devis-app">
@@ -65,4 +89,5 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=6" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=7" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=1" defer></script>
