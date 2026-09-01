@@ -6,9 +6,12 @@ $quoteConfig = [
     'mi_complete_forfait' => (float) cfg('quote_mi_complete_forfait', 125),
     'mi_complete_unite' => (float) cfg('quote_mi_complete_unite', 149),
     'ext_permis' => (float) cfg('quote_ext_permis', 199),
+    'ext_fdc' => (float) cfg('quote_ext_fdc', 274),
     'ext_complete' => (float) cfg('quote_ext_complete', 423),
     'article_metre' => (float) cfg('quote_article_metre', 100),
+    'tertiaire_fdc_complement' => (float) cfg('quote_tertiaire_fdc_complement', 130),
     'tertiaire_complete_complement' => (float) cfg('quote_tertiaire_complete_complement', 429),
+    'collective_fdc_forfait_delta' => (float) cfg('quote_collective_fdc_forfait_delta', 180),
     'power_a' => (float) cfg('quote_power_a', 39.18),
     'power_k' => (float) cfg('quote_power_k', 0.43),
     'collective_curve_threshold' => (float) cfg('quote_collective_curve_threshold', 25),
@@ -48,8 +51,12 @@ $quoteConfig = [
 .devis-app .tiles-lite .thumb{height:88px}
 .devis-app .tiles-lite img{max-height:84px}
 .devis-app .tiles-lite .cap{margin:0;padding:10px;border-top:0;border-left:1px solid var(--line2)}
+.devis-app .lot-f{display:none!important}
+.devis-app .rows .val{visibility:hidden!important}
 .devis-app .final-prestation-lite{margin-top:24px;border:2px solid var(--indigo-soft);background:#fff}
-.devis-app .final-presta-grid .opt em{display:block;margin-top:8px;color:var(--indigo);font-style:normal;font-size:18px;font-weight:700}
+.devis-app .final-presta-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px}
+.devis-app .final-presta-grid .opt{height:100%;align-items:flex-start}
+.devis-app .final-presta-grid .opt em{display:block;margin-top:10px;color:var(--indigo);font-style:normal;font-size:19px;font-weight:800}
 .devis-app .quote-calculate-btn{width:100%;margin-top:10px;min-height:52px;font-size:16px}
 .devis-app .permit-info-lite{margin-top:18px;background:#f8fafc}
 .devis-app .bar{
@@ -71,12 +78,12 @@ $quoteConfig = [
 .devis-app .toast{bottom:22px}
 @media(max-width:900px){
   .devis-app .wrap{padding-left:16px;padding-right:16px}
+  .devis-app .final-presta-grid{grid-template-columns:1fr!important}
 }
 @media(max-width:700px){
   .devis-app .tiles-lite .tile{grid-template-columns:100px 1fr}
   .devis-app .tiles-lite .thumb{height:68px}
   .devis-app .tiles-lite img{max-height:64px}
-  .devis-app .final-presta-grid{grid-template-columns:1fr!important}
   .devis-app .bar-in{flex-wrap:wrap;gap:8px}
   .devis-app .bar-txt{width:100%}
   .devis-app .btn{min-height:44px}
@@ -112,5 +119,5 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=8" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=2" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=9" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=3" defer></script>
