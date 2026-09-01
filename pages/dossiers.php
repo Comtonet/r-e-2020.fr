@@ -4,6 +4,10 @@ $route = $GLOBALS['dossier_route'];
 $categories = $catalog['categories'];
 $articles = $catalog['articles'];
 $dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
+$editorialBodiesFile = __DIR__ . '/../content/dossier_bodies_editoriaux.php';
+if (file_exists($editorialBodiesFile)) {
+    $dossierBodies = array_merge($dossierBodies, require $editorialBodiesFile);
+}
 $dossiersIndex = '/dossiers-decryptages-re2020/';
 function dossier_articles_for($articles, $category) { return array_values(array_filter($articles, function($a) use ($category) { return $a['category'] === $category; })); }
 ?>
