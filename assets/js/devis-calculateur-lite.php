@@ -38,10 +38,7 @@ $replacements = [
 $js = strtr($js, $replacements);
 $js = str_replace(' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low" width="320" height="180">', $js);
 
-/*
- * Logement collectif : conservation de la grille historique jusqu'à 25 logements,
- * puis prolongement continu sans plafond via la courbe paramétrable du config.php.
- */
+/* Logement collectif : grille historique puis prolongement sans plafond. */
 $js = str_replace(
     'function seuil(x,t,d){let r=d;for(const [s,v] of t)if(x>=s)r=v;return r}',
     'function seuil(x,t,d){let r=d;for(const [s,v] of t)if(x>=s)r=v;return r}function collectifMetre(x){const n=num(x),lim=num(C.collective_curve_threshold||25),a=num(C.collective_curve_a||36.492),b=num(C.collective_curve_b||11.067);return n>lim?a*n+b:seuil(n,COL_METRE,0)}',
@@ -54,7 +51,7 @@ $js = str_replace('const m=seuil(num(v),COL_METRE,0)', 'const m=collectifMetre(n
 /* Trois niveaux : Bbio, Bbio + FDC, puis étude totale avec ACV. */
 $js = str_replace(
     "function prixLot(lot){const u=USAGES[lot.usage],r=u.calc(lot.v)||{},permis=r.permis||0,complete=('complete'in r)?r.complete:permis+COMPL,lignesC=r.lignesC||[...(r.lignes||[]),{t:'Complément étude complète',d:'130 € + 299 €',v:COMPL}];return{permis,complete,pu:r.pu,alerte:r.alerte||[],info:r.info||[],lignes:r.lignes||[],lignesC}}",
-    "function prixLot(lot){const u=USAGES[lot.usage],r=u.calc(lot.v)||{},permis=r.permis||0,complete=('complete'in r)?r.complete:permis+COMPL;let fdc;if('fdc'in r)fdc=r.fdc;else if(lot.usage==='EXT')fdc=num(C.ext_fdc||274);else if(lot.usage==='MI'||(lot.usage==='LOG'&&num(lot.v.N)<3)){const N=Math.max(1,num(lot.v.N)||1);fdc=(C.mi_complete_forfait||125)+(C.mi_complete_unite||149)*N}else if(lot.usage==='COL'||(lot.usage==='LOG'&&num(lot.v.N)>=3))fdc=permis+180;else fdc=permis+num(C.tertiaire_fdc_complement||130);fdc=Math.min(Math.max(permis,fdc),complete);const lignesF=[...(r.lignes||[])];if(fdc>permis)lignesF.push({t:'Complément fin de travaux',d:'Cep, Cep,nr, DH et livrables de fin de travaux',v:fdc-permis});const lignesC=r.lignesC||[...(r.lignes||[]),{t:'Complément étude complète',d:'FDC + ACV',v:complete-permis}];return{permis,fdc,complete,pu:r.pu,alerte:r.alerte||[],info:r.info||[],lignes:r.lignes||[],lignesF,lignesC}}",
+    "function prixLot(lot){const u=USAGES[lot.usage],r=u.calc(lot.v)||{},permis=r.permis||0,complete=('complete'in r)?r.complete:permis+COMPL;let fdc;if('fdc'in r)fdc=r.fdc;else if(lot.usage==='EXT')fdc=num(C.ext_fdc||274);else if(lot.usage==='MI'||(lot.usage==='LOG'&&num(lot.v.N)<3)){const N=Math.max(1,num(lot.v.N)||1);fdc=(C.mi_complete_forfait||125)+(C.mi_complete_unite||149)*N}else if(lot.usage==='COL'||(lot.usage==='LOG'&&num(lot.v.N)>=3))fdc=permis+num(C.collective_fdc_forfait_delta||180);else fdc=permis+num(C.tertiaire_fdc_complement||130);fdc=Math.min(Math.max(permis,fdc),complete);const lignesF=[...(r.lignes||[])];if(fdc>permis)lignesF.push({t:'Complément fin de travaux',d:'Cep, Cep,nr, DH et livrables de fin de travaux',v:fdc-permis});const lignesC=r.lignesC||[...(r.lignes||[]),{t:'Complément étude complète',d:'FDC + ACV',v:complete-permis}];return{permis,fdc,complete,pu:r.pu,alerte:r.alerte||[],info:r.info||[],lignes:r.lignes||[],lignesF,lignesC}}",
     $js
 );
 $js = str_replace(
