@@ -47,6 +47,9 @@ $quoteConfig = [
 .devis-app .tiles-lite .cap{margin:0;padding:10px;border-top:0;border-left:1px solid var(--line2)}
 .devis-app .final-prestation-lite{margin-top:24px;border:2px solid var(--indigo-soft);background:#fff}
 .devis-app .final-presta-grid .opt em{display:block;margin-top:8px;color:var(--indigo);font-style:normal;font-size:18px;font-weight:700}
+.devis-app .quote-calculate-btn{width:100%;margin-top:10px;min-height:52px;font-size:16px}
+.devis-app #quoteRail.quote-waiting-calc .money .amt{visibility:hidden}
+.devis-app #quoteRail.quote-waiting-calc .money .amt::after{content:'À calculer';visibility:visible;font-size:13px;font-weight:700}
 .devis-app .permit-info-lite{margin-top:18px;background:#f8fafc}
 .devis-app .rail{top:20px}
 .devis-app .bar{
@@ -111,4 +114,4 @@ $quoteConfig = [
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=8" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=1" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=2" defer></script>
