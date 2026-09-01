@@ -28,7 +28,7 @@ function ensureLoader(){
   const loader=document.createElement('div');
   loader.className='quote-loader';
   loader.setAttribute('aria-hidden','true');
-  loader.innerHTML=`<div class="quote-loader-card"><div class="quote-infinity" aria-hidden="true"><i></i><i></i></div><strong>Calcul de votre devis</strong><span>Analyse de votre projet et application de la grille tarifaire…</span><div class="quote-loader-line"><b></b></div></div>`;
+  loader.innerHTML=`<div class="quote-loader-card"><div class="quote-infinity" aria-hidden="true"><i></i><i></i></div><strong>Calcul de votre devis</strong><span>Calcul en cours à partir des informations renseignées…</span><div class="quote-loader-line"><b></b></div></div>`;
   root.appendChild(loader);
 }
 
@@ -86,7 +86,7 @@ function lightenHome(){
     tiles.classList.add('tiles-lite');
   });
   const lead=screen.querySelector('.hero .lede');
-  if(lead)lead.textContent='Décrivez votre projet en quelques clics. Nous calculons ensuite automatiquement les trois niveaux de prestation adaptés.';
+  if(lead)lead.textContent='Décrivez votre projet en quelques clics. Vous pourrez ensuite choisir le niveau d’étude souhaité.';
   return true;
 }
 
@@ -99,7 +99,7 @@ function tuneSaisieText(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return;
   const lead=screen.querySelector('.hero .lede');
-  if(lead)lead.textContent='Renseignez uniquement les informations utiles au calcul. Votre prix reste masqué jusqu’au lancement du devis.';
+  if(lead)lead.textContent='Renseignez les informations concernant votre projet. Les tarifs seront affichés uniquement à la fin.';
 }
 
 function enhanceFields(){
@@ -119,37 +119,31 @@ function addFinalChoice(){
   const next=q('#quoteNext');
   const txt=q('#quoteBarTxt');
   if(!hasCalculated){
-    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Nous allons calculer instantanément les trois niveaux d’étude correspondant à votre saisie.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Prix immédiat</span><span>✓ Sans engagement</span><span>✓ Calcul adapté au projet</span></div>`;
+    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Lancez le calcul pour afficher les trois niveaux d’étude disponibles.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
     if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
-    if(txt)txt.textContent='Votre projet est prêt à être chiffré.';
+    if(txt)txt.textContent='Terminez votre saisie puis calculez votre devis.';
     return true;
   }
   const p=prices();
-  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre estimation</span><h3>Choisissez votre niveau d’étude</h3><p>Les montants ci-dessous sont calculés à partir des caractéristiques de votre projet.</p></div><span class="quote-final-step done">✓</span></div><div class="opts final-presta-grid"><button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Bbio</strong><small>Bbio + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="fdc" aria-pressed="${explicitChoice&&chosen==='fdc'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Bbio + FDC</strong><small>Bbio + Cep, Cep,nr, DH et livrables nécessaires à la fin de travaux.</small><em>${eur(p.fdc)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>La totale</strong><small>Bbio + FDC + ACV et tous les livrables de l’étude RE2020.</small><em>${eur(p.complete)}</em><i>Choisir cette formule</i></span></button></div>`;
+  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Sélectionnez la prestation dont vous avez besoin.</p></div><span class="quote-final-step done">✓</span></div><div class="opts final-presta-grid"><button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Bbio</strong><small>Bbio + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="fdc" aria-pressed="${explicitChoice&&chosen==='fdc'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Bbio + FDC</strong><small>Bbio + Cep, Cep,nr, DH et livrables nécessaires à la fin de travaux.</small><em>${eur(p.fdc)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>La totale</strong><small>Bbio + FDC + ACV et tous les livrables de l’étude RE2020.</small><em>${eur(p.complete)}</em><i>Choisir cette formule</i></span></button></div>`;
   if(next){next.disabled=!explicitChoice;next.textContent=explicitChoice?'Voir mon devis':'Choisissez votre prestation'}
-  if(txt&&!explicitChoice)txt.textContent='Sélectionnez la formule qui vous convient.';
+  if(txt&&!explicitChoice)txt.textContent='Sélectionnez une prestation pour continuer.';
   return true;
 }
 
-function addPermitInfo(){
-  const screen=q('#quoteScreen');
-  if(!screen||!screen.querySelector('.doc')||chosen!=='permis'||screen.querySelector('.permit-info-lite'))return;
-  const p=prices(),pay=screen.querySelector('.pay');
-  if(!pay)return;
-  const box=document.createElement('div');
-  box.className='panel permit-info-lite';
-  box.innerHTML=`<div class="panel-h"><span class="chip o">Évolutif</span><h3>Vous pourrez compléter l’étude plus tard</h3></div><div class="note info"><b>Bbio + FDC :</b> ${eur(p.fdc)} TTC<br><b>Bbio + FDC + ACV :</b> ${eur(p.complete)} TTC</div>`;
-  pay.parentNode.insertBefore(box,pay);
+function removeStrayPrices(){
+  if(hasCalculated)return;
+  qa('#quoteScreen .money,#quoteScreen .price,#quoteScreen .prix,#quoteScreen [class*="price"],#quoteScreen [class*="prix"]').forEach(el=>el.style.display='none');
 }
 
 function tune(){
   ensureLoader();
   ensureDefault();
-  const onHome=lightenHome();
+  lightenHome();
   tuneSaisieText();
   enhanceFields();
-  const onSaisie=addFinalChoice();
-  if(!onHome&&!onSaisie)addPermitInfo();
+  addFinalChoice();
+  removeStrayPrices();
   addProgress();
   root.classList.add('devis-lite-site');
 }
