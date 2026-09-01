@@ -51,4 +51,36 @@ $js = str_replace('const m=seuil(L,COL_METRE,0)', 'const m=collectifMetre(L)', $
 $js = str_replace('const m=seuil(N,COL_METRE,0)', 'const m=collectifMetre(N)', $js);
 $js = str_replace('const m=seuil(num(v),COL_METRE,0)', 'const m=collectifMetre(num(v))', $js);
 
+/* Trois niveaux : Bbio, Bbio + FDC, puis étude totale avec ACV. */
+$js = str_replace(
+    "function prixLot(lot){const u=USAGES[lot.usage],r=u.calc(lot.v)||{},permis=r.permis||0,complete=('complete'in r)?r.complete:permis+COMPL,lignesC=r.lignesC||[...(r.lignes||[]),{t:'Complément étude complète',d:'130 € + 299 €',v:COMPL}];return{permis,complete,pu:r.pu,alerte:r.alerte||[],info:r.info||[],lignes:r.lignes||[],lignesC}}",
+    "function prixLot(lot){const u=USAGES[lot.usage],r=u.calc(lot.v)||{},permis=r.permis||0,complete=('complete'in r)?r.complete:permis+COMPL;let fdc;if('fdc'in r)fdc=r.fdc;else if(lot.usage==='EXT')fdc=num(C.ext_fdc||274);else if(lot.usage==='MI'||(lot.usage==='LOG'&&num(lot.v.N)<3)){const N=Math.max(1,num(lot.v.N)||1);fdc=(C.mi_complete_forfait||125)+(C.mi_complete_unite||149)*N}else if(lot.usage==='COL'||(lot.usage==='LOG'&&num(lot.v.N)>=3))fdc=permis+180;else fdc=permis+num(C.tertiaire_fdc_complement||130);fdc=Math.min(Math.max(permis,fdc),complete);const lignesF=[...(r.lignes||[])];if(fdc>permis)lignesF.push({t:'Complément fin de travaux',d:'Cep, Cep,nr, DH et livrables de fin de travaux',v:fdc-permis});const lignesC=r.lignesC||[...(r.lignes||[]),{t:'Complément étude complète',d:'FDC + ACV',v:complete-permis}];return{permis,fdc,complete,pu:r.pu,alerte:r.alerte||[],info:r.info||[],lignes:r.lignes||[],lignesF,lignesC}}",
+    $js
+);
+$js = str_replace(
+    "function total(){let permis=0,complete=0;S.lots.forEach(l=>{const p=prixLot(l);permis+=p.permis*l.qte;complete+=p.complete*l.qte});const coef=S.famille==='mixte'&&!S.moaUnique?1.2:1;return{sousPermis:permis,sousComplete:complete,coef,permis:permis*coef,complete:complete*coef}}",
+    "function total(){let permis=0,fdc=0,complete=0;S.lots.forEach(l=>{const p=prixLot(l);permis+=p.permis*l.qte;fdc+=p.fdc*l.qte;complete+=p.complete*l.qte});const coef=S.famille==='mixte'&&!S.moaUnique?1.2:1;return{sousPermis:permis,sousFdc:fdc,sousComplete:complete,coef,permis:permis*coef,fdc:fdc*coef,complete:complete*coef}}",
+    $js
+);
+$js = str_replace(
+    "const retenu=()=>S.prestation==='complete'?total().complete:total().permis;",
+    "const retenu=()=>S.prestation==='complete'?total().complete:S.prestation==='fdc'?total().fdc:total().permis;",
+    $js
+);
+$js = str_replace(
+    "function resultLines(){let lines=[];S.lots.forEach(l=>{const p=prixLot(l),src=S.prestation==='complete'?p.lignesC:p.lignes;(src||[]).forEach(x=>lines.push({...x,t:(S.lots.length>1?USAGES[l.usage].nom+' — ':'')+x.t,v:x.v*l.qte}))});if(S.famille==='mixte'&&!S.moaUnique)lines.push({t:'Majoration multi-maîtrise d’ouvrage',d:'20 % sur l’ensemble de l’opération',v:(S.prestation==='complete'?total().sousComplete:total().sousPermis)*.2});return lines}",
+    "function resultLines(){let lines=[];S.lots.forEach(l=>{const p=prixLot(l),src=S.prestation==='complete'?p.lignesC:S.prestation==='fdc'?p.lignesF:p.lignes;(src||[]).forEach(x=>lines.push({...x,t:(S.lots.length>1?USAGES[l.usage].nom+' — ':'')+x.t,v:x.v*l.qte}))});if(S.famille==='mixte'&&!S.moaUnique){const t=total(),base=S.prestation==='complete'?t.sousComplete:S.prestation==='fdc'?t.sousFdc:t.sousPermis;lines.push({t:'Majoration multi-maîtrise d’ouvrage',d:'20 % sur l’ensemble de l’opération',v:base*.2})}return lines}",
+    $js
+);
+
+/* Le récapitulatif reste caché visuellement mais fournit les trois montants à l'interface finale. */
+$js = str_replace(
+    "<div class=\"money ${S.prestation==='permis'?'hi':'mut'}\"><span class=\"lbl\">Permis</span><span class=\"amt\">${eur(t.permis)}</span></div><div class=\"money ${S.prestation==='complete'?'hi':'mut'}\"><span class=\"lbl\">Étude complète</span><span class=\"amt\">${eur(t.complete)}</span></div>",
+    "<div class=\"money ${S.prestation==='permis'?'hi':'mut'}\"><span class=\"lbl\">Bbio</span><span class=\"amt\">${eur(t.permis)}</span></div><div class=\"money ${S.prestation==='fdc'?'hi':'mut'}\"><span class=\"lbl\">Bbio + FDC</span><span class=\"amt\">${eur(t.fdc)}</span></div><div class=\"money ${S.prestation==='complete'?'hi':'mut'}\"><span class=\"lbl\">Bbio + FDC + ACV</span><span class=\"amt\">${eur(t.complete)}</span></div>",
+    $js
+);
+$js = str_replace("S.prestation==='complete'?'Étude complète':S.prestation==='permis'?'Permis seul':'—'", "S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':S.prestation==='permis'?'Bbio':'—'", $js);
+$js = str_replace("S.prestation==='complete'?'Étude complète':'Permis uniquement'", "S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':'Bbio'", $js);
+$js = str_replace("${S.prestation==='complete'?'étude complète':'permis seul'}", "${S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':'Bbio'}", $js);
+
 echo $js;
