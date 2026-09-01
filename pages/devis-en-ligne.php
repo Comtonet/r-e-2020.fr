@@ -11,6 +11,9 @@ $quoteConfig = [
     'tertiaire_complete_complement' => (float) cfg('quote_tertiaire_complete_complement', 429),
     'power_a' => (float) cfg('quote_power_a', 39.18),
     'power_k' => (float) cfg('quote_power_k', 0.43),
+    'collective_curve_threshold' => (float) cfg('quote_collective_curve_threshold', 25),
+    'collective_curve_a' => (float) cfg('quote_collective_curve_a', 36.492),
+    'collective_curve_b' => (float) cfg('quote_collective_curve_b', 11.067),
 ];
 ?>
 <link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=4">
@@ -107,5 +110,5 @@ $quoteConfig = [
 </section>
 
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=7" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=8" defer></script>
 <script src="/assets/js/devis-site-lite.js?v=1" defer></script>
