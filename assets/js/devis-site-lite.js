@@ -33,13 +33,13 @@ function lightenHome(){
     tiles.classList.add('tiles-lite');
   });
   const lead=screen.querySelector('.hero .lede');
-  if(lead)lead.textContent='Répondez simplement aux questions sur votre projet. Le choix entre dépôt de PC et étude complète se fera à la toute fin.';
+  if(lead)lead.textContent='Répondez simplement aux questions sur votre projet. Vous choisirez à la fin entre Bbio, Bbio + FDC ou l’étude totale avec ACV.';
   return true;
 }
 
 function prices(){
   const m=qa('#quoteRail .money .amt');
-  return {permis:parseEur(m[0]?.textContent),complete:parseEur(m[1]?.textContent)};
+  return {permis:parseEur(m[0]?.textContent),fdc:parseEur(m[1]?.textContent),complete:parseEur(m[2]?.textContent)};
 }
 
 function syncCollectiveInlinePrice(){
@@ -62,6 +62,13 @@ function hideLivePrices(){
   rail.classList.toggle('quote-waiting-calc',!hasCalculated&&!!q('#quoteScreen .lot'));
 }
 
+function tuneSaisieText(){
+  const screen=q('#quoteScreen');
+  if(!screen||!screen.querySelector('.lot'))return;
+  const lead=screen.querySelector('.hero .lede');
+  if(lead)lead.textContent='Renseignez les caractéristiques de votre projet. Le prix sera calculé uniquement lorsque vous aurez terminé la saisie.';
+}
+
 function addFinalChoice(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return false;
@@ -77,7 +84,7 @@ function addFinalChoice(){
 
   if(!hasCalculated){
     box.innerHTML=`<div class="panel-h"><span class="chip o">Dernière étape</span><h3>Votre projet est renseigné ?</h3></div>
-    <p class="hint">Une fois toutes les informations saisies, lancez le calcul pour obtenir immédiatement le montant de votre devis.</p>
+    <p class="hint">Une fois toutes les informations saisies, lancez le calcul pour obtenir les trois niveaux de prestation.</p>
     <button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote">Calculer mon devis</button>`;
     if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
     if(txt)txt.textContent='Terminez la saisie puis cliquez sur « Calculer mon devis ».';
@@ -86,13 +93,14 @@ function addFinalChoice(){
 
   const p=prices();
   box.innerHTML=`<div class="panel-h"><span class="chip o">Votre devis</span><h3>Que souhaitez-vous commander ?</h3></div>
-  <p class="hint">Le calcul est terminé. Choisissez maintenant votre niveau de prestation.</p>
-  <div class="opts two final-presta-grid">
-    <button class="opt" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Dépôt de permis de construire</strong><small>Étude réglementaire + attestation PC.</small><em>${eur(p.permis)}</em></span></button>
-    <button class="opt" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>Étude RE2020 complète</strong><small>PC + Cep, Cep,nr, DH, ACV et livrables complets.</small><em>${eur(p.complete)}</em></span></button>
+  <p class="hint">Choisissez le niveau d’étude adapté à votre besoin.</p>
+  <div class="opts final-presta-grid">
+    <button class="opt" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Bbio</strong><small>Étude Bbio + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em></span></button>
+    <button class="opt" data-act="prestation" data-id="fdc" aria-pressed="${explicitChoice&&chosen==='fdc'}"><span class="tick"></span><span><strong>Bbio + FDC</strong><small>Bbio + Cep, Cep,nr, DH et livrables nécessaires à la fin de travaux.</small><em>${eur(p.fdc)}</em></span></button>
+    <button class="opt" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>La totale</strong><small>Bbio + FDC + ACV et tous les livrables de l’étude RE2020.</small><em>${eur(p.complete)}</em></span></button>
   </div>`;
   if(next){next.disabled=!explicitChoice;next.textContent=explicitChoice?'Voir mon devis':'Choisissez votre prestation'}
-  if(txt&&!explicitChoice)txt.innerHTML=`Calcul terminé : PC <b>${eur(p.permis)}</b> · étude complète <b>${eur(p.complete)}</b>`;
+  if(txt&&!explicitChoice)txt.innerHTML=`Bbio <b>${eur(p.permis)}</b> · Bbio + FDC <b>${eur(p.fdc)}</b> · totale <b>${eur(p.complete)}</b>`;
   return true;
 }
 
@@ -101,18 +109,18 @@ function addPermitInfo(){
   if(!screen||!screen.querySelector('.doc')||chosen!=='permis')return;
   if(screen.querySelector('.permit-info-lite'))return;
   const p=prices();
-  const sup=Math.max(0,p.complete-p.permis);
   const pay=screen.querySelector('.pay');
   if(!pay)return;
   const box=document.createElement('div');
   box.className='panel permit-info-lite';
-  box.innerHTML=`<div class="panel-h"><span class="chip o">À titre informatif</span><h3>Si vous souhaitez compléter l’étude après le PC</h3></div><p class="hint">Le complément dépend réellement de votre projet et de sa typologie.</p><div class="note info"><b>Cep, Cep,nr, DH + ACV RE2020</b><br>Complément calculé pour ce dossier : <strong>+ ${eur(sup)} TTC</strong> · étude complète : <strong>${eur(p.complete)} TTC</strong>.</div>`;
+  box.innerHTML=`<div class="panel-h"><span class="chip o">Vous pourrez compléter plus tard</span><h3>Passer à la FDC ou à l’étude totale</h3></div><div class="note info"><b>Bbio + FDC :</b> ${eur(p.fdc)} TTC<br><b>Bbio + FDC + ACV :</b> ${eur(p.complete)} TTC</div>`;
   pay.parentNode.insertBefore(box,pay);
 }
 
 function tune(){
   ensureDefault();
   const onHome=lightenHome();
+  tuneSaisieText();
   const onSaisie=addFinalChoice();
   if(!onHome&&!onSaisie)addPermitInfo();
   syncCollectiveInlinePrice();
