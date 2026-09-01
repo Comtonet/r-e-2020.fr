@@ -34,6 +34,9 @@ $quoteConfig = [
 .devis-app .top{display:none!important}
 .devis-app .quote-steps-hook{display:none!important}
 .devis-app .wrap{max-width:1180px;padding:18px 20px 34px}
+.devis-app .cols{display:block!important}
+.devis-app #quoteScreen{width:100%!important;max-width:none!important}
+.devis-app #quoteRail{display:none!important}
 .devis-app .hero{margin-bottom:26px}
 .devis-app .block{margin-bottom:26px}
 .devis-app .panel{box-shadow:var(--shadow-s);padding:18px;margin-bottom:12px}
@@ -48,10 +51,7 @@ $quoteConfig = [
 .devis-app .final-prestation-lite{margin-top:24px;border:2px solid var(--indigo-soft);background:#fff}
 .devis-app .final-presta-grid .opt em{display:block;margin-top:8px;color:var(--indigo);font-style:normal;font-size:18px;font-weight:700}
 .devis-app .quote-calculate-btn{width:100%;margin-top:10px;min-height:52px;font-size:16px}
-.devis-app #quoteRail.quote-waiting-calc .money .amt{visibility:hidden}
-.devis-app #quoteRail.quote-waiting-calc .money .amt::after{content:'À calculer';visibility:visible;font-size:13px;font-weight:700}
 .devis-app .permit-info-lite{margin-top:18px;background:#f8fafc}
-.devis-app .rail{top:20px}
 .devis-app .bar{
   position:static;
   left:auto;
@@ -71,7 +71,6 @@ $quoteConfig = [
 .devis-app .toast{bottom:22px}
 @media(max-width:900px){
   .devis-app .wrap{padding-left:16px;padding-right:16px}
-  .devis-app .cols{gap:20px}
 }
 @media(max-width:700px){
   .devis-app .tiles-lite .tile{grid-template-columns:100px 1fr}
