@@ -5,6 +5,7 @@ if(!root)return;
 let autoInit=false;
 let explicitChoice=false;
 let chosen='permis';
+let hasCalculated=false;
 const q=s=>root.querySelector(s);
 const qa=s=>Array.from(root.querySelectorAll(s));
 const parseEur=s=>{const n=String(s||'').replace(/\s/g,'').replace('€','').replace(',','.').replace(/[^0-9.\-]/g,'');return Number(n)||0};
@@ -55,26 +56,43 @@ function syncCollectiveInlinePrice(){
   });
 }
 
+function hideLivePrices(){
+  const rail=q('#quoteRail');
+  if(!rail)return;
+  rail.classList.toggle('quote-waiting-calc',!hasCalculated&&!!q('#quoteScreen .lot'));
+}
+
 function addFinalChoice(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return false;
   let box=screen.querySelector('.final-prestation-lite');
-  const p=prices();
   if(!box){
     box=document.createElement('section');
     box.className='panel final-prestation-lite';
     screen.appendChild(box);
   }
-  box.innerHTML=`<div class="panel-h"><span class="chip o">Dernière étape</span><h3>Que souhaitez-vous commander ?</h3></div>
-  <p class="hint">Le projet est entièrement décrit. Choisissez maintenant votre niveau de prestation.</p>
+
+  const next=q('#quoteNext');
+  const txt=q('#quoteBarTxt');
+
+  if(!hasCalculated){
+    box.innerHTML=`<div class="panel-h"><span class="chip o">Dernière étape</span><h3>Votre projet est renseigné ?</h3></div>
+    <p class="hint">Une fois toutes les informations saisies, lancez le calcul pour obtenir immédiatement le montant de votre devis.</p>
+    <button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote">Calculer mon devis</button>`;
+    if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
+    if(txt)txt.textContent='Terminez la saisie puis cliquez sur « Calculer mon devis ».';
+    return true;
+  }
+
+  const p=prices();
+  box.innerHTML=`<div class="panel-h"><span class="chip o">Votre devis</span><h3>Que souhaitez-vous commander ?</h3></div>
+  <p class="hint">Le calcul est terminé. Choisissez maintenant votre niveau de prestation.</p>
   <div class="opts two final-presta-grid">
     <button class="opt" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Dépôt de permis de construire</strong><small>Étude réglementaire + attestation PC.</small><em>${eur(p.permis)}</em></span></button>
     <button class="opt" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>Étude RE2020 complète</strong><small>PC + Cep, Cep,nr, DH, ACV et livrables complets.</small><em>${eur(p.complete)}</em></span></button>
   </div>`;
-  const next=q('#quoteNext');
-  const txt=q('#quoteBarTxt');
   if(next){next.disabled=!explicitChoice;next.textContent=explicitChoice?'Voir mon devis':'Choisissez votre prestation'}
-  if(txt&&!explicitChoice)txt.innerHTML=`Projet chiffré : PC <b>${eur(p.permis)}</b> · étude complète <b>${eur(p.complete)}</b>`;
+  if(txt&&!explicitChoice)txt.innerHTML=`Calcul terminé : PC <b>${eur(p.permis)}</b> · étude complète <b>${eur(p.complete)}</b>`;
   return true;
 }
 
@@ -98,23 +116,45 @@ function tune(){
   const onSaisie=addFinalChoice();
   if(!onHome&&!onSaisie)addPermitInfo();
   syncCollectiveInlinePrice();
+  hideLivePrices();
   root.classList.add('devis-lite-site');
 }
 
 root.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');
   if(!b)return;
+  if(b.dataset.act==='calculate-quote'){
+    hasCalculated=true;
+    explicitChoice=false;
+    chosen='permis';
+  }
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){
     explicitChoice=true;
     chosen=b.dataset.id;
   }
   if(b.dataset.act==='nature'||b.dataset.act==='famille'){
+    hasCalculated=false;
     explicitChoice=false;
     chosen='permis';
   }
   setTimeout(tune,0);
 },true);
-root.addEventListener('input',()=>setTimeout(tune,0),true);
+root.addEventListener('input',e=>{
+  if(e.target.closest('.lot')){
+    hasCalculated=false;
+    explicitChoice=false;
+    chosen='permis';
+  }
+  setTimeout(tune,0);
+},true);
+root.addEventListener('change',e=>{
+  if(e.target.closest('.lot')){
+    hasCalculated=false;
+    explicitChoice=false;
+    chosen='permis';
+  }
+  setTimeout(tune,0);
+},true);
 q('#quoteNext')?.addEventListener('click',()=>setTimeout(tune,0));
 q('#quoteBack')?.addEventListener('click',()=>setTimeout(tune,0));
 setTimeout(tune,0);
