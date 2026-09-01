@@ -28,7 +28,7 @@ return [
     'price_fin_travaux_acv_ttc' => 423,
     'price_small_extension_attestation_ttc' => 19,
 
-    // Moteur du calculateur de devis RE2020 hors logement collectif.
+    // Moteur du calculateur de devis RE2020.
     // Valeurs reprises du moteur transmis et regroupées ici pour faciliter les mises à jour.
     'quote_mi_forfait' => 50,
     'quote_mi_logement' => 75,
@@ -43,6 +43,12 @@ return [
     'quote_tertiaire_complete_complement' => 429,
     'quote_power_a' => 39.18,
     'quote_power_k' => 0.43,
+
+    // Logement collectif : grille actuelle jusqu'à 25 logements, puis courbe sans plafond.
+    // Au-delà de 25 : article de métré = a × nombre de logements + b.
+    'quote_collective_curve_threshold' => 25,
+    'quote_collective_curve_a' => 36.492,
+    'quote_collective_curve_b' => 11.067,
 
     // Valeurs commerciales affichées lorsqu'elles sont mentionnées.
     'value_keephome_ttc' => 50,
