@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']
 
 $js = file_get_contents($source);
 
-/* Images d'accueil allégées : aucune transformation fonctionnelle du moteur. */
+/* Images d'accueil allégées. */
 $replacements = [
     'Collectif/Collectif classique.png' => 'Collectif.jpg',
     'Collectif/Collectif simple de 2x2.png' => 'Collectif.jpg',
@@ -37,5 +37,18 @@ $replacements = [
 ];
 $js = strtr($js, $replacements);
 $js = str_replace(' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low" width="320" height="180">', $js);
+
+/*
+ * Logement collectif : conservation de la grille historique jusqu'à 25 logements,
+ * puis prolongement continu sans plafond via la courbe paramétrable du config.php.
+ */
+$js = str_replace(
+    'function seuil(x,t,d){let r=d;for(const [s,v] of t)if(x>=s)r=v;return r}',
+    'function seuil(x,t,d){let r=d;for(const [s,v] of t)if(x>=s)r=v;return r}function collectifMetre(x){const n=num(x),lim=num(C.collective_curve_threshold||25),a=num(C.collective_curve_a||36.492),b=num(C.collective_curve_b||11.067);return n>lim?a*n+b:seuil(n,COL_METRE,0)}',
+    $js
+);
+$js = str_replace('const m=seuil(L,COL_METRE,0)', 'const m=collectifMetre(L)', $js);
+$js = str_replace('const m=seuil(N,COL_METRE,0)', 'const m=collectifMetre(N)', $js);
+$js = str_replace('const m=seuil(num(v),COL_METRE,0)', 'const m=collectifMetre(num(v))', $js);
 
 echo $js;
