@@ -41,6 +41,20 @@ function prices(){
   return {permis:parseEur(m[0]?.textContent),complete:parseEur(m[1]?.textContent)};
 }
 
+function syncCollectiveInlinePrice(){
+  qa('.lot').forEach(lot=>{
+    const rows=Array.from(lot.querySelectorAll('.rows .row:not(.head)'));
+    if(rows.length!==1)return;
+    const input=rows[0].querySelector('input[data-act="bat"]');
+    if(!input)return;
+    const footer=lot.querySelector('.lot-f span:first-child b');
+    const inline=rows[0].querySelector('.val b');
+    if(!footer||!inline)return;
+    const total=parseEur(footer.textContent);
+    if(total>0) inline.textContent=Math.round(total).toLocaleString('fr-FR')+' €';
+  });
+}
+
 function addFinalChoice(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return false;
@@ -83,6 +97,7 @@ function tune(){
   const onHome=lightenHome();
   const onSaisie=addFinalChoice();
   if(!onHome&&!onSaisie)addPermitInfo();
+  syncCollectiveInlinePrice();
   root.classList.add('devis-lite-site');
 }
 
