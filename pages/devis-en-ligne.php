@@ -19,13 +19,18 @@ $quoteConfig = [
   --display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --paper:#f7f8fb;
+  --paper:transparent;
   --card:#fff;
   --shadow-s:0 1px 3px rgba(19,26,46,.05);
   --shadow-m:0 4px 14px rgba(19,26,46,.07);
+  min-height:0;
+  margin:0;
+  padding:0;
+  background:transparent;
 }
-.devis-app .top,.devis-app .bar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-.devis-app .wrap{padding-top:24px}
+.devis-app .top{display:none!important}
+.devis-app .quote-steps-hook{display:none!important}
+.devis-app .wrap{max-width:1180px;padding:18px 20px 34px}
 .devis-app .hero{margin-bottom:26px}
 .devis-app .block{margin-bottom:26px}
 .devis-app .panel{box-shadow:var(--shadow-s);padding:18px;margin-bottom:12px}
@@ -40,43 +45,56 @@ $quoteConfig = [
 .devis-app .final-prestation-lite{margin-top:24px;border:2px solid var(--indigo-soft);background:#fff}
 .devis-app .final-presta-grid .opt em{display:block;margin-top:8px;color:var(--indigo);font-style:normal;font-size:18px;font-weight:700}
 .devis-app .permit-info-lite{margin-top:18px;background:#f8fafc}
+.devis-app .rail{top:20px}
+.devis-app .bar{
+  position:static;
+  left:auto;
+  right:auto;
+  bottom:auto;
+  z-index:auto;
+  margin-top:18px;
+  background:transparent;
+  border-top:1px solid var(--line2);
+  transform:none;
+  transition:none;
+  box-shadow:none;
+}
+.devis-app .bar:not(.show){display:none}
+.devis-app .bar-in{max-width:none;padding:16px 0 0}
+.devis-app .bar-txt{font-size:12.5px}
+.devis-app .toast{bottom:22px}
+@media(max-width:900px){
+  .devis-app .wrap{padding-left:16px;padding-right:16px}
+  .devis-app .cols{gap:20px}
+}
 @media(max-width:700px){
   .devis-app .tiles-lite .tile{grid-template-columns:100px 1fr}
   .devis-app .tiles-lite .thumb{height:68px}
   .devis-app .tiles-lite img{max-height:64px}
   .devis-app .final-presta-grid{grid-template-columns:1fr!important}
+  .devis-app .bar-in{flex-wrap:wrap;gap:8px}
+  .devis-app .bar-txt{width:100%}
+  .devis-app .btn{min-height:44px}
 }
 </style>
 
 <section class="devis-app" id="devis-app">
-  <header class="top noprint">
-    <div class="top-in">
-      <div class="brand">
-        <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 3 29 10.5v11L16 29 3 21.5v-11z" fill="#E6ECF8" stroke="#1E3A6E" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M16 3v13m0 0 13-5.5M16 16 3 10.5M16 16v13" stroke="#1E3A6E" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-          <path d="M16 16 29 10.5v11L16 29z" fill="#1E3A6E" fill-opacity=".12"/>
-        </svg>
-        <div><b>Étude thermique RE2020</b><span>Devis en ligne</span></div>
-      </div>
-      <nav class="steps" id="quoteSteps" aria-label="Étapes"></nav>
-    </div>
-  </header>
+  <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
 
   <main class="wrap">
     <div class="cols">
       <div id="quoteScreen"></div>
       <aside class="rail noprint" id="quoteRail"></aside>
     </div>
-  </main>
 
-  <div class="bar noprint" id="quoteBar">
-    <div class="bar-in">
-      <div class="bar-txt" id="quoteBarTxt"></div>
-      <button class="btn btn-g" id="quoteBack" hidden>Retour</button>
-      <button class="btn btn-p ml" id="quoteNext">Continuer</button>
+    <div class="bar noprint" id="quoteBar">
+      <div class="bar-in">
+        <div class="bar-txt" id="quoteBarTxt"></div>
+        <button class="btn btn-g" id="quoteBack" hidden>Retour</button>
+        <button class="btn btn-p ml" id="quoteNext">Continuer</button>
+      </div>
     </div>
-  </div>
+  </main>
 
   <div class="toast" id="quoteToast" role="status" aria-live="polite"></div>
   <div class="modal noprint" id="quoteModal" hidden>
