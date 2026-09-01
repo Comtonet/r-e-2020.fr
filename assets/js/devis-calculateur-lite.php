@@ -72,12 +72,9 @@ $js = str_replace(
 
 /* Le récapitulatif reste caché visuellement mais fournit les trois montants à l'interface finale. */
 $js = str_replace(
-    "<div class=\"money ${S.prestation==='permis'?'hi':'mut'}\"><span class=\"lbl\">Permis</span><span class=\"amt\">${eur(t.permis)}</span></div><div class=\"money ${S.prestation==='complete'?'hi':'mut'}\"><span class=\"lbl\">Étude complète</span><span class=\"amt\">${eur(t.complete)}</span></div>",
-    "<div class=\"money ${S.prestation==='permis'?'hi':'mut'}\"><span class=\"lbl\">Bbio</span><span class=\"amt\">${eur(t.permis)}</span></div><div class=\"money ${S.prestation==='fdc'?'hi':'mut'}\"><span class=\"lbl\">Bbio + FDC</span><span class=\"amt\">${eur(t.fdc)}</span></div><div class=\"money ${S.prestation==='complete'?'hi':'mut'}\"><span class=\"lbl\">Bbio + FDC + ACV</span><span class=\"amt\">${eur(t.complete)}</span></div>",
+    '<div class="money ${S.prestation===\'permis\'?\'hi\':\'mut\'}"><span class="lbl">Permis</span><span class="amt">${eur(t.permis)}</span></div><div class="money ${S.prestation===\'complete\'?\'hi\':\'mut\'}"><span class="lbl">Étude complète</span><span class="amt">${eur(t.complete)}</span></div>',
+    '<div class="money ${S.prestation===\'permis\'?\'hi\':\'mut\'}"><span class="lbl">Bbio</span><span class="amt">${eur(t.permis)}</span></div><div class="money ${S.prestation===\'fdc\'?\'hi\':\'mut\'}"><span class="lbl">Bbio + FDC</span><span class="amt">${eur(t.fdc)}</span></div><div class="money ${S.prestation===\'complete\'?\'hi\':\'mut\'}"><span class="lbl">Bbio + FDC + ACV</span><span class="amt">${eur(t.complete)}</span></div>',
     $js
 );
-$js = str_replace("S.prestation==='complete'?'Étude complète':S.prestation==='permis'?'Permis seul':'—'", "S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':S.prestation==='permis'?'Bbio':'—'", $js);
-$js = str_replace("S.prestation==='complete'?'Étude complète':'Permis uniquement'", "S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':'Bbio'", $js);
-$js = str_replace("${S.prestation==='complete'?'étude complète':'permis seul'}", "${S.prestation==='complete'?'Bbio + FDC + ACV':S.prestation==='fdc'?'Bbio + FDC':'Bbio'}", $js);
 
 echo $js;
