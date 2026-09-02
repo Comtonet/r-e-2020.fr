@@ -1,15 +1,6 @@
 <?php
 $actualites = $GLOBALS['actualites_catalog'] ?? [];
 $route = $GLOBALS['actualites_route'] ?? ['type' => 'index'];
-
-if (($route['type'] ?? '') === 'index') {
-    array_unshift($actualites, [
-        'title' => 'Observatoire RE2020 KeePlanet : ce que révèlent 1 068 études au 2e trimestre 2026',
-        'excerpt' => 'KeePlanet publie les résultats de son Observatoire RE2020 : 1 068 études thermiques analysées pour suivre les tendances réelles des projets, du Bbio aux systèmes de chauffage et de ventilation.',
-        'date' => '2026-09-02',
-        'external_url' => 'https://re-batiment.fr/observatoire/re2020-ce-que-revelent-les-1-068-etudes-analysees-au-2e-trimestre-2026/',
-    ]);
-}
 ?>
 <?php if ($route['type'] === 'index'): ?>
 <section class="dossier-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Actualités</span></div><span class="eyebrow">Actualités RE2020</span><h1>L’actualité RE2020 qui impacte vraiment vos projets</h1><p>Évolutions réglementaires, moteur de calcul, base INIES et données environnementales : Keeplanet suit les changements utiles à vos projets.</p></div></section>
@@ -17,8 +8,7 @@ if (($route['type'] ?? '') === 'index') {
   <div class="dossier-group-head"><div><span class="eyebrow">Veille technique & réglementaire</span><h2>Les dernières actualités</h2></div></div>
   <div class="dossier-grid">
     <?php foreach ($actualites as $actualite): ?>
-      <?php $externalUrl = $actualite['external_url'] ?? null; $articleUrl = $externalUrl ?: '/actualites/' . $actualite['slug'] . '/'; ?>
-      <article class="dossier-card"><span class="pill">Actualité</span><?php if (!empty($actualite['date'])): ?><small><?= h(date('d/m/Y', strtotime($actualite['date']))) ?></small><?php endif; ?><h2><a href="<?= h($articleUrl) ?>"<?= $externalUrl ? ' target="_blank" rel="noopener"' : '' ?>><?= h($actualite['title']) ?></a></h2><p><?= h($actualite['excerpt']) ?></p><a class="dossier-link" href="<?= h($articleUrl) ?>"<?= $externalUrl ? ' target="_blank" rel="noopener"' : '' ?>><?= $externalUrl ? 'Lire notre analyse KeePlanet ↗' : 'Lire l’actualité →' ?></a></article>
+      <article class="dossier-card"><span class="pill">Actualité</span><?php if (!empty($actualite['date'])): ?><small><?= h(date('d/m/Y', strtotime($actualite['date']))) ?></small><?php endif; ?><h2><a href="/actualites/<?= h($actualite['slug']) ?>/"><?= h($actualite['title']) ?></a></h2><p><?= h($actualite['excerpt']) ?></p><a class="dossier-link" href="/actualites/<?= h($actualite['slug']) ?>/">Lire l’actualité →</a></article>
     <?php endforeach; ?>
   </div>
   <div class="article-cta"><div><span class="eyebrow">Besoin de contexte technique ?</span><h2>Consultez aussi nos dossiers RE2020.</h2><p>Les actualités suivent les changements ; les dossiers expliquent les règles et leurs conséquences sur les projets.</p></div><a class="btn" href="/dossiers-decryptages-re2020/">Voir les dossiers</a></div>
