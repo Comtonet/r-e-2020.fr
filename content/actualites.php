@@ -7,6 +7,40 @@
  */
 return [
     [
+        'slug' => 'observatoire-re2020-keeplanet-1068-etudes-2e-trimestre-2026',
+        'title' => 'Observatoire RE2020 KeePlanet : ce que révèlent 1 068 études au 2e trimestre 2026',
+        'excerpt' => 'KeePlanet analyse 1 068 études thermiques RE2020 réalisées entre avril et juin 2026 : Bbio, Cep, surfaces, isolation, chauffage, eau chaude sanitaire et ventilation.',
+        'date' => '2026-09-02',
+        'source_name' => 'Observatoire RE2020 par KeePlanet — analyse complète',
+        'source_url' => 'https://re-batiment.fr/observatoire/re2020-ce-que-revelent-les-1-068-etudes-analysees-au-2e-trimestre-2026/',
+        'body' => <<<'HTML'
+<p><strong>KeePlanet publie la nouvelle synthèse trimestrielle de son Observatoire de la RE2020.</strong> Cette édition repose sur l’analyse de <strong>1 068 études thermiques conformes à la RE2020</strong> réalisées par notre bureau d’études entre avril et juin 2026.</p>
+<p>L’objectif est de dépasser la seule lecture des seuils réglementaires pour observer les solutions réellement retenues dans les projets : niveau de performance bioclimatique, consommations, surfaces, isolation et systèmes techniques.</p>
+<h2>Des projets qui conservent une marge sur le Bbio</h2>
+<p>Le Bbio traduit les besoins bioclimatiques du bâtiment et dépend notamment de son orientation, de sa compacité et de son niveau d’isolation. Sur les projets analysés au deuxième trimestre 2026, le Bbio moyen reste inférieur au Bbio maximal dans les trois grands ensembles climatiques étudiés.</p>
+<p>L’écart moyen atteint <strong>-6,69 % dans les zones froides</strong>, <strong>-10,64 % dans les zones moyennes</strong> et <strong>-7,53 % dans les zones chaudes</strong>. Les projets étudiés ne sont donc généralement pas positionnés au strict niveau du seuil réglementaire.</p>
+<h2>Un Cep nettement inférieur aux plafonds réglementaires</h2>
+<p>La marge est encore plus importante sur le Cep, indicateur des consommations d’énergie primaire. Les projets analysés présentent en moyenne un Cep inférieur au Cep maximal de <strong>35,74 % dans les zones froides</strong>, <strong>28,82 % dans les zones moyennes</strong> et <strong>32,88 % dans les zones chaudes</strong>.</p>
+<p>Le Cep,nr, qui ne comptabilise que les consommations issues d’énergies non renouvelables, est en revanche plus proche de sa limite : l’écart moyen est de <strong>-15,77 %</strong>, <strong>-16,40 %</strong> et <strong>-12,14 %</strong> selon les zones. Dans notre échantillon, cet indicateur apparaît donc plus dimensionnant que le Cep global.</p>
+<h2>Une surface habitable moyenne en baisse</h2>
+<p>La surface habitable moyenne des projets étudiés passe de <strong>134,99 m² au premier trimestre 2026 à 127,01 m² au deuxième trimestre</strong>, soit une diminution de <strong>5,91 %</strong>. La tranche de surface la plus représentée à l’échelle nationale est celle comprise entre <strong>100 et 120 m²</strong>.</p>
+<p>Un trimestre ne suffit pas à caractériser une tendance durable, mais cette évolution mérite d’être suivie dans les prochaines éditions de l’Observatoire.</p>
+<h2>Des niveaux d’isolation relativement stables</h2>
+<p>Les résistances thermiques moyennes évoluent peu d’un trimestre à l’autre. Dans les zones froides, elles atteignent notamment <strong>R = 9,59 m².K/W pour les planchers hauts</strong>, <strong>5,68 m².K/W pour les façades</strong> et <strong>5,49 m².K/W pour les planchers bas</strong>.</p>
+<p>Les niveaux constatés dans les zones moyennes et chaudes restent proches, ce qui montre une certaine stabilisation des solutions d’enveloppe utilisées dans les projets que nous étudions.</p>
+<h2>Les solutions thermodynamiques dominent très largement</h2>
+<p>Pour la production d’eau chaude sanitaire, <strong>100 % des projets de l’échantillon utilisent une solution thermodynamique</strong>, quelle que soit la zone climatique.</p>
+<p>La tendance est également très marquée pour le chauffage : les solutions thermodynamiques représentent <strong>91,43 % des projets en zones froides</strong>, <strong>72,86 % en zones moyennes</strong> et <strong>91,67 % en zones chaudes</strong>. Le bois complète essentiellement la répartition, notamment dans les zones H2a et H2b où il représente 27,14 % des projets analysés.</p>
+<h2>La ventilation simple flux reste très majoritaire</h2>
+<p>La ventilation simple flux reste largement dominante : <strong>95,48 % des projets en zones froides</strong>, <strong>93,5 % en zones moyennes</strong> et <strong>96,88 % en zones chaudes</strong>.</p>
+<p>La double flux demeure donc minoritaire dans notre échantillon, avec une part maximale de 6,5 % dans les zones moyennes.</p>
+<h2>Ce que KeePlanet retient de ce deuxième trimestre</h2>
+<p>Cette nouvelle photographie de notre Observatoire fait ressortir plusieurs tendances : des projets qui conservent une marge réglementaire sur le Bbio et le Cep, une surface habitable moyenne en baisse, des niveaux d’isolation relativement stables et une très forte domination des solutions thermodynamiques.</p>
+<p>Ces résultats montrent également que la conformité RE2020 ne repose pas sur un seul levier. L’équilibre entre conception bioclimatique, enveloppe, systèmes énergétiques et recours aux énergies renouvelables reste déterminant pour obtenir un projet performant et conforme.</p>
+<p>KeePlanet continuera à publier régulièrement les résultats de son Observatoire afin de suivre l’évolution réelle des méthodes constructives et des choix techniques associés à la RE2020.</p>
+HTML
+    ],
+    [
         'slug' => 'barometre-inies-2026-7500-declarations-fdes-pep-acv-re2020',
         'title' => 'Baromètre INIES 2026 : 7 500 déclarations, quels impacts pour l’ACV RE2020 ?',
         'excerpt' => 'Le Baromètre INIES 2026 confirme l’accélération des FDES et PEP. Ce que cette dynamique change concrètement pour les ACV et choix produits en RE2020.',
