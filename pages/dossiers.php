@@ -5,9 +5,9 @@ $categories = $catalog['categories'];
 $articles = $catalog['articles'];
 $dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
 $editorialBodiesFile = __DIR__ . '/../content/dossier_bodies_editoriaux.php';
-if (file_exists($editorialBodiesFile)) {
-    $dossierBodies = array_merge($dossierBodies, require $editorialBodiesFile);
-}
+if (file_exists($editorialBodiesFile)) { $dossierBodies = array_merge($dossierBodies, require $editorialBodiesFile); }
+$publicationsBodiesFile = __DIR__ . '/../content/dossier_bodies_publications.php';
+if (file_exists($publicationsBodiesFile)) { $dossierBodies = array_merge($dossierBodies, require $publicationsBodiesFile); }
 $dossiersIndex = '/dossiers-decryptages-re2020/';
 function dossier_articles_for($articles, $category) { return array_values(array_filter($articles, function($a) use ($category) { return $a['category'] === $category; })); }
 ?>
