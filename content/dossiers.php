@@ -7,20 +7,12 @@
  */
 return [
     'categories' => [
-        'reglementaire' => [
-            'name' => 'Réglementaire',
-            'description' => 'Seuils, attestations, indicateurs et contrôles de conformité RE2020.',
-        ],
-        'equipements-solutions-techniques' => [
-            'name' => 'Équipements & solutions techniques',
-            'description' => 'Chauffage, ventilation, vitrages et choix techniques qui influencent les calculs.',
-        ],
-        'couts-optimisation-budgetaire' => [
-            'name' => 'Coûts & optimisation budgétaire',
-            'description' => 'Arbitrages technico-économiques pour rester conforme sans surdimensionner le projet.',
-        ],
+        'reglementaire' => ['name'=>'Réglementaire','description'=>'Seuils, attestations, indicateurs et contrôles de conformité RE2020.'],
+        'equipements-solutions-techniques' => ['name'=>'Équipements & solutions techniques','description'=>'Chauffage, ventilation, vitrages et choix techniques qui influencent les calculs.'],
+        'couts-optimisation-budgetaire' => ['name'=>'Coûts & optimisation budgétaire','description'=>'Arbitrages technico-économiques pour rester conforme sans surdimensionner le projet.'],
     ],
     'articles' => [
+        ['category'=>'reglementaire','slug'=>'verification-ventilation-re2020-protocole-fin-chantier','title'=>'Vérification de la ventilation RE2020 : contrôle, mesures et fin de chantier','excerpt'=>'En logement neuf, la RE2020 impose la vérification du système de ventilation et la mesure de ses performances. Découvrez ce qui est contrôlé et comment préparer la fin de chantier.','source_url'=>'https://r-e-2020.fr/reglementaire/verification-ventilation-re2020-protocole-fin-chantier/'],
         ['category'=>'reglementaire','slug'=>'ponts-thermiques-re2020-ratio-psi-psi9','title'=>'Ponts thermiques RE2020 : Ratio ψ, Ψ9 et solutions pour rester conforme','excerpt'=>'Ratio ψ à 0,33, seuil Ψ9 à 0,60 W/(m.K), liaisons à surveiller et solutions constructives : comprendre les exigences RE2020 sur les ponts thermiques.','source_url'=>'https://r-e-2020.fr/reglementaire/ponts-thermiques-re2020-ratio-psi-psi9/'],
         ['category'=>'reglementaire','slug'=>'fdes-donnees-environnementales-acv-carbone','title'=>'Qu’est-ce qu’une FDES ? Comprendre l’ACV Carbone RE2020','excerpt'=>'Comprendre le rôle des FDES dans l’analyse de cycle de vie et le calcul carbone RE2020.','source_url'=>'https://r-e-2020.fr/reglementaire/fdes-donnees-environnementales-acv-carbone/','wp_id'=>2265],
         ['category'=>'equipements-solutions-techniques','slug'=>'pompe-a-chaleur-re2020-interdiction-effet-joule','title'=>'PAC et RE2020 : La Solution après l’Interdiction de l’Effet Joule','excerpt'=>'COP, Cep, Cep,nr, PAC air-eau ou air-air : comprendre l’intérêt réglementaire d’un système thermodynamique.','source_url'=>'https://r-e-2020.fr/equipements-solutions-techniques/pompe-a-chaleur-re2020-interdiction-effet-joule/','wp_id'=>2251],
