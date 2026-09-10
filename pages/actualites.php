@@ -1,12 +1,19 @@
 <?php
 $actualites = $GLOBALS['actualites_catalog'] ?? [];
 $route = $GLOBALS['actualites_route'] ?? ['type' => 'index'];
+$openDataActualite = [
+  'slug' => 'donnees-re2020-open-data-observatoire-2026',
+  'title' => 'Données RE2020 en open data : l’Observatoire devient accessible à tous',
+  'excerpt' => 'Depuis septembre 2026, le ministère rend publiques les données de l’Observatoire RE2020 : bâtiments achevés, performances énergie-carbone et nouveaux usages pour la filière.',
+  'date' => '2026-09-10'
+];
 ?>
 <?php if ($route['type'] === 'index'): ?>
 <section class="dossier-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Actualités</span></div><span class="eyebrow">Actualités RE2020</span><h1>L’actualité RE2020 qui impacte vraiment vos projets</h1><p>Évolutions réglementaires, moteur de calcul, base INIES et données environnementales : Keeplanet suit les changements utiles à vos projets.</p></div></section>
 <section class="section dossier-section"><div class="container">
   <div class="dossier-group-head"><div><span class="eyebrow">Veille technique & réglementaire</span><h2>Les dernières actualités</h2></div></div>
   <div class="dossier-grid">
+      <article class="dossier-card"><span class="pill">Actualité</span><small><?= h(date('d/m/Y', strtotime($openDataActualite['date']))) ?></small><h2><a href="/actualites/<?= h($openDataActualite['slug']) ?>/"><?= h($openDataActualite['title']) ?></a></h2><p><?= h($openDataActualite['excerpt']) ?></p><a class="dossier-link" href="/actualites/<?= h($openDataActualite['slug']) ?>/">Lire l’actualité →</a></article>
     <?php foreach ($actualites as $actualite): ?>
       <article class="dossier-card"><span class="pill">Actualité</span><?php if (!empty($actualite['date'])): ?><small><?= h(date('d/m/Y', strtotime($actualite['date']))) ?></small><?php endif; ?><h2><a href="/actualites/<?= h($actualite['slug']) ?>/"><?= h($actualite['title']) ?></a></h2><p><?= h($actualite['excerpt']) ?></p><a class="dossier-link" href="/actualites/<?= h($actualite['slug']) ?>/">Lire l’actualité →</a></article>
     <?php endforeach; ?>
