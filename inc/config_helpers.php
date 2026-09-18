@@ -15,6 +15,9 @@ function google_rating_label() { return number_format((float)cfg('google_rating'
 function google_reviews_label() { return number_format((int)cfg('google_reviews',0),0,',',' '); }
 function experience_label() { return (int)cfg('experience_years',16).' ans'; }
 function opqibi_profile_url() { return (string)cfg('opqibi_profile_url','https://www.opqibi.com/fiche/3545'); }
+function house_exit_offer_enabled() { return (bool)cfg('house_exit_offer_enabled', true); }
+function house_exit_offer_percent() { return max(0, min(100, (int)cfg('house_exit_offer_percent', 10))); }
+function house_exit_offer_code() { return trim((string)cfg('house_exit_offer_code', 'MAISON10')); }
 
 function apply_dynamic_site_vars($html) {
     $delay=standard_delay_label(); $projects=projects_label(); $rating=google_rating_label(); $experience=experience_label();
