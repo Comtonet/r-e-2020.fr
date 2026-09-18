@@ -28,6 +28,12 @@ return [
     'price_fin_travaux_acv_ttc' => 423,
     'price_small_extension_attestation_ttc' => 19,
 
+    // Offre commerciale affichée à l'intention de sortie sur la page des packs maison.
+    // Le Pack Eco'Permis est toujours exclu de cette remise.
+    'house_exit_offer_enabled' => true,
+    'house_exit_offer_percent' => 10,
+    'house_exit_offer_code' => 'MAISON10',
+
     // Moteur du calculateur de devis RE2020.
     // Valeurs reprises du moteur transmis et regroupées ici pour faciliter les mises à jour.
     'quote_mi_forfait' => 50,
