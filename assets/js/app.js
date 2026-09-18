@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       <form class="signup-form" method="post" action="/inscription-en-cours/">
         <input type="hidden" name="origine" value="site-re2020">
         <input type="hidden" name="choix" value="" data-signup-choice>
+        <input type="hidden" name="code_promo" value="" data-signup-promo-code>
+        <input type="hidden" name="remise_promo_pct" value="" data-signup-promo-percent>
+        <input type="hidden" name="origine_promo" value="" data-signup-promo-source>
         <input type="hidden" name="url_origine" value="${window.location.pathname}">
         <div class="signup-field"><label for="signup-name">Nom</label><input id="signup-name" name="nom" type="text" autocomplete="name" required></div>
         <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
@@ -85,8 +88,38 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.body.appendChild(modal);
 
   const choiceInput=modal.querySelector('[data-signup-choice]');
+  const promoCodeInput=modal.querySelector('[data-signup-promo-code]');
+  const promoPercentInput=modal.querySelector('[data-signup-promo-percent]');
+  const promoSourceInput=modal.querySelector('[data-signup-promo-source]');
   const nameInput=modal.querySelector('#signup-name');
+  const houseExitOffer=document.querySelector('[data-house-exit-offer]');
+  const houseExitOfferCta=houseExitOffer?houseExitOffer.querySelector('[data-house-exit-claim]'):null;
+  const HOUSE_EXIT_SEEN_KEY='re2020-house-exit-offer-seen-v1';
   let previousFocus=null;
+  let houseExitOfferPreviousFocus=null;
+  let houseExitOfferShown=false;
+
+  function houseExitAlreadySeen(){
+    try{return sessionStorage.getItem(HOUSE_EXIT_SEEN_KEY)==='1';}catch(_e){return houseExitOfferShown;}
+  }
+  function markHouseExitSeen(){
+    houseExitOfferShown=true;
+    try{sessionStorage.setItem(HOUSE_EXIT_SEEN_KEY,'1');}catch(_e){}
+  }
+  function openHouseExitOffer(){
+    if(!houseExitOffer||houseExitAlreadySeen()||!modal.hidden||!houseExitOffer.hidden)return;
+    houseExitOfferPreviousFocus=document.activeElement;
+    markHouseExitSeen();
+    houseExitOffer.hidden=false;
+    document.documentElement.classList.add('house-exit-open');
+    window.setTimeout(()=>houseExitOfferCta&&houseExitOfferCta.focus(),20);
+  }
+  function closeHouseExitOffer(){
+    if(!houseExitOffer||houseExitOffer.hidden)return;
+    houseExitOffer.hidden=true;
+    document.documentElement.classList.remove('house-exit-open');
+    if(houseExitOfferPreviousFocus&&typeof houseExitOfferPreviousFocus.focus==='function')houseExitOfferPreviousFocus.focus();
+  }
 
   function isSignupTrigger(link){
     if(!link||link.hasAttribute('data-no-signup-popup')) return false;
@@ -106,17 +139,60 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(pack){const title=pack.querySelector('h2,h3');if(title) return title.textContent.trim();}
     return (link.textContent||'').trim();
   }
-  function openSignup(link){previousFocus=document.activeElement;if(choiceInput)choiceInput.value=deriveChoice(link);modal.hidden=false;document.documentElement.classList.add('signup-open');window.setTimeout(()=>nameInput&&nameInput.focus(),20);}
+  function openSignup(link){
+    previousFocus=document.activeElement;
+    if(choiceInput)choiceInput.value=deriveChoice(link);
+    const promoCode=link.getAttribute('data-signup-promo-code')||'';
+    const promoPercent=link.getAttribute('data-signup-promo-percent')||'';
+    if(promoCodeInput)promoCodeInput.value=promoCode;
+    if(promoPercentInput)promoPercentInput.value=promoPercent;
+    if(promoSourceInput)promoSourceInput.value=promoCode?'exit-intent-maison':'';
+    if(promoCode)markHouseExitSeen();
+    closeHouseExitOffer();
+    modal.hidden=false;
+    document.documentElement.classList.add('signup-open');
+    window.setTimeout(()=>nameInput&&nameInput.focus(),20);
+  }
   function closeSignup(){modal.hidden=true;document.documentElement.classList.remove('signup-open');if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();}
 
+  if(houseExitOffer&&!houseExitAlreadySeen()){
+    const finePointer=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if(finePointer){
+      window.setTimeout(()=>{
+        document.addEventListener('mouseout',e=>{
+          if(e.clientY<=8&&!e.relatedTarget)openHouseExitOffer();
+        });
+      },5000);
+    }else{
+      const packs=document.querySelector('#packs');
+      let lastY=window.scrollY;
+      let upwardDistance=0;
+      const mobileStartedAt=Date.now();
+      window.addEventListener('scroll',()=>{
+        if(!packs||houseExitAlreadySeen())return;
+        const y=window.scrollY;
+        const reachedPacks=y>Math.max(300,packs.offsetTop-120);
+        if(!reachedPacks){lastY=y;return;}
+        if(y<lastY)upwardDistance+=lastY-y;else upwardDistance=0;
+        lastY=y;
+        if(Date.now()-mobileStartedAt>10000&&upwardDistance>=220)openHouseExitOffer();
+      },{passive:true});
+    }
+  }
+
   document.addEventListener('click',e=>{
+    if(e.target.closest('[data-house-exit-close]')){e.preventDefault();closeHouseExitOffer();return;}
     const keepote=e.target.closest('[data-keepote-open]');
     if(keepote&&aiPanel){e.preventDefault();aiPanel.hidden=false;return;}
     const link=e.target.closest('a,button');
     if(link&&isSignupTrigger(link)){e.preventDefault();openSignup(link);return;}
     if(e.target.closest('[data-signup-close]')) closeSignup();
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeSignup();});
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(houseExitOffer&&!houseExitOffer.hidden){closeHouseExitOffer();return;}
+    if(!modal.hidden)closeSignup();
+  });
 
   const close=document.querySelector('.ai-close');
   const form=document.querySelector('.ai-form');
