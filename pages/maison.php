@@ -4,6 +4,9 @@ $permisPrice = price_ttc_label('price_pack_permis_ttc');
 $finPrice = price_ttc_label('price_fin_travaux_ttc');
 $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
 $extensionPrice = price_ttc_label('price_small_extension_attestation_ttc');
+$exitOfferEnabled = house_exit_offer_enabled();
+$exitOfferPercent = house_exit_offer_percent();
+$exitOfferCode = house_exit_offer_code();
 ?>
 <a class="skip-link" href="#contenu-maison">Aller au contenu</a>
 
@@ -102,5 +105,27 @@ $extensionPrice = price_ttc_label('price_small_extension_attestation_ttc');
 <section class="house-section"><div class="container hesitate-box"><h2>Vous hésitez encore ?</h2><p>Aucune inquiétude : vous pouvez créer votre compte gratuitement sans sélectionner de pack immédiatement. Notre équipe vous contactera pour vous orienter vers la solution la plus adaptée à votre projet et conforme à la réglementation RE 2020.</p><p>Un accompagnement personnalisé, sans engagement, pour avancer sereinement dans votre démarche.</p><a class="btn house-primary" href="https://espace-client.keeplanet.fr/">Inscription gratuite</a></div></section>
 
 <section class="house-final-cta"><div class="container final-cta-inner"><div><span class="eyebrow light">A propos</span><h2>Obtenez en quelques clics votre étude RE 2020 et votre attestation pour votre permis de construire.</h2><p>Déjà plus de 89 000 projets étudiés et plus de 15 ans d’expérience.</p><p>Site appartenant à la Société Keeplanet, bureau d’étude thermique en ligne.</p><p>Avis clients Google - r-e-2020.fr</p></div><div class="house-contact-panel"><h3>Nous contacter</h3><p><a href="tel:0806110559">0806 110 559</a><br>Du lundi au vendredi<br>9h - 12h30 / 13h30 - 17h30</p><p><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a></p><p>Keeplanet<br>201, route d'Oberhausbergen<br>67200 - Strasbourg</p></div></div></section>
+
+<?php if ($exitOfferEnabled && $exitOfferPercent > 0 && $exitOfferCode !== ''): ?>
+<div class="house-exit-offer" hidden data-house-exit-offer data-offer-percent="<?= h($exitOfferPercent) ?>" data-offer-code="<?= h($exitOfferCode) ?>">
+  <div class="house-exit-offer-backdrop" data-house-exit-close></div>
+  <div class="house-exit-offer-dialog" role="dialog" aria-modal="true" aria-labelledby="house-exit-offer-title">
+    <button class="house-exit-offer-close" type="button" aria-label="Fermer l'offre" data-house-exit-close>×</button>
+    <div class="house-exit-offer-badge">Offre immédiate</div>
+    <div class="house-exit-offer-value">-<?= h($exitOfferPercent) ?>%</div>
+    <h2 id="house-exit-offer-title">Avant de partir, profitez de <?= h($exitOfferPercent) ?> % sur votre pack maison.</h2>
+    <p>Créez votre compte maintenant : le code <strong><?= h($exitOfferCode) ?></strong> sera rattaché à votre inscription.</p>
+    <div class="house-exit-offer-code"><span>Code promo</span><strong><?= h($exitOfferCode) ?></strong></div>
+    <ul>
+      <li>Pack Permis</li>
+      <li>Pack Fin de travaux</li>
+      <li>Pack Fin de travaux + ACV</li>
+    </ul>
+    <p class="house-exit-offer-exclusion">Hors Pack Eco'Permis.</p>
+    <button class="btn house-exit-offer-cta" type="button" data-signup-trigger data-house-exit-claim data-signup-choice="Offre maison <?= h($exitOfferPercent) ?> %" data-signup-promo-code="<?= h($exitOfferCode) ?>" data-signup-promo-percent="<?= h($exitOfferPercent) ?>">Créer mon compte et profiter de -<?= h($exitOfferPercent) ?> %</button>
+    <button class="house-exit-offer-skip" type="button" data-house-exit-close>Non merci</button>
+  </div>
+</div>
+<?php endif; ?>
 
 <div class="house-mobile-cta"><span>Étude RE2020</span><strong><?= h($permisPrice) ?></strong><a href="https://espace-client.keeplanet.fr/">Je lance mon étude</a></div>
