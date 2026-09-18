@@ -73,9 +73,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       <form class="signup-form" method="post" action="/inscription-en-cours/">
         <input type="hidden" name="origine" value="site-re2020">
         <input type="hidden" name="choix" value="" data-signup-choice>
-        <input type="hidden" name="code_promo" value="" data-signup-promo-code>
-        <input type="hidden" name="remise_promo_pct" value="" data-signup-promo-percent>
-        <input type="hidden" name="origine_promo" value="" data-signup-promo-source>
+        <input type="hidden" name="offre_exit_maison" value="" data-signup-exit-offer>
         <input type="hidden" name="url_origine" value="${window.location.pathname}">
         <div class="signup-field"><label for="signup-name">Nom</label><input id="signup-name" name="nom" type="text" autocomplete="name" required></div>
         <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
@@ -88,9 +86,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.body.appendChild(modal);
 
   const choiceInput=modal.querySelector('[data-signup-choice]');
-  const promoCodeInput=modal.querySelector('[data-signup-promo-code]');
-  const promoPercentInput=modal.querySelector('[data-signup-promo-percent]');
-  const promoSourceInput=modal.querySelector('[data-signup-promo-source]');
+  const exitOfferInput=modal.querySelector('[data-signup-exit-offer]');
   const nameInput=modal.querySelector('#signup-name');
   const houseExitOffer=document.querySelector('[data-house-exit-offer]');
   const houseExitOfferCta=houseExitOffer?houseExitOffer.querySelector('[data-house-exit-claim]'):null;
@@ -142,12 +138,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   function openSignup(link){
     previousFocus=document.activeElement;
     if(choiceInput)choiceInput.value=deriveChoice(link);
-    const promoCode=link.getAttribute('data-signup-promo-code')||'';
-    const promoPercent=link.getAttribute('data-signup-promo-percent')||'';
-    if(promoCodeInput)promoCodeInput.value=promoCode;
-    if(promoPercentInput)promoPercentInput.value=promoPercent;
-    if(promoSourceInput)promoSourceInput.value=promoCode?'exit-intent-maison':'';
-    if(promoCode)markHouseExitSeen();
+    const acceptedExitOffer=link.getAttribute('data-signup-exit-offer')==='1';
+    if(exitOfferInput)exitOfferInput.value=acceptedExitOffer?'1':'';
+    if(acceptedExitOffer)markHouseExitSeen();
     closeHouseExitOffer();
     modal.hidden=false;
     document.documentElement.classList.add('signup-open');
