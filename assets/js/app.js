@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       <div class="signup-modal-brand">r-e-2020.fr <span>× Keeplanet</span></div>
       <h2 id="signup-title">Créez votre compte pour continuer</h2>
       <p class="signup-modal-intro">Quelques secondes suffisent. Vous pourrez ensuite déposer vos documents et poursuivre votre demande depuis votre espace sécurisé.</p>
-      <form class="signup-form" method="post" action="https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020.php">
+      <form class="signup-form" method="post" action="https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020-public.php">
         <input type="hidden" name="origine" value="site-re2020">
         <input type="hidden" name="choix" value="" data-signup-choice>
         <input type="hidden" name="offre_exit_maison" value="" data-signup-exit-offer>
