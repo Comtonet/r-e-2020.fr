@@ -150,7 +150,7 @@ function addFinalChoice(){
     <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète</strong><small>BBIO, Cep, Cep,nr, DH, ACV et livrables nécessaires.</small><em>${eur(p.complete)}</em><i>Sélectionner ce pack</i></span></button>
   </div>
   ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>
-  <form class="quote-account-form" method="post" action="https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020-public.php" data-quote-account-form>
+  <form class="quote-account-form" method="post" action="/devis-en-ligne/envoi/" data-quote-account-form>
     <input type="hidden" name="devis_payload" value="" data-quote-payload>
     <input type="hidden" name="origine" value="site-re2020">
     <input type="hidden" name="public_signup" value="1">
