@@ -176,7 +176,7 @@ function publicPayload(){
   }else if(family==='collectif'){
     const col=(st.lots||[]).find(l=>l.usage==='COL');
     const bats=col&&col.v&&Array.isArray(col.v.bats)?col.v.bats:[];
-    data.buildings=bats.map(n=>({n:n,same:''}));
+    data.buildings=bats.map(b=>b&&typeof b==='object'?{n:b.n,same:b.same==null?'':b.same}:{n:b,same:''});
   }else{
     data.zones=(st.lots||[]).map(l=>({usage:l.usage||'',surface:l.v&&l.v.S!=null?l.v.S:'',count:l.v&&l.v.n!=null?l.v.n:'',resto:l.v&&l.v.resto||'',amphi:l.v&&l.v.amphi||'',cuisine:l.v&&l.v.cuisine||'',lits:l.v&&l.v.lits||'',sc:l.v&&l.v.sc||'',sj:l.v&&l.v.sj||'',coqueBrute:l.v&&l.v.coqueBrute||'',surfExist:l.v&&l.v.surfExist||''}));
   }
