@@ -132,7 +132,18 @@ $quoteConfig = [
 .devis-app .quote-delay-btn small{display:block;margin-top:4px;color:#71788b;font-size:11.5px}
 .devis-app .quote-delay-btn.on{border-color:#38227e;box-shadow:0 0 0 3px rgba(56,34,126,.08);background:#faf8ff}
 .devis-app .quote-delay-btn.express.on{border-color:#98bf24;box-shadow:0 0 0 3px rgba(152,191,36,.12);background:#fbfdf4}
-@media(max-width:700px){.devis-app .final-presta-grid.quote-two-offers,.devis-app .quote-public-delay-grid{grid-template-columns:1fr!important}}
+.devis-app .quote-account-form{position:relative;z-index:1;margin-top:18px;padding:22px;border:1px solid rgba(56,34,126,.13);border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(35,27,84,.06)}
+.devis-app .quote-account-head{display:flex;flex-direction:column;gap:3px;margin-bottom:17px}
+.devis-app .quote-account-head strong{font-size:19px;color:#2c2640}
+.devis-app .quote-account-head span{font-size:13px;line-height:1.45;color:#6f7583}
+.devis-app .quote-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.devis-app .quote-account-grid label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:800;color:#3d4050}
+.devis-app .quote-account-grid label.wide{grid-column:1/-1}
+.devis-app .quote-account-grid label small{font-size:11px;font-weight:600;color:#858b98}
+.devis-app .quote-account-grid input{width:100%;min-height:46px;padding:10px 12px}
+.devis-app .quote-send-btn{width:100%;min-height:58px;margin-top:17px;border-radius:14px!important;font-size:16px;font-weight:850}
+.devis-app .quote-account-note{margin:9px 0 0;text-align:center;font-size:11.5px;line-height:1.45;color:#7b8190}
+@media(max-width:700px){.devis-app .final-presta-grid.quote-two-offers,.devis-app .quote-public-delay-grid,.devis-app .quote-account-grid{grid-template-columns:1fr!important}.devis-app .quote-account-grid label.wide{grid-column:auto}.devis-app .quote-account-form{padding:17px}}
 </style>
 <section class="devis-app" id="devis-app">
   <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
@@ -146,4 +157,4 @@ $quoteConfig = [
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=11" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=9" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=10" defer></script>
