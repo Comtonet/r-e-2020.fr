@@ -232,6 +232,7 @@ function tune(){
 
 root.addEventListener('click',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
+  if(e.target.closest('select,input,textarea'))return;
   const delayBtn=e.target.closest('[data-quote-delivery]');
   if(delayBtn){
     if(calculating)return;
