@@ -55,6 +55,11 @@ return [
     // Le niveau FDC reprend le forfait BBIO avec le complément de 180 € avant l'ACV.
     // Au-delà de 25 : article de métré = a × nombre de logements + b.
     'quote_collective_fdc_forfait_delta' => 180,
+    'quote_collective_bbio_forfait' => 210,
+    'quote_collective_complete_forfait' => 390,
+    'quote_collective_identique' => 50,
+    'quote_plancher_tertiaire' => 262.50,
+    'quote_social_forfait' => 200,
     'quote_collective_curve_threshold' => 25,
     'quote_collective_curve_a' => 36.492,
     'quote_collective_curve_b' => 11.067,
