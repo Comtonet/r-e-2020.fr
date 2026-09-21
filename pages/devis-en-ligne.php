@@ -145,5 +145,5 @@ $quoteConfig = [
   <div class="infotip noprint" id="quoteInfotip" role="tooltip"><div class="infotip-body"></div></div>
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=10" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=8" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=11" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=9" defer></script>
