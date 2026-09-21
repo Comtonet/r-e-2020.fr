@@ -70,13 +70,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       <div class="signup-modal-brand">r-e-2020.fr <span>× Keeplanet</span></div>
       <h2 id="signup-title">Créez votre compte pour continuer</h2>
       <p class="signup-modal-intro">Quelques secondes suffisent. Vous pourrez ensuite déposer vos documents et poursuivre votre demande depuis votre espace sécurisé.</p>
-      <form class="signup-form" method="post" action="/inscription-en-cours/">
+      <form class="signup-form" method="post" action="https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020.php">
         <input type="hidden" name="origine" value="site-re2020">
         <input type="hidden" name="choix" value="" data-signup-choice>
         <input type="hidden" name="offre_exit_maison" value="" data-signup-exit-offer>
         <input type="hidden" name="url_origine" value="${window.location.pathname}">
         <input type="hidden" name="devis_payload" value="" data-signup-devis-payload>
         <input type="hidden" name="devis_depuis_calculateur" value="" data-signup-devis-flag>
+        <input type="hidden" name="public_signup" value="" data-signup-public-signup>
         <div class="signup-field"><label for="signup-name">Nom</label><input id="signup-name" name="nom" type="text" autocomplete="name" required></div>
         <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
         <div class="signup-field"><label for="signup-phone">Téléphone <span>facultatif</span></label><input id="signup-phone" name="telephone" type="tel" autocomplete="tel"></div>
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const exitOfferInput=modal.querySelector('[data-signup-exit-offer]');
   const quotePayloadInput=modal.querySelector('[data-signup-devis-payload]');
   const quoteFlagInput=modal.querySelector('[data-signup-devis-flag]');
+  const publicSignupInput=modal.querySelector('[data-signup-public-signup]');
   const nameInput=modal.querySelector('#signup-name');
   let pendingQuotePayload='';
   let pendingQuoteChoice='';
@@ -147,6 +149,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(choiceInput)choiceInput.value=isQuoteSignup&&pendingQuoteChoice?pendingQuoteChoice:deriveChoice(link);
     if(quotePayloadInput)quotePayloadInput.value=isQuoteSignup?pendingQuotePayload:'';
     if(quoteFlagInput)quoteFlagInput.value=isQuoteSignup&&pendingQuotePayload?'1':'';
+    if(publicSignupInput)publicSignupInput.value=isQuoteSignup&&pendingQuotePayload?'1':'';
     const acceptedExitOffer=link.getAttribute('data-signup-exit-offer')==='1';
     if(exitOfferInput)exitOfferInput.value=acceptedExitOffer?'1':'';
     if(acceptedExitOffer)markHouseExitSeen();
