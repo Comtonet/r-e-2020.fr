@@ -231,6 +231,7 @@ function tune(){
 }
 
 root.addEventListener('click',e=>{
+  if(e.target.closest('[data-quote-account-form]'))return;
   const delayBtn=e.target.closest('[data-quote-delivery]');
   if(delayBtn){
     if(calculating)return;
@@ -252,12 +253,24 @@ root.addEventListener('click',e=>{
 },true);
 
 root.addEventListener('input',e=>{
-  if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
-  scheduleTune(90);
+  if(e.target.closest('[data-quote-account-form]'))return;
+  if(e.target.closest('.lot')){
+    hasCalculated=false;
+    explicitChoice=false;
+    chosen='permis';
+    delivery='standard';
+    scheduleTune(90);
+  }
 },true);
 root.addEventListener('change',e=>{
-  if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis'}
-  scheduleTune();
+  if(e.target.closest('[data-quote-account-form]'))return;
+  if(e.target.closest('.lot')){
+    hasCalculated=false;
+    explicitChoice=false;
+    chosen='permis';
+    delivery='standard';
+    scheduleTune();
+  }
 },true);
 root.addEventListener('submit',e=>{
   const form=e.target.closest('[data-quote-account-form]');
