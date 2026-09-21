@@ -213,6 +213,14 @@ function tune(){
 }
 
 root.addEventListener('click',e=>{
+  const delayBtn=e.target.closest('[data-quote-delivery]');
+  if(delayBtn){
+    if(calculating)return;
+    e.preventDefault();
+    delivery=delayBtn.dataset.quoteDelivery==='express'?'express':'standard';
+    scheduleTune();
+    return;
+  }
   const b=e.target.closest('[data-act]');
   if(!b||calculating)return;
   if(b.dataset.act==='calculate-quote'){
@@ -222,13 +230,6 @@ root.addEventListener('click',e=>{
   }
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
   if(b.dataset.act==='nature'||b.dataset.act==='famille'){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
-  const delayBtn=e.target.closest('[data-quote-delivery]');
-  if(delayBtn){
-    e.preventDefault();
-    delivery=delayBtn.dataset.quoteDelivery==='express'?'express':'standard';
-    scheduleTune();
-    return;
-  }
   scheduleTune();
 },true);
 
