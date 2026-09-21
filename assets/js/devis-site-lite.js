@@ -160,7 +160,7 @@ function addFinalChoice(){
       <label><span>Société <small>(facultatif)</small></span><input type="text" name="societe" autocomplete="organization"></label>
       <label><span>E-mail *</span><input type="email" name="email" autocomplete="email" required></label>
       <label><span>Téléphone <small>(facultatif)</small></span><input type="tel" name="telephone" autocomplete="tel"></label>
-      <label class="wide"><span>Adresse *</span><input type="text" name="adresse" autocomplete="street-address" required></label>
+      <label class="wide quote-address-field"><span>Adresse *</span><div class="quote-address-wrap"><input type="text" name="adresse" autocomplete="off" aria-autocomplete="list" aria-expanded="false" data-address-autocomplete required><div class="quote-address-suggestions" data-address-suggestions hidden></div></div></label>
       <label><span>Code postal *</span><input type="text" name="code_postal" inputmode="numeric" autocomplete="postal-code" required></label>
       <label><span>Ville *</span><input type="text" name="ville" autocomplete="address-level2" required></label>
     </div>
@@ -273,6 +273,87 @@ root.addEventListener('change',e=>{
     scheduleTune();
   }
 },true);
+let addressTimer=0;
+let addressAbort=null;
+
+function closeAddressSuggestions(input){
+  const wrap=input&&input.closest('.quote-address-wrap');
+  const list=wrap&&wrap.querySelector('[data-address-suggestions]');
+  if(list){list.hidden=true;list.innerHTML='';}
+  if(input)input.setAttribute('aria-expanded','false');
+}
+
+function addressLineFromResult(r){
+  const full=String(r.fulltext||r.label||r.street||'').trim();
+  const zip=String(r.zipcode||((r.zipcodes||[])[0])||'').trim();
+  const city=String(r.city||'').trim();
+  if(!full)return '';
+  const suffix=zip&&city?', '+zip+' '+city:'';
+  if(suffix&&full.toLowerCase().endsWith(suffix.toLowerCase()))return full.slice(0,-suffix.length).trim();
+  return full;
+}
+
+function renderAddressSuggestions(input,results){
+  const wrap=input.closest('.quote-address-wrap');
+  const list=wrap&&wrap.querySelector('[data-address-suggestions]');
+  if(!list)return;
+  const rows=Array.isArray(results)?results.slice(0,6):[];
+  if(!rows.length){closeAddressSuggestions(input);return;}
+  list.innerHTML=rows.map((r,i)=>{
+    const full=String(r.fulltext||r.label||r.street||'').trim();
+    const safe=full.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    return '<button type="button" data-address-choice="'+i+'">'+safe+'</button>';
+  }).join('');
+  list._results=rows;
+  list.hidden=false;
+  input.setAttribute('aria-expanded','true');
+}
+
+root.addEventListener('input',e=>{
+  const input=e.target.closest('[data-address-autocomplete]');
+  if(!input)return;
+  clearTimeout(addressTimer);
+  if(addressAbort){addressAbort.abort();addressAbort=null;}
+  const query=input.value.trim();
+  if(query.length<3){closeAddressSuggestions(input);return;}
+  addressTimer=setTimeout(async()=>{
+    addressAbort=new AbortController();
+    try{
+      const url='https://data.geopf.fr/geocodage/completion/?text='+encodeURIComponent(query)+'&type=StreetAddress&maximumResponses=6';
+      const response=await fetch(url,{signal:addressAbort.signal,headers:{'Accept':'application/json'}});
+      if(!response.ok)throw new Error('address api');
+      const data=await response.json();
+      renderAddressSuggestions(input,data&&Array.isArray(data.results)?data.results:[]);
+    }catch(err){
+      if(err&&err.name==='AbortError')return;
+      closeAddressSuggestions(input);
+    }
+  },280);
+},true);
+
+root.addEventListener('click',e=>{
+  const choice=e.target.closest('[data-address-choice]');
+  if(!choice)return;
+  const list=choice.closest('[data-address-suggestions]');
+  const wrap=choice.closest('.quote-address-wrap');
+  const input=wrap&&wrap.querySelector('[data-address-autocomplete]');
+  const form=choice.closest('[data-quote-account-form]');
+  const results=(list&&list._results)||[];
+  const r=results[Number(choice.dataset.addressChoice)];
+  if(!input||!r)return;
+  input.value=addressLineFromResult(r);
+  const zip=form&&form.querySelector('[name="code_postal"]');
+  const city=form&&form.querySelector('[name="ville"]');
+  if(zip)zip.value=String(r.zipcode||((r.zipcodes||[])[0])||'');
+  if(city)city.value=String(r.city||'');
+  closeAddressSuggestions(input);
+},true);
+
+document.addEventListener('click',e=>{
+  const input=root.querySelector('[data-address-autocomplete]');
+  if(input&&!e.target.closest('.quote-address-wrap'))closeAddressSuggestions(input);
+});
+
 root.addEventListener('submit',e=>{
   const form=e.target.closest('[data-quote-account-form]');
   if(!form)return;
