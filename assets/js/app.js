@@ -82,6 +82,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
         <div class="signup-field"><label for="signup-phone">Téléphone <span>facultatif</span></label><input id="signup-phone" name="telephone" type="tel" autocomplete="tel"></div>
         <fieldset class="signup-profile"><legend>Vous êtes</legend><label><input type="radio" name="profil" value="particulier" required><span>Particulier</span></label><label><input type="radio" name="profil" value="professionnel" required><span>Professionnel</span></label></fieldset>
+        <div class="signup-field"><label for="signup-company">Société <span>facultatif</span></label><input id="signup-company" name="societe" type="text" autocomplete="organization"></div>
+        <div class="signup-field"><label for="signup-address">Adresse</label><input id="signup-address" name="adresse" type="text" autocomplete="street-address" required></div>
+        <div class="signup-form-row"><div class="signup-field"><label for="signup-zip">Code postal</label><input id="signup-zip" name="code_postal" type="text" inputmode="numeric" autocomplete="postal-code" required></div><div class="signup-field"><label for="signup-city">Ville</label><input id="signup-city" name="ville" type="text" autocomplete="address-level2" required></div></div>
         <button class="btn signup-submit" type="submit">Créer mon compte et continuer</button>
         <p class="signup-reassurance">Aucun paiement à cette étape.</p>
       </form>
