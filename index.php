@@ -15,6 +15,7 @@ $maisonPath = '/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/';
 $collectifPath = '/tarifs-etude-thermique-re-2020/collectif-tertiaire/';
 $tarifsPath = '/tarifs-etude-thermique-re-2020/';
 $devisPath = '/devis-en-ligne/';
+$devisTransitPath = '/devis-en-ligne/envoi/';
 $trustPaths = ['/qualifications-assurances-garanties/','/exemples-livrables-re2020/','/questions-frequentes-re2020/'];
 
 if ($path === $legacyProcessPath) { header('Location: ' . $processPath, true, 301); exit; }
@@ -52,6 +53,8 @@ if ($path === $maisonPath) {
     $page = ['title'=>'Étude RE2020 maison | Tarifs et attestation permis','description'=>'Étude thermique RE2020 pour maison individuelle : Pack Permis, étude complète, ACV et accompagnement Keeplanet.','type'=>'maison','h1'=>'Étude RE2020 maison','lead'=>'Tarifs et accompagnement pour votre projet.'];
 } elseif ($path === $devisPath) {
     $page = ['title'=>'Générateur de devis RE2020 en ligne | Keeplanet','description'=>'Préparation du futur générateur de devis en ligne Keeplanet pour les études RE2020 et prestations associées.','type'=>'devis','h1'=>'Votre devis RE2020 directement en ligne.','lead'=>'Le futur générateur permettra de configurer votre projet et d’obtenir un devis adapté.'];
+} elseif ($path === $devisTransitPath) {
+    $page = ['title'=>'Envoi de votre devis RE2020 | Keeplanet','description'=>'Transmission de votre devis RE2020 vers votre espace client Keeplanet.','type'=>'devis_transit','h1'=>'Votre devis est en cours de préparation','lead'=>'Nous créons votre accès et transmettons votre devis.'];
 } elseif ($path === '/qualifications-assurances-garanties/') {
     $page = ['title'=>'Qualifications OPQIBI & assurances | Keeplanet','description'=>'Vérifiez les qualifications OPQIBI 1331 et 1332 de Keeplanet et découvrez le cadre professionnel des études RE2020.','type'=>'trust','h1'=>'Qualifications et assurances','lead'=>'Les preuves professionnelles de Keeplanet.'];
 } elseif ($path === '/exemples-livrables-re2020/') {
@@ -96,7 +99,7 @@ if ($page['type']==='faq') {
 ?><!doctype html><html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= h($page['title']) ?></title><meta name="description" content="<?= h($page['description']) ?>"><link rel="canonical" href="<?= h($canonical) ?>">
-<?php if ($path===$devisPath): ?><meta name="robots" content="noindex,nofollow"><?php endif; ?>
+<?php if ($path===$devisPath || $path===$devisTransitPath): ?><meta name="robots" content="noindex,nofollow"><?php endif; ?>
 <meta property="og:type" content="website"><meta property="og:title" content="<?= h($page['title']) ?>"><meta property="og:description" content="<?= h($page['description']) ?>"><meta property="og:url" content="<?= h($canonical) ?>"><meta name="theme-color" content="#38227E">
 <link rel="stylesheet" href="/assets/css/app.css?v=4"><?php if ($path===$processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?><?php if ($GLOBALS['dossier_route']||$GLOBALS['actualites_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=2"><?php endif; ?><?php if ($path===$aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?><?php if ($path===$maisonPath): ?><link rel="stylesheet" href="/assets/css/maison.css?v=5"><?php endif; ?><link rel="stylesheet" href="/assets/css/commercial.css?v=3"><link rel="stylesheet" href="/assets/css/theme.css?v=1"><link rel="stylesheet" href="/assets/css/identity.css?v=1">
 <script type="application/ld+json"><?= json_encode(schema_for($page,$canonical),JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script><?php foreach($extraSchema as $schema): ?><script type="application/ld+json"><?= json_encode($schema,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script><?php endforeach; ?>
@@ -109,6 +112,7 @@ elseif ($path===$maisonPath) require __DIR__.'/pages/maison.php';
 elseif ($path===$collectifPath) require __DIR__.'/pages/collectif.php';
 elseif (in_array($path,$trustPaths,true)) require __DIR__.'/pages/confiance.php';
 elseif ($path===$devisPath) require __DIR__.'/pages/devis-en-ligne.php';
+elseif ($path===$devisTransitPath) require __DIR__.'/pages/devis-transit.php';
 elseif ($path===$processPath) require __DIR__.'/pages/processus.php';
 elseif ($path===$aboutPath) require __DIR__.'/pages/a-propos-keeplanet.php';
 elseif ($GLOBALS['actualites_route']) require __DIR__.'/pages/actualites.php';
