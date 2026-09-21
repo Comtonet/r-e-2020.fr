@@ -12,6 +12,12 @@ $quoteConfig = [
     'tertiaire_fdc_complement' => (float) cfg('quote_tertiaire_fdc_complement', 130),
     'tertiaire_complete_complement' => (float) cfg('quote_tertiaire_complete_complement', 429),
     'collective_fdc_forfait_delta' => (float) cfg('quote_collective_fdc_forfait_delta', 180),
+    'collective_bbio_forfait' => (float) cfg('quote_collective_bbio_forfait', 210),
+    'collective_complete_forfait' => (float) cfg('quote_collective_complete_forfait', 390),
+    'collective_identique' => (float) cfg('quote_collective_identique', 50),
+    'plancher_tertiaire' => (float) cfg('quote_plancher_tertiaire', 262.50),
+    'social_forfait' => (float) cfg('quote_social_forfait', 200),
+    'social_m2' => (float) cfg('quote_social_m2', 1.25),
     'power_a' => (float) cfg('quote_power_a', 39.18),
     'power_k' => (float) cfg('quote_power_k', 0.43),
     'collective_curve_threshold' => (float) cfg('quote_collective_curve_threshold', 25),
@@ -115,6 +121,18 @@ $quoteConfig = [
 @media(max-width:900px){.devis-app .wrap{padding-left:16px;padding-right:16px}.devis-app .final-presta-grid{grid-template-columns:1fr!important}.devis-app .final-presta-grid .quote-offer{min-height:0}.devis-app .final-presta-grid .quote-offer small{min-height:0}}
 @media(max-width:700px){.devis-app .hero h1{font-size:36px}.devis-app .tiles-lite .tile{grid-template-columns:98px 1fr}.devis-app .tiles-lite .thumb{height:70px}.devis-app .tiles-lite img{max-height:70px}.devis-app .final-prestation-lite{padding:21px!important;border-radius:20px!important}.devis-app .quote-final-head h3{font-size:23px}.devis-app .quote-final-step{min-width:40px;height:40px}.devis-app .quote-calc-note{gap:8px 14px}.devis-app .bar-in{flex-wrap:wrap;gap:8px}.devis-app .bar-txt{width:100%}.devis-app .btn{min-height:44px}}
 @media(prefers-reduced-motion:reduce){.devis-app *, .devis-app *:before, .devis-app *:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.devis-app .final-presta-grid.quote-two-offers{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.devis-app .quote-public-delay{position:relative;z-index:1;margin-top:18px;padding:17px;border:1px solid rgba(56,34,126,.11);border-radius:17px;background:#f7f8fc}
+.devis-app .quote-public-delay-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:11px}
+.devis-app .quote-public-delay-head strong{font-size:16px;color:#2c2640}
+.devis-app .quote-public-delay-head span{font-size:12px;color:#757b8a}
+.devis-app .quote-public-delay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.devis-app .quote-delay-btn{padding:13px 14px;text-align:left;border:2px solid #dfe4ef;border-radius:13px;background:#fff;cursor:pointer}
+.devis-app .quote-delay-btn b{display:block;color:#2c3150;font-size:14px}
+.devis-app .quote-delay-btn small{display:block;margin-top:4px;color:#71788b;font-size:11.5px}
+.devis-app .quote-delay-btn.on{border-color:#38227e;box-shadow:0 0 0 3px rgba(56,34,126,.08);background:#faf8ff}
+.devis-app .quote-delay-btn.express.on{border-color:#98bf24;box-shadow:0 0 0 3px rgba(152,191,36,.12);background:#fbfdf4}
+@media(max-width:700px){.devis-app .final-presta-grid.quote-two-offers,.devis-app .quote-public-delay-grid{grid-template-columns:1fr!important}}
 </style>
 <section class="devis-app" id="devis-app">
   <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
@@ -127,5 +145,5 @@ $quoteConfig = [
   <div class="infotip noprint" id="quoteInfotip" role="tooltip"><div class="infotip-body"></div></div>
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=9" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=6" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=10" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=7" defer></script>
