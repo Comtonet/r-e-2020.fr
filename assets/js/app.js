@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         <input type="hidden" name="choix" value="" data-signup-choice>
         <input type="hidden" name="offre_exit_maison" value="" data-signup-exit-offer>
         <input type="hidden" name="url_origine" value="${window.location.pathname}">
+        <input type="hidden" name="devis_payload" value="" data-signup-devis-payload>
+        <input type="hidden" name="devis_depuis_calculateur" value="" data-signup-devis-flag>
         <div class="signup-field"><label for="signup-name">Nom</label><input id="signup-name" name="nom" type="text" autocomplete="name" required></div>
         <div class="signup-field"><label for="signup-email">E-mail</label><input id="signup-email" name="email" type="email" autocomplete="email" required></div>
         <div class="signup-field"><label for="signup-phone">Téléphone <span>facultatif</span></label><input id="signup-phone" name="telephone" type="tel" autocomplete="tel"></div>
@@ -87,7 +89,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   const choiceInput=modal.querySelector('[data-signup-choice]');
   const exitOfferInput=modal.querySelector('[data-signup-exit-offer]');
+  const quotePayloadInput=modal.querySelector('[data-signup-devis-payload]');
+  const quoteFlagInput=modal.querySelector('[data-signup-devis-flag]');
   const nameInput=modal.querySelector('#signup-name');
+  let pendingQuotePayload='';
+  let pendingQuoteChoice='';
   const houseExitOffer=document.querySelector('[data-house-exit-offer]');
   const houseExitOfferCta=houseExitOffer?houseExitOffer.querySelector('[data-house-exit-claim]'):null;
   const HOUSE_EXIT_SEEN_KEY='re2020-house-exit-offer-seen-v1';
@@ -137,7 +143,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   function openSignup(link){
     previousFocus=document.activeElement;
-    if(choiceInput)choiceInput.value=deriveChoice(link);
+    const isQuoteSignup=link&&link.getAttribute&&link.getAttribute('data-quote-signup')==='1';
+    if(choiceInput)choiceInput.value=isQuoteSignup&&pendingQuoteChoice?pendingQuoteChoice:deriveChoice(link);
+    if(quotePayloadInput)quotePayloadInput.value=isQuoteSignup?pendingQuotePayload:'';
+    if(quoteFlagInput)quoteFlagInput.value=isQuoteSignup&&pendingQuotePayload?'1':'';
     const acceptedExitOffer=link.getAttribute('data-signup-exit-offer')==='1';
     if(exitOfferInput)exitOfferInput.value=acceptedExitOffer?'1':'';
     if(acceptedExitOffer)markHouseExitSeen();
@@ -172,6 +181,18 @@ document.addEventListener('DOMContentLoaded',()=>{
       },{passive:true});
     }
   }
+
+  document.addEventListener('re2020:open-signup',e=>{
+    const detail=e.detail||{};
+    try{pendingQuotePayload=JSON.stringify(detail.payload||{});}catch(_e){pendingQuotePayload='';}
+    pendingQuoteChoice=String(detail.choice||'Devis RE2020');
+    const trigger=document.createElement('button');
+    trigger.type='button';
+    trigger.setAttribute('data-signup-trigger','');
+    trigger.setAttribute('data-quote-signup','1');
+    trigger.setAttribute('data-signup-choice',pendingQuoteChoice);
+    openSignup(trigger);
+  });
 
   document.addEventListener('click',e=>{
     if(e.target.closest('[data-house-exit-close]')){e.preventDefault();closeHouseExitOffer();return;}
