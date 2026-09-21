@@ -141,6 +141,12 @@ $quoteConfig = [
 .devis-app .quote-account-grid label.wide{grid-column:1/-1}
 .devis-app .quote-account-grid label small{font-size:11px;font-weight:600;color:#858b98}
 .devis-app .quote-account-grid input{width:100%;min-height:46px;padding:10px 12px}
+.devis-app .quote-address-wrap{position:relative}
+.devis-app .quote-address-suggestions{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:50;border:1px solid rgba(56,34,126,.14);border-radius:13px;background:#fff;box-shadow:0 18px 42px rgba(35,27,84,.15);overflow:hidden}
+.devis-app .quote-address-suggestions[hidden]{display:none}
+.devis-app .quote-address-suggestions button{display:block;width:100%;padding:11px 13px;border:0;border-bottom:1px solid #ececf2;background:#fff;text-align:left;font:inherit;font-weight:650;color:#343746;cursor:pointer}
+.devis-app .quote-address-suggestions button:last-child{border-bottom:0}
+.devis-app .quote-address-suggestions button:hover,.devis-app .quote-address-suggestions button:focus{background:#f7f6fb;outline:none;color:#38227e}
 .devis-app .quote-send-btn{width:100%;min-height:58px;margin-top:17px;border-radius:14px!important;font-size:16px;font-weight:850}
 .devis-app .quote-account-note{margin:9px 0 0;text-align:center;font-size:11.5px;line-height:1.45;color:#7b8190}
 @media(max-width:700px){.devis-app .final-presta-grid.quote-two-offers,.devis-app .quote-public-delay-grid,.devis-app .quote-account-grid{grid-template-columns:1fr!important}.devis-app .quote-account-grid label.wide{grid-column:auto}.devis-app .quote-account-form{padding:17px}}
@@ -157,4 +163,4 @@ $quoteConfig = [
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=13" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=12" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=13" defer></script>
