@@ -145,4 +145,9 @@ qreplace($js, 'Un modèle devient différent par sa surface (écart supérieur �
 qreplace($js, "{id:'reno-neuf',t:'Une opération mixte de rénovation ou réhabilitation avec nouveau bâtiment neuf'}];", "{id:'reno-neuf',t:'Une opération mixte de rénovation ou réhabilitation avec nouveau bâtiment neuf'},{id:'sur',t:'Une surélévation seule'}];");
 qreplace($js, "const aPartieNeuve=n=>['neuf','mixte-ne','reno-neuf'].includes(n)", "const aPartieNeuve=n=>['neuf','mixte-ne','reno-neuf','sur'].includes(n)");
 
+/* Expose un état de lecture seule pour le parcours public : le site peut
+   conserver le chiffrage lors de la création du compte sans dupliquer
+   le moteur de calcul. */
+qreplace($js, "render();\n})();", "window.KP_QUOTE_ENGINE={getState:()=>JSON.parse(JSON.stringify(S)),getTotals:()=>({...total()}),getRetained:()=>retenu()};\nrender();\n})();");
+
 echo $js;
