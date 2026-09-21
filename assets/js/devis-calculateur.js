@@ -75,7 +75,39 @@ function bar(){const bar=$('#quoteBar'),txt=$('#quoteBarTxt'),next=$('#quoteNext
 function render(scroll){steps();if(S.ecran==='accueil')renderAccueil();else if(S.ecran==='saisie')renderSaisie();else renderDevis();rail();bar();if(scroll)root.scrollIntoView({behavior:'smooth',block:'start'})}
 root.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;if(a==='prestation'){S.prestation=b.dataset.id;render()}else if(a==='nature'){S.nature=b.dataset.id;syncLots();render()}else if(a==='famille'){S.famille=b.dataset.id;S.lots=[];S.compo='divers';syncLots();render()}else if(a==='extmode'){S.extMode=b.dataset.id;syncLots();render()}else if(a==='usage'){S.lots=[nouveauLot(b.dataset.id)];render()}else if(a==='addlot'){S.lots.push(nouveauLot(b.dataset.id));render()}else if(a==='dellot'){S.lots=S.lots.filter(l=>l.id!==b.dataset.lot);render()}else if(a==='compo'){S.compo=b.dataset.id;S.lots=[];if(S.compo==='pied'){S.lots=[nouveauLot('LOG',null,'logement'),nouveauLot('VEN',null,'activite')]}else if(S.compo==='fonction'){S.lots=[nouveauLot('LOG',{N:1,M:1},'logement'),nouveauLot('BUR',null,'activite')]}else S.lots=[nouveauLot('BUR')];render()}else if(a==='val'){const l=S.lots.find(x=>x.id===b.dataset.lot);if(l){l.v[b.dataset.k]=b.dataset.v;render()}}else if(a==='addbat'){const l=S.lots.find(x=>x.id===b.dataset.lot);if(l&&l.v.bats.length<12){l.v.bats.push({n:'',same:''});render()}}else if(a==='delbat'){const l=S.lots.find(x=>x.id===b.dataset.lot);if(l&&l.v.bats.length>1){l.v.bats.pop();render()}}else if(a==='moa'){S.moaUnique=b.dataset.v==='1';render()}else if(a==='acompte'){S.acompte=+b.dataset.v;render()}else if(a==='goto'){S.ecran=b.dataset.e;render(true)}else if(a==='print')window.print();else if(a==='pay')toast('Module de paiement en cours d’intégration. Le devis vous est envoyé pour validation.');else if(a==='restart'){if(confirm('Repartir d’un dossier vierge ?')){Object.assign(S,{ecran:'accueil',prestation:null,nature:null,nom:'',famille:null,compo:'divers',extMode:'agrandissement',lots:[],moaUnique:true,acompte:.3});render(true)}}else if(a==='modalok')$('#quoteModal').hidden=true});
 root.addEventListener('input',e=>{const b=e.target.closest('[data-act]');if(!b)return;const l=S.lots.find(x=>x.id===b.dataset.lot);if(!l)return;if(b.dataset.act==='valnum')l.v[b.dataset.k]=b.value===''?'':+b.value;else if(b.dataset.act==='bat'){const i=+b.dataset.i;if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')l.v.bats[i]={n:'',same:''};l.v.bats[i].n=b.value===''?'':+b.value;const cur=l.v.bats[i];if(cur.same!==''&&cur.same!=null){const ri=+cur.same,ref=l.v.bats[ri];if(!ref||String(ref.n)!==String(cur.n)||ri>=i)cur.same='';}}else if(b.dataset.act==='qte')l.qte=Math.max(1,Math.round(+b.value||1));else return;rail();bar();const lot=b.closest('.lot'),p=prixLot(l);if(lot){const f=lot.querySelector('.lot-f');if(f)f.innerHTML=`<span>Permis (TTC) <b>${eur(p.permis*l.qte)}</b></span><span>Étude complète (TTC) <b>${eur(p.complete*l.qte)}</b></span>`}});
-root.addEventListener('change',e=>{const b=e.target.closest('[data-act="samebat"]');if(!b)return;const l=S.lots.find(x=>x.id===b.dataset.lot);if(!l)return;const i=+b.dataset.i;if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')return;l.v.bats[i].same=b.value;render()});
+root.addEventListener('change',e=>{
+  const b=e.target.closest('[data-act]');
+  if(!b)return;
+  const l=S.lots.find(x=>x.id===b.dataset.lot);
+  if(!l)return;
+
+  if(b.dataset.act==='samebat'){
+    const i=+b.dataset.i;
+    if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')return;
+    l.v.bats[i].same=b.value;
+    render();
+    return;
+  }
+
+  if(b.dataset.act==='bat'){
+    /*
+     * Le nombre de logements est mis à jour pendant la frappe,
+     * mais on ne reconstruit les listes "Identique à" qu'une fois
+     * la valeur validée afin de ne pas casser la saisie.
+     */
+    const i=+b.dataset.i;
+    if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')l.v.bats[i]={n:'',same:''};
+    l.v.bats[i].n=b.value===''?'':+b.value;
+
+    const cur=l.v.bats[i];
+    if(cur.same!==''&&cur.same!=null){
+      const ri=+cur.same,ref=l.v.bats[ri];
+      if(!ref||String(ref.n)!==String(cur.n)||ri>=i)cur.same='';
+    }
+
+    render();
+  }
+});
 $('#quoteNext').addEventListener('click',()=>{if(S.ecran==='accueil'&&S.prestation&&S.nature&&S.famille){if(['collectif','maisons'].includes(S.famille))syncLots();if(S.famille==='tertiaire'&&!S.lots.length)S.lots=[nouveauLot('BUR')];if(S.famille==='mixte'&&!S.lots.length)S.lots=[nouveauLot('BUR')];S.ecran='saisie';render(true)}else if(S.ecran==='saisie'&&S.lots.length){S.ecran='devis';render(true)}});
 $('#quoteBack').addEventListener('click',()=>{if(S.ecran==='saisie'){S.ecran='accueil';render(true)}});
 render();
