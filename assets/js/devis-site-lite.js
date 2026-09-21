@@ -5,6 +5,7 @@ if(!root)return;
 let autoInit=false;
 let explicitChoice=false;
 let chosen='permis';
+let delivery='standard';
 let hasCalculated=false;
 let calculating=false;
 let tuneFrame=0;
@@ -111,6 +112,21 @@ function enhanceFields(){
   });
 }
 
+function standardDelayDays(ttc){
+  const ht=(Number(ttc)||0)/1.2;
+  if(ht<=200)return 1;
+  if(ht>=1000)return 5;
+  return Math.ceil(1+((ht-200)/800)*4);
+}
+function currentBaseTtc(){
+  const p=prices();
+  return chosen==='complete'?p.complete:p.permis;
+}
+function expressAvailable(){return standardDelayDays(currentBaseTtc())>1}
+function expressSurchargeTtc(){return Math.round(currentBaseTtc()*.10*100)/100}
+function currentTotalTtc(){return currentBaseTtc()+(delivery==='express'&&expressAvailable()?expressSurchargeTtc():0)}
+function finalDelay(){return delivery==='express'&&expressAvailable()?1:standardDelayDays(currentBaseTtc())}
+
 function addFinalChoice(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return false;
@@ -119,16 +135,64 @@ function addFinalChoice(){
   const next=q('#quoteNext');
   const txt=q('#quoteBarTxt');
   if(!hasCalculated){
-    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Lancez le calcul pour afficher les trois niveaux d’étude disponibles.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
+    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Lancez le calcul pour afficher les deux niveaux d’étude disponibles.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
     if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
     if(txt)txt.textContent='Terminez votre saisie puis calculez votre devis.';
     return true;
   }
   const p=prices();
-  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Sélectionnez la prestation dont vous avez besoin.</p></div><span class="quote-final-step done">✓</span></div><div class="opts final-presta-grid"><button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Bbio</strong><small>Bbio + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="fdc" aria-pressed="${explicitChoice&&chosen==='fdc'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Bbio + FDC</strong><small>Bbio + Cep, Cep,nr, DH et livrables nécessaires à la fin de travaux.</small><em>${eur(p.fdc)}</em><i>Choisir cette formule</i></span></button><button class="opt quote-offer" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="tick"></span><span><strong>La totale</strong><small>Bbio + FDC + ACV et tous les livrables de l’étude RE2020.</small><em>${eur(p.complete)}</em><i>Choisir cette formule</i></span></button></div>`;
-  if(next){next.disabled=!explicitChoice;next.textContent=explicitChoice?'Voir mon devis':'Choisissez votre prestation'}
-  if(txt&&!explicitChoice)txt.textContent='Sélectionnez une prestation pour continuer.';
+  const selected=explicitChoice;
+  const delay=selected?standardDelayDays(currentBaseTtc()):0;
+  if(delay<=1)delivery='standard';
+  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Les tarifs affichés sont TTC. KeePlanet vérifiera le devis avant le démarrage de l’étude.</p></div><span class="quote-final-step done">✓</span></div>
+  <div class="opts final-presta-grid quote-two-offers">
+    <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>BBIO</strong><small>BBIO + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Sélectionner ce pack</i></span></button>
+    <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète</strong><small>BBIO, Cep, Cep,nr, DH, ACV et livrables nécessaires.</small><em>${eur(p.complete)}</em><i>Sélectionner ce pack</i></span></button>
+  </div>
+  ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>`:''}`;
+  if(next){
+    next.disabled=!explicitChoice;
+    next.textContent=explicitChoice?'Créer mon compte et continuer':'Choisissez votre pack';
+  }
+  if(txt)txt.innerHTML=explicitChoice?`Votre devis : <b>${eur(currentTotalTtc())} TTC</b> · délai <b>${finalDelay()} jour${finalDelay()>1?'s':''} ouvré${finalDelay()>1?'s':''}</b>`:'Sélectionnez un pack pour continuer.';
   return true;
+}
+
+function publicPayload(){
+  const engine=window.KP_QUOTE_ENGINE;
+  const st=engine&&engine.getState?engine.getState():null;
+  if(!st)return null;
+  const famMap={maisons:'maison',collectif:'collectif',tertiaire:'tertiaire',mixte:'mixte'};
+  const natMap={neuf:'construction',ext:'extension',sur:'surelevation','mixte-ne':'mixte','reno-ext':'extension','reno-neuf':'mixte'};
+  const family=famMap[st.famille]||st.famille||'';
+  const nature=natMap[st.nature]||st.nature||'';
+  const data={projectName:st.nom||''};
+  if(family==='maison'){
+    const mi=(st.lots||[]).find(l=>l.usage==='MI');
+    const ext=(st.lots||[]).find(l=>l.usage==='EXT');
+    data.N=mi&&mi.v?mi.v.N:'';
+    data.M=mi&&mi.v?mi.v.M:'';
+    if(ext&&ext.v)data.extensionSurface=ext.v.S||'';
+  }else if(family==='collectif'){
+    const col=(st.lots||[]).find(l=>l.usage==='COL');
+    const bats=col&&col.v&&Array.isArray(col.v.bats)?col.v.bats:[];
+    data.buildings=bats.map(n=>({n:n,same:''}));
+  }else{
+    data.zones=(st.lots||[]).map(l=>({usage:l.usage||'',surface:l.v&&l.v.S!=null?l.v.S:'',count:l.v&&l.v.n!=null?l.v.n:'',resto:l.v&&l.v.resto||'',amphi:l.v&&l.v.amphi||'',cuisine:l.v&&l.v.cuisine||'',lits:l.v&&l.v.lits||'',sc:l.v&&l.v.sc||'',sj:l.v&&l.v.sj||'',coqueBrute:l.v&&l.v.coqueBrute||'',surfExist:l.v&&l.v.surfExist||''}));
+  }
+  const p=prices();
+  const totalTtc=currentTotalTtc();
+  return {
+    version:'site-public-v1',
+    origine:'r-e-2020.fr',
+    reference:st.ref||'',
+    date:new Date().toISOString(),
+    projet:{nature,famille:family,usage:null,donnees:data},
+    reglementation:'RE2020',
+    prestation:chosen==='complete'?'complete':'bbio',
+    delai:{mode:delivery,jours_ouvres:finalDelay(),express:delivery==='express'&&expressAvailable(),surcout_ttc:delivery==='express'&&expressAvailable()?expressSurchargeTtc():0},
+    prix:{bbio_ttc:p.permis,complete_ttc:p.complete,total_ttc:totalTtc,total_ht:totalTtc/1.2}
+  };
 }
 
 function removeStrayPrices(){
@@ -152,24 +216,42 @@ root.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');
   if(!b||calculating)return;
   if(b.dataset.act==='calculate-quote'){
-    e.preventDefault();showLoader();explicitChoice=false;chosen='permis';
+    e.preventDefault();showLoader();explicitChoice=false;chosen='permis';delivery='standard';
     setTimeout(()=>{hasCalculated=true;hideLoader();scheduleTune();const box=q('.final-prestation-lite');if(box)box.scrollIntoView({behavior:'smooth',block:'center'})},520);
     return;
   }
-  if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id}
-  if(b.dataset.act==='nature'||b.dataset.act==='famille'){hasCalculated=false;explicitChoice=false;chosen='permis'}
+  if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
+  if(b.dataset.act==='nature'||b.dataset.act==='famille'){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
+  const delayBtn=e.target.closest('[data-quote-delivery]');
+  if(delayBtn){
+    e.preventDefault();
+    delivery=delayBtn.dataset.quoteDelivery==='express'?'express':'standard';
+    scheduleTune();
+    return;
+  }
   scheduleTune();
 },true);
 
 root.addEventListener('input',e=>{
-  if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis'}
+  if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
   scheduleTune(90);
 },true);
 root.addEventListener('change',e=>{
   if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis'}
   scheduleTune();
 },true);
-q('#quoteNext')?.addEventListener('click',()=>scheduleTune());
+q('#quoteNext')?.addEventListener('click',e=>{
+  if(hasCalculated&&explicitChoice){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const payload=publicPayload();
+    if(payload){
+      document.dispatchEvent(new CustomEvent('re2020:open-signup',{detail:{payload,choice:(chosen==='complete'?'Etude complete':'BBIO')+' - '+eur(currentTotalTtc())+' TTC'}}));
+    }
+    return;
+  }
+  scheduleTune();
+},true);
 q('#quoteBack')?.addEventListener('click',()=>scheduleTune());
 scheduleTune();
 })();
