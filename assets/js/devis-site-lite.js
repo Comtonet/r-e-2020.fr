@@ -149,10 +149,28 @@ function addFinalChoice(){
     <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>BBIO</strong><small>BBIO + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Sélectionner ce pack</i></span></button>
     <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète</strong><small>BBIO, Cep, Cep,nr, DH, ACV et livrables nécessaires.</small><em>${eur(p.complete)}</em><i>Sélectionner ce pack</i></span></button>
   </div>
-  ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>`:''}`;
+  ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>
+  <form class="quote-account-form" method="post" action="https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020-public.php" data-quote-account-form>
+    <input type="hidden" name="devis_payload" value="" data-quote-payload>
+    <input type="hidden" name="origine" value="site-re2020">
+    <input type="hidden" name="public_signup" value="1">
+    <div class="quote-account-head"><strong>Recevez votre devis</strong><span>Vos accès à l’espace client seront créés gratuitement en même temps.</span></div>
+    <div class="quote-account-grid">
+      <label><span>Nom et prénom *</span><input type="text" name="nom" autocomplete="name" required></label>
+      <label><span>Société <small>(facultatif)</small></span><input type="text" name="societe" autocomplete="organization"></label>
+      <label><span>E-mail *</span><input type="email" name="email" autocomplete="email" required></label>
+      <label><span>Téléphone <small>(facultatif)</small></span><input type="tel" name="telephone" autocomplete="tel"></label>
+      <label class="wide"><span>Adresse *</span><input type="text" name="adresse" autocomplete="street-address" required></label>
+      <label><span>Code postal *</span><input type="text" name="code_postal" inputmode="numeric" autocomplete="postal-code" required></label>
+      <label><span>Ville *</span><input type="text" name="ville" autocomplete="address-level2" required></label>
+    </div>
+    <button type="submit" class="btn btn-p quote-send-btn" data-no-signup-popup>M’envoyer le devis et créer mon compte gratuitement</button>
+    <p class="quote-account-note">Aucun paiement à cette étape. Le devis vous est envoyé par e-mail et vos accès sont créés automatiquement.</p>
+  </form>`:''}`;
   if(next){
+    next.hidden=!!explicitChoice;
     next.disabled=!explicitChoice;
-    next.textContent=explicitChoice?'Créer mon compte et continuer':'Choisissez votre pack';
+    next.textContent='Choisissez votre pack';
   }
   if(txt)txt.innerHTML=explicitChoice?`Votre devis : <b>${eur(currentTotalTtc())} TTC</b> · délai <b>${finalDelay()} jour${finalDelay()>1?'s':''} ouvré${finalDelay()>1?'s':''}</b>`:'Sélectionnez un pack pour continuer.';
   return true;
@@ -241,18 +259,32 @@ root.addEventListener('change',e=>{
   if(e.target.closest('.lot')){hasCalculated=false;explicitChoice=false;chosen='permis'}
   scheduleTune();
 },true);
-q('#quoteNext')?.addEventListener('click',e=>{
-  if(hasCalculated&&explicitChoice){
+root.addEventListener('submit',e=>{
+  const form=e.target.closest('[data-quote-account-form]');
+  if(!form)return;
+  const payload=publicPayload();
+  if(!payload){
     e.preventDefault();
-    e.stopImmediatePropagation();
-    const payload=publicPayload();
-    if(payload){
-      document.dispatchEvent(new CustomEvent('re2020:open-signup',{detail:{payload,choice:(chosen==='complete'?'Etude complete':'BBIO')+' - '+eur(currentTotalTtc())+' TTC'}}));
-    }
     return;
   }
-  scheduleTune();
+  const fd=new FormData(form);
+  payload.coordonnees_compte={
+    firstName:String(fd.get('nom')||'').trim(),
+    lastName:'',
+    company:String(fd.get('societe')||'').trim(),
+    email:String(fd.get('email')||'').trim(),
+    phone:String(fd.get('telephone')||'').trim(),
+    address:String(fd.get('adresse')||'').trim(),
+    zip:String(fd.get('code_postal')||'').trim(),
+    city:String(fd.get('ville')||'').trim()
+  };
+  const hidden=form.querySelector('[data-quote-payload]');
+  if(hidden)hidden.value=JSON.stringify(payload);
+  const submit=form.querySelector('button[type="submit"]');
+  if(submit){submit.disabled=true;submit.textContent='Création du devis en cours…';}
 },true);
+
+q('#quoteNext')?.addEventListener('click',()=>scheduleTune(),true);
 q('#quoteBack')?.addEventListener('click',()=>scheduleTune());
 scheduleTune();
 })();
