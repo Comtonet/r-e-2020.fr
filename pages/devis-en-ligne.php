@@ -67,6 +67,7 @@ $quoteConfig = [
 .devis-app .lot-f{display:none!important}
 .devis-app .rows .val{visibility:hidden!important}
 .devis-app input,.devis-app select,.devis-app textarea{border-radius:13px!important;border:1px solid rgba(56,34,126,.14)!important;background:#fff!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9);transition:border-color .16s ease,box-shadow .16s ease,background .16s ease!important}
+.devis-app input[type="number"]{transition:none!important}
 .devis-app input:hover,.devis-app select:hover{border-color:rgba(56,34,126,.28)!important}
 .devis-app input:focus,.devis-app select:focus,.devis-app textarea:focus{outline:none!important;border-color:#38227e!important;box-shadow:0 0 0 4px rgba(56,34,126,.09)!important;background:#fff!important}
 .devis-app .quote-field-enhanced{transition:background .16s ease}
@@ -162,5 +163,5 @@ $quoteConfig = [
   <div class="infotip noprint" id="quoteInfotip" role="tooltip"><div class="infotip-body"></div></div>
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=22" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=22" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=23" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=23" defer></script>
