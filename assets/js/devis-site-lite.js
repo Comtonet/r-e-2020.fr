@@ -272,6 +272,14 @@ root.addEventListener('input',e=>{
     explicitChoice=false;
     chosen='permis';
     delivery='standard';
+
+    /*
+     * Les champs numériques du moteur mettent déjà à jour leur valeur
+     * et le chiffrage en direct. Ne pas relancer l'habillage à chaque
+     * frappe : cela provoquait un léger clignotement visuel/caret dans
+     * les saisies tertiaires. Le refresh complet se fait au "change".
+     */
+    if(e.target.matches('input[type="number"]'))return;
     scheduleTune(90);
   }
 });
