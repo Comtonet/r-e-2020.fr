@@ -262,7 +262,7 @@ root.addEventListener('click',e=>{
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
   if(b.dataset.act==='nature'||b.dataset.act==='famille'){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
   scheduleTune();
-},true);
+});
 
 root.addEventListener('input',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
@@ -273,7 +273,7 @@ root.addEventListener('input',e=>{
     delivery='standard';
     scheduleTune(90);
   }
-},true);
+});
 root.addEventListener('change',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
   if(e.target.closest('.lot')){
@@ -283,7 +283,7 @@ root.addEventListener('change',e=>{
     delivery='standard';
     scheduleTune();
   }
-},true);
+});
 let addressTimer=0;
 let addressAbort=null;
 
