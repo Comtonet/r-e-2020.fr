@@ -274,12 +274,17 @@ root.addEventListener('input',e=>{
     delivery='standard';
 
     /*
-     * Les champs numériques du moteur mettent déjà à jour leur valeur
-     * et le chiffrage en direct. Ne pas relancer l'habillage à chaque
-     * frappe : cela provoquait un léger clignotement visuel/caret dans
-     * les saisies tertiaires. Le refresh complet se fait au "change".
+     * Les champs numériques du moteur mettent déjà à jour l'état et
+     * le chiffrage. On ne reconstruit jamais l'écran pendant leur saisie :
+     * cela évite le clignotement du texte/caret, notamment sur les maisons.
+     *
+     * Seul le bloc final est remis en état "à recalculer", sans toucher
+     * aux inputs ni à leur focus.
      */
-    if(e.target.matches('input[type="number"]'))return;
+    if(e.target.matches('input[type="number"]')){
+      addFinalChoice();
+      return;
+    }
     scheduleTune(90);
   }
 });
@@ -290,6 +295,16 @@ root.addEventListener('change',e=>{
     explicitChoice=false;
     chosen='permis';
     delivery='standard';
+
+    /*
+     * Même règle au change : un input numérique ne doit jamais provoquer
+     * de rerender global (les flèches natives des champs number déclenchent
+     * aussi change sur certains navigateurs).
+     */
+    if(e.target.matches('input[type="number"]')){
+      addFinalChoice();
+      return;
+    }
     scheduleTune();
   }
 });
