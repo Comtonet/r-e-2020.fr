@@ -357,6 +357,28 @@ document.addEventListener('click',e=>{
 root.addEventListener('submit',e=>{
   const form=e.target.closest('[data-quote-account-form]');
   if(!form)return;
+
+  const requiredNames=['nom','email','adresse','code_postal','ville'];
+  let firstInvalid=null;
+  requiredNames.forEach(name=>{
+    const input=form.querySelector('[name="'+name+'"]');
+    if(!input)return;
+    const empty=!String(input.value||'').trim();
+    input.setCustomValidity(empty?'Ce champ est obligatoire.':'');
+    input.toggleAttribute('aria-invalid',empty);
+    if(empty&&!firstInvalid)firstInvalid=input;
+  });
+  const email=form.querySelector('[name="email"]');
+  if(email&&String(email.value||'').trim()&&!email.validity.valid){
+    if(!firstInvalid)firstInvalid=email;
+  }
+  if(firstInvalid||!form.checkValidity()){
+    e.preventDefault();
+    form.reportValidity();
+    (firstInvalid||form.querySelector(':invalid'))?.focus();
+    return;
+  }
+
   const payload=publicPayload();
   if(!payload){
     e.preventDefault();
