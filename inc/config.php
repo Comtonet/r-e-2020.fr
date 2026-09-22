@@ -28,6 +28,41 @@ return [
     'price_fin_travaux_acv_ttc' => 423,
     'price_small_extension_attestation_ttc' => 19,
 
+    // Packs maison : le slug public est converti côté serveur vers le type_demande historique.
+    // Ne jamais accepter un type_demande envoyé librement par le navigateur.
+    'house_signup_packs' => [
+        'eco' => [
+            'label' => "Pack Eco'Permis",
+            'type_demande' => 're2020_bbio_eco',
+            'price_key' => 'price_eco_permis_ttc',
+            'description' => 'Bbio + DH pour la phase permis, formule économique.',
+        ],
+        'permis' => [
+            'label' => 'Pack Permis',
+            'type_demande' => 're2020_bbio',
+            'price_key' => 'price_pack_permis_ttc',
+            'description' => 'Bbio + DH et attestation permis générée par KeePlanet.',
+        ],
+        'fdc' => [
+            'label' => 'Pack Fin de travaux',
+            'type_demande' => 're2020_bbio_fdc_dim50',
+            'price_key' => 'price_fin_travaux_ttc',
+            'description' => 'Étude thermique complète avec fin de travaux et dimensionnement inclus.',
+        ],
+        'fdc-acv' => [
+            'label' => 'Pack Fin de travaux + ACV',
+            'type_demande' => 're2020_bbio_fdc_dim50_acv',
+            'price_key' => 'price_fin_travaux_acv_ttc',
+            'description' => 'Étude complète avec fin de travaux, dimensionnement et ACV.',
+        ],
+        'inf50' => [
+            'label' => 'Extension / petite construction < 50 m²',
+            'type_demande' => 'inf50',
+            'price_key' => 'price_small_extension_attestation_ttc',
+            'description' => 'Prise en charge de l’attestation simplifiée par notre équipe.',
+        ],
+    ],
+
     // Offre commerciale affichée à l'intention de sortie sur la page des packs maison.
     // Le Pack Eco'Permis est toujours exclu de cette remise.
     'house_exit_offer_enabled' => true,
