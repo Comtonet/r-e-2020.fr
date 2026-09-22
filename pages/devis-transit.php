@@ -4,6 +4,49 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
     exit;
 }
 
+$required = [
+    'nom' => 'Nom et prénom',
+    'email' => 'E-mail',
+    'adresse' => 'Adresse',
+    'code_postal' => 'Code postal',
+    'ville' => 'Ville',
+];
+
+$missing = [];
+foreach ($required as $key => $label) {
+    if (trim((string)($_POST[$key] ?? '')) === '') $missing[] = $label;
+}
+
+$email = trim((string)($_POST['email'] ?? ''));
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $missing[] = 'E-mail valide';
+}
+
+$payloadRaw = trim((string)($_POST['devis_payload'] ?? ''));
+$payload = $payloadRaw !== '' ? json_decode($payloadRaw, true) : null;
+if (!is_array($payload)) {
+    $missing[] = 'Données du devis';
+}
+
+if ($missing) {
+    http_response_code(422);
+    $missing = array_values(array_unique($missing));
+    ?>
+    <section class="section">
+      <div class="container narrow">
+        <div class="card" style="max-width:720px;margin:40px auto;padding:34px">
+          <span class="eyebrow">Devis RE2020</span>
+          <h1 style="margin-top:12px">Coordonnées incomplètes</h1>
+          <p class="big-p">Le devis ne peut pas être validé tant que les coordonnées obligatoires ne sont pas renseignées.</p>
+          <p style="color:#6b7180">À compléter : <?= h(implode(', ', $missing)) ?>.</p>
+          <p style="margin-top:24px"><a class="btn btn-p" href="/devis-en-ligne/">Retour au configurateur</a></p>
+        </div>
+      </div>
+    </section>
+    <?php
+    return;
+}
+
 $target = 'https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devis-re2020-public.php';
 
 $fields = [];
