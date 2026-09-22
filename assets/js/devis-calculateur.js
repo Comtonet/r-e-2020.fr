@@ -91,9 +91,11 @@ root.addEventListener('change',e=>{
 
   if(b.dataset.act==='bat'){
     /*
-     * Le nombre de logements est mis à jour pendant la frappe,
-     * mais on ne reconstruit les listes "Identique à" qu'une fois
-     * la valeur validée afin de ne pas casser la saisie.
+     * Ne pas reconstruire tout l'écran au blur : sinon le bouton sur
+     * lequel l'utilisateur vient de cliquer est remplacé avant l'événement
+     * click et il faut cliquer une seconde fois.
+     *
+     * On met seulement à jour les listes "Identique à" dans le DOM.
      */
     const i=+b.dataset.i;
     if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')l.v.bats[i]={n:'',same:''};
@@ -105,7 +107,28 @@ root.addEventListener('change',e=>{
       if(!ref||String(ref.n)!==String(cur.n)||ri>=i)cur.same='';
     }
 
-    render();
+    const lotEl=root.querySelector('.lot[data-lot="'+l.id+'"]');
+    if(lotEl){
+      l.v.bats.forEach((raw,bi)=>{
+        const bat=raw&&typeof raw==='object'?raw:{n:raw,same:''};
+        l.v.bats[bi]=bat;
+        const select=lotEl.querySelector('select[data-act="samebat"][data-i="'+bi+'"]');
+        if(!select)return;
+        let opts='<option value="">Non</option>';
+        for(let j=0;j<bi;j++){
+          const ref=l.v.bats[j]&&typeof l.v.bats[j]==='object'?l.v.bats[j]:{n:l.v.bats[j]};
+          if(String(ref.n)===String(bat.n)&&String(bat.n)!==''){
+            opts+='<option value="'+j+'">Oui, bâtiment '+String.fromCharCode(65+j)+'</option>';
+          }
+        }
+        select.innerHTML=opts;
+        const wanted=bat.same!==''&&bat.same!=null?String(bat.same):'';
+        select.value=[...select.options].some(o=>o.value===wanted)?wanted:'';
+        if(select.value==='')bat.same='';
+      });
+    }
+    rail();
+    bar();
   }
 });
 $('#quoteNext').addEventListener('click',()=>{if(S.ecran==='accueil'&&S.prestation&&S.nature&&S.famille){if(['collectif','maisons'].includes(S.famille))syncLots();if(S.famille==='tertiaire'&&!S.lots.length)S.lots=[nouveauLot('BUR')];if(S.famille==='mixte'&&!S.lots.length)S.lots=[nouveauLot('BUR')];S.ecran='saisie';render(true)}else if(S.ecran==='saisie'&&S.lots.length){S.ecran='devis';render(true)}});
