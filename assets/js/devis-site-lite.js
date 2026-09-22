@@ -244,8 +244,19 @@ root.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');
   if(!b||calculating)return;
   if(b.dataset.act==='calculate-quote'){
-    e.preventDefault();showLoader();explicitChoice=false;chosen='permis';delivery='standard';
-    setTimeout(()=>{hasCalculated=true;hideLoader();scheduleTune();const box=q('.final-prestation-lite');if(box)box.scrollIntoView({behavior:'smooth',block:'center'})},520);
+    e.preventDefault();
+    e.stopPropagation();
+    showLoader();
+    explicitChoice=false;
+    chosen='permis';
+    delivery='standard';
+    hasCalculated=true;
+    scheduleTune();
+    setTimeout(()=>{
+      hideLoader();
+      const box=q('.final-prestation-lite');
+      if(box)box.scrollIntoView({behavior:'smooth',block:'center'});
+    },420);
     return;
   }
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
