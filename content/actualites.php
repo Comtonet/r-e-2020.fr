@@ -8,6 +8,33 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug' => 'guide-re2020-cerema-mise-a-jour-septembre-2026',
+        'title' => 'Guide RE2020 Cerema : nouvelle mise à jour de septembre 2026',
+        'excerpt' => 'Le guide RE2020 DHUP/Cerema a été actualisé le 17 septembre 2026. Il intègre l’extension aux bâtiments tertiaires spécifiques et industriels ainsi que les ajustements réglementaires de 2026.',
+        'date' => '2026-09-22',
+        'source_name' => 'RT-RE Bâtiment — Guide Cerema, mise à jour du 17 septembre 2026',
+        'source_url' => 'https://rt-re-batiment.developpement-durable.gouv.fr/re2020-guide-cerema-mise-a-jour-du-17-septembre-a1245.html',
+        'secondary_source_url' => 'https://rt-re-batiment.developpement-durable.gouv.fr/textes-en-version-consolidee-a617.html',
+        'body' => <<<'HTML'
+<p><strong>Le guide RE2020 DHUP/Cerema vient d’être actualisé.</strong> Le portail officiel RT-RE Bâtiment a annoncé le <strong>17 septembre 2026</strong> une nouvelle version du document d’accompagnement de la réglementation environnementale. Cette mise à jour rassemble notamment les évolutions intervenues en 2026 et constitue un point de repère utile pour les maîtres d’ouvrage, architectes, bureaux d’études et entreprises.</p>
+<p>Cette publication intervient après plusieurs changements importants : extension de la RE2020 à de nouveaux usages tertiaires, industriels et artisanaux, ajustements issus du retour d’expérience de la réglementation et évolution des textes applicables. Pour KeePlanet, l’intérêt du nouveau guide est surtout opérationnel : disposer d’une lecture actualisée avant de figer les hypothèses d’une étude thermique ou environnementale.</p>
+<h2>Une mise à jour qui intègre l’extension de la RE2020 en 2026</h2>
+<p>Le portail RT-RE Bâtiment précise que cette version prend en compte les textes ayant étendu le périmètre de la RE2020 aux bâtiments d’activités tertiaires spécifiques ainsi qu’aux bâtiments industriels et artisanaux. Depuis le <strong>1er mai 2026</strong>, la réglementation concerne notamment de nouveaux usages comme les hôtels, restaurants, commerces, établissements de santé, EHPAD, gymnases, bâtiments industriels ou artisanaux et aérogares.</p>
+<p>Pour approfondir ce point, KeePlanet a consacré un dossier complet à la <a href="/reglementaire/re2020-tertiaire-specifique-hotels-commerces-industrie/">RE2020 des hôtels, commerces, restaurants et bâtiments industriels</a>.</p>
+<h2>Les ajustements RE2020 de 2026 sont également intégrés</h2>
+<p>La nouvelle édition du guide tient également compte des textes adoptés à la suite de l’évaluation de la RE2020. L’objectif est de remettre les explications pratiques en cohérence avec le cadre réglementaire actuellement applicable, alors que plusieurs modifications sont intervenues au cours de l’année.</p>
+<p>C’est un point important pour les projets dont le permis est déposé en 2026 : la date du dépôt peut déterminer la version des exigences à appliquer. Le portail officiel met d’ailleurs à disposition des textes consolidés par période afin d’identifier le bon cadre réglementaire.</p>
+<h2>Pourquoi cette mise à jour est utile aux porteurs de projet ?</h2>
+<p>Un guide n’a pas la même valeur juridique que le Code de la construction et de l’habitation, un décret ou un arrêté. Il permet en revanche de mieux comprendre la logique de la RE2020, ses indicateurs et son application concrète. Il complète donc utilement les textes officiels sans s’y substituer.</p>
+<p>Pour un projet neuf, cette lecture doit être rapprochée des résultats du calcul réglementaire : <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">Cep et Cep,nr</a>, Bbio, confort d’été, mais aussi analyse du cycle de vie et indicateurs carbone. Les données environnementales utilisées pour l’ACV restent également un sujet central ; notre dossier explique le rôle des <a href="/reglementaire/fdes-donnees-environnementales-acv-carbone/">FDES dans le calcul carbone RE2020</a>.</p>
+<h2>Une réglementation à vérifier à la date du permis</h2>
+<p>La succession des évolutions en 2026 rappelle une règle essentielle : il ne faut pas appliquer mécaniquement à un projet les hypothèses utilisées quelques mois auparavant sur une autre opération. Usage du bâtiment, surface, date de dépôt du permis et caractéristiques techniques doivent être vérifiés avant de lancer le calcul.</p>
+<p>Cette vigilance est particulièrement importante pour les opérations tertiaires désormais intégrées au périmètre RE2020 et pour les projets situés à proximité d’une date d’évolution réglementaire.</p>
+<h2>Faire sécuriser son étude RE2020</h2>
+<p>KeePlanet accompagne les maîtres d’ouvrage, architectes et constructeurs dans l’application de la RE2020, de l’étude au permis jusqu’aux vérifications de fin de chantier. Pour une maison ou une extension, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/"><strong>prestations RE2020 maison individuelle</strong></a>. Pour un immeuble collectif ou un bâtiment tertiaire, demandez une <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/"><strong>étude RE2020 collectif / tertiaire</strong></a>.</p>
+HTML
+    ],
+    [
         'slug' => 'fin-gaz-construction-neuve-2027-decret-2026-863',
         'title' => 'Fin du gaz dans la construction neuve : ce que change le décret n° 2026-863 dès 2027',
         'excerpt' => 'Le décret n° 2026-863 du 12 septembre 2026 encadre l’installation d’équipements fortement émetteurs dans les bâtiments neufs. Logements, bâtiments publics, tertiaire : calendrier, seuil de 79 gCO2e/kWh et exemptions à connaître.',
