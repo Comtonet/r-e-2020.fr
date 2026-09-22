@@ -150,8 +150,23 @@ function addFinalChoice(){
     <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète</strong><small>BBIO, Cep, Cep,nr, DH, ACV et livrables nécessaires.</small><em>${eur(p.complete)}</em><i>Sélectionner ce pack</i></span></button>
   </div>
   ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>
-  <button type="button" class="btn btn-p quote-send-btn" data-open-public-signup>Recevoir mon devis et créer mon compte gratuitement</button>
-  <p class="quote-account-note">Aucun paiement à cette étape. Le devis sera envoyé par e-mail et restera disponible depuis votre espace client.</p>`:''}`;
+  <form class="quote-account-form" method="post" action="/devis-en-ligne/envoi/" data-quote-account-form>
+    <input type="hidden" name="devis_payload" value="" data-quote-payload>
+    <input type="hidden" name="origine" value="site-re2020">
+    <input type="hidden" name="public_signup" value="1">
+    <div class="quote-account-head"><strong>Recevez votre devis</strong><span>Vos accès à l’espace client seront créés gratuitement en même temps.</span></div>
+    <div class="quote-account-grid">
+      <label><span>Nom et prénom *</span><input type="text" name="nom" autocomplete="name" required></label>
+      <label><span>Société <small>(facultatif)</small></span><input type="text" name="societe" autocomplete="organization"></label>
+      <label><span>E-mail *</span><input type="email" name="email" autocomplete="email" required></label>
+      <label><span>Téléphone <small>(facultatif)</small></span><input type="tel" name="telephone" autocomplete="tel"></label>
+      <label class="wide quote-address-field"><span>Adresse *</span><div class="quote-address-wrap"><input type="text" name="adresse" autocomplete="off" aria-autocomplete="list" aria-expanded="false" data-address-autocomplete required><div class="quote-address-suggestions" data-address-suggestions hidden></div></div></label>
+      <label><span>Code postal *</span><input type="text" name="code_postal" inputmode="numeric" autocomplete="postal-code" required></label>
+      <label><span>Ville *</span><input type="text" name="ville" autocomplete="address-level2" required></label>
+    </div>
+    <button type="submit" class="btn btn-p quote-send-btn" data-no-signup-popup>M’envoyer le devis et créer mon compte gratuitement</button>
+    <p class="quote-account-note">Aucun paiement à cette étape. Le devis vous est envoyé par e-mail et vos accès sont créés automatiquement.</p>
+  </form>`:''}`;
   if(next){
     next.hidden=!!explicitChoice;
     next.disabled=!explicitChoice;
@@ -216,16 +231,7 @@ function tune(){
 }
 
 root.addEventListener('click',e=>{
-  const signupBtn=e.target.closest('[data-open-public-signup]');
-  if(signupBtn){
-    e.preventDefault();
-    e.stopPropagation();
-    const payload=publicPayload();
-    if(!payload)return;
-    const choice=chosen==='complete'?'Étude complète RE2020':'BBIO RE2020';
-    document.dispatchEvent(new CustomEvent('re2020:open-signup',{detail:{payload,choice}}));
-    return;
-  }
+  if(e.target.closest('[data-quote-account-form]'))return;
   if(e.target.closest('select,input,textarea'))return;
   const delayBtn=e.target.closest('[data-quote-delivery]');
   if(delayBtn){
@@ -278,6 +284,133 @@ root.addEventListener('change',e=>{
     scheduleTune();
   }
 });
+let addressTimer=0;
+let addressAbort=null;
+
+function closeAddressSuggestions(input){
+  const wrap=input&&input.closest('.quote-address-wrap');
+  const list=wrap&&wrap.querySelector('[data-address-suggestions]');
+  if(list){list.hidden=true;list.innerHTML='';}
+  if(input)input.setAttribute('aria-expanded','false');
+}
+
+function addressLineFromResult(r){
+  const full=String(r.fulltext||r.label||r.street||'').trim();
+  const zip=String(r.zipcode||((r.zipcodes||[])[0])||'').trim();
+  const city=String(r.city||'').trim();
+  if(!full)return '';
+  const suffix=zip&&city?', '+zip+' '+city:'';
+  if(suffix&&full.toLowerCase().endsWith(suffix.toLowerCase()))return full.slice(0,-suffix.length).trim();
+  return full;
+}
+
+function renderAddressSuggestions(input,results){
+  const wrap=input.closest('.quote-address-wrap');
+  const list=wrap&&wrap.querySelector('[data-address-suggestions]');
+  if(!list)return;
+  const rows=Array.isArray(results)?results.slice(0,6):[];
+  if(!rows.length){closeAddressSuggestions(input);return;}
+  list.innerHTML=rows.map((r,i)=>{
+    const full=String(r.fulltext||r.label||r.street||'').trim();
+    const safe=full.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    return '<button type="button" data-address-choice="'+i+'">'+safe+'</button>';
+  }).join('');
+  list._results=rows;
+  list.hidden=false;
+  input.setAttribute('aria-expanded','true');
+}
+
+root.addEventListener('input',e=>{
+  const input=e.target.closest('[data-address-autocomplete]');
+  if(!input)return;
+  clearTimeout(addressTimer);
+  if(addressAbort){addressAbort.abort();addressAbort=null;}
+  const query=input.value.trim();
+  if(query.length<3){closeAddressSuggestions(input);return;}
+  addressTimer=setTimeout(async()=>{
+    addressAbort=new AbortController();
+    try{
+      const url='https://data.geopf.fr/geocodage/completion/?text='+encodeURIComponent(query)+'&type=StreetAddress&maximumResponses=6';
+      const response=await fetch(url,{signal:addressAbort.signal,headers:{'Accept':'application/json'}});
+      if(!response.ok)throw new Error('address api');
+      const data=await response.json();
+      renderAddressSuggestions(input,data&&Array.isArray(data.results)?data.results:[]);
+    }catch(err){
+      if(err&&err.name==='AbortError')return;
+      closeAddressSuggestions(input);
+    }
+  },280);
+},true);
+
+root.addEventListener('click',e=>{
+  const choice=e.target.closest('[data-address-choice]');
+  if(!choice)return;
+  const list=choice.closest('[data-address-suggestions]');
+  const wrap=choice.closest('.quote-address-wrap');
+  const input=wrap&&wrap.querySelector('[data-address-autocomplete]');
+  const form=choice.closest('[data-quote-account-form]');
+  const results=(list&&list._results)||[];
+  const r=results[Number(choice.dataset.addressChoice)];
+  if(!input||!r)return;
+  input.value=addressLineFromResult(r);
+  const zip=form&&form.querySelector('[name="code_postal"]');
+  const city=form&&form.querySelector('[name="ville"]');
+  if(zip)zip.value=String(r.zipcode||((r.zipcodes||[])[0])||'');
+  if(city)city.value=String(r.city||'');
+  closeAddressSuggestions(input);
+},true);
+
+document.addEventListener('click',e=>{
+  const input=root.querySelector('[data-address-autocomplete]');
+  if(input&&!e.target.closest('.quote-address-wrap'))closeAddressSuggestions(input);
+});
+
+root.addEventListener('submit',e=>{
+  const form=e.target.closest('[data-quote-account-form]');
+  if(!form)return;
+
+  const requiredNames=['nom','email','adresse','code_postal','ville'];
+  let firstInvalid=null;
+  requiredNames.forEach(name=>{
+    const input=form.querySelector('[name="'+name+'"]');
+    if(!input)return;
+    const empty=!String(input.value||'').trim();
+    input.setCustomValidity(empty?'Ce champ est obligatoire.':'');
+    input.toggleAttribute('aria-invalid',empty);
+    if(empty&&!firstInvalid)firstInvalid=input;
+  });
+  const email=form.querySelector('[name="email"]');
+  if(email&&String(email.value||'').trim()&&!email.validity.valid){
+    if(!firstInvalid)firstInvalid=email;
+  }
+  if(firstInvalid||!form.checkValidity()){
+    e.preventDefault();
+    form.reportValidity();
+    (firstInvalid||form.querySelector(':invalid'))?.focus();
+    return;
+  }
+
+  const payload=publicPayload();
+  if(!payload){
+    e.preventDefault();
+    return;
+  }
+  const fd=new FormData(form);
+  payload.coordonnees_compte={
+    firstName:String(fd.get('nom')||'').trim(),
+    lastName:'',
+    company:String(fd.get('societe')||'').trim(),
+    email:String(fd.get('email')||'').trim(),
+    phone:String(fd.get('telephone')||'').trim(),
+    address:String(fd.get('adresse')||'').trim(),
+    zip:String(fd.get('code_postal')||'').trim(),
+    city:String(fd.get('ville')||'').trim()
+  };
+  const hidden=form.querySelector('[data-quote-payload]');
+  if(hidden)hidden.value=JSON.stringify(payload);
+  const submit=form.querySelector('button[type="submit"]');
+  if(submit){submit.disabled=true;submit.textContent='Création du devis en cours…';}
+},true);
 
 q('#quoteNext')?.addEventListener('click',e=>{
   const st=window.KP_QUOTE_ENGINE&&window.KP_QUOTE_ENGINE.getState?window.KP_QUOTE_ENGINE.getState():null;
