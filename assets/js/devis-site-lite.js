@@ -154,6 +154,7 @@ function addFinalChoice(){
     <input type="hidden" name="devis_payload" value="" data-quote-payload>
     <input type="hidden" name="origine" value="site-re2020">
     <input type="hidden" name="public_signup" value="1">
+    <input type="hidden" name="retour_site" value="" data-return-site>
     <div class="quote-account-head"><strong>Recevez votre devis</strong><span>Vos accès à l’espace client seront créés gratuitement en même temps.</span></div>
     <div class="quote-account-grid">
       <label><span>Nom et prénom *</span><input type="text" name="nom" autocomplete="name" required></label>
@@ -408,6 +409,8 @@ root.addEventListener('submit',e=>{
   };
   const hidden=form.querySelector('[data-quote-payload]');
   if(hidden)hidden.value=JSON.stringify(payload);
+  const returnSite=form.querySelector('[data-return-site]');
+  if(returnSite)returnSite.value=window.location.origin;
   const submit=form.querySelector('button[type="submit"]');
   if(submit){submit.disabled=true;submit.textContent='Création du devis en cours…';}
 },true);
