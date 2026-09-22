@@ -17,6 +17,19 @@ function experience_label() { return (int)cfg('experience_years',16).' ans'; }
 function opqibi_profile_url() { return (string)cfg('opqibi_profile_url','https://www.opqibi.com/fiche/3545'); }
 function house_exit_offer_enabled() { return (bool)cfg('house_exit_offer_enabled', true); }
 function house_exit_offer_percent() { return max(0, min(100, (int)cfg('house_exit_offer_percent', 10))); }
+function house_signup_packs() {
+    $packs = cfg('house_signup_packs', []);
+    return is_array($packs) ? $packs : [];
+}
+function house_signup_pack($slug) {
+    $slug = trim((string)$slug);
+    $packs = house_signup_packs();
+    return isset($packs[$slug]) && is_array($packs[$slug]) ? $packs[$slug] : null;
+}
+function house_signup_price_label($pack) {
+    if (!is_array($pack) || empty($pack['price_key'])) return '';
+    return price_ttc_label($pack['price_key']);
+}
 
 function apply_dynamic_site_vars($html) {
     $delay=standard_delay_label(); $projects=projects_label(); $rating=google_rating_label(); $experience=experience_label();
