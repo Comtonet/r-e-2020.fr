@@ -74,7 +74,7 @@ $old = <<<'JS'
 SAN:{code:'SAN',nom:'Cabinet de santé',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:6,min:0,step:1}],notes:[],calc:parLocal(1.25,GRILLE_LOCAL)},
 JS;
 $new = <<<'JS'
-SAN:{code:'SAN',nom:'Cabinet de santé (dont kiné, véto, ...)',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:'',min:0,step:1},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=0?1.25:seuil(S/n,GRILLE_LOCAL,3.5),met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p}];const base=avecPlancher(S*p,lignes,262.5);if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:base+met,pu:p,lignes}}},
+SAN:{code:'SAN',nom:'Cabinet de santé (dont kiné, véto, ...)',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:6,min:0,step:1},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=0?1.25:seuil(S/n,GRILLE_LOCAL,3.5),met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p}];const base=avecPlancher(S*p,lignes,262.5);if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:base+met,pu:p,lignes}}},
 JS;
 qreplace($js, trim($old), trim($new));
 
@@ -92,7 +92,7 @@ qreplace($js, 'seuil(S/n,[[0,3],[20,1.5],[30,1.1]],3)', 'seuil(S/n,[[0,1.5],[25,
 
 /* Université / enseignement supérieur. */
 $uni = <<<'JS'
-UNI:{code:'UNI',nom:'Université / enseignement supérieur',fam:'tertiaire',desc:'Facultés, écoles supérieures, amphithéâtres.',champs:[F_SURF,{k:'n',l:'Nombre de salles de cours',t:'number',d:'',min:0,step:1},{k:'amphi',l:'Amphithéâtre',t:'yesno',d:'non'},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=1?3:seuil(S/n,[[0,1.1],[25,1.05]],1.1),pc=v.amphi==='oui'?.7:1,pa=v.amphi==='oui'?.3:0,met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Salles de cours',d:`${nb(S*pc)} m² × ${nb(p)} €/m²`,v:S*pc*p}];if(pa)lignes.push({t:'Amphithéâtre',d:`${nb(S*pa)} m² × 0,80 €/m²`,v:S*pa*.8});if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:S*pc*p+S*pa*.8+met,pu:p,lignes}}},
+UNI:{code:'UNI',nom:'Université / enseignement supérieur',fam:'tertiaire',desc:'Facultés, écoles supérieures, amphithéâtres.',champs:[F_SURF,{k:'n',l:'Nombre de salles de cours',t:'number',d:10,min:0,step:1},{k:'amphi',l:'Amphithéâtre',t:'yesno',d:'non'},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=1?3:seuil(S/n,[[0,1.1],[25,1.05]],1.1),pc=v.amphi==='oui'?.7:1,pa=v.amphi==='oui'?.3:0,met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Salles de cours',d:`${nb(S*pc)} m² × ${nb(p)} €/m²`,v:S*pc*p}];if(pa)lignes.push({t:'Amphithéâtre',d:`${nb(S*pa)} m² × 0,80 €/m²`,v:S*pa*.8});if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:S*pc*p+S*pa*.8+met,pu:p,lignes}}},
 JS;
 qreplace($js, "HOT:{code:'HOT'", trim($uni) . "HOT:{code:'HOT'");
 
