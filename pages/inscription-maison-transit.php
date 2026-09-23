@@ -8,11 +8,8 @@ $packSlug = trim((string)($_POST['pack'] ?? ''));
 $pack = house_signup_pack($packSlug);
 
 $required = [
-    'nom' => 'Nom et prénom',
+    'nom' => 'Nom ou nom de société',
     'email' => 'E-mail',
-    'adresse' => 'Adresse',
-    'code_postal' => 'Code postal',
-    'ville' => 'Ville',
 ];
 
 $missing = [];
@@ -46,17 +43,21 @@ if ($missing) {
 /*
  * Le type_demande vient exclusivement de la configuration serveur.
  * On ignore toute valeur type_demande éventuellement injectée dans le POST.
+ *
+ * Le formulaire public reste volontairement court pour favoriser la conversion.
+ * Les champs historiques non demandés à cette étape sont conservés vides dans
+ * le POST de sortie afin de ne pas casser le traitement côté espace client.
  */
 $fields = [
     'pack' => $packSlug,
     'type_demande' => (string)$pack['type_demande'],
     'nom' => trim((string)$_POST['nom']),
-    'societe' => trim((string)($_POST['societe'] ?? '')),
+    'societe' => '',
     'email' => $email,
     'telephone' => trim((string)($_POST['telephone'] ?? '')),
-    'adresse' => trim((string)$_POST['adresse']),
-    'code_postal' => trim((string)$_POST['code_postal']),
-    'ville' => trim((string)$_POST['ville']),
+    'adresse' => '',
+    'code_postal' => '',
+    'ville' => '',
     'offre_maison' => max(0, min(100, (int)($_POST['offre_maison'] ?? 0))),
     'retour_site' => trim((string)($_POST['retour_site'] ?? '')),
     'origine' => 'r-e-2020.fr',
@@ -66,11 +67,12 @@ $target = 'https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-insc
 ?>
 <section class="house-signup">
   <div class="container signup-shell">
-    <div class="signup-card" style="text-align:center">
+    <div class="signup-card signup-transit-card">
+      <div class="signup-transit-spinner" aria-hidden="true"></div>
       <span class="eyebrow">Création de votre dossier</span>
       <h1><?= h($pack['label']) ?></h1>
-      <p>Nous vérifions votre compte KeePlanet et préparons votre nouveau dossier.</p>
-      <p style="color:#707686">Vous allez être redirigé automatiquement.</p>
+      <p>Votre demande est bien prise en compte. Nous préparons maintenant votre accès KeePlanet.</p>
+      <p class="signup-transit-note">Redirection automatique en cours…</p>
     </div>
   </div>
 </section>
@@ -83,9 +85,17 @@ $target = 'https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-insc
 
 <script>
 window.dataLayer=window.dataLayer||[];
-window.dataLayer.push({event:'inscription_maison_submit',pack:<?= json_encode($packSlug) ?>});
+window.dataLayer.push({
+  event:'inscription_maison_submit',
+  pack:<?= json_encode($packSlug) ?>
+});
+
+/*
+ * On laisse volontairement la page de transit se charger avant l'envoi final :
+ * les scripts de mesure / Ads ont ainsi le temps d'enregistrer l'étape.
+ */
 window.setTimeout(function(){
   var form=document.getElementById('house-signup-transit');
   if(form)form.submit();
-},450);
+},900);
 </script>
