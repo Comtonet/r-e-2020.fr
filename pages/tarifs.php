@@ -1,5 +1,146 @@
-<?php ?>
-<section class="commercial-simple-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Tarifs</span></div><span class="eyebrow">Tarifs étude RE2020</span><h1>Choisissez le parcours adapté à votre projet.</h1><p>Maison et extension : tarifs immédiats. Collectif et tertiaire : étude sur mesure et devis adapté à l’opération.</p></div></section>
-<section class="section"><div class="container"><div class="cards two major-choices"><article class="card pricing-choice"><span class="card-kicker">Maison individuelle & extension</span><h2>Des packs prêts à commander</h2><p>Pour la phase permis ou pour traiter l’étude complète dès le début.</p><ul><li>Eco’Permis à <?= h(price_ttc_label('price_eco_permis_ttc')) ?></li><li>Pack Permis à <?= h(price_ttc_label('price_pack_permis_ttc')) ?></li><li>Fin de travaux à <?= h(price_ttc_label('price_fin_travaux_ttc')) ?></li><li>Fin de travaux + ACV à <?= h(price_ttc_label('price_fin_travaux_acv_ttc')) ?></li></ul><a class="btn" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Voir les packs et détails</a></article><article class="card pricing-choice dark-card"><span class="card-kicker">Collectif & tertiaire</span><h2>Un devis selon votre opération</h2><p>Le prix dépend de la typologie du bâtiment, des surfaces, usages, zones et prestations demandées.</p><ul><li>Logements collectifs</li><li>Bureaux, commerces et ERP</li><li>Bâtiments tertiaires spécifiques</li><li>Études RE2020 et ACV selon besoin</li></ul><a class="btn btn-white" href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Préparer ma demande de devis</a></article></div></div></section>
-<section class="keepote-block"><div class="container keepote-inner"><div class="keepote-icon" aria-hidden="true">✦</div><div class="keepote-copy"><span class="eyebrow">KeePote · Assistant Keeplanet</span><h2>Vous hésitez entre plusieurs prestations ? Demandez à KeePote.</h2><p>KeePote est entraîné sur la RE2020 et la documentation validée de Keeplanet. Il peut vous aider à comprendre les différences entre les packs, les livrables et les étapes de l’étude avant votre inscription.</p><p class="keepote-human"><strong>Et si votre cas demande un avis humain :</strong> notre équipe reste évidemment disponible pour reprendre la main.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
-<section class="section soft"><div class="container split"><div><span class="eyebrow">Générateur de devis</span><h2>Bientôt : chiffrage en ligne.</h2><p class="big-p">Un générateur dédié sera intégré au site pour configurer le projet et produire un devis à partir du moteur Keeplanet. L’architecture est déjà prévue ; le moteur sera branché dès qu’il sera disponible.</p></div><div class="check-list"><div><b>1</b><span><strong>Décrire le projet</strong><small>typologie, surface, usage et localisation</small></span></div><div><b>2</b><span><strong>Choisir les prestations</strong><small>étude, ACV, options et variantes</small></span></div><div><b>3</b><span><strong>Obtenir le devis</strong><small>calculé par le futur moteur de devis</small></span></div></div></div></section>
+<?php
+$ecoPrice = price_ttc_label('price_eco_permis_ttc');
+$permisPrice = price_ttc_label('price_pack_permis_ttc');
+$finPrice = price_ttc_label('price_fin_travaux_ttc');
+$finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
+?>
+<a class="skip-link" href="#tarifs-main">Aller au contenu</a>
+
+<section class="tarifs-hero" id="tarifs-main">
+  <div class="container tarifs-hero-inner">
+    <div class="tarifs-breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Tarifs</span></div>
+    <span class="tarifs-eyebrow">Études thermiques RE2020 · France entière</span>
+    <h1>Votre projet. Le bon parcours. Le bon tarif.</h1>
+    <p class="tarifs-hero-lead">Maison individuelle, extension, logement collectif ou bâtiment tertiaire : choisissez votre type de projet et accédez directement au tarif ou au devis adapté.</p>
+    <div class="tarifs-hero-actions">
+      <a class="btn tarifs-btn-primary" href="#choisir-projet">Choisir mon projet</a>
+      <a class="tarifs-phone-link" href="tel:0806110559">Une question ? <strong>0806 110 559</strong></a>
+    </div>
+    <div class="tarifs-trust">
+      <span><b>✓</b><?= h(projects_label()) ?>+ projets étudiés</span>
+      <span><b>✓</b><?= h(experience_label()) ?> d’expérience</span>
+      <span><b>✓</b>Qualifié OPQIBI</span>
+      <span><b>✓</b>Assurance décennale</span>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs-choice-section" id="choisir-projet">
+  <div class="container">
+    <div class="tarifs-section-head">
+      <span class="tarifs-eyebrow">Commencez ici</span>
+      <h2>Quel est votre projet ?</h2>
+      <p>Deux parcours différents pour aller directement à l’essentiel.</p>
+    </div>
+
+    <div class="tarifs-choice-grid">
+      <article class="tarifs-choice-card tarifs-choice-house">
+        <div class="tarifs-choice-top">
+          <div class="tarifs-choice-icon">⌂</div>
+          <span class="tarifs-choice-badge">Tarifs immédiats</span>
+        </div>
+        <h3>Maison individuelle<br>&amp; extension</h3>
+        <p>Des packs prêts à commander pour le permis de construire ou l’étude RE2020 complète jusqu’à la fin du projet.</p>
+
+        <div class="tarifs-house-highlight">
+          <span>Le plus choisi pour le permis</span>
+          <div><strong>Pack Permis</strong><b><?= h($permisPrice) ?></b></div>
+          <small>Étude RE2020 + attestation permis générée par Keeplanet + conseils du thermicien.</small>
+        </div>
+
+        <div class="tarifs-mini-prices">
+          <span>Eco’Permis <strong><?= h($ecoPrice) ?></strong></span>
+          <span>Fin de travaux <strong><?= h($finPrice) ?></strong></span>
+          <span>Fin de travaux + ACV <strong><?= h($finAcvPrice) ?></strong></span>
+        </div>
+
+        <a class="btn tarifs-btn-primary tarifs-full" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Voir les packs maison</a>
+        <small class="tarifs-card-note">Tarifs TTC · quelle que soit la surface de la maison.</small>
+      </article>
+
+      <article class="tarifs-choice-card tarifs-choice-pro">
+        <div class="tarifs-choice-top">
+          <div class="tarifs-choice-icon">▦</div>
+          <span class="tarifs-choice-badge">Devis personnalisé</span>
+        </div>
+        <h3>Logement collectif<br>&amp; tertiaire</h3>
+        <p>Configurez votre opération et obtenez un chiffrage adapté à la typologie, au nombre de logements, aux surfaces et aux prestations souhaitées.</p>
+
+        <div class="tarifs-pro-types">
+          <span>Logements collectifs</span>
+          <span>Bureaux</span>
+          <span>Commerces</span>
+          <span>ERP</span>
+          <span>Extensions</span>
+          <span>Projets mixtes</span>
+        </div>
+
+        <div class="tarifs-pro-highlight">
+          <strong>Calculez votre devis en ligne</strong>
+          <p>Décrivez votre projet, sélectionnez les prestations et obtenez le chiffrage directement depuis notre configurateur.</p>
+        </div>
+
+        <a class="btn tarifs-btn-green tarifs-full" href="/devis-en-ligne/">Calculer mon devis</a>
+        <a class="tarifs-secondary-link" href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Voir aussi notre accompagnement collectif &amp; tertiaire →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs-proof-section">
+  <div class="container tarifs-proof-grid">
+    <div><strong><?= h(standard_delay_label()) ?></strong><span>délai actuel sur les packs maison principaux</span></div>
+    <div><strong><?= h(google_rating_label()) ?>/5</strong><span><?= h(google_reviews_label()) ?> avis Google</span></div>
+    <div><strong>100 % en ligne</strong><span>documents et suivi dans votre espace client</span></div>
+    <div><strong>Une vraie équipe</strong><span>thermiciens joignables par téléphone et e-mail</span></div>
+  </div>
+</section>
+
+<section class="tarifs-section tarifs-how">
+  <div class="container">
+    <div class="tarifs-section-head tarifs-center">
+      <span class="tarifs-eyebrow">Simple du début à la fin</span>
+      <h2>Vous choisissez. Vous déposez vos plans. On s’occupe du reste.</h2>
+    </div>
+
+    <div class="tarifs-steps">
+      <article><span>1</span><h3>Choisissez votre parcours</h3><p>Pack maison à tarif fixe ou devis selon votre opération.</p></article>
+      <article><span>2</span><h3>Créez votre dossier</h3><p>Vous déposez vos plans et informations dans votre espace sécurisé.</p></article>
+      <article><span>3</span><h3>Un thermicien prend le relais</h3><p>Votre étude est réalisée par l’équipe Keeplanet.</p></article>
+      <article><span>4</span><h3>Recevez vos livrables</h3><p>Étude, synthèses et documents réglementaires selon la prestation choisie.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs-help-section">
+  <div class="container tarifs-help-grid">
+    <div class="tarifs-help-copy">
+      <span class="tarifs-eyebrow">Vous ne savez pas quoi choisir ?</span>
+      <h2>Demandez à KeePote… ou directement à un humain.</h2>
+      <p>KeePote peut vous aider à comprendre les différences entre les prestations. Et si vous préférez parler à quelqu’un, notre équipe reste disponible par téléphone et par e-mail.</p>
+      <div class="tarifs-help-actions">
+        <button class="btn tarifs-btn-primary" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button>
+        <a href="tel:0806110559">☎ 0806 110 559</a>
+        <a href="mailto:info@keeplanet.fr">✉ info@keeplanet.fr</a>
+      </div>
+    </div>
+    <div class="tarifs-help-box">
+      <strong>Pas besoin de connaître la RE2020.</strong>
+      <p>Décrivez simplement votre projet. Le site et notre équipe vous orientent vers la prestation adaptée.</p>
+      <a href="/contact/">Nous contacter →</a>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs-final">
+  <div class="container tarifs-final-inner">
+    <div>
+      <span class="tarifs-eyebrow tarifs-eyebrow-light">Prêt à avancer ?</span>
+      <h2>Choisissez votre projet et lancez votre étude.</h2>
+    </div>
+    <div class="tarifs-final-buttons">
+      <a class="btn tarifs-btn-white" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Maison &amp; extension</a>
+      <a class="btn tarifs-btn-green" href="/devis-en-ligne/">Collectif &amp; tertiaire</a>
+    </div>
+  </div>
+</section>
