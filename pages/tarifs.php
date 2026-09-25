@@ -13,7 +13,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
     <h1>Votre projet. Le bon parcours. Le bon tarif.</h1>
     <p class="tarifs-hero-lead">Maison individuelle, extension, logement collectif ou bâtiment tertiaire : choisissez votre type de projet et accédez directement au tarif ou au devis adapté.</p>
     <div class="tarifs-hero-actions">
-      <a class="btn tarifs-btn-primary" href="#choisir-projet">Choisir mon projet</a>
+      <a class="btn tarifs-btn-primary" href="#choisir-projet" data-no-signup-popup>Choisir mon projet</a>
       <a class="tarifs-phone-link" href="tel:0806110559">Une question ? <strong>0806 110 559</strong></a>
     </div>
     <div class="tarifs-trust">
