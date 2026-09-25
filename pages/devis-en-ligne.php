@@ -155,6 +155,7 @@ $quoteConfig = [
 <section class="devis-app" id="devis-app">
   <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
   <main class="wrap">
+    <div class="quote-help-notice" style="margin:0 0 22px;padding:16px 18px;border:1px solid rgba(56,34,126,.14);border-radius:16px;background:#f7f6fb;font-size:15px;line-height:1.55;"><strong>Vous n’y arrivez pas ?</strong> Envoyez-nous simplement vos plans à <a href="mailto:devis@keeplanet.fr"><strong>devis@keeplanet.fr</strong></a> et notre équipe pourra reprendre votre demande.</div>
     <div class="cols"><div id="quoteScreen"></div><aside class="rail noprint" id="quoteRail"></aside></div>
     <div class="bar noprint" id="quoteBar"><div class="bar-in"><div class="bar-txt" id="quoteBarTxt"></div><button class="btn btn-g" id="quoteBack" hidden>Retour</button><button class="btn btn-p ml" id="quoteNext">Continuer</button></div></div>
   </main>
