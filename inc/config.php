@@ -3,8 +3,8 @@ return [
     // Chiffres globaux affichés sur le site.
     'projects_count' => 89000,
     'experience_years' => 16,
-    'google_rating' => 4.6,
-    'google_reviews' => 319,
+    'google_rating' => 4.7,
+    'google_reviews' => 343,
 
     // Qualifications / preuves publiques.
     'opqibi_1331' => true,
