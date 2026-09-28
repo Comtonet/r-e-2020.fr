@@ -15,3 +15,7 @@
 .process-callout{border-left-color:#38227E!important}.process-callout.green{border-left-color:#98BF24!important}
 .process-final-kicker{color:#98BF24!important}
 .article-cta{background:#38227E!important}
+
+/* Contraste CTA sur fond violet */
+.article-cta,.article-cta h2,.article-cta h3,.article-cta p,.article-cta .eyebrow{color:#fff!important}
+.article-cta .eyebrow{opacity:.9}
