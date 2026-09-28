@@ -45,9 +45,8 @@ main strong{font-weight:800}
 }
 
 /* KeePote : promesse d'aide instantanée + relais humain */
-.ai-launcher>span:last-child{display:flex;flex-direction:column;align-items:flex-start;line-height:1.05}
-.ai-launcher>span:last-child strong{font-size:.92rem}
-.ai-launcher>span:last-child small{margin-top:3px;font-size:.67rem;font-weight:700;opacity:.82}
+.ai-launcher{white-space:nowrap}
+.ai-launcher strong{font-size:.92rem}
 .kee-pote-promo{padding:30px 0;background:linear-gradient(135deg,#f7f4ff,#fbfdeF);border-top:1px solid #ece7f7;border-bottom:1px solid #e6edcf}
 .kee-pote-promo-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:22px}
 .kee-pote-promo-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:20px;background:#38227E;color:#98BF24;font-size:1.7rem;font-weight:900;box-shadow:0 12px 28px rgba(56,34,126,.16)}
