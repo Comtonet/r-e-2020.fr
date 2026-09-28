@@ -140,7 +140,6 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Tout le Pack Permis</strong></span></li>
           <li><b>✓</b><span><strong>Calcul complet RE2020</strong><small>Bbio + Cep + DH</small></span></li>
           <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>utilisés par le professionnel qui édite l’attestation finale</small></span></li>
-          <li><b>✓</b><span><strong>Suivi estimatif des consommations</strong></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
           <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>avec suivi des consommations · offert</small></span></li>
         </ul>
