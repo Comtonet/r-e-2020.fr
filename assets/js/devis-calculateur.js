@@ -83,6 +83,8 @@ root.addEventListener('change',e=>{
   const l=S.lots.find(x=>x.id===b.dataset.lot);
   if(!l)return;
 
+  if(b.dataset.act==='valchoice'){ l.v[b.dataset.k]=b.value; render(); return; }
+
   if(b.dataset.act==='samebat'){
     const i=+b.dataset.i;
     if(!l.v.bats[i]||typeof l.v.bats[i]!=='object')return;
