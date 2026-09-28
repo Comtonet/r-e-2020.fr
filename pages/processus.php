@@ -27,6 +27,9 @@
   </div>
 </section>
 
+<section class="kee-pote-promo"><div class="container kee-pote-promo-inner"><div class="kee-pote-promo-icon" aria-hidden="true">✦</div><div><span class="eyebrow">KeePote · IA RE2020 Keeplanet</span><h2>Une question sur votre projet ? KeePote vous répond instantanément.</h2><p>Surentraîné à la RE2020, KeePote peut vous aider à comprendre votre étude, vos résultats, les exigences réglementaires et les pistes d’amélioration de votre projet.</p><p class="human-relay"><strong>Et l’humain reste là :</strong> pour un arbitrage technique ou dès que vous le souhaitez, un thermicien Keeplanet prend le relais par téléphone ou par e-mail.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
+
+
 <section class="process-proof">
   <div class="container process-proof-grid">
     <div><strong>89 000+</strong><span>projets traités</span></div>
