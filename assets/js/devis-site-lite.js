@@ -181,7 +181,7 @@ function publicPayload(){
   const natMap={neuf:'construction',ext:'extension',sur:'surelevation','mixte-ne':'mixte','reno-ext':'extension','reno-neuf':'mixte'};
   const family=famMap[st.famille]||st.famille||'';
   const nature=natMap[st.nature]||st.nature||'';
-  const data={projectName:st.nom||''};
+  const data={projectName:st.nom||'',surExist:st.surExist??'',surNeuve:st.surNeuve??'',familleExtension:st.familleExt||'',familleNeuve:st.familleNeuf||''};
   if(family==='maison'){
     const mi=(st.lots||[]).find(l=>l.usage==='MI');
     const ext=(st.lots||[]).find(l=>l.usage==='EXT');
@@ -193,7 +193,7 @@ function publicPayload(){
     const bats=col&&col.v&&Array.isArray(col.v.bats)?col.v.bats:[];
     data.buildings=bats.map(b=>b&&typeof b==='object'?{n:b.n,same:b.same==null?'':b.same}:{n:b,same:''});
   }else{
-    data.zones=(st.lots||[]).map(l=>({usage:l.usage||'',surface:l.v&&l.v.S!=null?l.v.S:'',count:l.v&&l.v.n!=null?l.v.n:'',resto:l.v&&l.v.resto||'',amphi:l.v&&l.v.amphi||'',cuisine:l.v&&l.v.cuisine||'',lits:l.v&&l.v.lits||'',sc:l.v&&l.v.sc||'',sj:l.v&&l.v.sj||'',coqueBrute:l.v&&l.v.coqueBrute||'',surfExist:l.v&&l.v.surfExist||''}));
+    data.zones=(st.lots||[]).map(l=>({role:l.role||'',usage:l.usage||'',surface:l.v&&l.v.S!=null?l.v.S:'',count:l.v&&l.v.n!=null?l.v.n:'',logements:l.v&&l.v.N!=null?l.v.N:'',modeles:l.v&&l.v.M!=null?l.v.M:'',resto:l.v&&l.v.resto||'',amphi:l.v&&l.v.amphi||'',cuisine:l.v&&l.v.cuisine||'',lits:l.v&&l.v.lits||'',sc:l.v&&l.v.sc||'',sj:l.v&&l.v.sj||'',coqueBrute:l.v&&l.v.coqueBrute||'',surfExist:l.v&&l.v.surfExist||''}));
   }
   const p=prices();
   const totalTtc=currentTotalTtc();
