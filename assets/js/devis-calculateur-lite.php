@@ -24,22 +24,8 @@ function qreplace(&$js, $from, $to) {
     if (strpos($js, $from) !== false) $js = str_replace($from, $to, $js);
 }
 
-/* Assets légers du site plutôt que les images base64 du prototype. */
-$js = strtr($js, [
-    'Collectif/Collectif classique.png' => 'Collectif.jpg',
-    'Collectif/Collectif simple de 2x2.png' => 'Collectif.jpg',
-    'Collectif/Collectif simple superposés 1-1-1.png' => 'Collectif.jpg',
-    'Maisons/1 maison sur deux.jpg' => 'Maisons.jpg',
-    'Maisons/Lotissement.png' => 'Maisons.jpg',
-    'Maisons/Maison jumelées.png' => 'Maisons.jpg',
-    'Tertiaire/Atelier.png' => 'Tertiaire.jpg',
-    'Tertiaire/Café.png' => 'Tertiaire.jpg',
-    'Tertiaire/Industrie.png' => 'Tertiaire.jpg',
-    'Mixte/Unité/Lots tertiaire + collectif + maison.png' => 'Mixte.jpg',
-    'Mixte/Unité/Multizone café + collectif.png' => 'Mixte.jpg',
-    'Mixte/Unité/Tertiaire + logement de fonction.png' => 'Mixte.jpg',
-]);
-qreplace($js, ' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low" width="320" height="180">');
+/* Illustrations détaillées du 18/09 conservées pour distinguer les cas de figure. */
+qreplace($js, ' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low">');
 
 /* Données initiales : champs vides comme dans la version 11/09/2026. */
 qreplace($js, "const F_SURF={k:'S',l:'Surface totale chauffée',u:'m²',t:'number',d:200,min:0,step:10};", "const F_SURF={k:'S',l:'Surface totale chauffée',u:'m²',t:'number',d:'',min:0,step:10};");
