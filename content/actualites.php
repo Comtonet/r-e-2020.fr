@@ -8,6 +8,31 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug' => 'construction-neuve-septembre-2026-permis-logements',
+        'title' => 'Construction neuve : permis et perspectives restent fragiles en septembre 2026',
+        'excerpt' => 'Les derniers indicateurs disponibles montrent une construction neuve toujours fragile à la rentrée 2026, avec des autorisations en baisse en juillet et des perspectives dégradées dans le logement neuf.',
+        'date' => '2026-09-28',
+        'source_name' => 'SDES — La construction neuve',
+        'source_url' => 'https://www.statistiques.developpement-durable.gouv.fr/la-construction-neuve',
+        'secondary_source_url' => 'https://www.insee.fr/fr/statistiques/9054797',
+        'body' => <<<'HTML'
+<p><strong>La rentrée 2026 confirme une situation encore fragile pour la construction neuve.</strong> Les dernières données disponibles montrent des autorisations de logements en baisse en juillet et des perspectives d’activité moins favorables en septembre.</p>
+<h2>29 577 logements autorisés en juillet 2026</h2>
+<p>Le SDES indique qu’en juillet 2026, <strong>29 577 logements ont été autorisés</strong> en France entière. En données corrigées des variations saisonnières et des jours ouvrables, le volume recule de <strong>2,5 % par rapport à juin</strong>.</p>
+<h2>Les perspectives du logement neuf se replient en septembre</h2>
+<p>L’Insee indique le 24 septembre que le climat des affaires dans le bâtiment reste à <strong>96</strong>, sous sa moyenne de long terme de 100. Pour le logement neuf, le solde d’opinion sur l’activité prévue passe de <strong>-15,1 en août à -23,1 en septembre</strong>.</p>
+<h2>Un recul récent des permis à surveiller</h2>
+<p>La Fédération Française du Bâtiment relève dans sa note de conjoncture de septembre un recul de <strong>8,0 % des permis sur les trois derniers mois</strong>, avec une baisse de <strong>16,6 % dans le collectif</strong>. Ces données décrivent une conjoncture et ne modifient pas les exigences RE2020 applicables aux projets.</p>
+<h2>Quel impact pour un projet RE2020 ?</h2>
+<p>Le ralentissement du marché ne change ni le <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">Cep et le Cep,nr</a>, ni le Bbio, ni les exigences carbone. Il renforce en revanche l’intérêt de sécuriser les choix techniques tôt afin de limiter les reprises de conception et de maîtriser le budget.</p>
+<p>Pour les opérations collectives et tertiaires, consultez aussi notre dossier sur la <a href="/reglementaire/re2020-tertiaire-specifique-hotels-commerces-industrie/">RE2020 des bâtiments tertiaires spécifiques</a>.</p>
+<h2>De nouvelles données attendues fin septembre</h2>
+<p>Le SDES annonce pour le 29 septembre les résultats de la construction de logements et de locaux à fin août. Ils permettront de voir si le recul observé en juillet se prolonge.</p>
+<h2>Faire chiffrer votre étude RE2020</h2>
+<p>KeePlanet réalise les études énergétiques et environnementales RE2020. Pour un projet collectif ou tertiaire, vous pouvez <a href="/devis-en-ligne/"><strong>générer votre devis en ligne</strong></a>. Pour une maison ou une extension, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">offres dédiées</a>.</p>
+HTML
+    ],
+    [
         'slug' => 'guide-re2020-cerema-mise-a-jour-septembre-2026',
         'title' => 'Guide RE2020 Cerema : nouvelle mise à jour de septembre 2026',
         'excerpt' => 'Le guide RE2020 DHUP/Cerema a été actualisé le 17 septembre 2026. Il intègre l’extension aux bâtiments tertiaires spécifiques et industriels ainsi que les ajustements réglementaires de 2026.',
