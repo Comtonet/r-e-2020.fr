@@ -45,7 +45,7 @@ return [
  'type'=>'contact','h1'=>'Parlez-nous de votre projet','lead'=>'Une question technique ou commerciale ? Notre équipe vous répond rapidement.'
 ],
 '/conditions-generales-de-vente/' => [
- 'title'=>'Conditions générales de vente | r-e-2020.fr','description'=>'Conditions générales de vente du service r-e-2020.fr proposé par Keeplanet.','type'=>'legal','h1'=>'Conditions générales de vente','lead'=>'Version complète à migrer depuis le site actuel avant mise en production définitive.'
+ 'title'=>'Conditions générales de vente | r-e-2020.fr','description'=>'Conditions générales de vente du service r-e-2020.fr proposé par Keeplanet.','type'=>'cgv','h1'=>'Conditions générales de vente (CGV)','lead'=>'Conditions applicables aux prestations de services fournies par Keeplanet.'
 ],
 '/mentions-legales/' => [
  'title'=>'Mentions légales | r-e-2020.fr','description'=>'Mentions légales du site r-e-2020.fr proposé par Keeplanet.','type'=>'legal','h1'=>'Mentions légales','lead'=>'Les mentions complètes seront reprises et vérifiées avant la bascule en production.'
@@ -100,6 +100,81 @@ function render_page($page,$path){
  } elseif($t==='contact'){
  echo hero($page,'Contact'); ?>
 <section class="section"><div class="container contact-grid"><div class="card"><h2>Téléphone</h2><a class="contact-big" href="tel:0806110559">0806 110 559</a><p>Du lundi au vendredi<br>9h–12h30 / 13h30–17h30</p></div><div class="card"><h2>Email</h2><a class="contact-big smaller" href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><p>Pour une question sur votre étude ou votre projet.</p></div><div class="card"><h2>Adresse</h2><p class="contact-big smaller">Keeplanet<br>201 route d’Oberhausbergen<br>67200 Strasbourg</p></div></div></section><?php
+ } elseif($t==='cgv'){
+ ?>
+<section class="commercial-simple-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>CGV</span></div><span class="eyebrow">Informations légales</span><h1>Conditions générales de vente (CGV)</h1><p>Conditions applicables aux prestations de services fournies par Keeplanet.</p></div></section>
+<section class="section legal-page"><div class="container narrow legal-content">
+<h2>Article 1 – Champ d’application</h2>
+<p>Les présentes Conditions Générales de Vente (ci-après « CGV ») s’appliquent, sans restriction ni réserve, à l’ensemble des prestations de services fournies par la société <strong>Keeplanet</strong>, SARL au capital social de 30 000 euros, dont le siège social est situé <strong>201 route d’Oberhausbergen – 67200 Strasbourg</strong>, immatriculée au Registre du Commerce et des Sociétés de Strasbourg sous le numéro <strong>515 123 800</strong>, TVA intracommunautaire <strong>FR04 515 123 800</strong>, ci-après dénommée « le Prestataire ».</p>
+<p>Elles s’appliquent à toute commande passée par un client professionnel ou consommateur, quels que soient le site internet, la plateforme ou le canal de commercialisation utilisé par le Prestataire.</p>
+<p>Toute commande implique l’acceptation pleine et entière des présentes CGV, à l’exclusion de tout autre document.</p>
+
+<h2>Article 2 – Informations précontractuelles</h2>
+<p>Le client reconnaît avoir pris connaissance, avant toute commande, des caractéristiques essentielles des prestations proposées, de leur prix, des délais de réalisation indicatifs et des modalités de paiement.</p>
+<p>Le client est seul responsable de l’adéquation des prestations commandées à ses besoins.</p>
+
+<h2>Article 3 – Commandes</h2>
+<p>La commande est réputée ferme et définitive dès validation du paiement ou acceptation écrite du devis par tout moyen (signature électronique, email, validation en ligne).</p>
+<p>Toute modification ou annulation demandée par le client après le démarrage de la prestation pourra entraîner une facturation complémentaire ou un refus de modification.</p>
+
+<h2>Article 4 – Prix</h2>
+<p>Les prix sont exprimés en euros, toutes taxes comprises (TTC), et sont ceux en vigueur au jour de la commande.</p>
+<p>Le Prestataire se réserve le droit de modifier ses tarifs à tout moment, sans effet rétroactif sur les commandes déjà validées.</p>
+<p>Pour nos packs RE2020, les tarifs sont indiqués pour une maison individuelle d’une surface habitable (d’un seul logement) maximale de 300 m², au-delà nous nous réservons le droit d’appliquer une majoration.</p>
+
+<h2>Article 5 – Modalités de paiement</h2>
+<p>Le paiement s’effectue selon les modalités proposées lors de la commande :</p>
+<ul><li>carte bancaire,</li><li>virement bancaire,</li><li>chèque,</li><li>ou tout autre moyen proposé par le Prestataire.</li></ul>
+<p>Sauf indication contraire, le paiement est exigible à la commande. En cas de paiement différé, le solde devra être réglé dans un délai maximal de <strong>30 jours</strong> à compter de la date de facturation.</p>
+
+<h2>Article 6 – Retard de paiement</h2>
+<p>Tout retard de paiement entraîne, de plein droit et sans mise en demeure préalable :</p>
+<ul><li>l’application de pénalités de retard au taux légal majoré,</li><li>ainsi qu’une indemnité forfaitaire pour frais de recouvrement de <strong>40 €</strong>, conformément à l’article L.441-10 du Code de commerce.</li></ul>
+
+<h2>Article 7 – Délais de réalisation</h2>
+<p>Les délais de réalisation sont donnés à titre indicatif. Ils peuvent être suspendus ou prolongés en cas de :</p>
+<ul><li>informations manquantes ou erronées transmises par le client,</li><li>retard de paiement,</li><li>force majeure ou événement indépendant de la volonté du Prestataire.</li></ul>
+<p>Aucun retard ne pourra donner lieu à indemnisation ou annulation de commande.</p>
+
+<h2>Article 8 – Obligations du client</h2>
+<p>Le client s’engage à fournir des informations exactes, complètes et exploitables dans les délais demandés.</p>
+<p>Le Prestataire ne saurait être tenu responsable des conséquences liées à des informations erronées, incomplètes ou transmises tardivement.</p>
+
+<h2>Article 9 – Droit de rétractation</h2>
+<p>Conformément aux articles L.221-18 et suivants du Code de la consommation, le client consommateur dispose d’un <strong>délai de rétractation de 14 jours</strong> à compter de la commande.</p>
+<p>Toutefois, conformément à l’article L.221-28 du Code de la consommation, <strong>le client renonce expressément à son droit de rétractation</strong> lorsque l’exécution de la prestation commence avant la fin de ce délai, avec son accord.</p>
+
+<h2>Article 10 – Responsabilité</h2>
+<p>La responsabilité du Prestataire est strictement limitée au montant de la prestation commandée.</p>
+<p>Le Prestataire ne saurait être tenu responsable des dommages indirects, pertes d’exploitation, pertes de données ou préjudices commerciaux.</p>
+
+<h2>Article 11 – Propriété intellectuelle</h2>
+<p>L’ensemble des livrables, méthodes, outils, documents et contenus produits par le Prestataire demeure sa propriété intellectuelle exclusive, sauf mention contraire expresse.</p>
+<p>Toute reproduction ou exploitation non autorisée est interdite.</p>
+
+<h2>Article 12 – Sécurité informatique</h2>
+<p>Le Prestataire met en œuvre les moyens raisonnables pour sécuriser ses systèmes. Il ne saurait toutefois être tenu responsable en cas de piratage, virus ou intrusion résultant de facteurs extérieurs.</p>
+
+<h2>Article 13 – Données personnelles</h2>
+<p>Les données personnelles collectées sont utilisées uniquement pour la gestion des commandes, la relation client et les obligations légales.</p>
+<p>Conformément à la réglementation en vigueur, le client dispose d’un droit d’accès, de rectification et de suppression de ses données en contactant : <a href="mailto:info@keeplanet.fr"><strong>info@keeplanet.fr</strong></a>.</p>
+
+<h2>Article 14 – Facturation électronique</h2>
+<p>Le client accepte expressément la réception des factures au format électronique (PDF), transmises par email ou via un espace client sécurisé.</p>
+
+<h2>Article 15 – Médiation de la consommation</h2>
+<p>Conformément aux articles L.611-1 et suivants du Code de la consommation, le client peut recourir gratuitement à un médiateur de la consommation après réclamation écrite restée sans solution.</p>
+<p>Le médiateur désigné est :<br><strong>CM2C</strong><br>49 rue de Ponthieu – 75008 Paris<br>Tél. 01 89 47 00 14<br><a href="https://www.cm2c.net/declarer-un-litige.php" target="_blank" rel="noopener">Déclarer un litige auprès de CM2C</a><br><a href="mailto:litiges@cm2c.net">litiges@cm2c.net</a></p>
+
+<h2>Article 16 – Opposition au démarchage téléphonique (Bloctel)</h2>
+<p>Conformément à l’article L.223-2 du Code de la consommation, le consommateur peut s’inscrire gratuitement sur la liste d’opposition au démarchage téléphonique <strong>Bloctel</strong> : <a href="https://www.bloctel.gouv.fr" target="_blank" rel="noopener">bloctel.gouv.fr</a>.</p>
+
+<h2>Article 17 – Droit applicable – Litiges</h2>
+<p>Les présentes CGV sont soumises au droit français.</p>
+<p>En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents seront ceux du ressort du siège social du Prestataire.</p>
+
+<div class="legal-update"><strong>CGV mises à jour le : 31/03/2026</strong></div>
+</div></section><?php
  } elseif($t==='legal'){
  ?> <section class="section legal-page"><div class="container narrow"><span class="eyebrow">Informations légales</span><h1><?=h($page['h1'])?></h1><p class="big-p"><?=h($page['lead'])?></p><a class="btn btn-ghost" href="/contact/">Nous contacter</a></div></section><?php
  } else {
