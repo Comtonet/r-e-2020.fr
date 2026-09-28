@@ -48,7 +48,7 @@ return [
  'title'=>'Conditions générales de vente | r-e-2020.fr','description'=>'Conditions générales de vente du service r-e-2020.fr proposé par Keeplanet.','type'=>'cgv','h1'=>'Conditions générales de vente (CGV)','lead'=>'Conditions applicables aux prestations de services fournies par Keeplanet.'
 ],
 '/mentions-legales/' => [
- 'title'=>'Mentions légales | r-e-2020.fr','description'=>'Mentions légales du site r-e-2020.fr proposé par Keeplanet.','type'=>'legal','h1'=>'Mentions légales','lead'=>'Les mentions complètes seront reprises et vérifiées avant la bascule en production.'
+ 'title'=>'Mentions légales | r-e-2020.fr','description'=>'Mentions légales du site r-e-2020.fr proposé par Keeplanet.','type'=>'mentions','h1'=>'Mentions légales','lead'=>'Informations légales, conditions d’utilisation et politique de confidentialité de r-e-2020.fr.'
 ],
 '/404/' => ['title'=>'Page introuvable | r-e-2020.fr','description'=>'La page demandée est introuvable.','type'=>'404','h1'=>'Cette page n’existe pas encore','lead'=>'Utilisez le menu ou revenez à l’accueil.']
 ];}
@@ -174,6 +174,76 @@ function render_page($page,$path){
 <p>En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents seront ceux du ressort du siège social du Prestataire.</p>
 
 <div class="legal-update"><strong>CGV mises à jour le : 31/03/2026</strong></div>
+</div></section><?php
+ } elseif($t==='mentions'){
+ ?>
+<section class="commercial-simple-hero"><div class="container"><div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Mentions légales</span></div><span class="eyebrow">Informations légales</span><h1>Mentions légales</h1><p>Informations légales, conditions d’utilisation et politique de confidentialité de r-e-2020.fr.</p></div></section>
+<section class="section legal-page"><div class="container narrow legal-content">
+<h2>I. Site</h2><p>Le site r-e-2020.fr est édité pour la société <strong>KEEPLANET</strong>.<br>N° SIREN : <strong>515 123 800</strong><br>201 route d’Oberhausbergen – 67200 Strasbourg<br><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a> · <a href="tel:0806110559">0806 110 559</a></p>
+<h2>II. Créateur du site</h2><p><strong>Keeplanet SARL</strong></p>
+<h2>III. Hébergeur du site</h2><p><strong>OVH</strong>, société au capital de 10 059 500 €, située 2 rue Kellermann, BP 80157, 59053 Roubaix Cedex 1.</p>
+
+<h2>Politique de confidentialité</h2>
+<h3>Définitions</h3>
+<p><strong>Client :</strong> tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site.</p>
+<p><strong>Prestations et Services :</strong> les prestations et services mis à disposition des Clients par le Site.</p>
+<p><strong>Contenu :</strong> ensemble des éléments constituant l’information présente sur le Site, notamment textes, images et vidéos.</p>
+<p><strong>Informations clients :</strong> ensemble des données personnelles susceptibles d’être détenues par le Site pour la gestion du compte, de la relation client et à des fins d’analyses et de statistiques.</p>
+<p><strong>Utilisateur :</strong> internaute se connectant et utilisant le Site.</p>
+<p><strong>Informations personnelles :</strong> informations permettant, directement ou indirectement, l’identification des personnes physiques auxquelles elles s’appliquent. Les termes « données à caractère personnel », « personne concernée », « sous-traitant » et « données sensibles » ont le sens défini par le RGPD (UE 2016/679).</p>
+
+<h2>1. Présentation du site internet</h2>
+<p>En vertu de l’article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique, les présentes mentions précisent aux utilisateurs l’identité des différents intervenants dans le cadre de la réalisation et du suivi du Site.</p>
+
+<h2>2. Conditions générales d’utilisation du site et des services proposés</h2>
+<p>Le Site constitue une œuvre de l’esprit protégée par les dispositions du Code de la propriété intellectuelle et les réglementations internationales applicables. Le Client ne peut réutiliser, céder ou exploiter pour son propre compte tout ou partie des éléments ou travaux du Site sans autorisation.</p>
+<p>L’utilisation du Site implique l’acceptation pleine et entière des présentes conditions d’utilisation. Elles peuvent être modifiées ou complétées à tout moment ; les utilisateurs sont donc invités à les consulter régulièrement.</p>
+<p>Le Site est normalement accessible à tout moment. Une interruption pour maintenance technique peut toutefois être décidée. Le Site et les présentes mentions légales peuvent être mis à jour à tout moment.</p>
+
+<h2>3. Description des services fournis</h2>
+<p>Le Site a pour objet de fournir une information concernant l’ensemble des activités de la société. Malgré le soin apporté à son contenu, il ne pourra être tenu responsable des oublis, inexactitudes ou carences de mise à jour, qu’elles soient de son fait ou de celui de tiers partenaires.</p>
+<p>Les informations publiées sont données à titre indicatif, sont susceptibles d’évoluer et ne sont pas exhaustives.</p>
+
+<h2>4. Limitations contractuelles sur les données techniques</h2>
+<p>Le Site utilise notamment la technologie JavaScript. Il ne pourra être tenu responsable de dommages matériels liés à son utilisation. L’utilisateur s’engage à accéder au Site avec un matériel récent, exempt de virus et un navigateur à jour.</p>
+<p>Le Site est hébergé chez un prestataire situé sur le territoire de l’Union européenne. L’hébergeur assure la continuité de son service mais peut l’interrompre notamment pour maintenance, amélioration de ses infrastructures, défaillance ou trafic anormal. Le Site et l’hébergeur ne peuvent être tenus responsables des dysfonctionnements du réseau Internet ou des équipements empêchant l’accès au serveur.</p>
+
+<h2>5. Propriété intellectuelle et contrefaçons</h2>
+<p>Le Site détient les droits de propriété intellectuelle ou les droits d’usage sur les éléments accessibles sur le Site, notamment les textes, images, graphismes, logos, vidéos, icônes et sons. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie de ces éléments est interdite sans autorisation écrite préalable.</p>
+<p>Toute exploitation non autorisée pourra être considérée comme constitutive d’une contrefaçon conformément aux articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+
+<h2>6. Limitations de responsabilité</h2>
+<p>Le Site ne pourra être tenu responsable des dommages directs ou indirects causés au matériel de l’utilisateur lors de l’accès au Site, notamment en cas d’utilisation d’un matériel inadapté, d’un bug ou d’une incompatibilité.</p>
+<p>Le Site ne pourra également être tenu responsable des dommages indirects consécutifs à son utilisation. Dans les espaces interactifs, le Site se réserve le droit de supprimer tout contenu contraire à la législation applicable et, le cas échéant, de mettre en cause la responsabilité civile et/ou pénale de son auteur.</p>
+
+<h2>7. Gestion des données personnelles</h2>
+<p>Le Client est informé de la réglementation applicable en matière de données personnelles, notamment la loi Informatique et Libertés et le Règlement Général sur la Protection des Données (RGPD : UE 2016/679).</p>
+<h3>7.1 Responsable de la collecte</h3>
+<p>Pour les données collectées lors de la création d’un compte ou de la navigation sur le Site, le responsable du traitement est <strong>Keeplanet SARL</strong>. Keeplanet s’engage à respecter le cadre légal applicable, à définir les finalités des traitements, à informer les personnes concernées et à maintenir un registre des traitements conforme à la réalité.</p>
+<h3>7.2 Finalités des données collectées</h3>
+<p>Le Site est susceptible de traiter les données nécessaires pour :</p>
+<ul><li>permettre la navigation, la gestion et la traçabilité des prestations et services commandés, notamment les données de connexion, facturation et historique des commandes ;</li><li>prévenir et lutter contre la fraude informatique ;</li><li>améliorer la navigation et l’expérience utilisateur ;</li><li>mener des enquêtes de satisfaction facultatives ;</li><li>mener des campagnes de communication par e-mail ou SMS lorsque cela est permis.</li></ul>
+<p>Le Site ne commercialise pas les données personnelles de ses utilisateurs.</p>
+<h3>7.3 Droits des utilisateurs</h3>
+<p>Conformément à la réglementation européenne, les utilisateurs disposent notamment des droits d’accès, de rectification, d’effacement, de retrait du consentement, de limitation, d’opposition et, lorsque les conditions sont réunies, de portabilité de leurs données.</p>
+<p>Pour exercer ces droits ou obtenir des informations sur l’utilisation de ses données, l’Utilisateur peut écrire à <a href="mailto:info@keeplanet.fr"><strong>info@keeplanet.fr</strong></a> ou à Keeplanet, 201 route d’Oberhausbergen, 67200 Strasbourg. Les demandes restent soumises aux obligations légales de conservation et d’archivage. L’utilisateur peut également adresser une réclamation à la CNIL.</p>
+<h3>7.4 Non-communication des données personnelles</h3>
+<p>Le Site prend les précautions nécessaires pour préserver la sécurité des informations et éviter leur communication à des personnes non autorisées. Les sous-traitants techniques et commerciaux sont choisis sous réserve de garanties suffisantes au regard du RGPD. En cas d’incident affectant l’intégrité ou la confidentialité des informations, les mesures requises seront prises conformément aux obligations applicables.</p>
+<h3>7.5 Types de données collectées</h3>
+<p>Dans le cadre du fonctionnement du service, le Site peut notamment collecter le nom, le numéro de téléphone, l’adresse e-mail ainsi que les données nécessaires à la gestion du compte et des prestations. Des données de navigation et de mesure d’audience peuvent également être collectées selon les choix de consentement de l’utilisateur.</p>
+
+<h2>8. Notification d’incident et sécurité</h2>
+<p>Aucune méthode de transmission sur Internet ou de stockage électronique ne peut garantir une sécurité absolue. Si une violation de sécurité nécessitant une information des personnes concernées était constatée, Keeplanet appliquerait les procédures de notification prévues par la réglementation.</p>
+<p>Aucune information personnelle n’est publiée à l’insu de l’utilisateur, échangée, cédée ou vendue à des tiers. Le Site met en œuvre des mesures techniques et organisationnelles raisonnables visant à protéger les données contre la perte, l’utilisation détournée, l’accès non autorisé, la divulgation, l’altération ou la destruction.</p>
+
+<h2>9. Cookies et balises internet</h2>
+<h3>9.1 Cookies</h3>
+<p>Un cookie est un petit fichier d’information enregistré sur le terminal de l’Utilisateur. Le Site peut utiliser des cookies ou technologies similaires afin d’assurer son fonctionnement, mémoriser certains choix, mesurer l’audience et améliorer le contenu et la navigation.</p>
+<p>Lorsque le consentement est requis, les cookies concernés ne sont déposés qu’après le choix de l’utilisateur. Celui-ci peut accepter, refuser ou modifier ses préférences. Le refus de certains cookies peut limiter certaines fonctionnalités du Site.</p>
+<h3>9.2 Balises (« tags ») internet</h3>
+<p>Le Site peut employer des balises ou technologies similaires pour mesurer l’utilisation du Site et l’efficacité de certaines actions. Lorsque ces technologies impliquent un traitement soumis au consentement, elles sont utilisées conformément aux choix exprimés par l’Utilisateur.</p>
+
+<div class="legal-update"><strong>Keeplanet · 201 route d’Oberhausbergen · 67200 Strasbourg</strong><br>0806 110 559 · <a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a></div>
 </div></section><?php
  } elseif($t==='legal'){
  ?> <section class="section legal-page"><div class="container narrow"><span class="eyebrow">Informations légales</span><h1><?=h($page['h1'])?></h1><p class="big-p"><?=h($page['lead'])?></p><a class="btn btn-ghost" href="/contact/">Nous contacter</a></div></section><?php
