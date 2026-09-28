@@ -121,7 +121,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Attestation permis</strong><small>générée par Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>RC Pro &amp; décennale</strong></span></li>
-          <li class="mi-pack-muted"><b>+</b><span>ACV disponible en option</span></li>
+          <li class="mi-pack-muted"><b>+</b><span><strong>ACV disponible en option</strong></span></li>
+          <li class="mi-pack-muted"><b>+</b><span><strong>Fin de travaux disponible en option</strong></span></li>
         </ul>
         <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup>Choisir le Pack Permis</a>
       </article>
@@ -141,7 +142,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>utilisés par le professionnel qui édite l’attestation finale</small></span></li>
           <li><b>✓</b><span><strong>Suivi estimatif des consommations</strong></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
-          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>offert</small></span></li>
+          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>avec suivi des consommations · offert</small></span></li>
         </ul>
         <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
         <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=fdc" data-no-signup-popup>Choisir le Pack Fin de travaux</a>
@@ -160,8 +161,9 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Calcul ACV inclus</strong><small>Ic énergie + Ic bâtiment</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
-          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>offert</small></span></li>
+          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>avec suivi des consommations · offert</small></span></li>
         </ul>
+        <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
         <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup>Choisir le pack complet + ACV</a>
       </article>
     </div>
@@ -201,8 +203,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <tr><td>Conseils du thermicien</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Modifications illimitées</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Calcul Cep / étude complète</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
-          <tr><td>Fichiers pour l’attestation de fin de travaux</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
-          <tr><td>Dimensionnement chauffage + Keep’Home</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Fichiers pour l’attestation de fin de travaux</td><td>—</td><td>Option</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Dimensionnement chauffage + carnet numérique Keep’Home avec suivi des consommations</td><td>—</td><td>—</td><td>✓ offert</td><td>✓ offert</td></tr>
           <tr><td>Calcul ACV (Ic énergie + Ic bâtiment)</td><td>Option</td><td>Option</td><td>Option</td><td>✓</td></tr>
         </tbody>
       </table>
