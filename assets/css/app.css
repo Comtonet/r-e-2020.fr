@@ -43,3 +43,15 @@ main strong{font-weight:800}
  .nav-dropdown-menu a{padding:8px 10px}
  .nav-chevron{display:none}
 }
+
+/* KeePote : promesse d'aide instantanée + relais humain */
+.ai-launcher>span:last-child{display:flex;flex-direction:column;align-items:flex-start;line-height:1.05}
+.ai-launcher>span:last-child strong{font-size:.92rem}
+.ai-launcher>span:last-child small{margin-top:3px;font-size:.67rem;font-weight:700;opacity:.82}
+.kee-pote-promo{padding:30px 0;background:linear-gradient(135deg,#f7f4ff,#fbfdeF);border-top:1px solid #ece7f7;border-bottom:1px solid #e6edcf}
+.kee-pote-promo-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:22px}
+.kee-pote-promo-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:20px;background:#38227E;color:#98BF24;font-size:1.7rem;font-weight:900;box-shadow:0 12px 28px rgba(56,34,126,.16)}
+.kee-pote-promo h2{margin:3px 0 7px;color:#38227E;font-size:clamp(1.35rem,2.2vw,1.9rem);letter-spacing:-.025em}
+.kee-pote-promo p{margin:0;max-width:850px;color:#5f6677;line-height:1.6}
+.kee-pote-promo .human-relay{margin-top:6px;font-size:.9rem;color:#727888}
+@media(max-width:720px){.kee-pote-promo-inner{grid-template-columns:auto 1fr}.kee-pote-promo .btn{grid-column:1/-1;width:100%}}
