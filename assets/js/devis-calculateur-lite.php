@@ -27,6 +27,11 @@ function qreplace(&$js, $from, $to) {
 /* Illustrations détaillées du 18/09 conservées pour distinguer les cas de figure. */
 qreplace($js, ' loading="lazy">', ' loading="lazy" decoding="async" fetchpriority="low">');
 
+/* Libellés des exemples alignés sur la base 18/09 et les retours de Denis. */
+qreplace($js, "['Collectif classique','Collectif/Collectif classique.png']", "['Collectif IGH','Collectif/Collectif classique.png']");
+qreplace($js, "['Maisons superposées','Maisons/1 maison sur deux.jpg']", "['Maisons','Maisons/1 maison sur deux.jpg']");
+qreplace($js, "['Maisons jumelées / bande','Maisons/Maison jumelées.png']", "['Bande','Maisons/Maison jumelées.png']");
+
 /* Données initiales : champs vides comme dans la version 11/09/2026. */
 qreplace($js, "const F_SURF={k:'S',l:'Surface totale chauffée',u:'m²',t:'number',d:200,min:0,step:10};", "const F_SURF={k:'S',l:'Surface totale chauffée',u:'m²',t:'number',d:'',min:0,step:10};");
 qreplace($js, "const F_SREF={k:'S',l:'Surface de référence totale',u:'m²',t:'number',d:500,min:0,step:10};", "const F_SREF={k:'S',l:'Surface de référence totale',u:'m²',t:'number',d:'',min:0,step:10};");
