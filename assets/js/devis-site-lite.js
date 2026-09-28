@@ -81,11 +81,7 @@ function lightenHome(){
   const left=Array.from(screen.querySelectorAll('.block'));
   if(left[0]){const h=left[0].querySelector('h2');if(h)h.textContent='1. Quelle est la nature de l’opération ?'}
   if(left[1]){const h=left[1].querySelector('h2');if(h)h.textContent='2. Quel type de bâtiment concerne l’opération ?'}
-  qa('.planche .tiles').forEach(tiles=>{
-    const all=Array.from(tiles.querySelectorAll('.tile'));
-    all.slice(1).forEach(x=>x.remove());
-    tiles.classList.add('tiles-lite');
-  });
+  qa('.planche .tiles').forEach(tiles=>tiles.classList.remove('tiles-lite'));
   const lead=screen.querySelector('.hero .lede');
   if(lead)lead.textContent='Décrivez votre projet en quelques clics. Vous pourrez ensuite choisir le niveau d’étude souhaité.';
   return true;
