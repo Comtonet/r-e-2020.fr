@@ -124,6 +124,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Attestation permis</strong><small>générée par Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>RC Pro &amp; décennale</strong></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>ACV disponible en option</strong></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>Fin de travaux disponible en option</strong></span></li>
         </ul>
@@ -141,6 +142,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Permis</strong></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Calcul complet RE2020</strong><small>Bbio + Cep + DH</small></span></li>
           <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>utilisés par le professionnel qui édite l’attestation finale</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
@@ -160,6 +162,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Fin de travaux</strong></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Calcul ACV inclus</strong><small>Ic énergie + Ic bâtiment</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
@@ -174,7 +177,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
       <div class="mi-eco-copy">
         <span class="mi-pack-tag">Option économique</span>
         <h3>Pack Eco’Permis <strong><?= h($ecoPrice) ?></strong></h3>
-        <p>Calcul Bbio + DH en <?= h(eco_delay_label()) ?>, 2 variantes incluses. Vous générez vous-même l’attestation permis avec les fichiers fournis et la formule ne comprend pas les conseils du thermicien.</p>
+        <p>Calcul Bbio + DH en <?= h(eco_delay_label()) ?>, 2 variantes incluses. Vous générez vous-même l’attestation permis avec les fichiers fournis et la formule ne comprend pas les conseils du thermicien. <strong>Accès à KeePote inclus</strong> pour obtenir une aide RE2020 instantanée, avec possibilité de relais humain Keeplanet.</p>
       </div>
       <a class="btn mi-btn-soft" href="/inscription-maison/?pack=eco" data-no-signup-popup>Choisir Eco’Permis</a>
     </article>
@@ -200,6 +203,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           </tr>
         </thead>
         <tbody>
+          <tr><td>KeePote · IA RE2020 instantanée + relais humain</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Calcul Bbio + DH</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Attestation permis générée par Keeplanet</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Conseils du thermicien</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
