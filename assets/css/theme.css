@@ -83,3 +83,12 @@
   }
   .article-cta .btn{width:100%}
 }
+
+/* CGV */
+.legal-content{max-width:900px}
+.legal-content h2{margin:38px 0 12px;color:#38227E;font-size:1.35rem;line-height:1.25}
+.legal-content h2:first-child{margin-top:0}
+.legal-content p,.legal-content li{color:#515969;line-height:1.75}
+.legal-content ul{margin:10px 0 20px;padding-left:24px}
+.legal-content a{font-weight:700}
+.legal-update{margin-top:42px;padding:20px 24px;border-radius:16px;background:#f3f6e8;border-left:4px solid #98BF24;color:#38227E}
