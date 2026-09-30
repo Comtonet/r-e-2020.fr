@@ -7,7 +7,7 @@
     <div>
       <span class="eyebrow">Notre méthode</span>
       <h1>Processus de réalisation d’une étude RE2020</h1>
-      <p class="process-intro">Notre méthode est éprouvée, avec <strong>plus de 89 000 dossiers étudiés</strong>. Keeplanet a été pionnier dans la démocratisation des études thermiques en ligne pour offrir des rendus rapides, fiables et au meilleur coût.</p>
+      <p class="process-intro">Notre méthode est éprouvée, avec <strong>plus de 89 000 dossiers étudiés</strong>. Keeplanet s’appuie sur une organisation éprouvée pour assurer des études thermiques fiables, des délais maîtrisés et un suivi structuré des dossiers.</p>
       <div class="process-hero-actions">
         <a class="btn" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Démarrer mon étude</a>
         <a class="btn btn-ghost" href="https://espace-client.keeplanet.fr/">Accéder à mon espace client</a>
@@ -49,14 +49,14 @@
         <div class="process-card-head"><div><span class="process-tag">Départ</span><h2>Choix du pack & inscription</h2></div><span class="process-icon">01</span></div>
         <p>Nos packs sont pensés pour <strong>limiter vos frais</strong> et s’adapter à votre rythme. Vous pouvez dans un premier temps réaliser uniquement l’étude pour le <a href="/reglementaire/acv-carbone-re2020-permis-construire/">permis de construire</a>, puis compléter ensuite à la fin des travaux.</p>
         <div class="process-callout">Sur le plan réglementaire, <strong>la totalité est à faire</strong> et nous recommandons de tout traiter dès le départ pour une cohérence complète du projet.</div>
-        <p class="process-highlight"><strong>Inscription en ligne en 2 clics</strong> → accès immédiat à votre espace client sécurisé.</p>
+        <p class="process-highlight"><strong>Inscription en ligne</strong> → ouverture de votre espace client sécurisé et accès au dossier.</p>
       </div>
     </article>
 
     <article class="process-step">
       <div class="process-number">2</div>
       <div class="process-card">
-        <div class="process-card-head"><div><span class="process-tag">Simple & rapide</span><h2>Commande de votre étude RE2020</h2></div><span class="process-icon">02</span></div>
+        <div class="process-card-head"><div><span class="process-tag">Commande</span><h2>Commande de votre étude RE2020</h2></div><span class="process-icon">02</span></div>
         <p>Nous proposons plusieurs options adaptées à votre demande :</p>
         <ul class="process-list">
           <li><strong>Second logement identique</strong> : pour un projet avec 2 maisons jumelées.</li>
@@ -70,7 +70,7 @@
     <article class="process-step">
       <div class="process-number">3</div>
       <div class="process-card">
-        <div class="process-card-head"><div><span class="process-tag">100 % en ligne</span><h2>Envoi de vos éléments</h2></div><span class="process-icon">03</span></div>
+        <div class="process-card-head"><div><span class="process-tag">Transmission des données</span><h2>Envoi de vos éléments</h2></div><span class="process-icon">03</span></div>
         <p>Depuis votre espace client (“Fiche client”), vous déposez les informations nécessaires :</p>
         <ul class="process-list check">
           <li>Données administratives du projet.</li>
@@ -87,7 +87,7 @@
       <div class="process-card featured-process-card">
         <div class="process-card-head"><div><span class="process-tag">En 1 jour ouvré</span><h2>Réalisation de l’étude thermique</h2></div><span class="process-icon">04</span></div>
         <p>L’étude thermique RE2020 est réalisée en <strong>1 jour ouvré</strong> après réception de vos éléments. Si le projet n’est pas conforme, notre thermicien établit une préconisation technique pour rendre le projet conforme, avec les <a href="/couts-optimisation-budgetaire/prix-maison-re2020/">solutions les plus économiques</a>.</p>
-        <p class="process-highlight"><strong>Une expertise rapide, claire et toujours orientée efficacité.</strong></p>
+        <p class="process-highlight"><strong>Une analyse réglementaire accompagnée de préconisations techniques lorsque des ajustements sont nécessaires.</strong></p>
       </div>
     </article>
 
