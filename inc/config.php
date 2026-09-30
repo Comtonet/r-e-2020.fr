@@ -2,7 +2,7 @@
 return [
     // Chiffres globaux affichés sur le site.
     'projects_count' => 89000,
-    'experience_years' => 16,
+    'experience_years' => 17,
     'google_rating' => 4.7,
     'google_reviews' => 343,
 
