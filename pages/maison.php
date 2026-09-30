@@ -15,7 +15,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   <div class="container mi-hero-grid">
     <div class="mi-hero-copy">
       <div class="mi-badge">Maison individuelle · RE2020</div>
-      <h1>Votre étude RE2020, prête pour faire avancer votre permis.</h1>
+      <h1>Étude thermique RE2020 pour maison individuelle</h1>
       <p class="mi-hero-lead">Choisissez le niveau d’accompagnement dont vous avez besoin. Vous déposez vos plans en ligne, un thermicien Keeplanet réalise l’étude et vous retrouvez tous vos documents dans votre espace client.</p>
 
       <div class="mi-hero-actions">
@@ -48,7 +48,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
-<section class="kee-pote-promo"><div class="container kee-pote-promo-inner"><div class="kee-pote-promo-icon" aria-hidden="true">✦</div><div><span class="eyebrow">KeePote · IA RE2020 Keeplanet</span><h2>Une question sur votre projet ? KeePote vous répond instantanément.</h2><p>Surentraîné à la RE2020, KeePote peut vous aider à comprendre votre étude, vos résultats, les exigences réglementaires et les pistes d’amélioration de votre projet.</p><p class="human-relay"><strong>Et l’humain reste là :</strong> pour un arbitrage technique ou dès que vous le souhaitez, un thermicien Keeplanet prend le relais par téléphone ou par e-mail.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
+<section class="kee-pote-promo"><div class="container kee-pote-promo-inner"><div class="kee-pote-promo-icon" aria-hidden="true">✦</div><div><span class="eyebrow">KeePote · Assistant RE2020 Keeplanet</span><h2>Une question sur votre projet ou votre étude ?</h2><p>KeePote s’appuie sur la documentation RE2020 validée par Keeplanet pour expliquer les exigences réglementaires, les résultats et les principales pistes d’amélioration.</p><p class="human-relay"><strong>Pour les questions techniques propres à votre projet :</strong> pour un arbitrage technique ou dès que vous le souhaitez, un thermicien Keeplanet prend le relais par téléphone ou par e-mail.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
 
 
 <section class="mi-proofbar" aria-label="Garanties">
@@ -56,16 +56,16 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
     <div><strong><?= h(experience_label()) ?></strong><span>d’expérience</span></div>
     <div><strong><?= h(projects_label()) ?>+</strong><span>projets étudiés</span></div>
     <div><strong><?= h(google_rating_label()) ?>/5</strong><span><?= h(google_reviews_label()) ?> avis Google</span></div>
-    <div><strong>100 % en ligne</strong><span>avec une équipe joignable par téléphone et e-mail</span></div>
+    <div><strong>Suivi en ligne</strong><span>avec une équipe joignable par téléphone et e-mail</span></div>
   </div>
 </section>
 
 <section class="mi-section mi-choice-section">
   <div class="container">
     <div class="mi-section-head mi-center">
-      <span class="mi-eyebrow">Quel pack choisir ?</span>
-      <h2>Partez simplement de votre besoin.</h2>
-      <p>Pas besoin de connaître la RE2020 pour commander la bonne prestation.</p>
+      <span class="mi-eyebrow">Choisir la prestation</span>
+      <h2>Déterminez le niveau d’étude correspondant à votre projet.</h2>
+      <p>Chaque formule correspond à un périmètre d’étude et à une phase précise du projet.</p>
     </div>
 
     <div class="mi-choice-grid">
@@ -73,7 +73,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <span class="mi-choice-number">1</span>
         <div>
           <strong>Je veux déposer mon permis</strong>
-          <p>Choisissez le <b>Pack Permis</b>. C’est la formule simple pour obtenir l’étude et l’attestation nécessaires au dépôt.</p>
+          <p>Choisissez le <b>Pack Permis</b>. Cette prestation comprend l’étude et l’attestation nécessaires au dépôt.</p>
           <span class="mi-choice-price"><?= h($permisPrice) ?> →</span>
         </div>
       </a>
@@ -106,7 +106,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   <div class="container">
     <div class="mi-section-head">
       <span class="mi-eyebrow">Tarifs maison individuelle</span>
-      <h2>Des packs clairs, sans tarif caché.</h2>
+      <h2>Prestations et tarifs RE2020</h2>
       <p>Tous les prix sont TTC et valables quelle que soit la surface de la maison. Les packs principaux incluent l’accès à votre espace client et les échanges avec notre équipe.</p>
     </div>
 
@@ -187,8 +187,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
 <section class="mi-section mi-compare-section">
   <div class="container">
     <div class="mi-section-head mi-center">
-      <span class="mi-eyebrow">Comparer les packs</span>
-      <h2>Tout voir en un coup d’œil.</h2>
+      <span class="mi-eyebrow">Comparer les prestations</span>
+      <h2>Périmètre détaillé de chaque formule</h2>
     </div>
 
     <div class="mi-table-wrap" role="region" aria-label="Comparatif des packs RE2020" tabindex="0">
@@ -221,8 +221,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
 <section class="mi-section mi-how-section">
   <div class="container">
     <div class="mi-section-head mi-center">
-      <span class="mi-eyebrow">Comment ça marche ?</span>
-      <h2>Votre dossier démarre en quelques minutes.</h2>
+      <span class="mi-eyebrow">Déroulement</span>
+      <h2>Les étapes de votre étude RE2020</h2>
     </div>
 
     <div class="mi-how-grid">
@@ -304,8 +304,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
 <section class="mi-final-cta">
   <div class="container mi-final-inner">
     <div>
-      <span class="mi-eyebrow mi-eyebrow-light">Prêt à avancer ?</span>
-      <h2>Choisissez votre pack et ouvrez votre dossier maintenant.</h2>
+      <span class="mi-eyebrow mi-eyebrow-light">Votre dossier RE2020</span>
+      <h2>Choisissez la prestation correspondant à votre projet.</h2>
       <p>Vous hésitez encore ? La création de compte est gratuite et notre équipe peut vous aider à sélectionner la bonne formule.</p>
     </div>
     <div class="mi-final-actions">
