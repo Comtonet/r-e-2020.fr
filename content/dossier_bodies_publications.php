@@ -1,5 +1,54 @@
 <?php
 return [
+'poele-bois-re2020-radiateurs-chauffage-complementaire' => <<<'HTML'
+<p><strong>« J’ai prévu un poêle à bois : pourquoi l’étude RE2020 fait-elle apparaître des radiateurs ? »</strong> C’est une question fréquente. La réponse ne vient pas d’un choix arbitraire du bureau d’études : la méthode de calcul RE2020 encadre précisément la manière de modéliser les appareils indépendants de chauffage à bois.</p>
+<p>Le traitement dépend notamment de la capacité du poêle à s’arrêter et à réguler automatiquement sa puissance selon la température intérieure. Dans le cas d’un appareil qui <strong>ne dispose pas d’un dispositif d’arrêt et de régulation automatique</strong>, la méthode Th-BCE 2020 prévoit un système principal de chauffage régulé en complément. Ouvrir les portes des chambres ne permet donc pas, à lui seul, de considérer que le poêle assure réglementairement tout le chauffage du logement.</p>
+
+<h2>Pourquoi un poêle à bois ne suffit-il pas toujours dans le calcul RE2020 ?</h2>
+<p>Le calcul réglementaire ne reproduit pas simplement la manière dont l’occupant pense utiliser sa maison. Il applique des scénarios et des conventions identiques à tous les projets afin de comparer leur performance.</p>
+<p>Pour un appareil indépendant à bois sans régulation automatique conforme au cas décrit par la méthode, les locaux doivent être pourvus d’un <strong>système principal de chauffage avec arrêt manuel et réglage automatique en fonction de la température intérieure</strong>. Le poêle est alors pris en compte comme système complémentaire.</p>
+
+<h2>Partie A et partie B : comment la maison est-elle découpée ?</h2>
+<p>La méthode prévoit, pour la partie desservie par l’appareil indépendant à bois et dans la limite prévue par le texte, une distinction entre deux parties.</p>
+<h3>Partie A : la pièce de jour où se trouve le poêle</h3>
+<p>La partie A correspond aux pièces de jour dans lesquelles se situe l’appareil. Une règle est particulièrement importante en pratique : <strong>la présence d’une porte entre la pièce du poêle et une autre pièce conduit à exclure cette autre pièce de la partie A</strong>.</p>
+<p>Ainsi, un séjour équipé du poêle ne permet pas automatiquement de considérer un couloir fermé, une chambre ou une autre pièce séparée par une porte comme directement desservie.</p>
+<h3>Partie B : les autres pièces hors salle de bains</h3>
+<p>La partie B regroupe les autres pièces concernées, hors salle de bains. Dans les parties A et B, la méthode répartit conventionnellement les besoins entre le poêle et le système principal. Ce fonctionnement explique pourquoi un autre émetteur peut apparaître dans l’étude alors que le maître d’ouvrage envisage, dans son usage quotidien, de chauffer principalement au bois.</p>
+
+<h2>Pourquoi le logiciel affiche-t-il souvent des radiateurs électriques ?</h2>
+<p>Dans une maison équipée d’un poêle à bois, le système complémentaire peut prendre différentes formes selon le projet. Le radiateur électrique est fréquent parce qu’il constitue une solution simple à modéliser et à installer pour assurer le complément réglementaire dans les pièces concernées.</p>
+<p>Sa présence dans l’étude ne signifie donc pas nécessairement que le bureau d’études considère le poêle comme inefficace. Elle traduit la façon dont la <strong>couverture conventionnelle des besoins de chauffage</strong> doit être décrite dans le moteur RE2020.</p>
+
+<h2>Et si je compte simplement laisser les portes ouvertes ?</h2>
+<p>Ce comportement d’usage ne permet pas de supprimer la règle de calcul. La méthode précise au contraire qu’une porte séparant la pièce où se situe l’appareil d’une autre pièce conduit à exclure cette dernière de la partie A.</p>
+<p>La RE2020 raisonne sur une configuration réglementaire reproductible, et non sur l’hypothèse que les occupants laisseront durablement les portes ouvertes pour diffuser la chaleur.</p>
+
+<h2>Le cas change-t-il avec un poêle doté d’une régulation automatique ?</h2>
+<p><strong>Oui.</strong> La méthode Th-BCE distingue les appareils selon leurs possibilités d’arrêt et de régulation automatique en fonction de la température intérieure. Il ne faut donc pas appliquer mécaniquement le même schéma à tous les poêles à bûches, granulés ou autres appareils indépendants.</p>
+<p>Avant de figer l’étude, le bureau d’études doit disposer de la référence exacte de l’appareil et de ses caractéristiques de régulation. Une modification de modèle peut changer la manière dont le chauffage est décrit dans le calcul.</p>
+
+<h2>Exemple simple : maison avec séjour, chambres et salle de bains</h2>
+<p>Prenons une maison de plain-pied dans laquelle le poêle est installé dans le séjour. Le séjour constitue la zone directement concernée par la partie A selon la configuration des locaux. Les pièces séparées par des portes ne sont pas automatiquement assimilées à cette partie. Les chambres relèvent alors du traitement prévu pour la partie B, tandis que la salle de bains dispose de son traitement propre dans la méthode.</p>
+<p>Le logiciel applique ensuite la répartition conventionnelle entre l’appareil à bois et le chauffage principal. C’est à ce stade que des émetteurs complémentaires apparaissent dans le modèle.</p>
+
+<h2>Quel impact sur le Cep et la conformité RE2020 ?</h2>
+<p>Le choix du système complémentaire et la répartition des besoins influencent le calcul énergétique. Ils peuvent donc agir sur le <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">Cep et le Cep,nr</a>. Il est préférable de définir précisément le système de chauffage avant de finaliser l’étude plutôt que de corriger le projet une fois les équipements commandés.</p>
+<p>Le chauffage n’est toutefois qu’une partie de la conformité : le <a href="/reglementaire/ponts-thermiques-re2020-ratio-psi-psi9/">traitement des ponts thermiques</a>, l’étanchéité à l’air, la ventilation, le confort d’été et l’ACV interviennent également dans l’évaluation globale.</p>
+
+<h2>FAQ : poêle à bois et chauffage complémentaire en RE2020</h2>
+<h3>Peut-on construire une maison RE2020 avec un poêle à bois ?</h3>
+<p>Oui. Un appareil indépendant à bois peut être pris en compte en RE2020, mais sa modélisation dépend de ses caractéristiques et des règles de la méthode Th-BCE 2020.</p>
+<h3>Ouvrir les portes des chambres permet-il d’éviter les radiateurs ?</h3>
+<p>Non, cette seule hypothèse d’usage ne suffit pas. La méthode prévoit explicitement le traitement des pièces et indique notamment qu’une porte séparant la pièce du poêle d’une autre pièce exclut cette dernière de la partie A.</p>
+<h3>Tous les poêles sont-ils traités de la même manière ?</h3>
+<p>Non. La présence ou non d’un dispositif d’arrêt et de régulation automatique en fonction de la température intérieure change le traitement réglementaire. La référence exacte de l’appareil doit donc être connue.</p>
+<h3>Faut-il forcément des radiateurs électriques ?</h3>
+<p>La méthode impose, dans le cas décrit ici, un système principal régulé en complément ; elle n’impose pas que celui-ci soit systématiquement un radiateur électrique. Le choix dépend du projet et doit être cohérent avec l’étude.</p>
+
+<h2>Faire vérifier votre solution de chauffage avant le chantier</h2>
+<p>KeePlanet peut intégrer et comparer les systèmes de chauffage dès l’étude RE2020 afin d’éviter les mauvaises surprises après le choix des équipements. Pour une maison individuelle ou une extension, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/"><strong>prestations RE2020 maison</strong></a> ou transmettez-nous votre projet pour vérifier la solution prévue.</p>
+HTML
 'etancheite-air-re2020-q4pa-surf-seuils-test' => <<<'HTML'
 <p>L’étanchéité à l’air fait partie des performances qui ne se vérifient pas uniquement dans le logiciel RE2020 : elle doit aussi être <strong>mesurée sur le bâtiment réalisé</strong> dans les cas prévus par la réglementation. L’indicateur de référence est le <strong>Q4Pa-surf</strong>, exprimé en m³/(h.m²).</p>
 <p>Pour une maison individuelle, la valeur réglementaire à ne pas dépasser est de <strong>0,60 m³/(h.m²)</strong>. Elle passe à <strong>1,00 m³/(h.m²)</strong> en logement collectif et à <strong>1,70 m³/(h.m²)</strong> pour les bâtiments tertiaires concernés par l’exigence, hors commerces et aérogares, immeubles de grande hauteur et bâtiments de plus de 3 000 m² de surface de référence.</p>
