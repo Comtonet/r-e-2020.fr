@@ -48,7 +48,7 @@ return [
 
 <h2>Faire vérifier votre solution de chauffage avant le chantier</h2>
 <p>KeePlanet peut intégrer et comparer les systèmes de chauffage dès l’étude RE2020 afin d’éviter les mauvaises surprises après le choix des équipements. Pour une maison individuelle ou une extension, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/"><strong>prestations RE2020 maison</strong></a> ou transmettez-nous votre projet pour vérifier la solution prévue.</p>
-HTML
+HTML,
 'etancheite-air-re2020-q4pa-surf-seuils-test' => <<<'HTML'
 <p>L’étanchéité à l’air fait partie des performances qui ne se vérifient pas uniquement dans le logiciel RE2020 : elle doit aussi être <strong>mesurée sur le bâtiment réalisé</strong> dans les cas prévus par la réglementation. L’indicateur de référence est le <strong>Q4Pa-surf</strong>, exprimé en m³/(h.m²).</p>
 <p>Pour une maison individuelle, la valeur réglementaire à ne pas dépasser est de <strong>0,60 m³/(h.m²)</strong>. Elle passe à <strong>1,00 m³/(h.m²)</strong> en logement collectif et à <strong>1,70 m³/(h.m²)</strong> pour les bâtiments tertiaires concernés par l’exigence, hors commerces et aérogares, immeubles de grande hauteur et bâtiments de plus de 3 000 m² de surface de référence.</p>
