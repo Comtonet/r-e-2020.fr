@@ -8,6 +8,29 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug' => 'inies-donnees-fin-vie-emballages-octobre-2026',
+        'title' => 'INIES actualise les données de fin de vie des emballages en octobre 2026',
+        'excerpt' => 'INIES a annoncé le 2 octobre 2026 la disponibilité de données actualisées sur la fin de vie des emballages et d’un rapport associé, un sujet directement lié aux données environnementales du bâtiment.',
+        'date' => '2026-10-04',
+        'source_name' => 'INIES — données fin de vie des emballages',
+        'source_url' => 'https://www.inies.fr/nouvelles-donnees-fin-de-vie-des-emballages-la-version-actualisee-est-disponible/',
+        'secondary_source_url' => 'https://www.inies.fr/ressources-faq/ressources-documentaires/',
+        'body' => <<<'HTML'
+<p><strong>INIES a annoncé le 2 octobre 2026 la mise à disposition d’une version actualisée des données de fin de vie des emballages.</strong> Le rapport associé a également été mis à jour. Cette publication intéresse directement les acteurs qui produisent et exploitent les données environnementales du bâtiment.</p>
+<h2>Que vient de publier INIES ?</h2>
+<p>INIES indique que les données de fin de vie des emballages ont été actualisées. Pour obtenir les nouvelles données et le rapport associé, l’organisme demande la transmission des conditions d’utilisation signées selon la procédure indiquée sur son site.</p>
+<h2>Pourquoi ce sujet concerne-t-il l’ACV bâtiment ?</h2>
+<p>Les déclarations environnementales décrivent les impacts d’un produit ou d’un équipement selon leur périmètre et leurs scénarios de cycle de vie. Les emballages peuvent faire partie des flux pris en compte. La base INIES rassemble notamment les FDES des produits de construction, les PEP des équipements et les autres données utilisées pour le volet environnemental de la RE2020.</p>
+<h2>Faut-il recalculer les études RE2020 ?</h2>
+<p>L’annonce du 2 octobre ne dit pas qu’une étude déjà réalisée doit être recalculée. Elle porte sur la disponibilité de données actualisées. L’effet éventuel dépendra des déclarations utilisées et de l’intégration de ces données par les acteurs concernés.</p>
+<p>Il serait donc incorrect d’attribuer à cette mise à jour un gain carbone identique pour tous les projets. Lorsqu’un projet est proche d’un seuil, il faut vérifier la donnée environnementale réellement sélectionnée, son domaine de validité et les hypothèses du calcul.</p>
+<h2>Une donnée environnementale à regarder de près</h2>
+<p>Cette actualisation rappelle que l’ACV RE2020 repose sur des données qui évoluent. Le choix d’une FDES ou d’un PEP adapté au produit réellement prévu peut modifier l’analyse. Notre dossier sur une <a href="/equipements-solutions-techniques/pac-conforme-cep-non-conforme-acv-re2020-fluide-frigorigene/">PAC conforme au Cep mais pénalisante en ACV</a> montre pourquoi performance énergétique et performance carbone doivent être analysées séparément.</p>
+<h2>Faire analyser l’ACV de votre projet</h2>
+<p>KeePlanet réalise les études environnementales RE2020 et analyse les contributeurs de l’Ic construction. Retrouvez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/"><strong>prestations RE2020 maison</strong></a> ou nos <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/"><strong>études collectif et tertiaire</strong></a>.</p>
+HTML
+    ],
+    [
         'slug' => 'construction-neuve-septembre-2026-permis-logements',
         'title' => 'Construction neuve : permis et perspectives restent fragiles en septembre 2026',
         'excerpt' => 'Les derniers indicateurs disponibles montrent une construction neuve toujours fragile à la rentrée 2026, avec des autorisations en baisse en juillet et des perspectives dégradées dans le logement neuf.',
