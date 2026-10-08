@@ -1,5 +1,28 @@
 <?php
 return [
+'lire-rapport-acv-re2020-ic-construction-contributeurs' => <<<'HTML'
+<p>Un rapport d’analyse du cycle de vie (ACV) RE2020 affiche de nombreux résultats. Pour un maître d’ouvrage, la difficulté consiste souvent à comprendre <strong>quel poste influence réellement l’indicateur Ic construction</strong> et quelles hypothèses doivent être vérifiées avant de demander une variante. Le total seul ne suffit pas à décider.</p>
+<h2>À quoi correspond l’Ic construction ?</h2>
+<p>L’indicateur Ic construction exprime les impacts sur le changement climatique attribués aux produits de construction et équipements ainsi qu’à leur mise en œuvre, selon le périmètre et la méthode réglementaire. Il est généralement exprimé en kg CO₂ équivalent par mètre carré de surface de référence. Il ne faut pas le confondre avec l’indicateur lié aux consommations d’énergie en exploitation.</p>
+<h2>Commencer par vérifier le périmètre de l’étude</h2>
+<p>Avant de comparer deux résultats, contrôlez la surface de référence, le type de bâtiment, les quantités renseignées, les lots retenus et la version de l’étude. Une variation de surface ou de métrés peut changer le résultat sans qu’un matériau soit devenu meilleur ou moins bon.</p>
+<h2>Identifier les contributeurs dominants</h2>
+<p>Le rapport peut décomposer les impacts par lots et contributeurs : fondations et infrastructure, superstructure, façades, revêtements, équipements ou réseaux, entre autres. Il est utile de classer ces postes par ordre décroissant d’impact. Les lots les plus lourds ne sont pas automatiquement ceux sur lesquels une substitution sera faisable, mais ils orientent l’analyse.</p>
+<h3>Structure et fondations</h3>
+<p>Le volume de béton, l’acier, les systèmes porteurs et la géométrie de l’ouvrage peuvent jouer un rôle important. Une comparaison sérieuse conserve les performances techniques attendues et les contraintes du bureau d’études structure.</p>
+<h3>Équipements techniques</h3>
+<p>Les systèmes de chauffage, de ventilation et leurs composants ont aussi un impact environnemental. Une <a href="/equipements-solutions-techniques/pac-conforme-cep-non-conforme-acv-re2020-fluide-frigorigene/">pompe à chaleur performante en énergie peut peser sur l’ACV</a>, notamment selon les équipements et données retenus.</p>
+<h2>FDES, PEP et données par défaut : quelle différence ?</h2>
+<p>Les FDES concernent les produits de construction et les PEP les équipements. Les données environnementales disponibles sont notamment référencées dans la base INIES. Une donnée par défaut ou collective ne doit pas être remplacée arbitrairement par une déclaration spécifique : il faut vérifier l’adéquation entre la donnée et le produit effectivement prévu. Consultez notre dossier sur les <a href="/reglementaire/fdes-donnees-environnementales-acv-carbone/">FDES et le calcul carbone RE2020</a>.</p>
+<h2>Exemple de lecture : un indicateur proche du seuil</h2>
+<p>Imaginons une étude dont l’Ic construction est proche de son plafond. La bonne démarche n’est pas de changer simultanément la toiture, le chauffage et le plancher. Le thermicien commence par contrôler les métrés et les données sélectionnées, puis teste séparément une ou deux variantes techniquement réalistes. Chaque variante est évaluée avec ses conséquences énergétiques, économiques et constructives.</p>
+<h2>Les quatre vérifications avant de conclure</h2>
+<ul><li>Comparer le résultat au seuil correspondant au projet et à sa date réglementaire.</li><li>Confirmer les quantités et la correspondance des données environnementales.</li><li>Mesurer l’effet d’une variante à périmètre constant.</li><li>Vérifier que l’amélioration carbone ne dégrade pas un autre indicateur de conformité.</li></ul>
+<h2>L’ACV doit-elle être figée dès le permis ?</h2>
+<p>Les hypothèses doivent être suffisamment solides dès la conception, mais une modification de produits ou d’équipements peut conduire à réexaminer le calcul. Une traçabilité des références finalement retenues simplifie les échanges entre le maître d’ouvrage, l’architecte, les entreprises et le bureau d’études.</p>
+<h2>Faire analyser les postes carbone de votre projet</h2>
+<p>KeePlanet réalise les études RE2020 et leurs volets environnementaux. Consultez les <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">prestations maison</a> et les <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">études pour collectif et tertiaire</a> afin de préparer une analyse cohérente des variantes.</p>
+HTML,
 'poele-bois-re2020-radiateurs-chauffage-complementaire' => <<<'HTML'
 <p><strong>« J’ai prévu un poêle à bois : pourquoi l’étude RE2020 fait-elle apparaître des radiateurs ? »</strong> C’est une question fréquente. La réponse ne vient pas d’un choix arbitraire du bureau d’études : la méthode de calcul RE2020 encadre précisément la manière de modéliser les appareils indépendants de chauffage à bois.</p>
 <p>Le traitement dépend notamment de la capacité du poêle à s’arrêter et à réguler automatiquement sa puissance selon la température intérieure. Dans le cas d’un appareil qui <strong>ne dispose pas d’un dispositif d’arrêt et de régulation automatique</strong>, la méthode Th-BCE 2020 prévoit un système principal de chauffage régulé en complément. Ouvrir les portes des chambres ne permet donc pas, à lui seul, de considérer que le poêle assure réglementairement tout le chauffage du logement.</p>
