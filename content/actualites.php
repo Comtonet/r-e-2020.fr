@@ -8,6 +8,35 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug' => 'observatoire-re2020-keeplanet-978-etudes-3e-trimestre-2026',
+        'title' => 'RE2020 : ce que révèlent 978 études analysées au 3e trimestre 2026',
+        'excerpt' => 'L’Observatoire RE2020 analyse 978 études conformes réalisées entre juillet et septembre 2026 : marges sur le Cep, surfaces, isolation, chauffage et ventilation.',
+        'date' => '2026-10-12',
+        'source_name' => 'RE Bâtiment — Observatoire RE2020, 3e trimestre 2026',
+        'source_url' => 'https://re-batiment.fr/observatoire/re2020-ce-que-revelent-les-978-etudes-analysees-au-3e-trimestre-2026/',
+        'secondary_source_url' => 'https://re-batiment.fr/observatoire-reglementation-environnementale/rapports-trimestriels-de-lobservatoire-de-la-re-2020/',
+        'body' => <<<'HTML'
+<p><strong>Le nouvel Observatoire RE2020 porte sur 978 études thermiques conformes réalisées entre juillet et septembre 2026.</strong> Cette photographie issue des études KeePlanet permet de suivre les solutions réellement retenues dans les projets et les marges observées par rapport aux exigences réglementaires.</p>
+<h2>978 études RE2020 analysées au troisième trimestre</h2>
+<p>L’échantillon regroupe 978 études conformes réalisées au 3e trimestre 2026. Il ne représente pas l’ensemble du marché français, mais il permet d’observer les tendances d’un volume important de projets étudiés selon une méthodologie homogène.</p>
+<h2>Des consommations Cep qui conservent une marge sur les seuils</h2>
+<p>Selon les zones climatiques, les consommations Cep observées restent inférieures aux maxima réglementaires de <strong>30,71 % à 35,80 %</strong>. Cette marge moyenne ne signifie pas qu’un projet est automatiquement simple à valider : les résultats dépendent notamment de la géométrie, de l’enveloppe, des systèmes et de la zone climatique.</p>
+<p>Pour comprendre la différence entre les indicateurs énergétiques, consultez notre dossier sur le <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">Cep et le Cep,nr en RE2020</a>.</p>
+<h2>La surface moyenne des projets progresse</h2>
+<p>La surface habitable moyenne atteint <strong>130,79 m²</strong>, contre 126,56 m² au trimestre précédent, soit une hausse de 3,34 %. La taille d’un projet intervient dans plusieurs modulations réglementaires : elle doit donc être analysée avec les autres caractéristiques du bâtiment plutôt qu’isolément.</p>
+<h2>Une isolation élevée des planchers hauts</h2>
+<p>Les résistances thermiques moyennes observées sur les planchers hauts se situent entre <strong>9,49 et 9,71 m²·K/W</strong> selon les zones. Ces valeurs illustrent le niveau d’isolation couramment rencontré dans l’échantillon, sans constituer pour autant une valeur réglementaire à reproduire systématiquement.</p>
+<h2>Le chauffage thermodynamique reste largement dominant</h2>
+<p>Les solutions thermodynamiques représentent <strong>94,64 %</strong> des systèmes de chauffage dans les zones froides et <strong>82,35 %</strong> dans les zones moyennes de l’échantillon. Le choix d’une pompe à chaleur doit toutefois rester cohérent avec l’enveloppe, les besoins, le dimensionnement et les autres indicateurs du projet.</p>
+<p>Notre dossier consacré aux <a href="/equipements-solutions-techniques/pompe-a-chaleur-re2020-interdiction-effet-joule/">pompes à chaleur en RE2020</a> revient sur les principaux points de vigilance.</p>
+<h2>La double flux progresse dans les zones moyennes</h2>
+<p>La part de ventilation double flux observée dans les zones moyennes passe de <strong>5,84 % à 10,38 %</strong> entre le trimestre précédent et le troisième trimestre. Cette progression reste à interpréter projet par projet : une double flux n’est pas automatiquement la meilleure solution et son intérêt dépend notamment de l’enveloppe, des débits, des auxiliaires et de l’usage du bâtiment.</p>
+<h2>Ce que ces chiffres peuvent — et ne peuvent pas — dire</h2>
+<p>L’Observatoire donne des repères sur les choix constatés dans les études analysées. Il ne remplace pas un calcul réglementaire et ne fournit pas de « recette » universelle : deux bâtiments de surface proche peuvent nécessiter des solutions différentes selon leur orientation, leur compacité, leur zone climatique et leurs équipements.</p>
+<p>Pour situer votre projet, KeePlanet réalise les études RE2020 pour les <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/"><strong>maisons et extensions</strong></a> ainsi que pour les <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/"><strong>bâtiments collectifs et tertiaires</strong></a>.</p>
+HTML
+    ],
+    [
         'slug' => 'inies-donnees-fin-vie-emballages-octobre-2026',
         'title' => 'INIES actualise les données de fin de vie des emballages en octobre 2026',
         'excerpt' => 'INIES a annoncé le 2 octobre 2026 la disponibilité de données actualisées sur la fin de vie des emballages et d’un rapport associé, un sujet directement lié aux données environnementales du bâtiment.',
