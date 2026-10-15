@@ -4,6 +4,7 @@ $route = $GLOBALS['dossier_route'];
 $categories = $catalog['categories'];
 $articles = $catalog['articles'];
 $dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
+$dossierBodies = array_merge($dossierBodies, require __DIR__ . '/../content/dossier_protections_solaires_20261015.php');
 $editorialBodiesFile = __DIR__ . '/../content/dossier_bodies_editoriaux.php';
 if (file_exists($editorialBodiesFile)) { $dossierBodies = array_merge($dossierBodies, require $editorialBodiesFile); }
 $publicationsBodiesFile = __DIR__ . '/../content/dossier_bodies_publications.php';
