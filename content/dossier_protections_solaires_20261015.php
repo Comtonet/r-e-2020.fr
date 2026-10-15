@@ -1,0 +1,1 @@
+<?php return ['protections-solaires-re2020-confort-ete-dh'=>'<h2>Choisir une protection solaire</h2><p>Comparer les orientations, les occultations et les vitrages pour optimiser DH et Bbio.</p>'];
