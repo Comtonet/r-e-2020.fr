@@ -8,6 +8,28 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug'=>'faq-re2020-mise-a-jour-8-octobre-2026',
+        'title'=>'RE2020 : plusieurs FAQ officielles mises à jour le 8 octobre 2026',
+        'excerpt'=>'Le portail RT-RE Bâtiment a actualisé ses questions fréquentes RE2020 le 8 octobre : un point de repère utile pour la saisie et les contrôles réglementaires.',
+        'date'=>'2026-10-20',
+        'source_name'=>'Portail officiel RT-RE Bâtiment',
+        'source_url'=>'https://rt-re-batiment.developpement-durable.gouv.fr/?page=recherche&recherche=2026&tri=datedesc',
+        'body'=><<<'HTML'
+<p><strong>Le portail officiel RT-RE Bâtiment a publié ou actualisé plusieurs questions fréquentes RE2020 le 8 octobre 2026.</strong> Ces fiches apportent des précisions utiles aux bureaux d'études et aux acteurs de la construction sur la lecture des exigences et certaines situations de calcul.</p>
+<h2>Une nouvelle série de précisions officielles</h2>
+<p>La liste des résultats publiés le 8 octobre comprend notamment la FAQ RE2020 n°229 sur la saisie d'un émetteur équivalent dans le calcul réglementaire. D'autres fiches existantes, notamment sur les exigences de moyens et le traitement de certains bâtiments, présentent également une mise à jour à cette date.</p>
+<h2>Pourquoi consulter ces FAQ avant de figer une étude ?</h2>
+<p>Les règles de la RE2020 reposent sur des textes, des méthodes de calcul et des documents d'accompagnement. Les réponses officielles aux questions fréquentes précisent l'application des conventions à des cas qui ne sont pas toujours intuitifs. Elles sont donc particulièrement utiles lorsqu'une modélisation produit un résultat inattendu.</p>
+<h2>Les points de vigilance pour un maître d'ouvrage</h2>
+<ul><li>Vérifier que les systèmes réellement prévus sont correctement caractérisés dans l'étude.</li><li>Comparer les hypothèses retenues avec les plans et les fiches techniques disponibles.</li><li>Demander au thermicien si une question officielle récente concerne le cas étudié.</li><li>Conserver la traçabilité des variantes et des données saisies avant la fin du chantier.</li></ul>
+<h2>Un document d'aide ne remplace pas les textes réglementaires</h2>
+<p>Les FAQ permettent de comprendre des cas d'application mais ne doivent pas être prises pour une dispense générale de conformité. La version des textes applicable dépend notamment de la nature du bâtiment et des dates du projet. Il est prudent de consulter la fiche complète et ses éventuelles références réglementaires.</p>
+<h2>Où trouver les FAQ à jour ?</h2>
+<p>Le <a href="https://rt-re-batiment.developpement-durable.gouv.fr/?page=recherche&recherche=2026&tri=datedesc">moteur de recherche du portail RT-RE Bâtiment</a> affiche les mises à jour du 8 octobre 2026. Consultez également nos guides sur les <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">indicateurs Cep et Cep,nr</a> et sur les <a href="/reglementaire/verification-ventilation-re2020-protocole-fin-chantier/">contrôles de ventilation</a> pour préparer votre dossier.</p>
+<p><strong>Source :</strong> ministère chargé de la construction, portail RT-RE Bâtiment, résultats et fiches mis à jour le 8 octobre 2026.</p>
+HTML,
+    ],
+    [
         'slug' => 'observatoire-re2020-keeplanet-978-etudes-3e-trimestre-2026',
         'title' => 'RE2020 : ce que révèlent 978 études analysées au 3e trimestre 2026',
         'excerpt' => 'L’Observatoire RE2020 analyse 978 études conformes réalisées entre juillet et septembre 2026 : marges sur le Cep, surfaces, isolation, chauffage et ventilation.',
