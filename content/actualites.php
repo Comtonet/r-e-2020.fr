@@ -8,6 +8,29 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug'=>'re2020-ministere-rappelle-objectifs-page-mise-a-jour-septembre-2026',
+        'title'=>'RE2020 : le ministère actualise sa présentation des exigences et objectifs',
+        'excerpt'=>'Mise à jour le 18 septembre 2026, la page ministérielle rappelle les trois objectifs structurants de la RE2020 et les points à vérifier selon chaque opération.',
+        'date'=>'2026-10-28',
+        'source_name'=>'Ministère de la Transition écologique, page mise à jour le 18 septembre 2026',
+        'source_url'=>'https://www.ecologie.gouv.fr/politiques-publiques/reglementation-environnementale-re2020',
+        'body'=><<<'HTML'
+<p><strong>Le ministère de la Transition écologique a mis à jour le 18 septembre 2026 sa page de référence consacrée à la RE2020.</strong> Le texte rappelle que la réglementation environnementale des bâtiments neufs repose sur trois objectifs complémentaires : réduire les consommations, diminuer l'impact carbone et améliorer le confort d'été.</p>
+<h2>Trois dimensions à examiner ensemble</h2>
+<p>Un projet peut présenter de bonnes consommations tout en étant plus difficile à optimiser sur le carbone des produits et équipements. À l'inverse, un choix constructif favorable à l'ACV peut affecter d'autres paramètres. Une conformité sérieuse examine donc les indicateurs conjointement.</p>
+<h2>La performance énergétique</h2>
+<p>Le Bbio mesure les besoins bioclimatiques conventionnels. Les indicateurs Cep et Cep,nr caractérisent différentes dimensions de la consommation énergétique. Ils répondent à des règles et à des seuils propres au projet.</p>
+<p>Notre dossier sur <a href="/reglementaire/difference-cep-cepnr-calcul-re2020/">le Cep et le Cep,nr</a> présente les principales distinctions.</p>
+<h2>Le carbone sur le cycle de vie</h2>
+<p>Le volet environnemental tient compte des produits de construction, équipements et autres contributeurs selon la méthode réglementaire. Il repose notamment sur des données environnementales dont il faut vérifier la correspondance avec les solutions réellement prévues.</p>
+<h2>Le confort en période chaude</h2>
+<p>La réglementation vise également à limiter les surchauffes estivales. Orientation, vitrages, occultations et ventilation peuvent faire varier les degrés-heures. Notre <a href="/equipements-solutions-techniques/protections-solaires-re2020-confort-ete-dh/">dossier consacré aux protections solaires</a> détaille les leviers à étudier.</p>
+<h2>Ce que doit vérifier un porteur de projet</h2>
+<ul><li>La catégorie de bâtiment concernée et la réglementation applicable à sa date de dépôt.</li><li>La cohérence entre les plans, les équipements choisis et les hypothèses de calcul.</li><li>La conformité simultanée de tous les indicateurs exigés.</li><li>La prise en compte des modifications en cours de chantier.</li></ul>
+<p><strong>Source :</strong> <a href="https://www.ecologie.gouv.fr/politiques-publiques/reglementation-environnementale-re2020">ministère de la Transition écologique, page RE2020 mise à jour le 18 septembre 2026</a>.</p>
+HTML,
+    ],
+    [
         'slug'=>'faq-re2020-mise-a-jour-8-octobre-2026',
         'title'=>'RE2020 : plusieurs FAQ officielles mises à jour le 8 octobre 2026',
         'excerpt'=>'Le portail RT-RE Bâtiment a actualisé ses questions fréquentes RE2020 le 8 octobre : un point de repère utile pour la saisie et les contrôles réglementaires.',
