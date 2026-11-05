@@ -8,6 +8,30 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug'=>'guide-cerema-re2020-version-septembre-2026-tertiaire',
+        'title'=>'RE2020 : le guide Cerema actualisé intègre les évolutions de 2026',
+        'excerpt'=>'Le guide Cerema mis à jour le 17 septembre 2026 rassemble les évolutions de la RE2020, notamment pour les bâtiments tertiaires spécifiques et industriels.',
+        'date'=>'2026-11-05',
+        'source_name'=>'Portail officiel RT-RE Bâtiment, 17 septembre 2026',
+        'source_url'=>'https://rt-re-batiment.developpement-durable.gouv.fr/re2020-guide-cerema-mise-a-jour-du-17-septembre-a1245.html',
+        'body'=><<<'HTML'
+<p><strong>Le Cerema a actualisé son guide consacré à la réglementation environnementale RE2020 le 17 septembre 2026.</strong> La nouvelle version intègre les textes publiés en 2026, notamment ceux concernant l'extension de la réglementation à de nouvelles catégories de bâtiments et les premiers ajustements apportés après son évaluation.</p>
+<h2>Pourquoi une nouvelle version du guide ?</h2>
+<p>La RE2020 a progressivement été étendue au-delà des premiers bâtiments concernés. La mise à jour du Cerema rassemble les éléments nécessaires pour comprendre ces évolutions dans un document d'accompagnement de référence.</p>
+<h2>Les bâtiments tertiaires spécifiques et industriels</h2>
+<p>Le portail officiel indique que le guide prend en compte les textes de janvier et mars 2026 qui élargissent le champ d'application aux bâtiments ou parties de bâtiments d'activités tertiaires spécifiques, industriels et artisanaux. Pour chaque opération, la catégorie de bâtiment et la date du dépôt restent déterminantes.</p>
+<h2>Les ajustements de mars 2026</h2>
+<p>Le guide intègre également les mesures prises à la suite du rapport d'évaluation de la RE2020. Elles concernent certains paramètres et situations réglementaires. Il convient de consulter les textes applicables plutôt que d'en déduire un assouplissement général.</p>
+<h2>Comment utiliser ce document au stade du permis ?</h2>
+<ul><li>Identifier l'usage réglementaire du bâtiment et ses éventuelles parties distinctes.</li><li>Vérifier le calendrier d'application correspondant au projet.</li><li>Contrôler les données à transmettre au bureau d'études : surfaces, plans et systèmes.</li><li>Relire les attestations et résultats dans la version de la méthode applicable.</li></ul>
+<h2>Guide pédagogique et textes opposables</h2>
+<p>Un guide permet de comprendre les principes et d'illustrer la réglementation ; il ne remplace pas les décrets, arrêtés et méthodes en vigueur. En cas d'écart, les textes officiels prévalent.</p>
+<h2>Un enjeu pour le collectif et le tertiaire</h2>
+<p>Ces évolutions justifient d'anticiper l'étude énergétique et environnementale avant de figer le projet. KeePlanet accompagne les maîtres d'ouvrage sur les <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">études RE2020 collectives et tertiaires</a>. Retrouvez aussi notre <a href="/reglementaire/re2020-tertiaire-specifique-hotels-commerces-industrie/">dossier sur le tertiaire spécifique</a>.</p>
+<p><strong>Source :</strong> <a href="https://rt-re-batiment.developpement-durable.gouv.fr/re2020-guide-cerema-mise-a-jour-du-17-septembre-a1245.html">Portail officiel RT-RE Bâtiment, guide Cerema mis à jour le 17 septembre 2026</a>.</p>
+HTML,
+    ],
+    [
         'slug'=>'re2020-ministere-rappelle-objectifs-page-mise-a-jour-septembre-2026',
         'title'=>'RE2020 : le ministère actualise sa présentation des exigences et objectifs',
         'excerpt'=>'Mise à jour le 18 septembre 2026, la page ministérielle rappelle les trois objectifs structurants de la RE2020 et les points à vérifier selon chaque opération.',
