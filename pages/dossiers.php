@@ -5,6 +5,7 @@ $categories = $catalog['categories'];
 $articles = $catalog['articles'];
 $dossierBodies = require __DIR__ . '/../content/dossier_bodies.php';
 $dossierBodies = array_merge($dossierBodies, require __DIR__ . '/../content/dossier_radiateurs_20261103.php');
+$dossierBodies = array_merge($dossierBodies, require __DIR__ . '/../content/dossier_vmc_g7_20261110.php');
 $dossierBodies = array_merge($dossierBodies, require __DIR__ . '/../content/dossier_chauffe_eau_20261022.php');
 $dossierBodies = array_merge($dossierBodies, require __DIR__ . '/../content/dossier_protections_solaires_20261015.php');
 $editorialBodiesFile = __DIR__ . '/../content/dossier_bodies_editoriaux.php';
