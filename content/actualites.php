@@ -8,6 +8,30 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug'=>'construction-logements-septembre-2026-permis-individuel-collectif',
+        'title'=>'Construction neuve : les permis de logements progressent de 1,2 % en septembre 2026',
+        'excerpt'=>'Selon le SDES, 31 428 logements ont été autorisés en septembre 2026 : +1,2 % sur un mois, avec des évolutions opposées pour l’individuel et le collectif.',
+        'date'=>'2026-11-12',
+        'source_name'=>'SDES, Construction de logements : résultats à fin septembre 2026, publié le 28 octobre 2026',
+        'source_url'=>'https://www.statistiques.developpement-durable.gouv.fr/construction-de-logements-resultats-fin-septembre-2026-france-entiere',
+        'body'=><<<'HTML'
+<p><strong>Le Service des données et études statistiques (SDES) a publié le 28 octobre 2026 ses résultats de la construction de logements à fin septembre.</strong> En septembre, 31 428 logements ont été autorisés en France, soit une progression de 1,2 % par rapport à août, en données corrigées des variations saisonnières et des jours ouvrables. Derrière cette hausse modérée, les logements individuels et collectifs suivent des trajectoires différentes.</p>
+<h2>31 428 autorisations en septembre, mais des contrastes selon les projets</h2>
+<p>Le SDES observe une <strong>hausse de 5,3 % des autorisations de logements collectifs</strong>, tandis que les <strong>autorisations de logements individuels diminuent de 5,5 %</strong> sur le mois. Ces pourcentages portent sur les variations mensuelles de séries corrigées, et non sur la part respective de chaque catégorie dans les permis délivrés.</p>
+<p>Cette distinction importe pour les professionnels de la construction : une évolution nationale légèrement positive ne signifie pas que tous les segments de marché progressent au même rythme. Les constructeurs de maisons individuelles, les promoteurs et les bureaux d'études peuvent connaître des dynamiques de commandes très différentes.</p>
+<h2>Quelle tendance sur douze mois ?</h2>
+<p>Sur la période <strong>d'octobre 2025 à septembre 2026</strong>, 377 834 logements ont été autorisés, soit 9,1 % de moins que la moyenne des cinq années précédentes, d'après la publication statistique. Le SDES estime également à 28 682 le nombre de logements mis en chantier pendant le seul mois de septembre 2026.</p>
+<p>Les autorisations donnent une indication sur les projets en préparation, mais elles ne sont pas assimilables aux mises en chantier ni aux logements effectivement achevés. Il faut donc éviter d'en déduire mécaniquement un volume immédiat d'études thermiques ou de contrôles réglementaires.</p>
+<h2>Quelles conséquences pour les études RE2020 ?</h2>
+<p>Ces statistiques <strong>ne modifient aucune exigence de la RE2020</strong>. Elles éclairent plutôt l'activité potentielle des maîtres d'ouvrage et les différences entre les typologies de projets. Pour chaque permis, la réglementation applicable demeure à analyser selon la nature du bâtiment, son usage et les dates réglementaires pertinentes.</p>
+<p>En maison individuelle, l'étude de conception permet notamment de vérifier le Bbio et les autres indicateurs applicables, en lien avec l'enveloppe et les systèmes envisagés. Retrouvez notre page <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">études RE2020 maison individuelle</a>. Pour les opérations collectives ou tertiaires, consultez les <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">prestations RE2020 collectif et tertiaire</a>.</p>
+<h2>Comment utiliser ces chiffres dans une veille professionnelle ?</h2>
+<ul><li>Suivre séparément les autorisations de maisons individuelles et celles des logements collectifs.</li><li>Comparer les données mensuelles avec une période plus longue, plutôt que d'interpréter un mois isolé.</li><li>Distinguer permis autorisés, chantiers commencés et opérations terminées.</li><li>Ne pas confondre évolution du marché et modification réglementaire.</li></ul>
+<p>Les <a href="/actualites/">actualités RE2020</a> complètent nos <a href="/dossiers-decryptages-re2020/">dossiers techniques</a> pour suivre à la fois la réglementation et le contexte de la construction neuve.</p>
+<p><strong>Source :</strong> <a href="https://www.statistiques.developpement-durable.gouv.fr/construction-de-logements-resultats-fin-septembre-2026-france-entiere" target="_blank" rel="noopener">SDES, construction de logements : résultats à fin septembre 2026 (28 octobre 2026)</a>.</p>
+HTML
+    ],
+    [
         'slug'=>'guide-cerema-re2020-version-septembre-2026-tertiaire',
         'title'=>'RE2020 : le guide Cerema actualisé intègre les évolutions de 2026',
         'excerpt'=>'Le guide Cerema mis à jour le 17 septembre 2026 rassemble les évolutions de la RE2020, notamment pour les bâtiments tertiaires spécifiques et industriels.',
