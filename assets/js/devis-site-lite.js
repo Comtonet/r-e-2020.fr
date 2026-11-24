@@ -62,7 +62,7 @@ function addProgress(){
   if(!screen)return;
   let progress=screen.querySelector('.quote-progress-lite');
   const onHome=!!screen.querySelector('.planche');
-  const onEntry=!!screen.querySelector('.lot');
+  const onEntry=window.KP_QUOTE_ENGINE?.getState()?.ecran==='saisie';
   const onDoc=!!screen.querySelector('.doc');
   if(!onHome&&!onEntry&&!onDoc)return;
   const step=onHome?1:onEntry?2:3;
@@ -95,7 +95,7 @@ function prices(){
 
 function tuneSaisieText(){
   const screen=q('#quoteScreen');
-  if(!screen||!screen.querySelector('.lot'))return;
+  if(!screen||window.KP_QUOTE_ENGINE?.getState()?.ecran!=='saisie')return;
   const lead=screen.querySelector('.hero .lede');
   if(lead)lead.textContent='Renseignez les informations concernant votre projet, puis affichez les packs disponibles.';
 }
@@ -120,9 +120,11 @@ function currentBaseTtc(){
   return chosen==='complete'?p.complete:p.permis;
 }
 function expressAvailable(){return standardDelayDays(currentBaseTtc())>1}
-function expressSurchargeHt(){return Math.round(currentBaseTtc()/1.2*.10*100)/100}
-function expressSurchargeTtc(){return Math.round(currentBaseTtc()*.10*100)/100}
-function currentTotalTtc(){return Math.round((currentBaseTtc()+(delivery==='express'&&expressAvailable()?expressSurchargeHt()*1.2:0))*100)/100}
+function currentBaseHt(){return Math.round(currentBaseTtc()/1.2*100)/100}
+function expressSurchargeHt(){return Math.round(currentBaseHt()*.10*100)/100}
+function expressSurchargeTtc(){return Math.round(expressSurchargeHt()*1.2*100)/100}
+function currentTotalHt(){return Math.round((currentBaseHt()+(delivery==='express'&&expressAvailable()?expressSurchargeHt():0))*100)/100}
+function currentTotalTtc(){return Math.round(currentTotalHt()*1.2*100)/100}
 function finalDelay(){return delivery==='express'&&expressAvailable()?1:standardDelayDays(currentBaseTtc())}
 
 function addFinalChoice(){
@@ -146,8 +148,8 @@ function addFinalChoice(){
   if(delay<=1)delivery='standard';
   box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Sélectionnez le pack adapté à votre projet. Votre devis vous sera transmis par e-mail.</p></div><span class="quote-final-step done">✓</span></div>
   <div class="opts final-presta-grid quote-two-offers">
-    <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Pack Permis – BBIO</strong><small>Calcul Bbio et DH, attestation RE2020 pour le dépôt du permis, conseils sur l’enveloppe thermique. Cep, Cep,nr et ACV non compris.</small><i>Délai estimé : ${standardDelayDays(p.permis)} jour(s) ouvré(s)</i><i>Sélectionner ce pack</i></span></button>
-    <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète – RE2020</strong><small>Pack Permis inclus, Cep et Cep,nr, ACV (Ic énergie et Ic construction), résultats réglementaires utiles à l’achèvement et conseils sur les équipements.</small><i>Délai estimé : ${standardDelayDays(p.complete)} jour(s) ouvré(s)</i><i>Sélectionner ce pack</i></span></button>
+    <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Pack Permis – BBIO</strong><small>Calcul Bbio et DH, attestation RE2020 pour le dépôt du permis, conseils sur l’enveloppe thermique. Cep, Cep,nr et ACV non compris.</small><i>Délai estimé : ${standardDelayDays(p.permis)} jour${standardDelayDays(p.permis)>1?'s':''} ouvré${standardDelayDays(p.permis)>1?'s':''}</i><i>Sélectionner ce pack</i></span></button>
+    <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète – RE2020</strong><small>Pack Permis inclus, Cep et Cep,nr, ACV (Ic énergie et Ic construction), résultats réglementaires utiles à l’achèvement et conseils sur les équipements.</small><i>Délai estimé : ${standardDelayDays(p.complete)} jour${standardDelayDays(p.complete)>1?'s':''} ouvré${standardDelayDays(p.complete)>1?'s':''}</i><i>Sélectionner ce pack</i></span></button>
   </div>
   <p class="quote-account-note"><strong>Prestations distinctes :</strong> l’attestation de conformité à l’achèvement des travaux, le DPE neuf, les tests de perméabilité à l’air et les contrôles de ventilation ne sont pas compris.</p>
   ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>
@@ -238,7 +240,7 @@ function publicPayload(){
   if(validateProject(st)||!explicitChoice)return null;
   const p=prices(),totalTtc=currentTotalTtc(),express=delivery==='express'&&expressAvailable();
   if(!(currentBaseTtc()>0)||!Number.isFinite(totalTtc))return null;
-  return {version:'site-public-v32-denis-20260918',origine:'r-e-2020.fr',reference:st.ref||'',date:new Date().toISOString(),projet:canonicalProject(st),reglementation:'RE2020',prestation:chosen==='complete'?'complete':'bbio',delai:{mode:delivery,jours_ouvres:finalDelay(),express,surcout_ht:expressSurchargeHt(),surcout_ttc:express?expressSurchargeTtc():0},facturation:'account',prix:{bbio_ttc:p.permis,bbio_ht:p.permis/1.2,complete_ttc:p.complete,complete_ht:p.complete/1.2,express_majoration_pct:express?10:0,total_ttc:totalTtc,total_ht:totalTtc/1.2}};
+  return {version:'site-public-v32-denis-20260918',origine:'r-e-2020.fr',reference:st.ref||'',date:new Date().toISOString(),projet:canonicalProject(st),reglementation:'RE2020',prestation:chosen==='complete'?'complete':'bbio',delai:{mode:delivery,jours_ouvres:finalDelay(),express,surcout_ht:express?expressSurchargeHt():0,surcout_ttc:express?expressSurchargeTtc():0},facturation:'account',prix:{bbio_ttc:p.permis,bbio_ht:p.permis/1.2,complete_ttc:p.complete,complete_ht:p.complete/1.2,express_majoration_pct:express?10:0,total_ttc:totalTtc,total_ht:currentTotalHt()}};
 }
 
 function removeStrayPrices(){
@@ -276,7 +278,7 @@ root.addEventListener('click',e=>{
     e.preventDefault();
     e.stopPropagation();
     const error=validateProject(window.KP_QUOTE_ENGINE?.getState());
-    if(error){const box=q('.final-prestation-lite');let notice=box?.querySelector('.quote-validation-error');if(!notice&&box){notice=document.createElement('p');notice.className='note rouge quote-validation-error';notice.setAttribute('role','alert');box.appendChild(notice)}if(notice)notice.textContent=error;return;}
+    if(error){const box=q('.final-prestation-lite');let notice=box?.querySelector('.quote-validation-error');if(!notice&&box){notice=document.createElement('p');notice.className='note rouge quote-validation-error';notice.setAttribute('role','alert');box.appendChild(notice)}if(notice){notice.textContent=error;if(error.includes('RT2012')){const a=document.createElement('a');a.href='mailto:devis@keeplanet.fr';a.textContent=' Demander un devis manuel.';notice.appendChild(a)}}return;}
     showLoader();
     explicitChoice=false;
     chosen='permis';
@@ -290,6 +292,7 @@ root.addEventListener('click',e=>{
     },420);
     return;
   }
+  if(b.dataset.act==='restart')accountDraft={};
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
   if(['nature','famille','mixfam','mixusage','mixadd','extmode','usage','autreusage','addlot','dellot','compo','val','addbat','delbat','restart','goto'].includes(b.dataset.act)){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
   scheduleTune();
