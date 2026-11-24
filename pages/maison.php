@@ -44,6 +44,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
       </ul>
       <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup>Choisir le Pack Permis</a>
       <small>Vous pourrez passer à un pack supérieur plus tard en réglant uniquement la différence.</small>
+      <a class="mi-hero-eco" href="#pack-eco" data-no-signup-popup><span><strong>Eco’Permis</strong><small>L’essentiel pour le permis, en autonomie</small></span><span class="mi-hero-eco-price"><?= h($ecoPrice) ?> <span aria-hidden="true">→</span></span></a>
     </aside>
   </div>
 </section>
@@ -98,7 +99,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
       </a>
     </div>
 
-    <p class="mi-choice-note">Petit budget et uniquement la phase permis ? Le <a href="#pack-eco">Pack Eco’Permis à <?= h($ecoPrice) ?></a> reste disponible avec un accompagnement réduit.</p>
+    <p class="mi-choice-note">Pour la phase permis en autonomie : <a href="#pack-eco" data-no-signup-popup>Eco’Permis à <?= h($ecoPrice) ?> →</a></p>
   </div>
 </section>
 
@@ -109,6 +110,19 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
       <h2>Prestations et tarifs RE2020</h2>
       <p>Tous les prix sont TTC et valables quelle que soit la surface de la maison. Les packs principaux incluent l’accès à votre espace client et les échanges avec notre équipe.</p>
     </div>
+
+    <article class="mi-eco-strip" id="pack-eco" aria-labelledby="pack-eco-title">
+      <div class="mi-eco-copy">
+        <span class="mi-eco-label">Formule économique · phase permis</span>
+        <h3 id="pack-eco-title">Pack Eco’Permis</h3>
+        <p>Calcul Bbio + DH en <strong><?= h(eco_delay_label()) ?></strong>, 2 variantes incluses et accès à KeePote.</p>
+        <p class="mi-eco-limit">Vous générez vous-même l’attestation permis avec les fichiers fournis. Conseils du thermicien non inclus.</p>
+      </div>
+      <div class="mi-eco-purchase">
+        <strong class="mi-eco-price"><?= h($ecoPrice) ?></strong>
+        <a class="btn mi-btn-soft" href="/inscription-maison/?pack=eco" data-no-signup-popup>Choisir Eco’Permis <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
     <div class="mi-pack-grid">
       <article class="mi-pack-card" id="pack-permis">
@@ -172,15 +186,6 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup>Choisir le pack complet + ACV</a>
       </article>
     </div>
-
-    <article class="mi-eco-strip" id="pack-eco">
-      <div class="mi-eco-copy">
-        <span class="mi-pack-tag">Option économique</span>
-        <h3>Pack Eco’Permis <strong><?= h($ecoPrice) ?></strong></h3>
-        <p>Calcul Bbio + DH en <?= h(eco_delay_label()) ?>, 2 variantes incluses. Vous générez vous-même l’attestation permis avec les fichiers fournis et la formule ne comprend pas les conseils du thermicien. <strong>Accès à KeePote inclus</strong> pour obtenir une aide RE2020 instantanée, avec possibilité de relais humain Keeplanet.</p>
-      </div>
-      <a class="btn mi-btn-soft" href="/inscription-maison/?pack=eco" data-no-signup-popup>Choisir Eco’Permis</a>
-    </article>
   </div>
 </section>
 
