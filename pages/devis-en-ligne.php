@@ -154,6 +154,52 @@ $quoteConfig = [
 .devis-app .quote-send-btn{width:100%;min-height:58px;margin-top:17px;border-radius:14px!important;font-size:16px;font-weight:850}
 .devis-app .quote-account-note{margin:9px 0 0;text-align:center;font-size:11.5px;line-height:1.45;color:#7b8190}
 @media(max-width:700px){.devis-app .final-presta-grid.quote-two-offers,.devis-app .quote-public-delay-grid,.devis-app .quote-account-grid{grid-template-columns:1fr!important}.devis-app .quote-account-grid label.wide{grid-column:auto}.devis-app .quote-account-form{padding:17px}}
+
+/* Identité KeePlanet et état de calcul : local au configurateur. */
+.devis-app{--kp-violet:#38227e;--kp-green:#98bf24;--kp-green-ink:#456000}
+.devis-app [hidden]{display:none!important}
+.devis-app .hero{padding:24px 26px 26px!important;border:1px solid #e7e3f0;border-radius:24px;background:linear-gradient(125deg,#f8f6fc 0%,#fff 62%,#f5f9e9 100%)!important}
+.devis-app .hero h1,.devis-app .block>h2,.devis-app .panel-h h3,.devis-app .lot-h b{color:var(--kp-violet)}
+.devis-app .hero:before{display:none}
+.devis-app .hero h1 em{color:#64850f}
+.devis-app .quote-progress-track{height:7px;background:#eeebf4}
+.devis-app .quote-progress-track i{background:linear-gradient(90deg,#38227e 0%,#98bf24 100%)}
+.devis-app .quote-progress-labels span.on{color:#38227e}
+.devis-app .planche[aria-pressed="true"],.devis-app .opt[aria-pressed="true"],.devis-app .ucard[aria-pressed="true"]{border-color:#98bf24!important;background:#f7faee!important;box-shadow:0 0 0 3px rgba(152,191,36,.18)!important}
+.devis-app .seg button[aria-pressed="true"]{background:#eaf3ce!important;border-color:#98bf24!important;color:#38227e!important}
+.devis-app .lot{border:1px solid #e1dcec;border-radius:20px;background:#fff;box-shadow:0 6px 24px rgba(56,34,126,.055)}
+.devis-app .lot-h{background:#f7f5fb;border-radius:19px 19px 0 0}
+.devis-app .lot input:focus,.devis-app .lot select:focus,.devis-app .quote-project-name input:focus{border-color:#98bf24!important;box-shadow:0 0 0 3px rgba(152,191,36,.19)!important}
+.devis-app .final-prestation-lite[data-stage="ready"]{background:linear-gradient(125deg,#38227e,#493391)!important;border:0!important;box-shadow:0 16px 38px rgba(56,34,126,.18)!important;padding:28px!important}
+.devis-app .final-prestation-lite[data-stage="ready"]:before{background:radial-gradient(circle,rgba(152,191,36,.21),transparent 70%)}
+.devis-app .quote-ready-content{position:relative;z-index:1;display:flex;gap:17px;align-items:center;margin-bottom:22px}
+.devis-app .quote-ready-icon{flex:none;width:48px;height:48px;border-radius:15px;background:#98bf24;color:#25380a;display:grid;place-items:center}
+.devis-app .quote-ready-icon svg{width:27px;height:27px}
+.devis-app .quote-ready-kicker{display:block;color:#d9eea0;font-size:11px;letter-spacing:.11em;font-weight:800;text-transform:uppercase}
+.devis-app .quote-ready-content h3{font-size:clamp(23px,3vw,30px);line-height:1.18;margin:5px 0;color:#fff;letter-spacing:-.025em}
+.devis-app .quote-ready-content p{margin:0;color:#e3dff1;font-size:14px;line-height:1.55}
+.devis-app .quote-calculate-btn,.devis-app .quote-send-btn{background:#98bf24!important;color:#22320a!important;border:1px solid transparent!important;box-shadow:0 8px 20px rgba(80,111,8,.18)!important}
+.devis-app .quote-calculate-btn:hover,.devis-app .quote-send-btn:hover{background:#a9ce3d!important}
+.devis-app .quote-calculate-btn:focus-visible,.devis-app .quote-send-btn:focus-visible{outline:3px solid #c8e478;outline-offset:4px}
+.devis-app .final-prestation-lite[data-stage="ready"] .quote-calc-note{color:#e2dfeb}
+.devis-app .quote-validation-error{margin-top:10px;color:#8b302b}
+.devis-app .final-presta-grid .quote-offer{min-height:190px;padding:21px!important}
+.devis-app .final-presta-grid .quote-offer strong{color:#38227e}
+.devis-app .final-presta-grid .quote-offer:has(.quote-badge){padding-top:42px!important}
+.devis-app .quote-badge{background:#eaf3ce;color:#456000}
+.devis-app .quote-loader{background:rgba(56,34,126,.14);backdrop-filter:blur(5px)}
+.devis-app .quote-loader-card{background:#fff;border:1px solid #e5ebd6;border-radius:25px;box-shadow:0 20px 65px rgba(56,34,126,.18)}
+.devis-app .quote-loader-card strong{color:#38227e;font-size:22px}
+.devis-app .quote-infinity{display:block;position:static;width:112px;height:56px;margin:0 auto;overflow:visible}
+.devis-app .quote-infinity-track,.devis-app .quote-infinity-run{stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.devis-app .quote-infinity-track{stroke:#e5efce}
+.devis-app .quote-infinity-run{stroke:#98bf24;stroke-dasharray:29 71;animation:kpInfinityFlow 1.05s linear infinite}
+@keyframes kpInfinityFlow{to{stroke-dashoffset:-100}}
+.devis-app .quote-loader-line b{background:#98bf24}
+.devis-app .quote-help-notice{border-color:#e2ebc8!important;background:#f6faed!important;color:#38227e}
+@media(max-width:700px){.devis-app .hero{padding:17px!important}.devis-app .final-prestation-lite[data-stage="ready"]{padding:20px!important}.devis-app .quote-ready-content{align-items:flex-start;gap:12px}.devis-app .quote-ready-icon{width:40px;height:40px}.devis-app .quote-calculate-btn{min-height:54px}}
+@media(prefers-reduced-motion:reduce){.devis-app .quote-infinity-run{animation:none;stroke-dasharray:none}.devis-app .quote-loader-line b{animation:none;width:100%}}
+
 </style>
 <section class="devis-app" id="devis-app">
   <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
@@ -168,4 +214,4 @@ $quoteConfig = [
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=33" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=33" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=34" defer></script>

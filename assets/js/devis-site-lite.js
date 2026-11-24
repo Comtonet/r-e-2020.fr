@@ -10,6 +10,8 @@ let hasCalculated=false;
 let calculating=false;
 let tuneFrame=0;
 let inputTimer=0;
+let businessInput=false;
+let finalKey='';
 let accountDraft={};
 const q=s=>root.querySelector(s);
 const qa=s=>Array.from(root.querySelectorAll(s));
@@ -30,7 +32,9 @@ function ensureLoader(){
   const loader=document.createElement('div');
   loader.className='quote-loader';
   loader.setAttribute('aria-hidden','true');
-  loader.innerHTML=`<div class="quote-loader-card"><div class="quote-infinity" aria-hidden="true"><i></i><i></i></div><strong>Calcul de votre devis</strong><span>Calcul en cours à partir des informations renseignées…</span><div class="quote-loader-line"><b></b></div></div>`;
+  loader.setAttribute('role','status');
+  loader.setAttribute('aria-live','polite');
+  loader.innerHTML=`<div class="quote-loader-card"><svg class="quote-infinity" viewBox="0 0 112 56" fill="none" aria-hidden="true" focusable="false"><path class="quote-infinity-track" d="M56 28C44 11 35 8 24 8C12 8 5 17 5 28S12 48 24 48C35 48 44 45 56 28S77 8 88 8C100 8 107 17 107 28S100 48 88 48C77 48 68 45 56 28Z" pathLength="100"/><path class="quote-infinity-run" d="M56 28C44 11 35 8 24 8C12 8 5 17 5 28S12 48 24 48C35 48 44 45 56 28S77 8 88 8C100 8 107 17 107 28S100 48 88 48C77 48 68 45 56 28Z" pathLength="100"/></svg><strong>Calcul de votre devis</strong><span>Nous préparons les prestations adaptées à votre projet…</span><div class="quote-loader-line"><b></b></div></div>`;
   root.appendChild(loader);
 }
 
@@ -40,6 +44,8 @@ function showLoader(){
   const loader=q('.quote-loader');
   if(loader){loader.classList.add('show');loader.setAttribute('aria-hidden','false')}
   root.classList.add('is-calculating');
+  root.setAttribute('aria-busy','true');
+  const screen=q('#quoteScreen');if(screen)screen.inert=true;
 }
 
 function hideLoader(){
@@ -47,6 +53,8 @@ function hideLoader(){
   const loader=q('.quote-loader');
   if(loader){loader.classList.remove('show');loader.setAttribute('aria-hidden','true')}
   root.classList.remove('is-calculating');
+  root.removeAttribute('aria-busy');
+  const screen=q('#quoteScreen');if(screen)screen.inert=false;
 }
 
 function ensureDefault(){
@@ -65,7 +73,7 @@ function addProgress(){
   const onEntry=window.KP_QUOTE_ENGINE?.getState()?.ecran==='saisie';
   const onDoc=!!screen.querySelector('.doc');
   if(!onHome&&!onEntry&&!onDoc)return;
-  const step=onHome?1:onEntry?2:3;
+  const step=onHome?1:onEntry?(hasCalculated?3:2):3;
   if(!progress){
     progress=document.createElement('div');
     progress.className='quote-progress-lite';
@@ -127,19 +135,64 @@ function currentTotalHt(){return Math.round((currentBaseHt()+(delivery==='expres
 function currentTotalTtc(){return Math.round(currentTotalHt()*1.2*100)/100}
 function finalDelay(){return delivery==='express'&&expressAvailable()?1:standardDelayDays(currentBaseTtc())}
 
+function isBusinessField(el){return el.matches('input[data-act="valnum"],input[data-act="bat"],input[data-act="surfs"]');}
+function readinessError(st,entered,fields){
+  if(!entered||!st||st.ecran!=='saisie'||!st.lots?.length)return 'incomplete';
+  for(const f of fields){
+    const v=String(f.value??'').trim(),n=Number(v);
+    if(!v||!Number.isFinite(n)||n<Number(f.min||0))return 'incomplete';
+    if((['S','N','M','surfExist','sc','sj','surExist','surNeuve'].includes(f.key)||f.act==='bat'||f.act==='surfs')&&n<=0)return 'incomplete';
+    if((['N','M','n','lits'].includes(f.key)||f.act==='bat'||f.act==='qte')&&!Number.isInteger(n))return 'incomplete';
+  }
+  for(const l of st.lots){
+    const v=l.v||{};
+    if((l.usage==='MI'||l.usage==='LOG'&&Number(v.N)<3)&&(!(Number(v.N)>0)||!(Number(v.M)>0)||Number(v.M)>Number(v.N)))return 'incomplete';
+    if(l.usage==='COL'&&(!v.bats?.length||v.bats.some(b=>Number(typeof b==='object'?b.n:b)<3)))return 'incomplete';
+  }
+  return '';
+}
+function projectReadiness(){
+  const st=window.KP_QUOTE_ENGINE?.getState?.();
+  const fields=qa('#quoteScreen input[type="number"]').filter(el=>!el.closest('.final-prestation-lite')&&!el.disabled&&!el.closest('[hidden]')).map(el=>({value:el.value,min:el.min,key:el.dataset.k,act:el.dataset.act}));
+  const error=readinessError(st,businessInput,fields);
+  if(error)return error;
+  return validateProject(st);
+}
+function resetCalculation(){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard';}
+function saveAccountDraft(){const form=q('[data-quote-account-form]');if(form)accountDraft=Object.fromEntries(new FormData(form));}
+
 function addFinalChoice(){
   const screen=q('#quoteScreen');
-  if(!screen||window.KP_QUOTE_ENGINE?.getState()?.ecran!=='saisie')return false;
+  if(!screen||window.KP_QUOTE_ENGINE?.getState?.()?.ecran!=='saisie')return false;
   let box=screen.querySelector('.final-prestation-lite');
-  if(!box){box=document.createElement('section');box.className='panel final-prestation-lite';screen.appendChild(box)}
-  const next=q('#quoteNext');
-  const txt=q('#quoteBarTxt');
+  const next=q('#quoteNext'),txt=q('#quoteBarTxt');
+  if(next){next.hidden=true;next.disabled=true}
+  const error=projectReadiness();
+  if(error){
+    if(box){saveAccountDraft();box.remove()}
+    finalKey='';
+    if(hasCalculated)resetCalculation();
+    if(txt)txt.textContent=error==='incomplete'?'Complétez les informations de votre projet.':error;
+    if(error.includes('RT2012')){
+      let notice=screen.querySelector('.quote-manual-notice');
+      if(!notice){notice=document.createElement('p');notice.className='note rouge quote-manual-notice';notice.setAttribute('role','status');screen.appendChild(notice)}
+      notice.textContent=error+' ';
+      const a=document.createElement('a');a.href='mailto:devis@keeplanet.fr';a.textContent='Demander un devis manuel.';notice.appendChild(a);
+    }else screen.querySelector('.quote-manual-notice')?.remove();
+    return false;
+  }
+  screen.querySelector('.quote-manual-notice')?.remove();
+  if(!box){box=document.createElement('section');box.className='panel final-prestation-lite';screen.appendChild(box);finalKey=''}
+  const stage=hasCalculated?'offers':'ready';
+  const key=stage+'|'+explicitChoice+'|'+chosen+'|'+delivery;
+  box.dataset.stage=stage;
   if(!hasCalculated){
-    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Vérifiez les informations avant d’afficher les packs.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Afficher les packs disponibles</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
-    if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
-    if(txt)txt.textContent='Terminez votre saisie puis calculez votre devis.';
+    if(finalKey!==key){box.innerHTML=`<div class="quote-ready-content"><div class="quote-ready-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><span class="quote-ready-kicker">Tout est renseigné</span><h3>Votre projet est prêt !</h3><p>Découvrez les prestations adaptées à votre projet et recevez votre devis gratuitement.</p></div></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;finalKey=key}
+    if(txt)txt.textContent='Les informations sont complètes.';
     return true;
   }
+  if(finalKey===key)return true;
+  finalKey=key;
   const p=prices();
   const selected=explicitChoice;
   const previousForm=box.querySelector('[data-quote-account-form]');
@@ -173,8 +226,8 @@ function addFinalChoice(){
   </form>`:''}`;
   {const form=box.querySelector('[data-quote-account-form]');if(form)for(const [key,value] of Object.entries(accountDraft)){const input=form.elements.namedItem(key);if(input&&input.type!=='hidden')input.value=value}}
   if(next){
-    next.hidden=!!explicitChoice;
-    next.disabled=!explicitChoice;
+    next.hidden=true;
+    next.disabled=true;
     next.textContent='Choisissez votre pack';
   }
   if(txt)txt.innerHTML=explicitChoice?`Délai : <b>${finalDelay()} jour${finalDelay()>1?'s':''} ouvré${finalDelay()>1?'s':''}</b>`:'Sélectionnez un pack pour continuer.';
@@ -260,85 +313,62 @@ function tune(){
   root.classList.add('devis-lite-site');
 }
 
-root.addEventListener('click',e=>{const form=q('[data-quote-account-form]');if(form)accountDraft=Object.fromEntries(new FormData(form));},true);
+// Capture the final actions before the engine's delegated click handler.
 root.addEventListener('click',e=>{
-  if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('select,input,textarea'))return;
-  const delayBtn=e.target.closest('[data-quote-delivery]');
-  if(delayBtn){
-    if(calculating)return;
-    e.preventDefault();
-    delivery=delayBtn.dataset.quoteDelivery==='express'?'express':'standard';
-    scheduleTune();
+  const b=e.target.closest('[data-act="calculate-quote"],.final-prestation-lite [data-act="prestation"],[data-quote-delivery]');
+  if(!b)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  if(calculating)return;
+  saveAccountDraft();
+  if(b.dataset.act==='calculate-quote'){
+    if(projectReadiness())return;
+    resetCalculation();showLoader();b.disabled=true;
+    setTimeout(()=>{
+      hasCalculated=!projectReadiness();
+      hideLoader();
+      addFinalChoice();addProgress();
+      const box=q('.final-prestation-lite');
+      if(box&&hasCalculated)box.scrollIntoView({behavior:'smooth',block:'center'});
+    },650);
     return;
   }
+  if(b.dataset.act==='prestation'){
+    explicitChoice=true;chosen=b.dataset.id;delivery='standard';
+    addFinalChoice();addProgress();
+    q('.quote-public-delay')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }else{
+    delivery=b.dataset.quoteDelivery==='express'?'express':'standard';
+    addFinalChoice();
+  }
+},true);
+root.addEventListener('click',e=>{
+  if(e.target.closest('[data-quote-account-form]')||e.target.closest('select,input,textarea'))return;
   const b=e.target.closest('[data-act]');
   if(!b||calculating)return;
-  if(b.dataset.act==='calculate-quote'){
-    e.preventDefault();
-    e.stopPropagation();
-    const error=validateProject(window.KP_QUOTE_ENGINE?.getState());
-    if(error){const box=q('.final-prestation-lite');let notice=box?.querySelector('.quote-validation-error');if(!notice&&box){notice=document.createElement('p');notice.className='note rouge quote-validation-error';notice.setAttribute('role','alert');box.appendChild(notice)}if(notice){notice.textContent=error;if(error.includes('RT2012')){const a=document.createElement('a');a.href='mailto:devis@keeplanet.fr';a.textContent=' Demander un devis manuel.';notice.appendChild(a)}}return;}
-    showLoader();
-    explicitChoice=false;
-    chosen='permis';
-    delivery='standard';
-    hasCalculated=true;
-    scheduleTune();
-    setTimeout(()=>{
-      hideLoader();
-      const box=q('.final-prestation-lite');
-      if(box)box.scrollIntoView({behavior:'smooth',block:'center'});
-    },420);
-    return;
+  const act=b.dataset.act;
+  if(['nature','famille','restart'].includes(act))businessInput=false;
+  if(act==='restart')accountDraft={};
+  if(['nature','famille','mixfam','mixusage','mixadd','extmode','usage','autreusage','addlot','dellot','compo','val','addbat','delbat','restart','goto','moa'].includes(act)){
+    resetCalculation();finalKey='';
   }
-  if(b.dataset.act==='restart')accountDraft={};
-  if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
-  if(['nature','famille','mixfam','mixusage','mixadd','extmode','usage','autreusage','addlot','dellot','compo','val','addbat','delbat','restart','goto'].includes(b.dataset.act)){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
   scheduleTune();
 });
-
 root.addEventListener('input',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
   if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"],[data-act="projectname"]')){
-    hasCalculated=false;
-    explicitChoice=false;
-    chosen='permis';
-    delivery='standard';
-
-    /*
-     * Les champs numériques du moteur mettent déjà à jour l'état et
-     * le chiffrage. On ne reconstruit jamais l'écran pendant leur saisie :
-     * cela évite le clignotement du texte/caret, notamment sur les maisons.
-     *
-     * Seul le bloc final est remis en état "à recalculer", sans toucher
-     * aux inputs ni à leur focus.
-     */
-    if(e.target.matches('input[type="number"]')){
-      addFinalChoice();
-      return;
-    }
-    scheduleTune(90);
+    if(isBusinessField(e.target))businessInput=true;
+    resetCalculation();
+    // The engine already updated the state. Do not replace the ready button on every keystroke.
+    addFinalChoice();addProgress();
   }
 });
 root.addEventListener('change',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"],[data-act="projectname"]')){
-    hasCalculated=false;
-    explicitChoice=false;
-    chosen='permis';
-    delivery='standard';
-
-    /*
-     * Même règle au change : un input numérique ne doit jamais provoquer
-     * de rerender global (les flèches natives des champs number déclenchent
-     * aussi change sur certains navigateurs).
-     */
-    if(e.target.matches('input[type="number"]')){
-      addFinalChoice();
-      return;
-    }
-    scheduleTune();
+  // Numeric and text input were processed on input. A blur must not destroy
+  // the button which the visitor is about to click.
+  if(!e.target.matches('select'))return;
+  if(e.target.closest('.lot')){
+    resetCalculation();finalKey='';scheduleTune();
   }
 });
 let addressTimer=0;
@@ -447,6 +477,7 @@ root.addEventListener('submit',e=>{
     return;
   }
 
+  if(projectReadiness()||!hasCalculated||!explicitChoice){e.preventDefault();return;}
   const payload=publicPayload();
   if(!payload){
     e.preventDefault();
