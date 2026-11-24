@@ -27,6 +27,9 @@ $quoteConfig = [
 ?>
 <link rel="stylesheet" href="/assets/css/devis-calculateur.css?v=4">
 <style>
+.devis-app .lot-f,.devis-app #quoteRail{display:none!important}
+.devis-app .final-prestation-lite .quote-offer em{display:none!important}
+
 .devis-app{
   --display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
@@ -164,5 +167,5 @@ $quoteConfig = [
   <div class="infotip noprint" id="quoteInfotip" role="tooltip"><div class="infotip-body"></div></div>
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=24" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=24" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=32" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=32" defer></script>

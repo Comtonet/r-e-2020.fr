@@ -88,8 +88,8 @@ function lightenHome(){
 }
 
 function prices(){
-  const m=qa('#quoteRail .money .amt');
-  return {permis:parseEur(m[0]?.textContent),fdc:parseEur(m[1]?.textContent),complete:parseEur(m[2]?.textContent)};
+  const p=window.KP_QUOTE_ENGINE?.getTotals();
+  return {permis:Number(p?.permis)||0,complete:Number(p?.complete)||0};
 }
 
 function tuneSaisieText(){
@@ -119,39 +119,43 @@ function currentBaseTtc(){
   return chosen==='complete'?p.complete:p.permis;
 }
 function expressAvailable(){return standardDelayDays(currentBaseTtc())>1}
+function expressSurchargeHt(){return Math.round(currentBaseTtc()/1.2*.10*100)/100}
 function expressSurchargeTtc(){return Math.round(currentBaseTtc()*.10*100)/100}
-function currentTotalTtc(){return currentBaseTtc()+(delivery==='express'&&expressAvailable()?expressSurchargeTtc():0)}
+function currentTotalTtc(){return Math.round((currentBaseTtc()+(delivery==='express'&&expressAvailable()?expressSurchargeHt()*1.2:0))*100)/100}
 function finalDelay(){return delivery==='express'&&expressAvailable()?1:standardDelayDays(currentBaseTtc())}
 
 function addFinalChoice(){
   const screen=q('#quoteScreen');
-  if(!screen||!screen.querySelector('.lot'))return false;
+  if(!screen||window.KP_QUOTE_ENGINE?.getState()?.ecran!=='saisie')return false;
   let box=screen.querySelector('.final-prestation-lite');
   if(!box){box=document.createElement('section');box.className='panel final-prestation-lite';screen.appendChild(box)}
   const next=q('#quoteNext');
   const txt=q('#quoteBarTxt');
   if(!hasCalculated){
-    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Lancez le calcul pour afficher les deux niveaux d’étude disponibles.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Calculer mon devis</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
+    box.innerHTML=`<div class="quote-final-head"><div><span class="chip o">Dernière étape</span><h3>Votre projet est prêt</h3><p>Vérifiez les informations avant d’afficher les packs.</p></div><span class="quote-final-step">3/3</span></div><button type="button" class="btn btn-p quote-calculate-btn" data-act="calculate-quote"><span>Afficher les packs disponibles</span><b aria-hidden="true">→</b></button><div class="quote-calc-note"><span>✓ Calcul immédiat</span><span>✓ Sans engagement</span></div>`;
     if(next){next.disabled=true;next.textContent='Calculez d’abord votre devis'}
     if(txt)txt.textContent='Terminez votre saisie puis calculez votre devis.';
     return true;
   }
   const p=prices();
   const selected=explicitChoice;
+  const previousForm=box.querySelector('[data-quote-account-form]');
+  const previous=previousForm?new FormData(previousForm):null;
   const delay=selected?standardDelayDays(currentBaseTtc()):0;
   if(delay<=1)delivery='standard';
-  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Les tarifs affichés sont TTC. KeePlanet vérifiera le devis avant le démarrage de l’étude.</p></div><span class="quote-final-step done">✓</span></div>
+  box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Sélectionnez le pack adapté à votre projet. Votre devis vous sera transmis par e-mail.</p></div><span class="quote-final-step done">✓</span></div>
   <div class="opts final-presta-grid quote-two-offers">
-    <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>BBIO</strong><small>BBIO + DH et éléments nécessaires au dépôt du permis.</small><em>${eur(p.permis)}</em><i>Sélectionner ce pack</i></span></button>
-    <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète</strong><small>BBIO, Cep, Cep,nr, DH, ACV et livrables nécessaires.</small><em>${eur(p.complete)}</em><i>Sélectionner ce pack</i></span></button>
+    <button class="opt quote-offer" data-act="prestation" data-id="permis" aria-pressed="${explicitChoice&&chosen==='permis'}"><span class="tick"></span><span><strong>Pack Permis – BBIO</strong><small>Calcul Bbio et DH, attestation RE2020 pour le dépôt du permis, conseils sur l’enveloppe thermique. Cep, Cep,nr et ACV non compris.</small><i>Délai estimé : ${standardDelayDays(p.permis)} jour(s) ouvré(s)</i><i>Sélectionner ce pack</i></span></button>
+    <button class="opt quote-offer quote-offer-mid" data-act="prestation" data-id="complete" aria-pressed="${explicitChoice&&chosen==='complete'}"><span class="quote-badge">Le plus choisi</span><span class="tick"></span><span><strong>Étude complète – RE2020</strong><small>Pack Permis inclus, Cep et Cep,nr, ACV (Ic énergie et Ic construction), résultats réglementaires utiles à l’achèvement et conseils sur les équipements.</small><i>Délai estimé : ${standardDelayDays(p.complete)} jour(s) ouvré(s)</i><i>Sélectionner ce pack</i></span></button>
   </div>
+  <p class="quote-account-note"><strong>Prestations distinctes :</strong> l’attestation de conformité à l’achèvement des travaux, le DPE neuf, les tests de perméabilité à l’air et les contrôles de ventilation ne sont pas compris.</p>
   ${selected?`<div class="quote-public-delay"><div class="quote-public-delay-head"><strong>Délai de réalisation</strong><span>Choisissez le délai souhaité.</span></div><div class="quote-public-delay-grid"><button type="button" class="quote-delay-btn ${delivery==='standard'?'on':''}" data-quote-delivery="standard"><b>Standard</b><small>${delay} jour${delay>1?'s':''} ouvré${delay>1?'s':''}</small></button>${delay>1?`<button type="button" class="quote-delay-btn express ${delivery==='express'?'on':''}" data-quote-delivery="express"><b>Express</b><small>1 jour ouvré · +${eur(expressSurchargeTtc())} TTC</small></button>`:''}</div></div>
   <form class="quote-account-form" method="post" action="/devis-en-ligne/envoi/" data-quote-account-form>
     <input type="hidden" name="devis_payload" value="" data-quote-payload>
     <input type="hidden" name="origine" value="site-re2020">
     <input type="hidden" name="public_signup" value="1">
     <input type="hidden" name="retour_site" value="" data-return-site>
-    <div class="quote-account-head"><strong>Recevez votre devis</strong><span>Vos accès à l’espace client seront créés gratuitement en même temps.</span></div>
+    <div class="quote-account-head"><strong>Recevez votre devis</strong><span>Si vous n’avez pas encore de compte, vos accès seront créés gratuitement.</span></div>
     <div class="quote-account-grid">
       <label><span>Nom et prénom *</span><input type="text" name="nom" autocomplete="name" required></label>
       <label><span>Société <small>(facultatif)</small></span><input type="text" name="societe" autocomplete="organization"></label>
@@ -162,52 +166,73 @@ function addFinalChoice(){
       <label><span>Ville *</span><input type="text" name="ville" autocomplete="address-level2" required></label>
     </div>
     <button type="submit" class="btn btn-p quote-send-btn" data-no-signup-popup>M’envoyer le devis et créer mon compte gratuitement</button>
-    <p class="quote-account-note">Aucun paiement à cette étape. Le devis vous est envoyé par e-mail et vos accès sont créés automatiquement.</p>
+    <p class="quote-account-note">Aucun paiement à cette étape. Si vous avez déjà un compte, le parcours existant vous permet de le retrouver.</p>
   </form>`:''}`;
+  if(previous){const form=box.querySelector('[data-quote-account-form]');if(form)for(const [key,value] of previous){const input=form.elements.namedItem(key);if(input&&input.type!=='hidden')input.value=value}}
   if(next){
     next.hidden=!!explicitChoice;
     next.disabled=!explicitChoice;
     next.textContent='Choisissez votre pack';
   }
-  if(txt)txt.innerHTML=explicitChoice?`Votre devis : <b>${eur(currentTotalTtc())} TTC</b> · délai <b>${finalDelay()} jour${finalDelay()>1?'s':''} ouvré${finalDelay()>1?'s':''}</b>`:'Sélectionnez un pack pour continuer.';
+  if(txt)txt.innerHTML=explicitChoice?`Délai : <b>${finalDelay()} jour${finalDelay()>1?'s':''} ouvré${finalDelay()>1?'s':''}</b>`:'Sélectionnez un pack pour continuer.';
   return true;
 }
 
-function publicPayload(){
-  const engine=window.KP_QUOTE_ENGINE;
-  const st=engine&&engine.getState?engine.getState():null;
-  if(!st)return null;
-  const famMap={maisons:'maison',collectif:'collectif',tertiaire:'tertiaire',mixte:'mixte'};
-  const natMap={neuf:'construction',ext:'extension',sur:'surelevation','mixte-ne':'mixte','reno-ext':'extension','reno-neuf':'mixte'};
-  const family=famMap[st.famille]||st.famille||'';
-  const nature=natMap[st.nature]||st.nature||'';
-  const data={projectName:st.nom||'',surExist:st.surExist??'',surNeuve:st.surNeuve??'',familleExtension:st.familleExt||'',familleNeuve:st.familleNeuf||''};
-  if(family==='maison'){
-    const mi=(st.lots||[]).find(l=>l.usage==='MI');
-    const ext=(st.lots||[]).find(l=>l.usage==='EXT');
-    data.N=mi&&mi.v?mi.v.N:'';
-    data.M=mi&&mi.v?mi.v.M:'';
-    if(ext&&ext.v)data.extensionSurface=ext.v.S||'';
-  }else if(family==='collectif'){
-    const col=(st.lots||[]).find(l=>l.usage==='COL');
-    const bats=col&&col.v&&Array.isArray(col.v.bats)?col.v.bats:[];
-    data.buildings=bats.map(b=>b&&typeof b==='object'?{n:b.n,same:b.same==null?'':b.same}:{n:b,same:''});
-  }else{
-    data.zones=(st.lots||[]).map(l=>({role:l.role||'',usage:l.usage||'',surface:l.v&&l.v.S!=null?l.v.S:'',count:l.v&&l.v.n!=null?l.v.n:'',logements:l.v&&l.v.N!=null?l.v.N:'',modeles:l.v&&l.v.M!=null?l.v.M:'',resto:l.v&&l.v.resto||'',amphi:l.v&&l.v.amphi||'',cuisine:l.v&&l.v.cuisine||'',lits:l.v&&l.v.lits||'',sc:l.v&&l.v.sc||'',sj:l.v&&l.v.sj||'',coqueBrute:l.v&&l.v.coqueBrute||'',surfExist:l.v&&l.v.surfExist||''}));
+// Contrat V32 : le compte est résolu côté serveur, jamais via un identifiant fourni par le visiteur.
+function canonicalProject(st){
+  const fam=f=>f==='maisons'?'maison':f||'';
+  const family=fam(st.famille),ext=fam(st.familleExt),neuf=fam(st.familleNeuf),parts={},normalized=[];
+  const groups=st.nature==='mixte-ne'?[['ext',ext],['neuf',neuf]]:[[st.nature==='sur'?'sur':['ext','reno-ext'].includes(st.nature)?'ext':'main',family]];
+  for(const [role,f] of groups){
+    const ls=st.nature==='mixte-ne'?st.lots.filter(l=>role==='ext'?['ext','ext-agr','ext-log'].includes(l.role):l.role==='neuf'):st.lots;
+    const agr=ls.find(l=>l.usage==='EXT'),mi=ls.find(l=>l.usage==='MI'),col=ls.find(l=>l.usage==='COL'),cols=ls.find(l=>l.usage==='COLS');
+    const bats=l=>(l?.v?.bats||[]).map(b=>({n:Number(b.n),same:b.same===''||b.same==null?'':Number(b.same)}));
+    const zone=l=>{const v={...l.v};if(l.usage==='COL'){const b=bats(l);v.bats=b.map(x=>x.n);v.same=b.map(x=>x.same===''?null:x.same)}if(role==='sur')v.S=Number(st.surNeuve);return{usage:l.usage,v,qte:Number(l.qte)||1}};
+    parts[role]=f==='maison'?{N:mi?.v.N??'',M:mi?.v.M??'',extAgrSurface:agr?.v.S??'',extSurfNouveaux:role==='ext'?mi?.v.S??'':''}:f==='collectif'?{bats:bats(col),colN:cols?.v.N??'',extAgrSurface:agr?.v.S??''}:{zones:ls.map(zone)};
+    for(const l of ls){const z=zone(l);normalized.push({...z,role:['ext-agr','ext-log'].includes(l.role)?l.role:role==='main'?(f==='maison'||f==='collectif'?'main':'neuf'):role})}
   }
-  const p=prices();
-  const totalTtc=currentTotalTtc();
-  return {
-    version:'site-public-v1',
-    origine:'r-e-2020.fr',
-    reference:st.ref||'',
-    date:new Date().toISOString(),
-    projet:{nature,famille:family,usage:null,donnees:data},
-    reglementation:'RE2020',
-    prestation:chosen==='complete'?'complete':'bbio',
-    delai:{mode:delivery,jours_ouvres:finalDelay(),express:delivery==='express'&&expressAvailable(),surcout_ttc:delivery==='express'&&expressAvailable()?expressSurchargeTtc():0},
-    prix:{bbio_ttc:p.permis,complete_ttc:p.complete,total_ttc:totalTtc,total_ht:totalTtc/1.2}
-  };
+  return{nature:st.nature,famille:family,famille_extension:ext,famille_neuve:neuf,usage:null,donnees:{projectName:st.nom||'',extMode:st.extMode,surExist:st.surExist,surNeuve:st.surNeuve,parts},lots:normalized};
+}
+function validateProject(st){
+  if(!st||!st.lots.length)return 'Complétez les informations de votre projet.';
+  const pr=canonicalProject(st),d=pr.donnees,positive=x=>Number(x)>0,whole=(x,min)=>Number.isInteger(Number(x))&&Number(x)>=min&&x!=='';
+  if(st.nature==='mixte-ne'&&(!pr.famille_extension||!pr.famille_neuve))return 'Sélectionnez les deux types de bâtiment.';
+  if(st.nature==='sur'&&(!['collectif','tertiaire'].includes(pr.famille)||!positive(d.surExist)||!positive(d.surNeuve)))return 'Renseignez les deux surfaces de la surélévation.';
+  if(['ext','reno-ext'].includes(st.nature)&&pr.famille==='mixte')return 'Pour une extension à usages mixtes, contactez notre équipe.';
+  for(const [role,p] of Object.entries(d.parts)){
+    if(p.zones&&!p.zones.length)return 'Renseignez au moins un usage pour chaque partie du projet.';
+    if(role==='ext'&&'N'in p&&d.extMode!=='agrandissement'&&!positive(p.extSurfNouveaux))return 'Renseignez la surface des nouveaux logements.';
+    if(role==='ext'&&'extAgrSurface'in p&&d.extMode!=='nouveaux'&&!positive(p.extAgrSurface))return 'Renseignez la surface agrandie.';
+    if('colN'in p&&role==='ext'&&d.extMode!=='agrandissement'&&!whole(p.colN,1))return 'Renseignez les logements supplémentaires.';
+    if('N'in p&&(role!=='ext'||d.extMode!=='agrandissement')&&(!whole(p.N,1)||!whole(p.M,1)||Number(p.M)>Number(p.N)))return 'Renseignez le nombre de logements et de modèles.';
+    if('bats'in p&&role!=='ext'&&role!=='sur'&&!p.bats.length)return 'Renseignez les bâtiments collectifs.';
+  }
+  const small=['UNI','HOT','SAN','VEN','IND','FOY','RES','SPO','HOP','CRE'];
+  for(const l of pr.lots){
+    const v=l.v,u=l.usage;
+    if(!whole(l.qte,1)||l.qte>100)return 'Quantité de bâtiments invalide.';
+    if(u==='EXT'&&!positive(v.S))return 'Renseignez la surface agrandie.';
+    if(['MI','LOG','COLS'].includes(u)&&!whole(v.N,1))return 'Renseignez le nombre de logements.';
+    if((u==='MI'||u==='LOG'&&Number(v.N)<3)&&(!whole(v.M,1)||Number(v.M)>Number(v.N)))return 'Renseignez un nombre de modèles valide (au plus le nombre de logements).';
+    if(u==='COL'&&(!v.bats.length||v.bats.length>6||v.bats.some((n,i)=>!whole(n,3)||(v.same[i]!=null&&(!whole(v.same[i],0)||v.same[i]>=i||v.bats[v.same[i]]!==n)))))return 'Vérifiez les logements et les bâtiments identiques.';
+    if(!['EXT','MI','LOG','COL','COLS'].includes(u)){
+      if(!(u==='FOY'&&v.cuisine==='individuelle')&&!positive(v.S))return 'Renseignez une surface supérieure à zéro.';
+      if(u==='FOY'&&!['aucun','commun','individuelle'].includes(v.cuisine))return 'Précisez le type de cuisine du foyer.';
+      if(u==='FOY'&&v.cuisine==='individuelle'&&!whole(v.n,1))return 'Renseignez le nombre de chambres.';
+      if(u==='HOP'&&(!positive(v.sc)||!positive(v.sj)))return 'Renseignez les surfaces de chambre et de consultation.';
+      if(['BUR','ENS','UNI','SAN','VEN','IND','SPO','HOP','CRE','VES'].includes(u)&&!['oui','non'].includes(v.resto))return 'Précisez si une zone de restauration est prévue.';
+      if(l.role==='neuf'&&!['oui','non'].includes(v.coqueBrute))return 'Précisez si le bâtiment est livré en coque brute.';
+      if(l.role==='ext'&&small.includes(u)&&!positive(v.surfExist))return 'Renseignez la surface du bâtiment existant.';
+      if(l.role==='neuf'&&small.includes(u)&&!(u==='FOY'&&v.cuisine==='individuelle')&&Number(v.S)<=50)return 'Cette petite surface nécessite un devis manuel RT2012. Contactez notre équipe.';
+    }
+  }
+  return '';
+}
+function publicPayload(){
+  const st=window.KP_QUOTE_ENGINE?.getState();
+  if(validateProject(st)||!explicitChoice)return null;
+  const p=prices(),totalTtc=currentTotalTtc(),express=delivery==='express'&&expressAvailable();
+  return {version:'site-public-v32-denis-20260918',origine:'r-e-2020.fr',reference:st.ref||'',date:new Date().toISOString(),projet:canonicalProject(st),reglementation:'RE2020',prestation:chosen==='complete'?'complete':'bbio',delai:{mode:delivery,jours_ouvres:finalDelay(),express,surcout_ht:expressSurchargeHt(),surcout_ttc:express?expressSurchargeTtc():0},facturation:'account',prix:{bbio_ttc:p.permis,bbio_ht:p.permis/1.2,complete_ttc:p.complete,complete_ht:p.complete/1.2,express_majoration_pct:express?10:0,total_ttc:totalTtc,total_ht:totalTtc/1.2}};
 }
 
 function removeStrayPrices(){
@@ -243,6 +268,8 @@ root.addEventListener('click',e=>{
   if(b.dataset.act==='calculate-quote'){
     e.preventDefault();
     e.stopPropagation();
+    const error=validateProject(window.KP_QUOTE_ENGINE?.getState());
+    if(error){const box=q('.final-prestation-lite');let notice=box?.querySelector('.quote-validation-error');if(!notice&&box){notice=document.createElement('p');notice.className='note rouge quote-validation-error';notice.setAttribute('role','alert');box.appendChild(notice)}if(notice)notice.textContent=error;return;}
     showLoader();
     explicitChoice=false;
     chosen='permis';
@@ -257,13 +284,13 @@ root.addEventListener('click',e=>{
     return;
   }
   if(b.dataset.act==='prestation'&&b.closest('.final-prestation-lite')){explicitChoice=true;chosen=b.dataset.id;delivery='standard'}
-  if(b.dataset.act==='nature'||b.dataset.act==='famille'){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
+  if(['nature','famille','mixfam','mixusage','mixadd','extmode','usage','autreusage','addlot','dellot','compo','val','addbat','delbat','restart','goto'].includes(b.dataset.act)){hasCalculated=false;explicitChoice=false;chosen='permis';delivery='standard'}
   scheduleTune();
 });
 
 root.addEventListener('input',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('.lot')){
+  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"]')){
     hasCalculated=false;
     explicitChoice=false;
     chosen='permis';
@@ -286,7 +313,7 @@ root.addEventListener('input',e=>{
 });
 root.addEventListener('change',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('.lot')){
+  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"]')){
     hasCalculated=false;
     explicitChoice=false;
     chosen='permis';
@@ -413,6 +440,7 @@ root.addEventListener('submit',e=>{
   const payload=publicPayload();
   if(!payload){
     e.preventDefault();
+    const notice=document.createElement('p');notice.className='note rouge';notice.setAttribute('role','alert');notice.textContent='Le projet a changé. Vérifiez les informations et recalculez votre devis.';form.appendChild(notice);
     return;
   }
   const fd=new FormData(form);
