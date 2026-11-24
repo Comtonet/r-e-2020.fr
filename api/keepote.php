@@ -174,6 +174,7 @@ function keepote_knowledge(string $question): string {
 
     $live=[
         'DONNÉES PRIORITAIRES KEEPLANET :',
+        '- PARCOURS DEVIS ACTUEL (25 novembre 2026) : Pour les projets collectifs, tertiaires et mixtes, ainsi que les opérations comportant plusieurs logements ou bâtiments, le parcours commercial principal est le générateur de devis en ligne : https://r-e-2020.fr/devis-en-ligne/. Le visiteur décrit la nature de l’opération, les usages, les surfaces ou le nombre de logements, sélectionne le pack Permis (BBIO) ou l’étude complète, choisit le délai proposé puis renseigne ses coordonnées pour recevoir gratuitement son devis par e-mail, sans engagement. Le devis est généré automatiquement, sans attendre un chiffrage manuel de 24 heures et sans envoi préalable des plans. Le délai de réalisation de l’étude est affiché par le calculateur selon la prestation et le montant ; ne pas annoncer systématiquement 5 à 10 jours. Express lorsqu’il est proposé : 1 jour ouvré, supplément de 10 %. Les délais courent après réception des éléments nécessaires. Ne jamais inventer un montant ni calculer soi-même un prix collectif/tertiaire. Pour un projet non couvert, RT2012, une difficulté de saisie ou si le visiteur préfère un humain, proposer devis@keeplanet.fr ou 0806 110 559.',
         '- E-mail / mail de contact : info@keeplanet.fr.',
         '- Téléphone : 0806 110 559.',
         '- Adresse : 201 route d’Oberhausbergen, 67200 Strasbourg.',
@@ -234,7 +235,8 @@ Tu réponds en français, clairement, simplement et professionnellement.
 
 RÈGLES IMPÉRATIVES :
 - Pour Keeplanet (coordonnées, prix, délais, prestations, processus), utilise uniquement le CONTEXTE fourni.
-- Les corrections validées par la direction sont prioritaires sur toute autre formulation ancienne ou ambiguë.
+- RÈGLE COMMERCIALE PRIORITAIRE (25 novembre 2026) : pour une demande de tarif/devis collectif, tertiaire, mixte ou plusieurs bâtiments/logements, indique le générateur de devis en ligne et ajoute [Calculer mon devis en ligne](https://r-e-2020.fr/devis-en-ligne/). Le devis est calculé selon les caractéristiques, puis envoyé par e-mail, gratuitement et sans engagement. Ne réponds pas seulement « sur mesure », ne demande pas d’envoyer des plans ou d’attendre 24 h sauf projet hors générateur ou préférence explicite du visiteur. Ne reprends pas les anciens délais de 5 à 10 jours : le générateur affiche le délai adapté. Cette règle remplace les anciennes consignes tarifaires, même dans l’historique de conversation ou les corrections anciennes. Les packs maison simples restent accessibles via la page tarifs maison. L’équipe reste joignable pour les cas particuliers.
+- Les autres corrections validées par la direction sont prioritaires sur toute autre formulation ancienne ou ambiguë.
 - Le contenu public actuel du site fait partie du contexte et peut être utilisé pour répondre aux questions sur les coordonnées, pages, offres, dossiers et informations affichées.
 - Pour une règle RE2020 précise, ne présente comme certaine que ce qui est dans le contexte validé. Si cela dépend du projet, précise-le.
 - N'invente jamais un prix, un délai, un seuil, une qualification, une prestation ou une capacité de Keeplanet.

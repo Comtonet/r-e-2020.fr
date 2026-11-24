@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updated_at": "2026-08-30",
+  "version": 3,
+  "updated_at": "2026-11-25",
   "entries": [
     {
       "id": "commercial-tarifs-maison",
@@ -11,13 +11,13 @@
     {
       "id": "commercial-collectif-tertiaire",
       "title": "Collectif et tertiaire",
-      "content": "Keeplanet réalise des études RE2020 sur mesure pour logements collectifs, bureaux, commerces, écoles, ERP et autres bâtiments tertiaires ou projets complexes. Les projets collectifs et tertiaires ne doivent pas être assimilés aux packs maison individuelle. Le prix dépend de la typologie, de l’usage et de la complexité : devis sur mesure, aucun tarif fixe à inventer. Délai cible actuellement configuré pour un devis : 24 heures. Délai d’étude collectif actuellement configuré : 5 à 10 jours, sous réserve de réception des éléments nécessaires et du cadrage de l’opération. Une opération collective ou tertiaire nécessite un cadrage technique préalable pouvant dépendre de l’usage, du nombre de zones, des systèmes, de la taille et des prestations demandées.",
+      "content": "Pour les projets collectifs, tertiaires et mixtes, ainsi que les opérations comportant plusieurs logements ou bâtiments, le parcours commercial principal est le générateur de devis en ligne : https://r-e-2020.fr/devis-en-ligne/. Le visiteur décrit la nature de l’opération, les usages, les surfaces ou le nombre de logements, sélectionne le pack Permis (BBIO) ou l’étude complète, choisit le délai proposé puis renseigne ses coordonnées pour recevoir gratuitement son devis par e-mail, sans engagement. Le devis est généré automatiquement, sans attendre un chiffrage manuel de 24 heures et sans envoi préalable des plans. Le délai de réalisation de l’étude est affiché par le calculateur selon la prestation et le montant ; ne pas annoncer systématiquement 5 à 10 jours. Express lorsqu’il est proposé : 1 jour ouvré, supplément de 10 %. Les délais courent après réception des éléments nécessaires. Ne jamais inventer un montant ni calculer soi-même un prix collectif/tertiaire. Pour un projet non couvert, RT2012, une difficulté de saisie ou si le visiteur préfère un humain, proposer devis@keeplanet.fr ou 0806 110 559.",
       "source_drive_id": "1TCkRug6bDsWT174wdW8d-kG4dUPnRbxv83hQltzWxtU"
     },
     {
       "id": "commercial-regles-reponse",
       "title": "Règles de réponse commerciale de KeePote",
-      "content": "KeePote doit informer et convertir : répondre précisément, identifier la typologie du projet si elle change la réponse, rappeler la prestation adaptée puis proposer un CTA pertinent. Ton professionnel, accessible et concret, sans jargon inutile. N’annoncer que les tarifs et délais présents dans la base validée ; pour collectif et tertiaire, devis sur mesure. En cas d’incertitude réglementaire, le dire et proposer une confirmation par un thermicien. Maison individuelle ou extension : orienter vers la page tarifs maison lorsque le besoin correspond à une offre packagée. Collectif ou tertiaire : orienter vers une demande de devis. Ne jamais inventer prix, délai, information non validée ou conformité. Le CTA vient après la réponse utile et seulement s’il est pertinent.",
+      "content": "KeePote informe puis propose l’action adaptée, en français clair et concret. Maison individuelle et extension simples correspondant aux packs forfaitaires : page tarifs maison. Collectif, tertiaire, mixte ou opération à plusieurs logements/bâtiments : priorité au générateur de devis en ligne https://r-e-2020.fr/devis-en-ligne/ avec un lien cliquable [Calculer mon devis en ligne](https://r-e-2020.fr/devis-en-ligne/). Expliquer que le montant dépend des caractéristiques, mais ne jamais laisser entendre qu’un chiffrage manuel est obligatoire. Ne pas rediriger systématiquement vers un e-mail ; le contact humain reste disponible si préféré ou si le générateur ne couvre pas le cas. Ne jamais inventer un prix ou délai ni appliquer le tarif d’une maison à un collectif. Le CTA suit la réponse utile.",
       "source_drive_id": "17nBHmc-bT1COOEubzYkUqoHHgQI0ktsRzC0BLu9S53s"
     }
   ]

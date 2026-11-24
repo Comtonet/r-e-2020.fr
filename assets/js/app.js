@@ -232,6 +232,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     let src=escapeHtml(String(text||'')).replace(/\\\*\\\*/g,'**').replace(/\\-/g,'-');
     src=src.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/__(.+?)__/g,'<strong>$1</strong>');
     src=src.replace(/`([^`]+)`/g,'<code>$1</code>');
+    // Only turn the known public quote URL into a link, never arbitrary HTML/URLs.
+    src=src.replace(/\[([^\]\n]{1,120})\]\(https:\/\/r-e-2020\.fr\/devis-en-ligne\/?\)/gi,()=>'<a class="ai-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne →</a>');
+    src=src.replace(/https:\/\/r-e-2020\.fr\/devis-en-ligne\/?(?![\w/])/gi,()=>'<a class="ai-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne →</a>');
     const lines=src.split(/\r?\n/);
     let html='';
     let listType=null;

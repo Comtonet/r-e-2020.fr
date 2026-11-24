@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "updated_at": "2026-08-30",
+  "version": 4,
+  "updated_at": "2026-11-25",
   "site_index": {
     "identity": {
       "site": "r-e-2020.fr",
@@ -17,16 +17,61 @@
       "client_area": "https://espace-client.keeplanet.fr/"
     },
     "main_pages": [
-      {"url":"https://r-e-2020.fr/","title":"Bureau d’étude thermique RE2020 | Attestation permis","summary":"Étude RE2020 et attestation pour permis de construire. Maison, extension, collectif ou tertiaire. Dépôt des pièces en ligne et accompagnement par les thermiciens Keeplanet."},
-      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/","title":"Tarifs étude thermique RE2020","summary":"Page d’orientation entre les offres maison individuelle / extension et les études sur mesure collectif / tertiaire."},
-      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/","title":"Étude RE2020 maison & extension","summary":"Offres packagées maison et extension : Eco’Permis, Pack Permis, fin de travaux et fin de travaux + ACV. Les prix et délais doivent être lus dans la configuration dynamique du site."},
-      {"url":"https://r-e-2020.fr/tarifs-etude-thermique-re-2020/collectif-tertiaire/","title":"Étude RE2020 collectif & tertiaire","summary":"Études sur mesure pour logements collectifs, bureaux, commerces, écoles, ERP et bâtiments tertiaires. Chiffrage sur devis."},
-      {"url":"https://r-e-2020.fr/processus-de-realisation-dune-etude-re2020/","title":"Processus étude RE2020","summary":"Le client choisit sa prestation, transmet les informations et plans, le thermicien réalise l’étude puis les documents sont rendus dans l’espace client."},
-      {"url":"https://r-e-2020.fr/questions-frequentes-re2020/","title":"Questions fréquentes RE2020","summary":"FAQ sur permis, Bbio, étude, délais, packs et fin de travaux."},
-      {"url":"https://r-e-2020.fr/exemples-livrables-re2020/","title":"Exemples de livrables RE2020","summary":"Présentation des documents remis selon la prestation : attestations et documents issus de l’étude réglementaire."},
-      {"url":"https://r-e-2020.fr/qualifications-assurances-garanties/","title":"Qualifications et assurances","summary":"Présentation des qualifications OPQIBI et éléments de confiance de Keeplanet."},
-      {"url":"https://r-e-2020.fr/a-propos-keeplanet/","title":"À propos de Keeplanet","summary":"Présentation du bureau d’études Keeplanet, de son activité RE2020 et de son accompagnement."},
-      {"url":"https://r-e-2020.fr/contact/","title":"Contact Keeplanet","summary":"Pour une question technique ou commerciale, contacter Keeplanet par e-mail à info@keeplanet.fr ou par téléphone au 0806 110 559."}
+      {
+        "url": "https://r-e-2020.fr/",
+        "title": "Bureau d’étude thermique RE2020 | Attestation permis",
+        "summary": "Étude RE2020 et attestation pour permis de construire. Maison, extension, collectif ou tertiaire. Dépôt des pièces en ligne et accompagnement par les thermiciens Keeplanet."
+      },
+      {
+        "url": "https://r-e-2020.fr/tarifs-etude-thermique-re-2020/",
+        "title": "Tarifs étude thermique RE2020",
+        "summary": "Offres forfaitaires maison individuelle / extension et accès direct au générateur de devis pour collectif, tertiaire et opérations complexes."
+      },
+      {
+        "url": "https://r-e-2020.fr/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/",
+        "title": "Étude RE2020 maison & extension",
+        "summary": "Offres packagées maison et extension : Eco’Permis, Pack Permis, fin de travaux et fin de travaux + ACV. Les prix et délais doivent être lus dans la configuration dynamique du site."
+      },
+      {
+        "url": "https://r-e-2020.fr/tarifs-etude-thermique-re-2020/collectif-tertiaire/",
+        "title": "Étude RE2020 collectif & tertiaire",
+        "summary": "Générateur de devis en ligne mis au premier plan. Chiffrage automatique selon les caractéristiques de l’opération ; envoi des plans par e-mail en alternative."
+      },
+      {
+        "url": "https://r-e-2020.fr/devis-en-ligne/",
+        "title": "Générateur de devis RE2020",
+        "summary": "Pour les projets collectifs, tertiaires et mixtes, ainsi que les opérations comportant plusieurs logements ou bâtiments, le parcours commercial principal est le générateur de devis en ligne : https://r-e-2020.fr/devis-en-ligne/. Le visiteur décrit la nature de l’opération, les usages, les surfaces ou le nombre de logements, sélectionne le pack Permis (BBIO) ou l’étude complète, choisit le délai proposé puis renseigne ses coordonnées pour recevoir gratuitement son devis par e-mail, sans engagement. Le devis est généré automatiquement, sans attendre un chiffrage manuel de 24 heures et sans envoi préalable des plans. Le délai de réalisation de l’étude est affiché par le calculateur selon la prestation et le montant ; ne pas annoncer systématiquement 5 à 10 jours. Express lorsqu’il est proposé : 1 jour ouvré, supplément de 10 %. Les délais courent après réception des éléments nécessaires. Ne jamais inventer un montant ni calculer soi-même un prix collectif/tertiaire. Pour un projet non couvert, RT2012, une difficulté de saisie ou si le visiteur préfère un humain, proposer devis@keeplanet.fr ou 0806 110 559."
+      },
+      {
+        "url": "https://r-e-2020.fr/processus-de-realisation-dune-etude-re2020/",
+        "title": "Processus étude RE2020",
+        "summary": "Le client choisit sa prestation, transmet les informations et plans, le thermicien réalise l’étude puis les documents sont rendus dans l’espace client."
+      },
+      {
+        "url": "https://r-e-2020.fr/questions-frequentes-re2020/",
+        "title": "Questions fréquentes RE2020",
+        "summary": "FAQ sur permis, Bbio, étude, délais, packs et fin de travaux."
+      },
+      {
+        "url": "https://r-e-2020.fr/exemples-livrables-re2020/",
+        "title": "Exemples de livrables RE2020",
+        "summary": "Présentation des documents remis selon la prestation : attestations et documents issus de l’étude réglementaire."
+      },
+      {
+        "url": "https://r-e-2020.fr/qualifications-assurances-garanties/",
+        "title": "Qualifications et assurances",
+        "summary": "Présentation des qualifications OPQIBI et éléments de confiance de Keeplanet."
+      },
+      {
+        "url": "https://r-e-2020.fr/a-propos-keeplanet/",
+        "title": "À propos de Keeplanet",
+        "summary": "Présentation du bureau d’études Keeplanet, de son activité RE2020 et de son accompagnement."
+      },
+      {
+        "url": "https://r-e-2020.fr/contact/",
+        "title": "Contact Keeplanet",
+        "summary": "Pour une question technique ou commerciale, contacter Keeplanet par e-mail à info@keeplanet.fr ou par téléphone au 0806 110 559."
+      }
     ],
     "footer": {
       "description": "Études thermiques RE2020, attestations permis et accompagnement réglementaire partout en France.",
@@ -35,33 +80,133 @@
       "address": "201 route d’Oberhausbergen, 67200 Strasbourg"
     },
     "technical_content": [
-      {"title":"Qu’est-ce qu’une FDES ? Comprendre l’ACV Carbone RE2020","url":"https://r-e-2020.fr/reglementaire/fdes-donnees-environnementales-acv-carbone/","summary":"Rôle des FDES dans l’analyse de cycle de vie et le calcul carbone RE2020."},
-      {"title":"PAC et RE2020","url":"https://r-e-2020.fr/equipements-solutions-techniques/pompe-a-chaleur-re2020-interdiction-effet-joule/","summary":"COP, Cep, Cep,nr, PAC air-eau ou air-air et intérêt réglementaire d’un système thermodynamique."},
-      {"title":"Photovoltaïque RE2020","url":"https://r-e-2020.fr/equipements-solutions-techniques/photovoltaique-re2020-impact-sur-le-bbio-et-lic-construction/","summary":"Impact du photovoltaïque sur les indicateurs réglementaires et carbone."},
-      {"title":"Cep et Cep,nr en RE2020","url":"https://r-e-2020.fr/reglementaire/difference-cep-cepnr-calcul-re2020/","summary":"Énergie primaire, part non renouvelable et influence des systèmes."},
-      {"title":"Attestation Bbio RE2020","url":"https://r-e-2020.fr/reglementaire/attestation-bbio-re2020-contenu-lien-bureau-etudes/","summary":"Contenu de l’attestation pour le permis et lien avec l’étude du bureau d’études."},
-      {"title":"Qui signe l’attestation Bbio ?","url":"https://r-e-2020.fr/reglementaire/qui-doit-signer-attestation-bbio-permis-construire/","summary":"Rôle du maître d’ouvrage, du mandataire et du bureau d’études dans l’attestation permis."},
-      {"title":"Zones climatiques RE2020","url":"https://r-e-2020.fr/reglementaire/zones-climatiques-calcul-re2020/","summary":"Influence de la géographie, de l’altitude et des modulations réglementaires."},
-      {"title":"Degrés-Heures DH RE2020","url":"https://r-e-2020.fr/reglementaire/calcul-degres-heures-dh-re2020/","summary":"Confort d’été et limitation des surchauffes estivales."},
-      {"title":"Contrôle de fin de chantier et étanchéité","url":"https://r-e-2020.fr/reglementaire/controle-fin-chantier-etancheite-air-re2020/","summary":"Infiltrométrie, ventilation et cohérence entre chantier et fichier réglementaire."},
-      {"title":"VMC Hygro-B vs Double Flux","url":"https://r-e-2020.fr/reglementaire/vmc-hygro-b-vs-double-flux-re2020/","summary":"Bbio, Cep, auxiliaires et confort selon le système de ventilation."},
-      {"title":"Extension et RE2020","url":"https://r-e-2020.fr/reglementaire/extension-re2020-seuils-surface/","summary":"Régimes et obligations thermiques applicables aux extensions selon le projet."},
-      {"title":"Compacité du bâti et performance RE2020","url":"https://r-e-2020.fr/reglementaire/compacite-bati-re2020/","summary":"Influence de la forme du bâtiment sur les déperditions et le Bbio."},
-      {"title":"Surface de référence thermique","url":"https://r-e-2020.fr/reglementaire/calcul-surface-reference-thermique-srt/","summary":"Comprendre Srt, Su et les surfaces utilisées par le calcul réglementaire."},
-      {"title":"Surface vitrée RE2020 : règle des 1/6","url":"https://r-e-2020.fr/equipements-solutions-techniques/regle-un-sixieme-surface-vitree-re2020/","summary":"Baies, orientation, facteur solaire et protections solaires."}
+      {
+        "title": "Qu’est-ce qu’une FDES ? Comprendre l’ACV Carbone RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/fdes-donnees-environnementales-acv-carbone/",
+        "summary": "Rôle des FDES dans l’analyse de cycle de vie et le calcul carbone RE2020."
+      },
+      {
+        "title": "PAC et RE2020",
+        "url": "https://r-e-2020.fr/equipements-solutions-techniques/pompe-a-chaleur-re2020-interdiction-effet-joule/",
+        "summary": "COP, Cep, Cep,nr, PAC air-eau ou air-air et intérêt réglementaire d’un système thermodynamique."
+      },
+      {
+        "title": "Photovoltaïque RE2020",
+        "url": "https://r-e-2020.fr/equipements-solutions-techniques/photovoltaique-re2020-impact-sur-le-bbio-et-lic-construction/",
+        "summary": "Impact du photovoltaïque sur les indicateurs réglementaires et carbone."
+      },
+      {
+        "title": "Cep et Cep,nr en RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/difference-cep-cepnr-calcul-re2020/",
+        "summary": "Énergie primaire, part non renouvelable et influence des systèmes."
+      },
+      {
+        "title": "Attestation Bbio RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/attestation-bbio-re2020-contenu-lien-bureau-etudes/",
+        "summary": "Contenu de l’attestation pour le permis et lien avec l’étude du bureau d’études."
+      },
+      {
+        "title": "Qui signe l’attestation Bbio ?",
+        "url": "https://r-e-2020.fr/reglementaire/qui-doit-signer-attestation-bbio-permis-construire/",
+        "summary": "Rôle du maître d’ouvrage, du mandataire et du bureau d’études dans l’attestation permis."
+      },
+      {
+        "title": "Zones climatiques RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/zones-climatiques-calcul-re2020/",
+        "summary": "Influence de la géographie, de l’altitude et des modulations réglementaires."
+      },
+      {
+        "title": "Degrés-Heures DH RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/calcul-degres-heures-dh-re2020/",
+        "summary": "Confort d’été et limitation des surchauffes estivales."
+      },
+      {
+        "title": "Contrôle de fin de chantier et étanchéité",
+        "url": "https://r-e-2020.fr/reglementaire/controle-fin-chantier-etancheite-air-re2020/",
+        "summary": "Infiltrométrie, ventilation et cohérence entre chantier et fichier réglementaire."
+      },
+      {
+        "title": "VMC Hygro-B vs Double Flux",
+        "url": "https://r-e-2020.fr/reglementaire/vmc-hygro-b-vs-double-flux-re2020/",
+        "summary": "Bbio, Cep, auxiliaires et confort selon le système de ventilation."
+      },
+      {
+        "title": "Extension et RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/extension-re2020-seuils-surface/",
+        "summary": "Régimes et obligations thermiques applicables aux extensions selon le projet."
+      },
+      {
+        "title": "Compacité du bâti et performance RE2020",
+        "url": "https://r-e-2020.fr/reglementaire/compacite-bati-re2020/",
+        "summary": "Influence de la forme du bâtiment sur les déperditions et le Bbio."
+      },
+      {
+        "title": "Surface de référence thermique",
+        "url": "https://r-e-2020.fr/reglementaire/calcul-surface-reference-thermique-srt/",
+        "summary": "Comprendre Srt, Su et les surfaces utilisées par le calcul réglementaire."
+      },
+      {
+        "title": "Surface vitrée RE2020 : règle des 1/6",
+        "url": "https://r-e-2020.fr/equipements-solutions-techniques/regle-un-sixieme-surface-vitree-re2020/",
+        "summary": "Baies, orientation, facteur solaire et protections solaires."
+      }
     ]
   },
   "validated_training_sources": [
-    {"title":"Fonctionnement général Keeplanet","drive_id":"1uh65GecLrbqpowHey6kVEbPDlrFeS_gMNDHSW9xE6bE","status":"valide"},
-    {"title":"Tarifs, packs et délais maison","drive_id":"1tJSjsYcjorUPI83Od_S0OBYnhfifqUuDkHfq8qcqeIw","status":"valide"},
-    {"title":"Commande, paiement, pièces et rendu","drive_id":"1w9Rj4u7oue8kUpg2T0iaVd9e1Z5bqyCOGkSCW2vV5XI","status":"valide"},
-    {"title":"Collectif et tertiaire","drive_id":"1TCkRug6bDsWT174wdW8d-kG4dUPnRbxv83hQltzWxtU","status":"valide"},
-    {"title":"Règles de réponse commerciale du chatbot","drive_id":"17nBHmc-bT1COOEubzYkUqoHHgQI0ktsRzC0BLu9S53s","status":"valide"},
-    {"title":"Indicateurs RE2020 Bbio Cep Cepnr DH","drive_id":"15MclqvhQXnpOZFbIVxKkio648CNWzVLIaLVmTvPI_6Y","status":"valide"},
-    {"title":"Permis attestations surfaces extensions","drive_id":"1Jdbhk_W3ImxWFDDdZrpqslI6oIvbzq9aEPu83MdfQdY","status":"valide"},
-    {"title":"ACV carbone FDES INIES","drive_id":"1WFgbzI292h_0YwH4JNYjoiqrzo5_j2F1d7WpK4GHEps","status":"valide"},
-    {"title":"Équipements chauffage VMC photovoltaïque","drive_id":"1hfze1rR4UFwknAZASclCTjDbarXmhQe-JJ-vmzUDaS8","status":"valide"},
-    {"title":"Enveloppe vitrages compacité zones climatiques confort été","drive_id":"1IzWN6t_LJap9Fxqmzih0ps4omvYNNFsOGHMOiHeaOu8","status":"valide"},
-    {"title":"Fin de chantier étanchéité ventilation conformité sanctions","drive_id":"1mna9ffmIkJimn5j5rEKXGnbpKI-RAdRVCrwhyODCkZ8","status":"valide"}
+    {
+      "title": "Fonctionnement général Keeplanet",
+      "drive_id": "1uh65GecLrbqpowHey6kVEbPDlrFeS_gMNDHSW9xE6bE",
+      "status": "valide"
+    },
+    {
+      "title": "Tarifs, packs et délais maison",
+      "drive_id": "1tJSjsYcjorUPI83Od_S0OBYnhfifqUuDkHfq8qcqeIw",
+      "status": "valide"
+    },
+    {
+      "title": "Commande, paiement, pièces et rendu",
+      "drive_id": "1w9Rj4u7oue8kUpg2T0iaVd9e1Z5bqyCOGkSCW2vV5XI",
+      "status": "valide"
+    },
+    {
+      "title": "Collectif et tertiaire",
+      "drive_id": "1TCkRug6bDsWT174wdW8d-kG4dUPnRbxv83hQltzWxtU",
+      "status": "valide"
+    },
+    {
+      "title": "Règles de réponse commerciale du chatbot",
+      "drive_id": "17nBHmc-bT1COOEubzYkUqoHHgQI0ktsRzC0BLu9S53s",
+      "status": "valide"
+    },
+    {
+      "title": "Indicateurs RE2020 Bbio Cep Cepnr DH",
+      "drive_id": "15MclqvhQXnpOZFbIVxKkio648CNWzVLIaLVmTvPI_6Y",
+      "status": "valide"
+    },
+    {
+      "title": "Permis attestations surfaces extensions",
+      "drive_id": "1Jdbhk_W3ImxWFDDdZrpqslI6oIvbzq9aEPu83MdfQdY",
+      "status": "valide"
+    },
+    {
+      "title": "ACV carbone FDES INIES",
+      "drive_id": "1WFgbzI292h_0YwH4JNYjoiqrzo5_j2F1d7WpK4GHEps",
+      "status": "valide"
+    },
+    {
+      "title": "Équipements chauffage VMC photovoltaïque",
+      "drive_id": "1hfze1rR4UFwknAZASclCTjDbarXmhQe-JJ-vmzUDaS8",
+      "status": "valide"
+    },
+    {
+      "title": "Enveloppe vitrages compacité zones climatiques confort été",
+      "drive_id": "1IzWN6t_LJap9Fxqmzih0ps4omvYNNFsOGHMOiHeaOu8",
+      "status": "valide"
+    },
+    {
+      "title": "Fin de chantier étanchéité ventilation conformité sanctions",
+      "drive_id": "1mna9ffmIkJimn5j5rEKXGnbpKI-RAdRVCrwhyODCkZ8",
+      "status": "valide"
+    }
   ]
 }
