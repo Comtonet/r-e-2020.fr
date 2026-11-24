@@ -54,3 +54,6 @@ main strong{font-weight:800}
 .kee-pote-promo p{margin:0;max-width:850px;color:#5f6677;line-height:1.6}
 .kee-pote-promo .human-relay{margin-top:6px;font-size:.9rem;color:#727888}
 @media(max-width:720px){.kee-pote-promo-inner{grid-template-columns:auto 1fr}.kee-pote-promo .btn{grid-column:1/-1;width:100%}}
+
+/* KeePote : lien réel vers le générateur, chargé avec la feuille principale. */
+.ai-body .ai-quote-link{display:inline-flex;align-items:center;gap:7px;margin:6px 0;padding:10px 13px;border:1px solid #98BF24;border-radius:11px;background:#98BF24;color:#253306!important;font-weight:850;line-height:1.35;text-decoration:none!important;white-space:normal;max-width:100%;cursor:pointer}.ai-body .ai-quote-link:hover{background:#a8cc39}.ai-body .ai-quote-link:focus-visible{outline:2px solid #38227E;outline-offset:3px}

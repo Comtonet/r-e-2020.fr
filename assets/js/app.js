@@ -232,9 +232,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     let src=escapeHtml(String(text||'')).replace(/\\\*\\\*/g,'**').replace(/\\-/g,'-');
     src=src.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/__(.+?)__/g,'<strong>$1</strong>');
     src=src.replace(/`([^`]+)`/g,'<code>$1</code>');
-    // Only turn the known public quote URL into a link, never arbitrary HTML/URLs.
-    src=src.replace(/\[([^\]\n]{1,120})\]\(https:\/\/r-e-2020\.fr\/devis-en-ligne\/?\)/gi,()=>'<a class="ai-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne →</a>');
-    src=src.replace(/https:\/\/r-e-2020\.fr\/devis-en-ligne\/?(?![\w/])/gi,()=>'<a class="ai-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne →</a>');
+    // Recognize Markdown and bare links to our calculator, including escaped brackets.
+    // One pass; the output anchor is never parsed as another input URL.
+    const quoteLink='<a class="ai-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne <span aria-hidden="true">→</span></a>';
+    src=src.replace(/\\?\[[^\]\r\n]{1,180}\\?\]\\?\(\s*(?:&lt;)?(?:https?:\/\/(?:www\.)?r-e-2020\.fr)?\/devis-en-ligne\/?(?:&gt;)?\s*\\?\)|https?:\/\/(?:www\.)?r-e-2020\.fr\/devis-en-ligne\/?(?![\w/?#-])/gi,()=>quoteLink);
     const lines=src.split(/\r?\n/);
     let html='';
     let listType=null;
