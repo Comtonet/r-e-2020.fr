@@ -44,3 +44,21 @@
 @media(min-width:1181px){.nav-wrap{gap:18px}.main-nav{gap:15px;font-size:.89rem}.main-nav .btn-small{padding:0 12px}.brand-text-logo{font-size:1.9rem}}
 @media(max-width:980px){.kp-quote-hero-grid{grid-template-columns:1fr;gap:25px}.kp-quote-preview{max-width:640px}.kp-quote-hero-copy h1{max-width:760px}}
 @media(max-width:720px){.kp-quote-hero{padding:31px 0 34px!important}.kp-quote-hero-copy h1{font-size:2.45rem}.kp-quote-hero-copy .kp-quote-cta,.kp-home-actions .kp-quote-cta,.kp-quote-final-actions,.kp-quote-final-actions .kp-quote-cta,.kp-quote-inline-action .kp-quote-cta{width:100%}.kp-quote-preview{padding:18px}.kp-quote-preview-top strong{font-size:1rem}.kp-quote-types img{height:65px}.kp-quote-trust{gap:6px 12px}.kp-quote-hero-copy>p{font-size:1rem}}
+
+/* Priorité commerciale : packs MI sur les pages généralistes ; devis en second. */
+.kp-house-primary.btn{background:#98BF24!important;color:#253306!important;border:1px solid #98BF24!important;font-weight:850;min-height:54px;padding:13px 20px;gap:10px;line-height:1.35;text-align:center}
+.kp-house-primary.btn:hover{background:#a7ca38!important}
+.kp-quote-secondary.btn{background:#fff!important;color:#38227E!important;border:1px solid #d8d1e8!important;box-shadow:none!important;min-height:50px;padding:12px 18px;font-weight:750;gap:9px;line-height:1.35;text-align:center}
+.kp-quote-secondary.btn:hover{background:#f6f3fb!important;border-color:#38227E!important}
+.kp-quote-secondary-dark.btn,.tarifs-choice-pro .kp-quote-secondary.btn{background:transparent!important;color:#fff!important;border-color:rgba(255,255,255,.65)!important}
+.kp-quote-secondary-dark.btn:hover,.tarifs-choice-pro .kp-quote-secondary.btn:hover{background:rgba(255,255,255,.10)!important}
+.main-nav .kp-nav-quote{color:#38227E;font-weight:700;font-size:inherit;padding:0;white-space:nowrap}
+.main-nav .kp-nav-quote:hover{text-decoration:underline;text-underline-offset:4px}
+.main-nav .nav-dropdown-trigger{font-weight:850;color:#38227E}
+.main-nav .kp-nav-house{font-weight:850;background:#f1f6e2}
+.major-choices .kp-other-project{background:#f8f6fc;border:1px solid #e5deef;color:#38227E;box-shadow:none}
+.major-choices .kp-other-project h2,.major-choices .kp-other-project .card-kicker{color:#38227E}
+.major-choices .kp-other-project p,.major-choices .kp-other-project li{color:#555c6c}
+.kp-other-details{display:block;margin-top:12px;color:#38227E;font-size:.88rem;text-decoration:underline;text-underline-offset:3px}
+.kp-home-actions{gap:11px;align-items:center}
+@media(max-width:720px){.kp-home-actions .kp-house-primary,.kp-home-actions .kp-quote-secondary{width:100%}.kp-home-actions .kp-quote-secondary{min-height:47px}.main-nav .kp-nav-quote{padding:5px 0}}

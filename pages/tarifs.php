@@ -13,7 +13,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
     <h1>Tarifs des études thermiques RE2020</h1>
     <p class="tarifs-hero-lead">Maison individuelle, extension, logement collectif ou bâtiment tertiaire : choisissez votre type de projet et accédez directement au tarif ou au devis adapté.</p>
     <div class="tarifs-hero-actions">
-      <a class="btn kp-quote-cta " href="/devis-en-ligne/" data-no-signup-popup><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8v4H8zM8 14h1m6 0h1m-8 4h1m6 0h1"/></svg><span>Calculer mon devis en ligne</span><span aria-hidden="true">→</span></a><a class="kp-quote-text-link" href="#choisir-projet" data-no-signup-popup>Voir les packs maison →</a>
+      <a class="btn tarifs-btn-primary kp-house-primary" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/" data-no-signup-popup>Voir les packs maison &amp; extension →</a><a class="btn kp-quote-secondary" href="/devis-en-ligne/" data-no-signup-popup>Devis collectif &amp; tertiaire →</a>
       <a class="tarifs-phone-link" href="tel:0806110559">Une question ? <strong>0806 110 559</strong></a>
     </div>
     <div class="tarifs-trust">
@@ -54,7 +54,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
           <span>Fin de travaux + ACV <strong><?= h($finAcvPrice) ?></strong></span>
         </div>
 
-        <a class="btn tarifs-btn-primary tarifs-full" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Voir les packs maison</a>
+        <a class="btn tarifs-btn-primary tarifs-full kp-house-primary" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Voir les packs maison</a>
         <small class="tarifs-card-note">Tarifs TTC · quelle que soit la surface de la maison.</small>
       </article>
 
@@ -80,7 +80,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
           <p>Décrivez votre projet, sélectionnez les prestations et obtenez le chiffrage directement depuis notre configurateur.</p>
         </div>
 
-        <a class="btn kp-quote-cta tarifs-full" href="/devis-en-ligne/" data-no-signup-popup><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8v4H8zM8 14h1m6 0h1m-8 4h1m6 0h1"/></svg><span>Calculer mon devis en ligne</span><span aria-hidden="true">→</span></a>
+        <a class="btn kp-quote-secondary tarifs-full" href="/devis-en-ligne/" data-no-signup-popup><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8v4H8zM8 14h1m6 0h1m-8 4h1m6 0h1"/></svg><span>Calculer mon devis en ligne</span><span aria-hidden="true">→</span></a>
         <a class="tarifs-secondary-link" href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Voir aussi notre accompagnement collectif &amp; tertiaire →</a>
       </article>
     </div>
@@ -139,8 +139,8 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
       <h2>Sélectionnez votre type de projet pour consulter la prestation correspondante.</h2>
     </div>
     <div class="tarifs-final-buttons">
-      <a class="btn tarifs-btn-white" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Maison &amp; extension</a>
-      <a class="btn kp-quote-cta " href="/devis-en-ligne/" data-no-signup-popup><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8v4H8zM8 14h1m6 0h1m-8 4h1m6 0h1"/></svg><span>Calculer mon devis en ligne</span><span aria-hidden="true">→</span></a>
+      <a class="btn kp-house-primary" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/" data-no-signup-popup>Voir les packs maison →</a>
+      <a class="btn kp-quote-secondary kp-quote-secondary-dark" href="/devis-en-ligne/" data-no-signup-popup>Devis collectif &amp; tertiaire →</a>
     </div>
   </div>
 </section>
