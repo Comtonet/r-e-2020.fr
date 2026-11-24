@@ -10,6 +10,7 @@ let hasCalculated=false;
 let calculating=false;
 let tuneFrame=0;
 let inputTimer=0;
+let accountDraft={};
 const q=s=>root.querySelector(s);
 const qa=s=>Array.from(root.querySelectorAll(s));
 const parseEur=s=>{const n=String(s||'').replace(/\s/g,'').replace('€','').replace(',','.').replace(/[^0-9.\-]/g,'');return Number(n)||0};
@@ -80,7 +81,7 @@ function lightenHome(){
   if(blocks[0]&&blocks[0].querySelector('[data-act="prestation"]')) blocks[0].remove();
   const left=Array.from(screen.querySelectorAll('.block'));
   if(left[0]){const h=left[0].querySelector('h2');if(h)h.textContent='1. Quelle est la nature de l’opération ?'}
-  if(left[1]){const h=left[1].querySelector('h2');if(h)h.textContent='2. Quel type de bâtiment concerne l’opération ?'}
+  if(left[1]){const h=left[1].querySelector('h2');if(h)h.textContent='2. Quel type de bâtiment concerne l’opération ?';left[1].hidden=window.KP_QUOTE_ENGINE?.getState()?.nature==='mixte-ne'}
   qa('.planche .tiles').forEach(tiles=>tiles.classList.remove('tiles-lite'));
   const lead=screen.querySelector('.hero .lede');
   if(lead)lead.textContent='Décrivez votre projet en quelques clics. Vous pourrez ensuite choisir le niveau d’étude souhaité.';
@@ -96,7 +97,7 @@ function tuneSaisieText(){
   const screen=q('#quoteScreen');
   if(!screen||!screen.querySelector('.lot'))return;
   const lead=screen.querySelector('.hero .lede');
-  if(lead)lead.textContent='Renseignez les informations concernant votre projet. Les tarifs seront affichés uniquement à la fin.';
+  if(lead)lead.textContent='Renseignez les informations concernant votre projet, puis affichez les packs disponibles.';
 }
 
 function enhanceFields(){
@@ -140,7 +141,7 @@ function addFinalChoice(){
   const p=prices();
   const selected=explicitChoice;
   const previousForm=box.querySelector('[data-quote-account-form]');
-  const previous=previousForm?new FormData(previousForm):null;
+  if(previousForm)accountDraft=Object.fromEntries(new FormData(previousForm));
   const delay=selected?standardDelayDays(currentBaseTtc()):0;
   if(delay<=1)delivery='standard';
   box.innerHTML=`<div class="quote-final-head"><div><span class="chip g">Votre devis</span><h3>Choisissez votre niveau d’étude</h3><p>Sélectionnez le pack adapté à votre projet. Votre devis vous sera transmis par e-mail.</p></div><span class="quote-final-step done">✓</span></div>
@@ -168,7 +169,7 @@ function addFinalChoice(){
     <button type="submit" class="btn btn-p quote-send-btn" data-no-signup-popup>M’envoyer le devis et créer mon compte gratuitement</button>
     <p class="quote-account-note">Aucun paiement à cette étape. Si vous avez déjà un compte, le parcours existant vous permet de le retrouver.</p>
   </form>`:''}`;
-  if(previous){const form=box.querySelector('[data-quote-account-form]');if(form)for(const [key,value] of previous){const input=form.elements.namedItem(key);if(input&&input.type!=='hidden')input.value=value}}
+  {const form=box.querySelector('[data-quote-account-form]');if(form)for(const [key,value] of Object.entries(accountDraft)){const input=form.elements.namedItem(key);if(input&&input.type!=='hidden')input.value=value}}
   if(next){
     next.hidden=!!explicitChoice;
     next.disabled=!explicitChoice;
@@ -195,11 +196,14 @@ function canonicalProject(st){
 }
 function validateProject(st){
   if(!st||!st.lots.length)return 'Complétez les informations de votre projet.';
+  if(!String(st.nom||'').trim())return 'Indiquez le nom ou la référence du projet.';
   const pr=canonicalProject(st),d=pr.donnees,positive=x=>Number(x)>0,whole=(x,min)=>Number.isInteger(Number(x))&&Number(x)>=min&&x!=='';
   if(st.nature==='mixte-ne'&&(!pr.famille_extension||!pr.famille_neuve))return 'Sélectionnez les deux types de bâtiment.';
   if(st.nature==='sur'&&(!['collectif','tertiaire'].includes(pr.famille)||!positive(d.surExist)||!positive(d.surNeuve)))return 'Renseignez les deux surfaces de la surélévation.';
   if(['ext','reno-ext'].includes(st.nature)&&pr.famille==='mixte')return 'Pour une extension à usages mixtes, contactez notre équipe.';
   for(const [role,p] of Object.entries(d.parts)){
+    if(p.zones&&p.zones.length>30)return 'Limitez le projet à 30 zones ou contactez notre équipe.';
+    if('colN'in p&&role==='sur'&&!whole(p.colN,1))return 'Renseignez le nombre de logements créés.';
     if(p.zones&&!p.zones.length)return 'Renseignez au moins un usage pour chaque partie du projet.';
     if(role==='ext'&&'N'in p&&d.extMode!=='agrandissement'&&!positive(p.extSurfNouveaux))return 'Renseignez la surface des nouveaux logements.';
     if(role==='ext'&&'extAgrSurface'in p&&d.extMode!=='nouveaux'&&!positive(p.extAgrSurface))return 'Renseignez la surface agrandie.';
@@ -219,6 +223,7 @@ function validateProject(st){
       if(!(u==='FOY'&&v.cuisine==='individuelle')&&!positive(v.S))return 'Renseignez une surface supérieure à zéro.';
       if(u==='FOY'&&!['aucun','commun','individuelle'].includes(v.cuisine))return 'Précisez le type de cuisine du foyer.';
       if(u==='FOY'&&v.cuisine==='individuelle'&&!whole(v.n,1))return 'Renseignez le nombre de chambres.';
+      if(u==='UNI'&&!['oui','non'].includes(v.amphi))return 'Précisez si un amphithéâtre est prévu.';
       if(u==='HOP'&&(!positive(v.sc)||!positive(v.sj)))return 'Renseignez les surfaces de chambre et de consultation.';
       if(['BUR','ENS','UNI','SAN','VEN','IND','SPO','HOP','CRE','VES'].includes(u)&&!['oui','non'].includes(v.resto))return 'Précisez si une zone de restauration est prévue.';
       if(l.role==='neuf'&&!['oui','non'].includes(v.coqueBrute))return 'Précisez si le bâtiment est livré en coque brute.';
@@ -232,6 +237,7 @@ function publicPayload(){
   const st=window.KP_QUOTE_ENGINE?.getState();
   if(validateProject(st)||!explicitChoice)return null;
   const p=prices(),totalTtc=currentTotalTtc(),express=delivery==='express'&&expressAvailable();
+  if(!(currentBaseTtc()>0)||!Number.isFinite(totalTtc))return null;
   return {version:'site-public-v32-denis-20260918',origine:'r-e-2020.fr',reference:st.ref||'',date:new Date().toISOString(),projet:canonicalProject(st),reglementation:'RE2020',prestation:chosen==='complete'?'complete':'bbio',delai:{mode:delivery,jours_ouvres:finalDelay(),express,surcout_ht:expressSurchargeHt(),surcout_ttc:express?expressSurchargeTtc():0},facturation:'account',prix:{bbio_ttc:p.permis,bbio_ht:p.permis/1.2,complete_ttc:p.complete,complete_ht:p.complete/1.2,express_majoration_pct:express?10:0,total_ttc:totalTtc,total_ht:totalTtc/1.2}};
 }
 
@@ -252,6 +258,7 @@ function tune(){
   root.classList.add('devis-lite-site');
 }
 
+root.addEventListener('click',e=>{const form=q('[data-quote-account-form]');if(form)accountDraft=Object.fromEntries(new FormData(form));},true);
 root.addEventListener('click',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
   if(e.target.closest('select,input,textarea'))return;
@@ -290,7 +297,7 @@ root.addEventListener('click',e=>{
 
 root.addEventListener('input',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"]')){
+  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"],[data-act="projectname"]')){
     hasCalculated=false;
     explicitChoice=false;
     chosen='permis';
@@ -313,7 +320,7 @@ root.addEventListener('input',e=>{
 });
 root.addEventListener('change',e=>{
   if(e.target.closest('[data-quote-account-form]'))return;
-  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"]')){
+  if(e.target.closest('.lot')||e.target.matches('[data-act="surfs"],[data-act="projectname"]')){
     hasCalculated=false;
     explicitChoice=false;
     chosen='permis';
