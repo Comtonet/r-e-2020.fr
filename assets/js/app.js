@@ -25,38 +25,19 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(aiLauncher){aiLauncher.innerHTML='<span>✦</span> KeePote';aiLauncher.setAttribute('aria-label','Ouvrir KeePote, l\'assistant Keeplanet');}
   if(aiHead) aiHead.textContent='KeePote · Assistant Keeplanet';
   if(aiBody){
-    aiBody.innerHTML='<div class="ai-welcome"><img src="'+chatMascot+'" alt="KeePote"><div><p><strong>Bonjour 👋 Je suis KeePote, l’assistant IA de Keeplanet.</strong></p><p>Vous choisissez : je vous réponds tout de suite, ou notre équipe humaine vous accompagne directement.</p><div class="ai-human-choice"><a href="tel:0806110559">☎ 0 806 110 559</a><a href="mailto:info@keeplanet.fr">✉ info@keeplanet.fr</a></div><div class="ai-note">Je m’appuie sur la documentation validée de Keeplanet. Pour une question sensible ou très spécifique, vous pouvez toujours préférer un thermicien.</div></div></div>';
+    aiBody.innerHTML='<div class="ai-welcome"><img src="'+chatMascot+'" alt="KeePote"><div><p><strong>Bonjour 👋 Je suis KeePote, l’assistant IA de Keeplanet.</strong></p><p>Posez-moi une question générale sur la RE2020. Vous pouvez aussi joindre directement notre équipe :</p><div class="ai-human-choice"><a href="tel:0806110559">☎ 0 806 110 559</a><a href="mailto:info@keeplanet.fr">✉ info@keeplanet.fr</a></div><div class="ai-note">Pour les questions propres à votre étude, nos thermiciens sont à votre disposition.</div></div></div>';
   }
 
-  const keepoteCopies={
-    general:{title:'KeePote ou un humain : vous choisissez.',body:'KeePote est l’assistant IA de Keeplanet, disponible immédiatement pour répondre à vos questions sur la RE2020, vous orienter et expliquer les étapes de votre projet. Et si vous préférez parler à quelqu’un, notre équipe reste tout aussi accessible.'},
-    tarifs:{title:'Un doute sur la bonne prestation ? KeePote vous aide tout de suite.',body:'KeePote peut comparer les prestations, expliquer les livrables et vous orienter selon votre projet. Vous gardez toujours le choix : réponse immédiate avec KeePote ou échange direct avec l’équipe Keeplanet.'},
-    suivi:{title:'KeePote vous accompagne, nos thermiciens aussi.',body:'KeePote peut vous aider à comprendre un rapport, un indicateur comme le Bbio, le Cep ou le DH, résumer un document et vous guider dans votre dossier. Pour aller plus loin, vous pouvez à tout moment échanger avec un humain.'},
-    livrables:{title:'Un document trop technique ? Demandez à KeePote.',body:'KeePote peut reformuler vos résultats et expliquer les principaux indicateurs RE2020. Il est là pour rendre l’information plus accessible, tandis que nos thermiciens restent disponibles dès que vous souhaitez un échange humain.'}
-  };
-
-  function makeKeepoteBlock(type){
-    const copy=keepoteCopies[type]||keepoteCopies.general;
-    const section=document.createElement('section');
-    section.className='keepote-block';
-    section.innerHTML='<div class="container keepote-inner"><div class="keepote-visual"><img src="'+mascot+'" alt="KeePote, assistant IA Keeplanet"></div><div class="keepote-copy"><span class="eyebrow">KeePote · Assistant IA Keeplanet</span><h2>'+copy.title+'</h2><p>'+copy.body+'</p><div class="keepote-choice"><button class="btn keepote-open" type="button" data-keepote-open>Demander à KeePote</button><div class="keepote-human"><strong>Vous préférez un humain ?</strong><span>Appelez-nous ou écrivez-nous directement.</span><div class="keepote-human-links"><a href="tel:0806110559">☎ 0 806 110 559</a><a href="mailto:info@keeplanet.fr">✉ info@keeplanet.fr</a></div></div></div></div></div>';
-    return section;
-  }
-
+  // L'assistant est toujours accessible dans le chat ; ne pas multiplier les promotions.
   function insertKeepote(){
-    if(!main||document.querySelector('.keepote-block')) return;
+    if(!main||document.querySelector('.keepote-block,.kp-editorial-support,.tarifs-help-section,.kee-pote-promo'))return;
     const path=window.location.pathname;
-    if(path.includes('/conditions-generales-de-vente/')||path.includes('/mentions-legales/')||path==='/404/') return;
-    let type=null;
-    if(path==='/') type='general';
-    else if(path.includes('/tarifs-etude-thermique-re-2020/maison-individuelle-extensions')) type='suivi';
-    else if(path==='/tarifs-etude-thermique-re-2020/'||path.includes('/tarifs-etude-thermique-re-2020/collectif-tertiaire')) type='tarifs';
-    else if(path.includes('/exemples-livrables-re2020')) type='livrables';
-    else if(path.includes('/questions-frequentes-re2020')||path.includes('/processus-de-realisation-dune-etude-re2020')||path.includes('/processus-de-realisation/')) type='suivi';
-    else type='general';
-    const block=makeKeepoteBlock(type);
+    if(!/^\/(exemples-livrables-re2020|questions-frequentes-re2020)\/?$/.test(path))return;
+    const block=document.createElement('section');
+    block.className='kp-editorial-support';
+    block.innerHTML='<div class="container kp-editorial-support-inner"><div><h2>Une question sur votre étude ?</h2><p>Notre équipe est à votre disposition par téléphone et par e-mail. Vous pouvez aussi poser une question générale à KeePote.</p><div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button class="kp-editorial-chat" type="button" data-keepote-open>Poser une question à KeePote →</button></div></div></div>';
     const cta=main.querySelector('.cta-band');
-    if(cta) main.insertBefore(block,cta); else main.appendChild(block);
+    if(cta)main.insertBefore(block,cta);else main.appendChild(block);
   }
   insertKeepote();
 
