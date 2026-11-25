@@ -101,6 +101,25 @@ function prices(){
   return {permis:Number(p?.permis)||0,complete:Number(p?.complete)||0};
 }
 
+
+function isSingleNewHouse(st){
+  return !!(st&&st.ecran==='saisie'&&st.nature==='neuf'&&['maisons','maison'].includes(st.famille)&&Array.isArray(st.lots)&&st.lots.length===1&&st.lots[0].usage==='MI'&&Number(st.lots[0].v?.N)===1);
+}
+
+function updateHousePacksLink(){
+  const screen=q('#quoteScreen');
+  if(!screen)return;
+  const existing=screen.querySelector('.quote-single-house');
+  const st=window.KP_QUOTE_ENGINE?.getState?.();
+  if(!isSingleNewHouse(st)){existing?.remove();return;}
+  if(existing)return;
+  const notice=document.createElement('aside');
+  notice.className='quote-single-house';
+  notice.innerHTML='<span class="quote-single-house-icon" aria-hidden="true"><svg viewBox="0 0 32 32" width="27" height="27" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15 16 4l13 11M7 13v15h18V13M13 28v-9h6v9"/></svg></span><div class="quote-single-house-copy"><strong>Vous construisez une seule maison ?</strong><p>Nos packs maison individuelle à tarif forfaitaire sont adaptés à votre projet. Découvrez les différentes formules ou poursuivez votre devis ci-dessous.</p></div><a class="btn quote-single-house-link" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/" data-no-signup-popup>Voir les packs maison <span aria-hidden="true">→</span></a>';
+  const hero=screen.querySelector('.hero');
+  if(hero)hero.after(notice);else screen.prepend(notice);
+}
+
 function tuneSaisieText(){
   const screen=q('#quoteScreen');
   if(!screen||window.KP_QUOTE_ENGINE?.getState()?.ecran!=='saisie')return;
@@ -307,6 +326,7 @@ function tune(){
   lightenHome();
   tuneSaisieText();
   enhanceFields();
+  updateHousePacksLink();
   addFinalChoice();
   removeStrayPrices();
   addProgress();
@@ -359,7 +379,7 @@ root.addEventListener('input',e=>{
     if(isBusinessField(e.target))businessInput=true;
     resetCalculation();
     // The engine already updated the state. Do not replace the ready button on every keystroke.
-    addFinalChoice();addProgress();
+    updateHousePacksLink();addFinalChoice();addProgress();
   }
 });
 root.addEventListener('change',e=>{
