@@ -1,0 +1,61 @@
+
+.kp-pro-page{--pp-purple:#38227e;--pp-dark:#25154d;--pp-lime:#b3d34b;color:#292338}
+.kp-pro-intro{background:#25154d;color:#fff;padding:54px 0 48px}
+.kp-pro-layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(350px,.88fr);gap:56px;align-items:start}
+.kp-pro-kicker{display:flex;align-items:center;gap:9px;color:#d6eca0;font-size:.8rem;font-weight:750;letter-spacing:.04em}
+.kp-pro-kicker i{width:8px;height:8px;border-radius:50%;background:#b3d34b}
+.kp-pro-main h1{font-size:clamp(2.8rem,5vw,5.4rem);letter-spacing:-.065em;line-height:.99;margin:22px 0 18px;color:#fff}
+.kp-pro-main h1 em{color:#c7e379;font-style:normal}
+.kp-pro-lead{font-size:1.06rem;line-height:1.65;max-width:570px;color:#e4deef;margin:0 0 18px}
+.kp-pro-benefits{display:flex;flex-wrap:wrap;gap:8px 16px;color:#dceaba;font-size:.8rem;font-weight:700}
+.kp-pro-visual{position:relative;margin:23px 0 0;border-radius:19px;overflow:hidden;background:#493768}
+.kp-pro-visual img{display:block;width:100%;height:clamp(190px,23vw,310px);object-fit:cover;object-position:50% 55%}
+.kp-pro-visual figcaption{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px;background:#342260;color:#fff;font-size:.8rem;font-weight:750}
+.kp-pro-visual a{color:#e4efc3;text-decoration:underline;text-underline-offset:3px}
+.kp-pro-registration{background:#fff;color:#292338;border-radius:23px;padding:27px 29px;box-shadow:0 22px 65px #10082555;scroll-margin-top:115px;min-width:0}
+.kp-pro-form-eyebrow{display:inline-block;color:#5c7713;font-size:.73rem;font-weight:850;text-transform:uppercase;letter-spacing:.06em}
+.kp-pro-registration h2{margin:8px 0;color:#38227e;font-size:clamp(1.7rem,2.7vw,2.35rem);line-height:1.1;letter-spacing:-.045em}
+.kp-pro-registration>p{margin:0 0 15px;font-size:.88rem;color:#625b70;line-height:1.5}
+.kp-pro-registration fieldset{display:grid;gap:11px;border:0;margin:0;padding:0;min-width:0}
+.kp-pro-registration label{display:block;font-size:.82rem;font-weight:750;color:#38227e}
+.kp-pro-registration label small{font-weight:400;color:#756d82}
+.kp-pro-registration label>span{color:#70628a}
+.kp-pro-registration input,.kp-pro-registration select{display:block;width:100%;min-width:0;margin-top:4px;padding:10px 12px;min-height:43px;border:1px solid #ddd6e9;border-radius:9px;background:#fff;color:#292338;font:inherit;font-size:.88rem;font-weight:400}
+.kp-pro-registration input:focus,.kp-pro-registration select:focus{outline:2px solid #98bf24;outline-offset:1px}
+.kp-pro-fields{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.kp-pro-submit.btn{width:100%;background:#98bf24!important;color:#25154d!important;box-shadow:none;min-height:50px;border-radius:10px;gap:10px;font-weight:850;padding:12px 15px;text-align:center}
+.kp-pro-submit.btn:hover{background:#add03c!important}
+.kp-pro-registration fieldset:disabled{opacity:.58}
+.kp-pro-registration fieldset:disabled .kp-pro-submit{display:none}
+.kp-pro-registration fieldset:disabled+.kp-pro-submit{margin-top:14px}
+.kp-pro-registration .kp-pro-pending{padding:10px 12px;background:#f3f0f8;border-left:3px solid #a99acb;border-radius:7px;color:#50436d;font-size:.78rem}
+.kp-pro-form-note{font-size:.73rem;line-height:1.45;color:#766e82;margin:10px 0;text-align:center}
+.kp-pro-form-note a,.kp-pro-login a{color:#38227e;text-decoration:underline;text-underline-offset:3px}
+.kp-pro-login{border-top:1px solid #e8e3ef;margin-top:13px;padding-top:12px;font-size:.84rem;color:#6d657a;text-align:center}
+.kp-pro-proof{background:#f4f2f8;border-bottom:1px solid #e5deed}
+.kp-pro-proof .container{display:grid;grid-template-columns:repeat(4,1fr)}
+.kp-pro-proof .container>div{padding:20px 15px;border-right:1px solid #e0daeb}
+.kp-pro-proof .container>div:last-child{border:0}
+.kp-pro-proof strong,.kp-pro-proof span{display:block}
+.kp-pro-proof strong{font-size:1.45rem;font-weight:850;letter-spacing:-.035em;color:#38227e}
+.kp-pro-proof span{font-size:.8rem;color:#625b70}
+.kp-pro-services{padding:64px 0;background:#fff}
+.kp-pro-heading{max-width:800px;margin-bottom:27px}
+.kp-pro-heading h2,.kp-pro-bottom h2{color:#38227e;font-size:clamp(1.9rem,3.3vw,3.3rem);line-height:1.08;letter-spacing:-.045em;margin:10px 0}
+.kp-pro-heading p,.kp-pro-bottom p{color:#625b70;line-height:1.6}
+.kp-pro-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kp-pro-services-grid article{display:flex;flex-direction:column;padding:25px;background:#f7f5fa;border:1px solid #e5dfee;border-radius:18px}
+.kp-pro-services-grid article:first-child{background:#f2f6e5;border-color:#dce8bd}
+.kp-pro-service-no{color:#665b7c;font-size:.72rem;letter-spacing:.06em;font-weight:800}
+.kp-pro-services-grid h3{color:#38227e;margin:16px 0 10px;font-size:1.4rem;letter-spacing:-.025em}
+.kp-pro-services-grid p{color:#575064;font-size:.92rem;line-height:1.6;margin:0 0 20px;flex:1}
+.kp-pro-services-grid a{color:#38227e;font-weight:800;font-size:.87rem;text-decoration:underline;text-underline-offset:4px}
+.kp-pro-bottom{padding:47px 0;background:#f4f1f8}
+.kp-pro-bottom-grid{display:grid;grid-template-columns:1fr .8fr;gap:35px;align-items:center}
+.kp-pro-bottom img{display:block;width:100%;height:auto;border-radius:18px}
+.kp-pro-bottom .kp-pro-submit{width:auto;display:inline-flex;margin:12px 0}
+.kp-pro-contact{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:.85rem;font-weight:750;color:#38227e}
+.kp-pro-contact a{text-decoration:underline}
+@media(max-width:1000px){.kp-pro-layout{gap:28px;grid-template-columns:1fr minmax(320px,.85fr)}.kp-pro-registration{padding:22px}.kp-pro-services-grid{gap:12px}.kp-pro-services-grid article{padding:19px}}
+@media(max-width:790px){.kp-pro-intro{padding:32px 0}.kp-pro-layout{grid-template-columns:1fr;gap:22px}.kp-pro-main h1{font-size:clamp(2.65rem,8.5vw,4.3rem)}.kp-pro-visual img{height:190px}.kp-pro-registration{max-width:640px;width:100%;padding:22px}.kp-pro-proof .container{grid-template-columns:repeat(2,1fr)}.kp-pro-proof .container>div{padding:15px 12px;border-bottom:1px solid #e0daeb}.kp-pro-proof .container>div:nth-child(2){border-right:0}.kp-pro-services{padding:38px 0}.kp-pro-services-grid,.kp-pro-bottom-grid{grid-template-columns:1fr}.kp-pro-bottom{padding:35px 0}}
+@media(max-width:400px){.kp-pro-registration{padding:17px}.kp-pro-fields{grid-template-columns:1fr}.kp-pro-visual figcaption{font-size:.71rem}}

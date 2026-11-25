@@ -52,7 +52,7 @@ document.addEventListener('click',e=>{
   if(link.dataset.croDoc)emit('kp_document_click',{kp_document:link.dataset.croDoc});
   if(link.matches('[data-act="calculate-quote"]'))emit('kp_quote_calculate_click');
   if(link.matches('.final-prestation-lite [data-act="prestation"]')&&['permis','complete','fdc'].includes(link.dataset.id))emit('kp_quote_pack_click',{kp_pack:link.dataset.id});
-  if(link.getAttribute('href')==='/professionnels-du-batiment/')emit('kp_pro_click');
+  if((link.getAttribute('href')||'').split('#')[0]==='/professionnels-du-batiment/')emit('kp_pro_click');
 },true);
 document.addEventListener('submit',e=>{
   const form=e.target;if(!form.matches('[data-house-signup-form],[data-quote-account-form]')||!form.checkValidity())return;

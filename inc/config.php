@@ -103,6 +103,9 @@ return [
     'value_keephome_ttc' => 50,
     'value_heating_sizing_ttc' => 50,
 
+    // Inscription pro : activer uniquement une fois le traitement compte + entité installé et testé.
+    'pro_signup_enabled' => false,
+
     // Mesure agrégée facultative, hors Ads. Renseigner un dossier privé hors racine web.
     // Vide = événements dataLayer uniquement, aucune collecte HTTP supplémentaire.
     'conversion_metrics_dir' => getenv('KP_CONVERSION_METRICS_DIR') ?: '',
