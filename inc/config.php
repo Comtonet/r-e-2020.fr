@@ -103,6 +103,10 @@ return [
     'value_keephome_ttc' => 50,
     'value_heating_sizing_ttc' => 50,
 
+    // Mesure agrégée facultative, hors Ads. Renseigner un dossier privé hors racine web.
+    // Vide = événements dataLayer uniquement, aucune collecte HTTP supplémentaire.
+    'conversion_metrics_dir' => getenv('KP_CONVERSION_METRICS_DIR') ?: '',
+
     // KeePote : la clé API reste hors Git (OPENAI_API_KEY ou inc/secrets.php).
     'ai_model' => 'gpt-5.6-luna',
     'ai_max_output_tokens' => 700,

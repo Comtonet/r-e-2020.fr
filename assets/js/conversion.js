@@ -11,6 +11,7 @@ function emit(event, fields={}){
   // Only coarse non-personal events. No form data, email, name, identifiers or UTM strings.
   window.dataLayer=window.dataLayer||[];
   window.dataLayer.push(Object.assign({event},fields));
+  if(window.KP_CONVERSION_AGGREGATE===true){try{fetch("/api/conversion-metrics.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({event},fields)),credentials:"same-origin",keepalive:true}).catch(()=>{});}catch(_){}}
 }
 const route=page==='/'?'home':page===housePage?'packs':page==='/tarifs-etude-thermique-re-2020/'?'tarifs':page==='/devis-en-ligne/'?'devis':page==='/professionnels-du-batiment/'?'pro':page==='/inscription-maison/'?'inscription':'other';
 if(route!=='other')emit('kp_page_view',{kp_route:route});

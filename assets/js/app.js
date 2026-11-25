@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     try{sessionStorage.setItem(HOUSE_EXIT_SEEN_KEY,'1');}catch(_e){}
   }
   function openHouseExitOffer(){
-    if(!houseExitOffer||houseExitAlreadySeen()||!modal.hidden||!houseExitOffer.hidden)return;
+    if(!houseExitOffer||houseExitAlreadySeen()||!modal.hidden||!houseExitOffer.hidden||document.querySelector('#kp-house-dialog[open]')||(aiPanel&&!aiPanel.hidden))return;
     houseExitOfferPreviousFocus=document.activeElement;
     markHouseExitSeen();
     houseExitOffer.hidden=false;
