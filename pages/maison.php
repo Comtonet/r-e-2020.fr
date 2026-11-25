@@ -14,7 +14,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
 <section class="mi-hero" id="contenu-maison">
   <div class="container mi-hero-grid">
     <div class="mi-hero-copy">
-      <div class="mi-badge">Maison individuelle · RE2020</div>
+      <div class="mi-badge">KeePlanet · Maison individuelle · RE2020</div>
       <h1>Étude thermique RE2020 <em>pour votre maison.</em></h1>
       <p class="mi-hero-lead">Choisissez le niveau d’accompagnement dont vous avez besoin. Vous déposez vos plans en ligne, un thermicien Keeplanet réalise l’étude et vous retrouvez tous vos documents dans votre espace client.</p>
 

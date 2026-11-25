@@ -4,7 +4,7 @@
     <div class="breadcrumbs"><a href="/">Accueil</a><span>›</span><a href="/tarifs-etude-thermique-re-2020/">Tarifs</a><span>›</span><span>Collectif &amp; tertiaire</span></div>
     <div class="kp-quote-hero-grid">
       <div class="kp-quote-hero-copy">
-        <span class="eyebrow">Études RE2020 · Collectif &amp; tertiaire</span>
+        <span class="eyebrow">KeePlanet · Collectif &amp; tertiaire</span>
         <h1>Calculez votre devis RE2020 <em>directement en ligne.</em></h1>
         <p>Logements collectifs, bureaux, commerces, ERP, extensions ou opérations mixtes : notre générateur adapte le devis aux caractéristiques de votre projet.</p>
         <a class="btn kp-quote-cta " href="/devis-en-ligne/" data-no-signup-popup><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8v4H8zM8 14h1m6 0h1m-8 4h1m6 0h1"/></svg><span>Calculer mon devis en ligne</span><span aria-hidden="true">→</span></a>

@@ -5,7 +5,7 @@
   <div class="process-hero-glow"></div>
   <div class="container process-hero-grid">
     <div>
-      <span class="eyebrow">Notre méthode</span>
+      <span class="eyebrow">La méthode KeePlanet</span>
       <h1>Processus de réalisation d’une étude RE2020</h1>
       <p class="process-intro">Notre méthode est éprouvée, avec <strong>plus de 89 000 dossiers étudiés</strong>. Keeplanet s’appuie sur une organisation éprouvée pour assurer des études thermiques fiables, des délais maîtrisés et un suivi structuré des dossiers.</p>
       <div class="process-hero-actions">

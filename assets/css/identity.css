@@ -1,1 +1,31 @@
 .brand-text-logo{display:inline-flex;align-items:baseline;white-space:nowrap;font-family:"Trebuchet MS","Avenir Next","Segoe UI",Arial,sans-serif;font-weight:900;font-size:2.1rem;line-height:1;letter-spacing:-.075em}.brand-text-main{color:#98BF24}.brand-text-fr{color:#38227E}.brand-text-logo-footer{font-size:1.9rem}.brand:hover .brand-text-main{color:#86aa1e}.brand:hover .brand-text-fr{color:#2f1b6c}.company-signature{background:#f8f7fc;border-bottom:1px solid rgba(56,34,126,.08)}.company-signature-inner{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 20px;text-align:center;font-size:.83rem;line-height:1.35}.company-signature strong{color:#38227E}.company-signature span{color:#667085}.company-signature span:before{content:'•';color:#98BF24;margin-right:12px;font-weight:900}@media(max-width:720px){.brand-text-logo{font-size:1.72rem}.brand-text-logo-footer{font-size:1.65rem}.company-signature-inner{display:block;padding:9px 16px}.company-signature strong,.company-signature span{display:block}.company-signature span{margin-top:3px}.company-signature span:before{display:none}}
+
+/* Co-branding : KeePlanet porte le service, r-e-2020.fr reste la plateforme. */
+.site-header .nav-wrap{width:min(calc(100% - 40px),1440px);gap:22px}
+.kp-brand-lockup{display:inline-flex;flex:none;align-items:center;gap:13px}
+.kp-brand-lockup .kp-company-logo{display:block;width:142px;height:48px;object-fit:contain}
+.kp-brand-divider{display:block;width:1px;height:39px;background:#ded8e9;flex:none}
+.kp-brand-site{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+.kp-brand-lockup .brand-text-logo{font-size:1.45rem;letter-spacing:-.065em}
+.kp-brand-caption{font-size:.6rem;color:#6c637d;font-weight:650;line-height:1.25;white-space:nowrap}
+.site-header .main-nav{gap:17px;font-size:.86rem}
+.kp-footer-brand{display:flex!important;flex-direction:column;align-items:flex-start;gap:12px;margin:0 0 15px!important}
+.kp-footer-logo{display:inline-flex;background:#fff;padding:9px 14px;border-radius:10px}
+.kp-footer-logo .kp-company-logo{display:block;width:176px;height:58px;object-fit:contain}
+.kp-footer-site{font-size:1.25rem;color:#fff;font-weight:850;line-height:1.3}
+.kp-footer-site small{font-size:.75rem;color:#e3daef;font-weight:500;margin-top:4px}
+.kp-footer-about{font-weight:800;color:#d7e9a9!important;text-decoration:underline;text-underline-offset:4px}
+.kp-company-intro{display:grid;grid-template-columns:210px minmax(0,1fr) auto;gap:24px;align-items:center;padding:25px 30px;background:#fff;border:1px solid #e3ddec;border-radius:19px;box-shadow:0 9px 30px #25154d09}
+.kp-company-intro .kp-company-logo{display:block;width:100%;max-width:190px;height:65px;object-fit:contain}
+.kp-company-intro h2{font-size:clamp(1.2rem,2vw,1.65rem);color:#38227e;letter-spacing:-.025em;line-height:1.2;margin:0 0 7px}
+.kp-company-intro p{margin:0;color:#5d556e;font-size:.92rem;line-height:1.55}
+.kp-company-intro a{color:#38227e;font-size:.88rem;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.kp-company-section{padding:27px 0;background:#f7f6fa}
+@media(max-width:1280px){
+ .site-header .nav-toggle{display:block}
+ .site-header .main-nav{position:absolute;left:20px;right:20px;top:100%;display:none;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+ .site-header .main-nav.open{display:flex}
+}
+@media(max-width:790px){.kp-company-intro{grid-template-columns:1fr;gap:14px;padding:22px}.kp-company-intro .kp-company-logo{max-width:150px;height:47px}}
+@media(max-width:540px){.site-header .nav-wrap{width:calc(100% - 24px);gap:8px}.kp-brand-lockup{gap:8px}.kp-brand-lockup .kp-company-logo{width:100px;height:37px}.kp-brand-divider{height:29px}.kp-brand-lockup .brand-text-logo{font-size:1.15rem}.kp-brand-caption{font-size:.48rem}.site-header .nav-toggle{padding:8px 10px;font-size:.8rem}}
+@media(max-width:345px){.kp-brand-lockup .kp-company-logo{width:82px}.kp-brand-caption{display:none}.kp-brand-lockup .brand-text-logo{font-size:1.08rem}}

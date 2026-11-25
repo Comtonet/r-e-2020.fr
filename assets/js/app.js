@@ -9,12 +9,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
 
   const main=document.querySelector('main');
-  if(main&&!document.querySelector('.company-signature')){
-    const strip=document.createElement('div');
-    strip.className='company-signature';
-    strip.innerHTML='<div class="container company-signature-inner"><strong>r-e-2020.fr est un site Keeplanet</strong><span>Bureau d\'études basé à Strasbourg · ingénieurs spécialisés en thermique du bâtiment · accompagnement partout en France</span></div>';
-    main.parentNode.insertBefore(strip,main);
-  }
+  // L’identité KeePlanet est directement intégrée au header PHP.
 
   const mascot='/assets/img/keepote.png';
   const chatMascot='/assets/img/keepote-tete.png';
