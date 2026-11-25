@@ -104,6 +104,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li class="mi-pack-muted"><b>+</b><span><strong>Fin de travaux disponible en option</strong></span></li>
         </ul>
         <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup data-house-pack="permis">Choisir le Pack Permis</a>
+        <a class="kp-pack-doc-link" href="https://espace-client.keeplanet.fr/exemple-attestation-re2020.pdf" target="_blank" rel="noopener" data-no-signup-popup data-cro-doc="exemple-attestation-re2020.pdf">Exemple d’attestation PDF ↗</a>
       </article>
 
       <article class="mi-pack-card mi-pack-featured" id="pack-fdc">
@@ -125,6 +126,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </ul>
         <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
         <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=fdc" data-no-signup-popup data-house-pack="fdc">Choisir le Pack Fin de travaux</a>
+        <a class="kp-pack-doc-link" href="https://espace-client.keeplanet.fr/exemple-synthese-simplifiee-re2020.pdf" target="_blank" rel="noopener" data-no-signup-popup data-cro-doc="exemple-synthese-simplifiee-re2020.pdf">Exemple de synthèse PDF ↗</a>
       </article>
 
       <article class="mi-pack-card" id="pack-fdc-acv">
@@ -145,6 +147,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </ul>
         <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
         <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup data-house-pack="fdc-acv">Choisir le pack complet + ACV</a>
+        <a class="kp-pack-doc-link" href="https://espace-client.keeplanet.fr/exemple-recapitulatif-standardise-re2020.pdf" target="_blank" rel="noopener" data-no-signup-popup data-cro-doc="exemple-recapitulatif-standardise-re2020.pdf">Exemple de rapport PDF ↗</a>
       </article>
     </div>
 
