@@ -94,8 +94,7 @@ window.dataLayer.push({
  * On laisse volontairement la page de transit se charger avant l'envoi final :
  * les scripts de mesure / Ads ont ainsi le temps d'enregistrer l'étape.
  */
-window.setTimeout(function(){
-  var form=document.getElementById('house-signup-transit');
-  if(form)form.submit();
-},900);
+var form=document.getElementById('house-signup-transit');
+if(typeof window.KP_SUBMIT_SIGNUP==='function')window.KP_SUBMIT_SIGNUP(form,900);
+else window.setTimeout(function(){if(form)form.submit();},900);
 </script>

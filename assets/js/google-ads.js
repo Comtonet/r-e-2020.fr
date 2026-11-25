@@ -23,6 +23,41 @@ function start(){
 }
 choice=read();
 if(choice==='yes')start();
+// Appelé exclusivement par les pages de transit après validation serveur.
+// La conversion correspond à un formulaire transmis, pas à un compte confirmé.
+window.KP_SUBMIT_SIGNUP=function(form,delay){
+  if(!form)return;
+  let started=false, forwarded=false, timer;
+  function forward(){
+    if(forwarded)return;
+    forwarded=true;window.clearTimeout(timer);
+    HTMLFormElement.prototype.submit.call(form);
+  }
+  function send(){
+    if(started)return;
+    started=true;
+    const label=window.KP_GOOGLE_ADS_SIGNUP_LABEL;
+    if(choice!=='yes'||!loaded||!(/^[A-Za-z0-9_-]+$/.test(label||''))){forward();return;}
+    // Identifiant aléatoire, sans donnée personnelle, conservé pour cette entrée d'historique.
+    let transactionId='';
+    try{
+      const state=history.state||{};
+      transactionId=state.kpAdsLeadId||'';
+      if(!transactionId){
+        const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
+        transactionId=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
+        history.replaceState(Object.assign({},state,{kpAdsLeadId:transactionId}),'');
+      }
+    }catch(_){}
+    // L'inscription ne doit jamais dépendre de Google ou d'un bloqueur de publicité.
+    timer=window.setTimeout(forward,1500);
+    const params={send_to:id+'/'+label,event_callback:forward,event_timeout:1200};
+    if(transactionId)params.transaction_id=transactionId;
+    try{g('event','conversion',params);}catch(_){forward();}
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();send();});
+  window.setTimeout(send,delay||0);
+};
 function clearAdsCookies(){
   const domains=['',location.hostname,'.'+location.hostname,'.r-e-2020.fr','r-e-2020.fr'];
   document.cookie.split(';').map(s=>s.split('=')[0].trim()).filter(n=>/^_gcl_|^_gac_/.test(n)).forEach(n=>{

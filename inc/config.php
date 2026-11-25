@@ -4,6 +4,7 @@ return [
     'projects_count' => 89000,
     'experience_years' => 17,
     'google_ads_id' => 'AW-1048539632',
+    'google_ads_signup_label' => 'y3HTCObSqZ0ZEPDj_fMD',
     'google_rating' => 4.7,
     'google_reviews' => 343,
 

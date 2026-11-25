@@ -28,6 +28,6 @@ if (!cfg('pro_signup_enabled',false)) {
 <?php foreach ($fields as $key=>$val): ?><input type="hidden" name="<?= h($key) ?>" value="<?= h($val) ?>"><?php endforeach; ?>
 <input type="hidden" name="origine" value="r-e-2020.fr"><input type="hidden" name="profil" value="professionnel"><input type="hidden" name="creation_entite" value="1">
 <button type="submit" class="btn kp-pro-submit" data-no-signup-popup>Continuer</button></form></div>
-<script>(function(){var f=document.getElementById('kp-pro-transit');if(f){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'inscription_pro_submit'});window.setTimeout(function(){f.submit()},900);}})();</script>
+<script>(function(){var f=document.getElementById('kp-pro-transit');if(f){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'inscription_pro_submit'});if(typeof window.KP_SUBMIT_SIGNUP==='function')window.KP_SUBMIT_SIGNUP(f,900);else window.setTimeout(function(){f.submit()},900);}})();</script>
 <?php endif; ?>
 </div></div></section>

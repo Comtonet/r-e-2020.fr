@@ -79,20 +79,7 @@ window.dataLayer.push({
   devis_source: <?= json_encode($isGeneralSignup ? 'popup_generale' : 'calculateur_public') ?>
 });
 
-/*
- * Si Google Ads est installé avec gtag(), l'événement est également
- * disponible immédiatement. L'ID de conversion peut être ajouté ici
- * sans changer le parcours.
- */
-if (typeof window.gtag === 'function') {
-  window.gtag('event', <?= json_encode($isGeneralSignup ? 'inscription_generale_submit' : 'devis_re2020_submit') ?>, {
-    event_category: 'lead',
-    event_label: <?= json_encode($isGeneralSignup ? 'popup_generale' : 'calculateur_public') ?>
-  });
-}
-
-window.setTimeout(function () {
-  var form = document.getElementById('quote-transit-form');
-  if (form) form.submit();
-}, 650);
+var form=document.getElementById('quote-transit-form');
+if(typeof window.KP_SUBMIT_SIGNUP==='function')window.KP_SUBMIT_SIGNUP(form,650);
+else window.setTimeout(function(){if(form)form.submit();},650);
 </script>
