@@ -15,7 +15,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   <div class="container mi-hero-grid">
     <div class="mi-hero-copy">
       <div class="mi-badge">Maison individuelle · RE2020</div>
-      <h1>Étude thermique RE2020 pour maison individuelle</h1>
+      <h1>Étude thermique RE2020 <em>pour votre maison.</em></h1>
       <p class="mi-hero-lead">Choisissez le niveau d’accompagnement dont vous avez besoin. Vous déposez vos plans en ligne, un thermicien Keeplanet réalise l’étude et vous retrouvez tous vos documents dans votre espace client.</p>
 
       <div class="mi-hero-actions">
@@ -239,7 +239,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
-<section class="kp-editorial-support kp-editorial-support-photo"><div class="container kp-editorial-support-inner"><figure class="kp-editorial-photo"><img src="/assets/img/editorial/thermicien-conseil.webp" alt="Illustration d’un échange téléphonique autour des plans d’une maison" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Illustration générée</figcaption></figure><div><h2>Votre étude se fait en ligne. Les échanges aussi, si vous le souhaitez.</h2><p>Notre équipe reste joignable par téléphone et par e-mail. Nos thermiciens réalisent les études et, selon le pack choisi, vous conseillent sur les solutions techniques. KeePote peut aussi répondre à vos questions générales.</p><div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button type="button" class="kp-editorial-chat" data-keepote-open>Poser une question à KeePote →</button></div></div></div></section>
+<section class="kp-editorial-support kp-editorial-support-photo"><div class="container kp-editorial-support-inner"><figure class="kp-editorial-photo"><img src="/assets/img/editorial/thermicien-conseil.webp" alt="Illustration d’un échange téléphonique autour des plans d’une maison" width="1200" height="675" loading="lazy" decoding="async"></figure><div><h2>Votre étude se fait en ligne. Les échanges aussi, si vous le souhaitez.</h2><p>Notre équipe reste joignable par téléphone et par e-mail. Nos thermiciens réalisent les études et, selon le pack choisi, vous conseillent sur les solutions techniques. KeePote peut aussi répondre à vos questions générales.</p><div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button type="button" class="kp-editorial-chat" data-keepote-open>Poser une question à KeePote →</button></div></div></div></section>
 <section class="mi-section mi-info-section">
   <div class="container mi-info-grid">
     <div class="mi-info-card">

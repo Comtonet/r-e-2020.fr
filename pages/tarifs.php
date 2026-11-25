@@ -10,7 +10,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
   <div class="container tarifs-hero-inner">
     <div class="tarifs-breadcrumbs"><a href="/">Accueil</a><span>›</span><span>Tarifs</span></div>
     <span class="tarifs-eyebrow">Études thermiques RE2020 · France entière</span>
-    <h1>Tarifs des études thermiques RE2020</h1>
+    <h1>Tarifs des études <em>thermiques RE2020.</em></h1>
     <p class="tarifs-hero-lead">Maison individuelle, extension, logement collectif ou bâtiment tertiaire : choisissez votre type de projet et accédez directement au tarif ou au devis adapté.</p>
     <div class="tarifs-hero-actions">
       <a class="btn tarifs-btn-primary kp-house-primary" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/" data-no-signup-popup>Voir les packs maison &amp; extension →</a><a class="btn kp-quote-secondary" href="/devis-en-ligne/" data-no-signup-popup>Devis collectif &amp; tertiaire →</a>
