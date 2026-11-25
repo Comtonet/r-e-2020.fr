@@ -12,7 +12,7 @@
   <aside class="kp-pro-registration" id="compte-pro" aria-labelledby="pro-title">
    <span class="kp-pro-form-eyebrow">Sans engagement · Aucun paiement</span>
    <h2 id="pro-title">Créez votre compte pro.</h2>
-   <p>Renseignez vos coordonnées et celles de votre entreprise pour ouvrir votre espace professionnel.</p>
+   <p>Renseignez vos coordonnées : votre compte et votre fiche entreprise seront créés ensemble. Vous recevrez vos accès par e-mail.</p>
    <?php if (!$proReady): ?><p class="kp-pro-pending" role="status">L’inscription professionnelle en ligne sera disponible prochainement. En attendant, notre équipe peut vous accompagner dans l’ouverture de votre compte.</p><?php endif; ?>
    <form action="/professionnels-du-batiment/inscription/" method="post" data-pro-signup-form>
     <fieldset <?= $proReady ? '' : 'disabled' ?>>
@@ -20,8 +20,8 @@
     <div class="kp-pro-fields"><label>Prénom <span>*</span><input name="prenom" autocomplete="given-name" maxlength="100" required placeholder="Prénom"></label><label>Nom <span>*</span><input name="nom" autocomplete="family-name" maxlength="100" required placeholder="Nom"></label></div>
     <label>Adresse e-mail professionnelle <span>*</span><input type="email" name="email" autocomplete="email" maxlength="254" required placeholder="vous@entreprise.fr"></label>
     <label>Téléphone <small>facultatif</small><input type="tel" name="telephone" autocomplete="tel" maxlength="40" placeholder="Votre numéro"></label>
-    <label>Votre activité <span>*</span><select name="activite" required><option value="">Sélectionner</option><option value="architecte">Architecte</option><option value="constructeur">Constructeur</option><option value="maitre_oeuvre">Maître d’œuvre</option><option value="dessinateur">Dessinateur</option><option value="promoteur">Promoteur</option><option value="autre">Autre professionnel</option></select></label>
-    <label>SIRET <small>facultatif</small><input type="text" name="siret" inputmode="numeric" pattern="[0-9]{14}" maxlength="14" placeholder="14 chiffres"></label>
+    <label>Adresse de l’entreprise <span>*</span><input type="text" name="adresse" autocomplete="street-address" maxlength="240" required placeholder="Numéro et rue"></label>
+    <div class="kp-pro-fields kp-pro-address-fields"><label>Code postal <span>*</span><input type="text" name="code_postal" autocomplete="postal-code" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" required placeholder="67000"></label><label>Ville <span>*</span><input type="text" name="ville" autocomplete="address-level2" maxlength="120" required placeholder="Ville"></label></div>
     <button type="submit" class="btn kp-pro-submit" data-no-signup-popup>Créer mon compte professionnel <span aria-hidden="true">→</span></button>
     </fieldset>
     <?php if (!$proReady): ?><a class="btn kp-pro-submit" href="mailto:info@keeplanet.fr?subject=Ouverture%20compte%20professionnel%20RE2020" data-no-signup-popup>Demander l’ouverture de mon compte →</a><?php endif; ?>

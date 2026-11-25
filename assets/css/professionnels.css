@@ -59,3 +59,5 @@
 @media(max-width:1000px){.kp-pro-layout{gap:28px;grid-template-columns:1fr minmax(320px,.85fr)}.kp-pro-registration{padding:22px}.kp-pro-services-grid{gap:12px}.kp-pro-services-grid article{padding:19px}}
 @media(max-width:790px){.kp-pro-intro{padding:32px 0}.kp-pro-layout{grid-template-columns:1fr;gap:22px}.kp-pro-main h1{font-size:clamp(2.65rem,8.5vw,4.3rem)}.kp-pro-visual img{height:190px}.kp-pro-registration{max-width:640px;width:100%;padding:22px}.kp-pro-proof .container{grid-template-columns:repeat(2,1fr)}.kp-pro-proof .container>div{padding:15px 12px;border-bottom:1px solid #e0daeb}.kp-pro-proof .container>div:nth-child(2){border-right:0}.kp-pro-services{padding:38px 0}.kp-pro-services-grid,.kp-pro-bottom-grid{grid-template-columns:1fr}.kp-pro-bottom{padding:35px 0}}
 @media(max-width:400px){.kp-pro-registration{padding:17px}.kp-pro-fields{grid-template-columns:1fr}.kp-pro-visual figcaption{font-size:.71rem}}
+
+.kp-pro-address-fields{grid-template-columns:minmax(100px,.42fr) minmax(0,1fr)}@media(max-width:400px){.kp-pro-address-fields{grid-template-columns:1fr}}

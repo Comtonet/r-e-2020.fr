@@ -7,15 +7,15 @@ if (!cfg('pro_signup_enabled',false)) {
 } elseif (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     http_response_code(405); $proError = 'Veuillez utiliser le formulaire d’inscription professionnelle.';
 } else {
-    $limits = ['societe'=>180,'prenom'=>100,'nom'=>100,'email'=>254,'telephone'=>40,'activite'=>30,'siret'=>14];
+    $limits = ['societe'=>180,'prenom'=>100,'nom'=>100,'email'=>254,'telephone'=>40,'adresse'=>240,'code_postal'=>5,'ville'=>120];
     foreach ($limits as $key=>$max) {
         $v=$_POST[$key] ?? '';
-        if (!is_string($v) || strlen($v)>$max*4 || preg_match('/[\x00-\x1f\x7f]/',$v)) { $proError='Une information est invalide.'; break; }
+        if (!is_string($v) || strlen($v)>$max*4 || !preg_match('//u',$v) || preg_match('/[\x00-\x1f\x7f]/',$v)) { $proError='Une information est invalide.'; break; }
         $v=trim($v);
         if ((function_exists('mb_strlen')?mb_strlen($v,'UTF-8'):strlen($v))>$max) { $proError='Une information est trop longue.'; break; }
         $fields[$key]=$v;
     }
-    if (!$proError && (empty($fields['societe'])||empty($fields['prenom'])||empty($fields['nom'])||!filter_var($fields['email'],FILTER_VALIDATE_EMAIL)||!in_array($fields['activite'],['architecte','constructeur','maitre_oeuvre','dessinateur','promoteur','autre'],true)||($fields['siret']!==''&&!preg_match('/^[0-9]{14}$/D',$fields['siret'])))) $proError='Merci de vérifier vos coordonnées et celles de votre entreprise.';
+    if (!$proError && ($fields['societe']===''||$fields['prenom']===''||$fields['nom']===''||!filter_var($fields['email'],FILTER_VALIDATE_EMAIL)||$fields['adresse']===''||!preg_match('/^[0-9]{5}$/D',$fields['code_postal'])||$fields['ville']==='')) $proError='Merci de vérifier vos coordonnées et celles de votre entreprise.';
     if ($proError) http_response_code(422);
 }
 ?>
