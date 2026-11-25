@@ -19,10 +19,11 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
       <p class="mi-hero-lead">Choisissez le niveau d’accompagnement dont vous avez besoin. Vous déposez vos plans en ligne, un thermicien Keeplanet réalise l’étude et vous retrouvez tous vos documents dans votre espace client.</p>
 
       <div class="mi-hero-actions">
-        <a class="btn mi-btn-primary" href="#packs">Voir les packs et les tarifs</a>
+        <a class="btn mi-btn-primary" href="#packs" data-no-signup-popup>Voir les packs et les tarifs</a>
         <a class="mi-link-call" href="tel:0806110559">Besoin d’aide ? <strong>0806 110 559</strong></a>
       </div>
 
+<p class="kp-cro-reassure"><span>✓ Création de compte gratuite</span><span>✓ Aucun paiement à l’inscription</span><span>✓ Déposez vos plans ensuite</span></p>
       <div class="mi-trust-row">
         <span><b>✓</b><?= h(projects_label()) ?>+ projets étudiés</span>
         <span><b>✓</b>OPQIBI 1331 &amp; 1332</span>
@@ -42,7 +43,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <li>Modifications gratuites et illimitées</li>
         <li>Conseils d’un thermicien</li>
       </ul>
-      <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup>Choisir le Pack Permis</a>
+      <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup data-house-pack="permis">Choisir le Pack Permis</a>
       <small>Vous pourrez passer à un pack supérieur plus tard en réglant uniquement la différence.</small>
       <a class="mi-hero-eco" href="#pack-eco" data-no-signup-popup><span><strong>Eco’Permis</strong><small>L’essentiel pour le permis, en autonomie</small></span><span class="mi-hero-eco-price"><?= h($ecoPrice) ?> <span aria-hidden="true">→</span></span></a>
     </aside>
@@ -61,54 +62,14 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
-<section class="mi-section mi-choice-section">
-  <div class="container">
-    <div class="mi-section-head mi-center">
-      <span class="mi-eyebrow">Choisir la prestation</span>
-      <h2>De quelle étude avez-vous besoin ?</h2>
-      <p>Chaque formule correspond à un périmètre d’étude et à une phase précise du projet.</p>
-    </div>
 
-    <div class="mi-choice-grid">
-      <a class="mi-choice-card" href="#pack-permis">
-        <span class="mi-choice-number">1</span>
-        <div>
-          <strong>Je veux déposer mon permis</strong>
-          <p>Choisissez le <b>Pack Permis</b>. Cette prestation comprend l’étude et l’attestation nécessaires au dépôt.</p>
-          <span class="mi-choice-price"><?= h($permisPrice) ?> →</span>
-        </div>
-      </a>
-
-      <a class="mi-choice-card mi-choice-recommended" href="#pack-fdc">
-        <span class="mi-choice-number">2</span>
-        <div>
-          <span class="mi-mini-badge">Recommandé</span>
-          <strong>Je veux sécuriser mon projet jusqu’à la fin des travaux</strong>
-          <p>Choisissez le <b>Pack Fin de travaux</b> : calcul complet, conseils, suivi et fichiers nécessaires pour le contrôle final.</p>
-          <span class="mi-choice-price"><?= h($finPrice) ?> →</span>
-        </div>
-      </a>
-
-      <a class="mi-choice-card" href="#pack-fdc-acv">
-        <span class="mi-choice-number">3</span>
-        <div>
-          <strong>Je veux tout intégrer dès le départ, y compris l’ACV</strong>
-          <p>Choisissez le <b>Pack Fin de travaux + ACV</b> pour intégrer également les indicateurs carbone réglementaires.</p>
-          <span class="mi-choice-price"><?= h($finAcvPrice) ?> →</span>
-        </div>
-      </a>
-    </div>
-
-    <p class="mi-choice-note">Pour la phase permis en autonomie : <a href="#pack-eco" data-no-signup-popup>Eco’Permis à <?= h($ecoPrice) ?> →</a></p>
-  </div>
-</section>
 
 <section class="mi-section mi-packs-section" id="packs">
   <div class="container">
     <div class="mi-section-head">
       <span class="mi-eyebrow">Tarifs maison individuelle</span>
-      <h2>Prestations et tarifs RE2020</h2>
-      <p>Tous les prix sont TTC et valables quelle que soit la surface de la maison. Les packs principaux incluent l’accès à votre espace client et les échanges avec notre équipe.</p>
+      <h2>Les 4 packs RE2020</h2>
+      <p>Prix TTC, quelle que soit la surface de la maison. Commencez par le permis ou choisissez l’étude complète dès aujourd’hui.</p><a class="kp-cro-compare-link" href="#comparatif-packs" data-no-signup-popup>Comparer les 4 packs en détail ↓</a>
     </div>
 
     <article class="mi-eco-strip" id="pack-eco" aria-labelledby="pack-eco-title">
@@ -116,11 +77,11 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <span class="mi-eco-label">Formule économique · phase permis</span>
         <h3 id="pack-eco-title">Pack Eco’Permis</h3>
         <p>Calcul Bbio + DH en <strong><?= h(eco_delay_label()) ?></strong>, 2 variantes incluses et accès à KeePote.</p>
-        <p class="mi-eco-limit">Vous générez vous-même l’attestation permis avec les fichiers fournis. Conseils du thermicien non inclus.</p>
+        <p class="mi-eco-limit">Attestation à générer vous-même · conseils du thermicien non inclus.</p>
       </div>
       <div class="mi-eco-purchase">
         <strong class="mi-eco-price"><?= h($ecoPrice) ?></strong>
-        <a class="btn mi-btn-soft" href="/inscription-maison/?pack=eco" data-no-signup-popup>Choisir Eco’Permis <span aria-hidden="true">→</span></a>
+        <a class="btn mi-btn-soft" href="/inscription-maison/?pack=eco" data-no-signup-popup data-house-pack="eco">Choisir Eco’Permis <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
@@ -129,7 +90,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <div class="mi-pack-head">
           <span class="mi-pack-tag">Phase permis</span>
           <h3>Pack Permis</h3>
-          <p class="mi-pack-for">Pour obtenir votre étude et votre attestation de dépôt du permis.</p>
+          <p class="mi-pack-for">Votre permis de construire, avec accompagnement.</p>
           <div class="mi-pack-price"><?= h($permisPrice) ?></div>
           <span class="mi-pack-delay"><?= h(standard_delay_label()) ?></span>
         </div>
@@ -138,11 +99,11 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Attestation permis</strong><small>générée par Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>RC Pro &amp; décennale</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>ACV disponible en option</strong></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>Fin de travaux disponible en option</strong></span></li>
         </ul>
-        <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup>Choisir le Pack Permis</a>
+        <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=permis" data-no-signup-popup data-house-pack="permis">Choisir le Pack Permis</a>
       </article>
 
       <article class="mi-pack-card mi-pack-featured" id="pack-fdc">
@@ -150,43 +111,44 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <div class="mi-pack-head">
           <span class="mi-pack-tag">Étude complète</span>
           <h3>Pack Fin de travaux</h3>
-          <p class="mi-pack-for">Pour vérifier la performance globale du projet dès le départ et préparer la conformité finale.</p>
+          <p class="mi-pack-for">L’étude complète dès le départ, jusqu’à la fin des travaux.</p>
           <div class="mi-pack-price"><?= h($finPrice) ?></div>
           <span class="mi-pack-delay"><?= h(standard_delay_label()) ?></span>
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Permis</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong></span></li>
           <li><b>✓</b><span><strong>Calcul complet RE2020</strong><small>Bbio + Cep + DH</small></span></li>
-          <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>utilisés par le professionnel qui édite l’attestation finale</small></span></li>
+          <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>Pour le professionnel habilité</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
-          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>avec suivi des consommations · offert</small></span></li>
+          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>Suivi des consommations · offert</small></span></li>
         </ul>
         <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
-        <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=fdc" data-no-signup-popup>Choisir le Pack Fin de travaux</a>
+        <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=fdc" data-no-signup-popup data-house-pack="fdc">Choisir le Pack Fin de travaux</a>
       </article>
 
       <article class="mi-pack-card" id="pack-fdc-acv">
         <div class="mi-pack-head">
           <span class="mi-pack-tag">Le plus complet</span>
           <h3>Fin de travaux + ACV</h3>
-          <p class="mi-pack-for">Pour intégrer dès maintenant la partie énergie, confort et carbone de la RE2020.</p>
+          <p class="mi-pack-for">L’étude complète avec le calcul carbone (ACV).</p>
           <div class="mi-pack-price"><?= h($finAcvPrice) ?></div>
           <span class="mi-pack-delay"><?= h(standard_delay_label()) ?></span>
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Fin de travaux</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong></span></li>
           <li><b>✓</b><span><strong>Calcul ACV inclus</strong><small>Ic énergie + Ic bâtiment</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
-          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>avec suivi des consommations · offert</small></span></li>
+          <li><b>✓</b><span><strong>Carnet numérique Keep’Home</strong><small>Suivi des consommations · offert</small></span></li>
         </ul>
         <div class="mi-bonus">Soit <?= h($bonusValueLabel) ?> de services offerts</div>
-        <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup>Choisir le pack complet + ACV</a>
+        <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup data-house-pack="fdc-acv">Choisir le pack complet + ACV</a>
       </article>
     </div>
 
+    <div class="kp-cro-pack-security"><p class="kp-cro-reassure"><span>✓ Création de compte gratuite</span><span>✓ Aucun paiement à l’inscription</span><span>✓ Déposez vos plans ensuite</span></p><span>Évolution vers un pack supérieur en réglant la différence de tarif applicable.</span></div>
     <aside class="mi-quote-panel" aria-labelledby="mi-quote-title">
       <div class="mi-quote-symbol" aria-hidden="true">
         <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="20" height="26" rx="3"/><path d="M10 8h12v5H10zM11 18h2m6 0h2m-10 5h2m6 0h2"/></svg>
@@ -201,7 +163,9 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
-<section class="mi-section mi-compare-section">
+<?php $croReviewContext='maison'; require __DIR__.'/../inc/conversion-reviews.php'; ?>
+<?php require __DIR__.'/../inc/conversion-deliverables.php'; ?>
+<section class="mi-section mi-compare-section" id="comparatif-packs">
   <div class="container">
     <div class="mi-section-head mi-center">
       <span class="mi-eyebrow">Comparer les prestations</span>
@@ -235,6 +199,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
+<?php require __DIR__.'/../inc/conversion-pro.php'; ?>
 <section class="mi-section mi-how-section">
   <div class="container">
     <div class="mi-section-head mi-center">
@@ -282,7 +247,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
     <div class="mi-extension-offer">
       <span>Prise en charge par notre équipe</span>
       <strong><?= h($extensionPrice) ?></strong>
-      <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=inf50" data-no-signup-popup>Créer mon dossier</a>
+      <a class="btn mi-btn-primary mi-full" href="/inscription-maison/?pack=inf50" data-no-signup-popup data-house-pack="inf50">Créer mon dossier</a>
     </div>
   </div>
 </section>
@@ -354,7 +319,27 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
 </div>
 <?php endif; ?>
 
+<dialog class="kp-house-dialog" id="kp-house-dialog" aria-labelledby="kp-house-dialog-title">
+  <div class="kp-house-dialog-inner">
+    <button class="kp-house-dialog-close" type="button" aria-label="Fermer" data-house-dialog-close>×</button>
+    <span class="eyebrow">Espace client KeePlanet</span>
+    <h2 id="kp-house-dialog-title">Démarrez votre étude RE2020</h2>
+    <div class="kp-house-selected"><div><strong data-house-label></strong><small data-house-desc></small></div><b data-house-price></b></div>
+    <form method="post" action="/inscription-maison/envoi/" data-house-signup-form>
+      <input type="hidden" name="pack" value="">
+      <input type="hidden" name="offre_maison" value="0">
+      <input type="hidden" name="retour_site" value="" data-return-site>
+      <label>Nom ou nom de société *<input type="text" name="nom" autocomplete="name" required></label>
+      <label>E-mail *<input type="email" name="email" autocomplete="email" required></label>
+      <label>Téléphone <small>(facultatif)</small><input type="tel" name="telephone" autocomplete="tel"></label>
+      <button type="submit" class="btn mi-btn-primary mi-full" data-no-signup-popup>Créer mon compte gratuitement</button>
+      <p class="kp-house-dialog-note">Aucun paiement à cette étape. Vous serez redirigé vers notre page de validation, puis votre dossier sera créé.</p>
+    </form>
+    <a class="kp-house-fallback" href="/inscription-maison/" data-no-signup-popup>Changer de pack</a>
+  </div>
+</dialog>
+<script type="application/json" id="kp-house-pack-data"><?= json_encode(array_map(function($p){return ['label'=>$p['label'],'description'=>$p['description'],'price'=>house_signup_price_label($p)];}, house_signup_packs()), JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE) ?></script>
 <div class="house-mobile-cta">
-  <span><small>Pack Permis</small><strong><?= h($permisPrice) ?></strong></span>
-  <a href="/inscription-maison/?pack=permis" data-no-signup-popup>Choisir</a>
+  <span><small>Étude RE2020 dès</small><strong><?= h($ecoPrice) ?></strong></span>
+  <a href="#packs" data-no-signup-popup>Voir les packs →</a>
 </div>

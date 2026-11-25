@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(link.closest('header')||link.closest('footer')) return false;
     const text=(link.textContent||'').trim().toLowerCase();
     const href=(link.getAttribute('href')||'').toLowerCase();
+    if(href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')||/\.pdf(?:[?#]|$)/.test(href))return false;
     const signupWords=['je lance mon étude','lancer mon étude','démarrer mon étude','démarrer','choisir cette formule','choisir ce pack','choisir','cliquer ici','créer mon compte','créer votre compte','s’inscrire','s\'inscrire','inscription','ouvrir mon dossier','commencer mon étude','commander'];
     if(signupWords.some(word=>text.includes(word))) return true;
     if(href.includes('espace-client.keeplanet.fr')&&link.closest('main')&&!text.includes('accéder à mon espace')&&!text.includes('espace client')) return true;

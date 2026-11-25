@@ -128,6 +128,7 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
   </div>
 </section>
 
+<?php require __DIR__.'/../inc/conversion-pro.php'; ?>
 <section class="tarifs-final">
   <div class="container tarifs-final-inner">
     <div>

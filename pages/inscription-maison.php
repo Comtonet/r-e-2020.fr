@@ -63,7 +63,7 @@ $offer = max(0, min(100, (int)($_GET['offre'] ?? 0)));
           </div>
 
           <button type="submit" class="btn btn-p signup-submit" data-no-signup-popup>Continuer et ouvrir mon dossier</button>
-          <p class="signup-note">Aucun paiement à cette étape. Vous serez d’abord redirigé vers notre page de validation, puis votre dossier sera créé.</p>
+          <p class="signup-note">Création de compte gratuite. Déposez vos plans ensuite. Aucun paiement à cette étape. Vous serez d’abord redirigé vers notre page de validation, puis votre dossier sera créé.</p>
         </form>
       </div>
     <?php endif; ?>
