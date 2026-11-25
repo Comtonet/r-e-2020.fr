@@ -14,7 +14,8 @@
    <h2 id="pro-title">Créez votre compte pro.</h2>
    <p>Renseignez vos coordonnées : votre compte et votre fiche entreprise seront créés ensemble. Vous recevrez vos accès par e-mail.</p>
    <?php if (!$proReady): ?><p class="kp-pro-pending" role="status">L’inscription professionnelle en ligne sera disponible prochainement. En attendant, notre équipe peut vous accompagner dans l’ouverture de votre compte.</p><?php endif; ?>
-   <form action="/professionnels-du-batiment/inscription/" method="post" data-pro-signup-form>
+   <form action="/inscription-en-cours/" method="post" data-pro-signup-form>
+    <input type="hidden" name="_kp_signup_flow" value="pro">
     <fieldset <?= $proReady ? '' : 'disabled' ?>>
     <label>Entreprise / nom commercial <span>*</span><input type="text" name="societe" autocomplete="organization" maxlength="180" required placeholder="Votre entreprise"></label>
     <div class="kp-pro-fields"><label>Prénom <span>*</span><input name="prenom" autocomplete="given-name" maxlength="100" required placeholder="Prénom"></label><label>Nom <span>*</span><input name="nom" autocomplete="family-name" maxlength="100" required placeholder="Nom"></label></div>

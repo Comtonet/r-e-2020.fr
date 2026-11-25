@@ -24,7 +24,8 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 $payloadRaw = trim((string)($_POST['devis_payload'] ?? ''));
 $payload = $payloadRaw !== '' ? json_decode($payloadRaw, true) : null;
-if (!is_array($payload)) {
+$isGeneralSignup = isset($signupFlow) && $signupFlow === 'general' && $payloadRaw === '' && empty($_POST['devis_depuis_calculateur']) && empty($_POST['public_signup']);
+if (!$isGeneralSignup && !is_array($payload)) {
     $missing[] = 'Données du devis';
 }
 
@@ -58,7 +59,7 @@ foreach ($_POST as $key => $value) {
   <div class="container narrow">
     <div class="card" style="text-align:center;max-width:720px;margin:40px auto;padding:34px">
       <span class="eyebrow">Devis RE2020</span>
-      <h1 style="margin-top:12px">Votre devis est en cours de préparation</h1>
+      <h1 style="margin-top:12px"><?= $isGeneralSignup ? 'Votre inscription est en cours' : 'Votre devis est en cours de préparation' ?></h1>
       <p class="big-p">Nous créons votre accès gratuit et transmettons votre demande à Keeplanet.</p>
       <p style="color:#6b7180">Vous allez être redirigé automatiquement.</p>
     </div>
@@ -74,8 +75,8 @@ foreach ($_POST as $key => $value) {
 <script>
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
-  event: 'devis_re2020_submit',
-  devis_source: 'calculateur_public'
+  event: <?= json_encode($isGeneralSignup ? 'inscription_generale_submit' : 'devis_re2020_submit') ?>,
+  devis_source: <?= json_encode($isGeneralSignup ? 'popup_generale' : 'calculateur_public') ?>
 });
 
 /*
@@ -84,9 +85,9 @@ window.dataLayer.push({
  * sans changer le parcours.
  */
 if (typeof window.gtag === 'function') {
-  window.gtag('event', 'devis_re2020_submit', {
+  window.gtag('event', <?= json_encode($isGeneralSignup ? 'inscription_generale_submit' : 'devis_re2020_submit') ?>, {
     event_category: 'lead',
-    event_label: 'calculateur_public'
+    event_label: <?= json_encode($isGeneralSignup ? 'popup_generale' : 'calculateur_public') ?>
   });
 }
 

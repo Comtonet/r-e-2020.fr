@@ -328,7 +328,8 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
     <span class="eyebrow">Espace client KeePlanet</span>
     <h2 id="kp-house-dialog-title">Démarrez votre étude RE2020</h2>
     <div class="kp-house-selected"><div><strong data-house-label></strong><small data-house-desc></small></div><b data-house-price></b></div>
-    <form method="post" action="/inscription-maison/envoi/" data-house-signup-form>
+    <form method="post" action="/inscription-en-cours/" data-house-signup-form>
+        <input type="hidden" name="_kp_signup_flow" value="maison">
       <input type="hidden" name="pack" value="">
       <input type="hidden" name="offre_maison" value="0">
       <input type="hidden" name="retour_site" value="" data-return-site>

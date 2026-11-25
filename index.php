@@ -22,6 +22,34 @@ $houseSignupTransitPath = '/inscription-maison/envoi/';
 $houseSignupExistingPath = '/inscription-maison/compte-existant/';
 $proPath = '/professionnels-du-batiment/';
 $proSignupPath = '/professionnels-du-batiment/inscription/';
+$signupTransitPath = '/inscription-en-cours/';
+$signupAliases = [
+    $houseSignupTransitPath => ['maison', $houseSignupPath],
+    $devisTransitPath => ['devis', $devisPath],
+    $proSignupPath => ['pro', $proPath],
+];
+if (isset($signupAliases[$path])) {
+    list($legacyFlow, $legacyReturn) = $signupAliases[$path];
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
+        // 307 conserve le corps POST des formulaires encore en cache.
+        header('Cache-Control: no-store');
+        header('Location: ' . $signupTransitPath . '?parcours=' . $legacyFlow, true, 307);
+    } else {
+        header('Location: ' . $legacyReturn, true, 302);
+    }
+    exit;
+}
+$signupFlow = '';
+if ($path === $signupTransitPath) {
+    header('Cache-Control: no-store');
+    $candidate = $_POST['_kp_signup_flow'] ?? $_GET['parcours'] ?? '';
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && is_string($candidate) && in_array($candidate, ['maison','devis','pro','general'], true)) {
+        $signupFlow = $candidate;
+    } elseif (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
+        http_response_code(400);
+    }
+    unset($_POST['_kp_signup_flow']);
+}
 $trustPaths = ['/qualifications-assurances-garanties/','/exemples-livrables-re2020/','/questions-frequentes-re2020/'];
 
 if ($path === $legacyProcessPath) { header('Location: ' . $processPath, true, 301); exit; }
@@ -57,20 +85,16 @@ $lookupPath = $path === $processPath ? $legacyProcessPath : $path;
 $page = null;
 if ($path === $maisonPath) {
     $page = ['title'=>'Étude RE2020 maison | Tarifs et attestation permis','description'=>'Étude thermique RE2020 pour maison individuelle : Pack Permis, étude complète, ACV et accompagnement Keeplanet.','type'=>'maison','h1'=>'Étude RE2020 maison','lead'=>'Tarifs et accompagnement pour votre projet.'];
-} elseif ($path === $proSignupPath) {
-    $page = ['title'=>'Inscription professionnelle | KeePlanet','description'=>'Transmission de votre inscription professionnelle.','type'=>'pro_signup','h1'=>'Inscription professionnelle','lead'=>'Ouverture de votre espace professionnel.'];
+ } elseif ($path === $signupTransitPath) {
+    $page = ['title'=>'Inscription en cours | KeePlanet','description'=>'Transmission sécurisée de votre demande à KeePlanet.','type'=>'signup_transit','h1'=>'Inscription en cours','lead'=>'Transmission de votre demande.'];
 } elseif ($path === $proPath) {
     $page = ['title'=>'Études RE2020 pour les professionnels du bâtiment | KeePlanet','description'=>'Architectes, constructeurs, maîtres d’œuvre et dessinateurs : découvrez les prestations et les conditions professionnelles KeePlanet.','type'=>'professionnels','h1'=>'Études RE2020 pour les professionnels','lead'=>'Contactez notre équipe pour vos projets réguliers.'];
 } elseif ($path === $devisPath) {
     $page = ['title'=>'Générateur de devis RE2020 en ligne | Keeplanet','description'=>'Préparation du futur générateur de devis en ligne Keeplanet pour les études RE2020 et prestations associées.','type'=>'devis','h1'=>'Votre devis RE2020 directement en ligne.','lead'=>'Le futur générateur permettra de configurer votre projet et d’obtenir un devis adapté.'];
-} elseif ($path === $devisTransitPath) {
-    $page = ['title'=>'Envoi de votre devis RE2020 | Keeplanet','description'=>'Transmission de votre devis RE2020 vers votre espace client Keeplanet.','type'=>'devis_transit','h1'=>'Votre devis est en cours de préparation','lead'=>'Nous créons votre accès et transmettons votre devis.'];
 } elseif ($path === $devisExistingPath) {
     $page = ['title'=>'Compte KeePlanet déjà détecté | Devis RE2020','description'=>'Votre demande de devis a été prise en compte et un compte KeePlanet existe déjà pour cette adresse e-mail.','type'=>'devis_existing','h1'=>'Compte déjà détecté','lead'=>'Votre demande a bien été prise en compte.'];
 } elseif ($path === $houseSignupPath) {
     $page = ['title'=>'Inscription pack maison RE2020 | KeePlanet','description'=>'Créez votre espace KeePlanet et ouvrez votre dossier RE2020 maison.','type'=>'house_signup','h1'=>'Inscription pack maison','lead'=>'Ouvrez votre dossier RE2020 en quelques instants.'];
-} elseif ($path === $houseSignupTransitPath) {
-    $page = ['title'=>'Création de votre dossier RE2020 | KeePlanet','description'=>'Création de votre dossier maison RE2020 et de votre accès KeePlanet.','type'=>'house_signup_transit','h1'=>'Création du dossier','lead'=>'Votre inscription est en cours.'];
 } elseif ($path === $houseSignupExistingPath) {
     $page = ['title'=>'Compte KeePlanet déjà détecté | Inscription maison','description'=>'Votre dossier maison a été créé sur votre compte KeePlanet existant.','type'=>'house_signup_existing','h1'=>'Compte déjà détecté','lead'=>'Votre dossier a été ajouté à votre compte existant.'];
 } elseif ($path === '/qualifications-assurances-garanties/') {
@@ -116,13 +140,14 @@ if ($page['type']==='faq') {
 }
 ?><!doctype html><html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<?php require __DIR__.'/inc/google-ads.php'; ?>
 <title><?= h($page['title']) ?></title><meta name="description" content="<?= h($page['description']) ?>"><link rel="canonical" href="<?= h($canonical) ?>">
-<?php if ($path===$proSignupPath || $path===$devisPath || $path===$devisTransitPath || $path===$devisExistingPath || $path===$houseSignupPath || $path===$houseSignupTransitPath || $path===$houseSignupExistingPath): ?><meta name="robots" content="noindex,nofollow"><?php endif; ?>
+<?php if ($path===$signupTransitPath || $path===$devisPath || $path===$devisExistingPath || $path===$houseSignupPath || $path===$houseSignupExistingPath): ?><meta name="robots" content="noindex,nofollow"><?php endif; ?>
 <meta property="og:site_name" content="KeePlanet – r-e-2020.fr"><meta property="og:type" content="website"><meta property="og:title" content="<?= h($page['title']) ?>"><meta property="og:description" content="<?= h($page['description']) ?>"><meta property="og:url" content="<?= h($canonical) ?>"><meta name="theme-color" content="#38227E">
-<link rel="stylesheet" href="/assets/css/app.css?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/css/app.css'),0,12)) ?>"><?php if ($path===$tarifsPath): ?><link rel="stylesheet" href="/assets/css/tarifs.css?v=1"><?php endif; ?><?php if ($path===$processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?><?php if ($GLOBALS['dossier_route']||$GLOBALS['actualites_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=2"><?php endif; ?><?php if ($path===$aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?><?php if ($path===$maisonPath): ?><link rel="stylesheet" href="/assets/css/maison.css?v=8"><?php endif; ?><?php if ($path===$houseSignupPath || $path===$houseSignupTransitPath || $path===$houseSignupExistingPath): ?><link rel="stylesheet" href="/assets/css/inscription-maison.css?v=2"><?php endif; ?><link rel="stylesheet" href="/assets/css/commercial.css?v=5"><link rel="stylesheet" href="/assets/css/theme.css?v=1"><link rel="stylesheet" href="/assets/css/identity.css?v=2"><link rel="stylesheet" href="/assets/css/editorial.css?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/css/editorial.css'),0,12)) ?>">
+<link rel="stylesheet" href="/assets/css/app.css?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/css/app.css'),0,12)) ?>"><?php if ($path===$tarifsPath): ?><link rel="stylesheet" href="/assets/css/tarifs.css?v=1"><?php endif; ?><?php if ($path===$processPath): ?><link rel="stylesheet" href="/assets/css/process.css?v=2"><?php endif; ?><?php if ($GLOBALS['dossier_route']||$GLOBALS['actualites_route']): ?><link rel="stylesheet" href="/assets/css/dossiers.css?v=2"><?php endif; ?><?php if ($path===$aboutPath): ?><link rel="stylesheet" href="/assets/css/about.css?v=1"><?php endif; ?><?php if ($path===$maisonPath): ?><link rel="stylesheet" href="/assets/css/maison.css?v=8"><?php endif; ?><?php if ($path===$houseSignupPath || ($path===$signupTransitPath && $signupFlow==='maison') || $path===$houseSignupExistingPath): ?><link rel="stylesheet" href="/assets/css/inscription-maison.css?v=2"><?php endif; ?><link rel="stylesheet" href="/assets/css/commercial.css?v=5"><link rel="stylesheet" href="/assets/css/theme.css?v=1"><link rel="stylesheet" href="/assets/css/identity.css?v=2"><link rel="stylesheet" href="/assets/css/editorial.css?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/css/editorial.css'),0,12)) ?>">
 <script type="application/ld+json"><?= json_encode(schema_for($page,$canonical),JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script><?php foreach($extraSchema as $schema): ?><script type="application/ld+json"><?= json_encode($schema,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script><?php endforeach; ?>
-<?php if (!in_array($path, [$houseSignupTransitPath,$houseSignupExistingPath,$devisTransitPath,$devisExistingPath], true)): ?><link rel="stylesheet" href="/assets/css/conversion.css?v=3"><?php endif; ?>
-<?php if ($path===$proPath || $path===$proSignupPath): ?><link rel="stylesheet" href="/assets/css/professionnels.css?v=2"><?php endif; ?>
+<?php if (!in_array($path, [$signupTransitPath,$houseSignupExistingPath,$devisExistingPath], true)): ?><link rel="stylesheet" href="/assets/css/conversion.css?v=3"><?php endif; ?>
+<?php if ($path===$proPath || ($path===$signupTransitPath && $signupFlow==='pro')): ?><link rel="stylesheet" href="/assets/css/professionnels.css?v=2"><?php endif; ?>
 </head><body>
 <header class="site-header"><div class="topbar"><div class="container topbar-inner"><span><strong>KeePlanet</strong> · Bureau d’études thermiques à Strasbourg · <?= h(projects_label()) ?>+ projets</span><a href="tel:0806110559">0806 110 559</a></div></div><div class="container nav-wrap"><a class="brand kp-brand-lockup" href="/" aria-label="KeePlanet – accueil r-e-2020.fr"><img class="kp-company-logo" src="/assets/img/keeplanet-logo.png" alt="KeePlanet" decoding="async"><span class="kp-brand-divider" aria-hidden="true"></span><span class="kp-brand-site"><span class="brand-text-logo"><span class="brand-text-main">r-e-2020</span><span class="brand-text-fr">.fr</span></span><span class="kp-brand-caption">Études thermiques RE2020</span></span></a><button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button><nav id="main-nav" class="main-nav"><div class="nav-dropdown"><a class="nav-dropdown-trigger" href="/tarifs-etude-thermique-re-2020/" aria-haspopup="true">Tarifs &amp; packs <span class="nav-chevron" aria-hidden="true"></span></a><div class="nav-dropdown-menu"><a class="kp-nav-house" href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Packs maison individuelle</a><a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Autres bâtiments</a></div></div><a href="/processus-de-realisation-dune-etude-re2020/">Comment ça marche</a><a href="/dossiers-decryptages-re2020/">Dossiers</a><a href="/actualites/">Actualités</a><a href="/a-propos-keeplanet/">Qui sommes-nous ?</a><a href="/contact/">Contact</a><a class="kp-nav-quote" href="/devis-en-ligne/" data-no-signup-popup>Devis en ligne</a><a class="btn btn-small kp-nav-client" href="https://espace-client.keeplanet.fr/" data-no-signup-popup>Espace client</a></nav></div></header>
 <main><?php ob_start();
@@ -131,13 +156,11 @@ elseif ($path===$tarifsPath) require __DIR__.'/pages/tarifs.php';
 elseif ($path===$maisonPath) require __DIR__.'/pages/maison.php';
 elseif ($path===$collectifPath) require __DIR__.'/pages/collectif.php';
 elseif ($path===$proPath) require __DIR__.'/pages/professionnels.php';
-elseif ($path===$proSignupPath) require __DIR__.'/pages/inscription-pro-transit.php';
+elseif ($path===$signupTransitPath) require __DIR__.'/pages/inscription-en-cours.php';
 elseif (in_array($path,$trustPaths,true)) require __DIR__.'/pages/confiance.php';
 elseif ($path===$devisPath) require __DIR__.'/pages/devis-en-ligne.php';
-elseif ($path===$devisTransitPath) require __DIR__.'/pages/devis-transit.php';
 elseif ($path===$devisExistingPath) require __DIR__.'/pages/devis-compte-existant.php';
 elseif ($path===$houseSignupPath) require __DIR__.'/pages/inscription-maison.php';
-elseif ($path===$houseSignupTransitPath) require __DIR__.'/pages/inscription-maison-transit.php';
 elseif ($path===$houseSignupExistingPath) require __DIR__.'/pages/inscription-maison-compte-existant.php';
 elseif ($path===$processPath) require __DIR__.'/pages/processus.php';
 elseif ($path===$aboutPath) require __DIR__.'/pages/a-propos-keeplanet.php';
@@ -146,4 +169,4 @@ elseif ($GLOBALS['dossier_route']) require __DIR__.'/pages/dossiers.php';
 else echo render_page($page,$path);
 echo apply_dynamic_site_vars(ob_get_clean()); ?></main>
 <footer class="site-footer"><div class="container footer-grid"><div><a class="brand brand-footer kp-footer-brand" href="/a-propos-keeplanet/" aria-label="Découvrir KeePlanet"><span class="kp-footer-logo"><img class="kp-company-logo" src="/assets/img/keeplanet-logo.png" alt="KeePlanet" decoding="async"></span><span class="kp-footer-site">r-e-2020.fr<br><small>Une plateforme spécialisée de KeePlanet</small></span></a><p>KeePlanet, bureau d’études thermiques à Strasbourg, réalise vos études RE2020 partout en France.</p><a class="kp-footer-about" href="/a-propos-keeplanet/">Découvrir notre entreprise →</a><p class="footer-trust">★★★★★ <?= h(google_rating_label()) ?>/5 · <?= h(google_reviews_label()) ?> avis Google · <?= h(projects_label()) ?>+ projets</p></div><div><h3>Votre projet</h3><a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">Packs maison &amp; extension</a><a href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis en ligne</a><a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">Collectif & tertiaire</a><a href="/processus-de-realisation-dune-etude-re2020/">Processus</a><a href="/professionnels-du-batiment/">Offre professionnelle</a></div><div><h3>Confiance & ressources</h3><a href="/qualifications-assurances-garanties/">Qualifications & assurances</a><a href="/exemples-livrables-re2020/">Exemples de livrables</a><a href="/questions-frequentes-re2020/">FAQ RE2020</a><a href="/dossiers-decryptages-re2020/">Dossiers techniques</a><a href="/actualites/">Actualités</a></div><div><h3>Nous contacter</h3><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><p>201 route d’Oberhausbergen<br>67200 Strasbourg</p></div></div><div class="container footer-bottom"><span>© <?= date('Y') ?> r-e-2020.fr · Keeplanet</span><span><a href="/conditions-generales-de-vente/">CGV</a> · <a href="/mentions-legales/">Mentions légales</a></span></div></footer>
-<button class="ai-launcher" type="button" aria-label="Ouvrir KeePote, assistant RE2020"><span>✦</span><strong>KeePote</strong></button><div class="ai-panel" hidden><div class="ai-head"><strong>KeePote · Assistant RE2020</strong><button type="button" class="ai-close">×</button></div><div class="ai-body"><p><strong>Bonjour 👋 Je suis KeePote.</strong> Je suis l’assistant RE2020 de Keeplanet. Je peux vous aider à comprendre la réglementation, votre projet, vos résultats et les principales pistes d’amélioration.</p><div class="ai-note"><strong>Besoin d’un humain ?</strong> KeePote complète l’accompagnement de Keeplanet, mais ne remplace pas votre thermicien : l’équipe Keeplanet reste disponible par téléphone et e-mail et prend le relais dès que nécessaire.</div></div><form class="ai-form"><input type="text" placeholder="Ex. Mon extension fait 60 m²…" aria-label="Votre question"><button type="submit">Envoyer</button></form></div><script src="/assets/js/app.js?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/js/app.js'),0,12)) ?>" defer></script><?php if (!in_array($path, [$houseSignupTransitPath,$houseSignupExistingPath,$devisTransitPath,$devisExistingPath], true)): ?><script>window.KP_CONVERSION_AGGREGATE=<?= cfg('conversion_metrics_dir','') !== '' ? 'true' : 'false' ?>;</script><script src="/assets/js/conversion.js?v=3" defer></script><?php endif; ?></body></html>
+<button class="ai-launcher" type="button" aria-label="Ouvrir KeePote, assistant RE2020"><span>✦</span><strong>KeePote</strong></button><div class="ai-panel" hidden><div class="ai-head"><strong>KeePote · Assistant RE2020</strong><button type="button" class="ai-close">×</button></div><div class="ai-body"><p><strong>Bonjour 👋 Je suis KeePote.</strong> Je suis l’assistant RE2020 de Keeplanet. Je peux vous aider à comprendre la réglementation, votre projet, vos résultats et les principales pistes d’amélioration.</p><div class="ai-note"><strong>Besoin d’un humain ?</strong> KeePote complète l’accompagnement de Keeplanet, mais ne remplace pas votre thermicien : l’équipe Keeplanet reste disponible par téléphone et e-mail et prend le relais dès que nécessaire.</div></div><form class="ai-form"><input type="text" placeholder="Ex. Mon extension fait 60 m²…" aria-label="Votre question"><button type="submit">Envoyer</button></form></div><script src="/assets/js/app.js?v=<?= h(substr(hash_file('sha256', __DIR__.'/assets/js/app.js'),0,12)) ?>" defer></script><?php if (!in_array($path, [$signupTransitPath,$houseSignupExistingPath,$devisExistingPath], true)): ?><script>window.KP_CONVERSION_AGGREGATE=<?= cfg('conversion_metrics_dir','') !== '' ? 'true' : 'false' ?>;</script><script src="/assets/js/conversion.js?v=3" defer></script><?php endif; ?></body></html>

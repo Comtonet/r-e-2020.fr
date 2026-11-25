@@ -42,7 +42,8 @@ $offer = max(0, min(100, (int)($_GET['offre'] ?? 0)));
 
         <a class="change-pack" data-no-signup-popup href="/inscription-maison/<?= $offer > 0 ? '?offre=' . (int)$offer : '' ?>">← Changer de pack</a>
 
-        <form method="post" action="/inscription-maison/envoi/" data-house-signup-form>
+        <form method="post" action="/inscription-en-cours/" data-house-signup-form>
+        <input type="hidden" name="_kp_signup_flow" value="maison">
           <input type="hidden" name="pack" value="<?= h($packSlug) ?>">
           <input type="hidden" name="offre_maison" value="<?= (int)$offer ?>">
           <input type="hidden" name="retour_site" value="" data-return-site>

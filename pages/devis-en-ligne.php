@@ -223,4 +223,4 @@ $quoteConfig = [
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=24" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=35" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=36" defer></script>

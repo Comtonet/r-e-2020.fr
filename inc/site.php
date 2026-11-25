@@ -241,7 +241,7 @@ function render_page($page,$path){
 <p>Un cookie est un petit fichier d’information enregistré sur le terminal de l’Utilisateur. Le Site peut utiliser des cookies ou technologies similaires afin d’assurer son fonctionnement, mémoriser certains choix, mesurer l’audience et améliorer le contenu et la navigation.</p>
 <p>Lorsque le consentement est requis, les cookies concernés ne sont déposés qu’après le choix de l’utilisateur. Celui-ci peut accepter, refuser ou modifier ses préférences. Le refus de certains cookies peut limiter certaines fonctionnalités du Site.</p>
 <h3>9.2 Balises (« tags ») internet</h3>
-<p>Le Site peut employer des balises ou technologies similaires pour mesurer l’utilisation du Site et l’efficacité de certaines actions. Lorsque ces technologies impliquent un traitement soumis au consentement, elles sont utilisées conformément aux choix exprimés par l’Utilisateur.</p>
+<p>Avec votre accord, le Site utilise Google Ads (Google Ireland Limited) pour mesurer l’efficacité de ses campagnes publicitaires. La balise n’est chargée qu’après acceptation ; la personnalisation des annonces reste désactivée. Vous pouvez refuser ou retirer votre consentement à tout moment via le lien « Préférences cookies » en bas de page. Votre choix est mémorisé pendant 180 jours. Informations complémentaires : <a href="https://policies.google.com/privacy?hl=fr" data-no-signup-popup>politique de confidentialité de Google</a>.</p>
 
 <div class="legal-update"><strong>Keeplanet · 201 route d’Oberhausbergen · 67200 Strasbourg</strong><br>0806 110 559 · <a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a></div>
 </div></section><?php
