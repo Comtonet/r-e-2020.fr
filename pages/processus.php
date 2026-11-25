@@ -27,7 +27,7 @@
   </div>
 </section>
 
-<section class="kee-pote-promo"><div class="container kee-pote-promo-inner"><div class="kee-pote-promo-icon" aria-hidden="true">✦</div><div><span class="eyebrow">KeePote · IA RE2020 Keeplanet</span><h2>Une question sur votre projet ? KeePote vous répond instantanément.</h2><p>Surentraîné à la RE2020, KeePote peut vous aider à comprendre votre étude, vos résultats, les exigences réglementaires et les pistes d’amélioration de votre projet.</p><p class="human-relay"><strong>Et l’humain reste là :</strong> pour un arbitrage technique ou dès que vous le souhaitez, un thermicien Keeplanet prend le relais par téléphone ou par e-mail.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
+
 
 
 <section class="process-proof">
@@ -39,6 +39,7 @@
   </div>
 </section>
 
+<section class="kp-editorial-support kp-editorial-support-photo"><div class="container kp-editorial-support-inner"><figure class="kp-editorial-photo"><img src="/assets/img/editorial/plans-etude-thermique.webp" alt="Illustration de plans et de documents d’analyse énergétique" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Illustration générée</figcaption></figure><div><h2>De vos plans aux calculs de l’étude</h2><p>Vous nous transmettez les informations nécessaires. Nos thermiciens analysent votre projet et mettent les documents correspondant à votre prestation à disposition dans votre espace client.</p><div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button type="button" class="kp-editorial-chat" data-keepote-open>Poser une question à KeePote →</button></div></div></div></section>
 <section class="section process-section">
   <div class="container process-layout">
     <div class="process-timeline-line" aria-hidden="true"></div>

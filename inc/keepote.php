@@ -22,14 +22,14 @@ function keepote_block($context = 'general') {
     ob_start(); ?>
     <section class="keepote-block">
       <div class="container keepote-inner">
-        <div class="keepote-visual"><img src="https://raw.githubusercontent.com/Comtonet/r-e-2020.fr/main/assets/img/keepote-nu-assis-simple.png" alt="KeePote assis, assistant Keeplanet" loading="lazy"></div>
+        <div class="keepote-visual"><img src="/assets/img/keepote.png" alt="" loading="lazy"></div>
         <div class="keepote-copy">
           <span class="eyebrow">KeePote · Assistant Keeplanet</span>
           <h2><?= h($copy['title']) ?></h2>
           <p><?= h($copy['body']) ?></p>
           <p class="keepote-human"><strong>Et si vous préférez parler à quelqu’un :</strong> l’équipe Keeplanet reste disponible par téléphone, message ou depuis votre espace client.</p>
         </div>
-        <button class="btn keepote-open" type="button" data-keepote-open>Parler à KeePote</button>
+        <div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button class="kp-editorial-chat" type="button" data-keepote-open>Parler à KeePote →</button></div>
       </div>
     </section>
     <?php return ob_get_clean();

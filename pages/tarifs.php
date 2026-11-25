@@ -116,13 +116,9 @@ $finAcvPrice = price_ttc_label('price_fin_travaux_acv_ttc');
   <div class="container tarifs-help-grid">
     <div class="tarifs-help-copy">
       <span class="tarifs-eyebrow">Besoin d’identifier la prestation adaptée ?</span>
-      <h2>Consultez KeePote ou échangez avec notre équipe.</h2>
-      <p>KeePote peut vous aider à comprendre les différences entre les prestations. Et si vous préférez parler à quelqu’un, notre équipe reste disponible par téléphone et par e-mail.</p>
-      <div class="tarifs-help-actions">
-        <button class="btn tarifs-btn-primary" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button>
-        <a href="tel:0806110559">☎ 0806 110 559</a>
-        <a href="mailto:info@keeplanet.fr">✉ info@keeplanet.fr</a>
-      </div>
+      <h2>Vous hésitez entre deux prestations ?</h2>
+      <p>Notre équipe vous aide à choisir le pack ou le devis adapté. Pour une réponse à une question générale, KeePote est également disponible.</p>
+      <div class="tarifs-help-actions"><a class="btn tarifs-btn-primary" href="tel:0806110559">Appeler notre équipe</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button class="kp-editorial-chat" type="button" data-keepote-open>Demander à KeePote →</button></div>
     </div>
     <div class="tarifs-help-box">
       <strong>Notre équipe vous accompagne dans la définition de votre besoin.</strong>

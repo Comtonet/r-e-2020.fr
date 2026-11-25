@@ -49,7 +49,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
-<section class="kee-pote-promo"><div class="container kee-pote-promo-inner"><div class="kee-pote-promo-icon" aria-hidden="true">✦</div><div><span class="eyebrow">KeePote · Assistant RE2020 Keeplanet</span><h2>Une question sur votre projet ou votre étude ?</h2><p>KeePote s’appuie sur la documentation RE2020 validée par Keeplanet pour expliquer les exigences réglementaires, les résultats et les principales pistes d’amélioration.</p><p class="human-relay"><strong>Pour les questions techniques propres à votre projet :</strong> pour un arbitrage technique ou dès que vous le souhaitez, un thermicien Keeplanet prend le relais par téléphone ou par e-mail.</p></div><button class="btn keepote-open" type="button" data-keepote-open onclick="document.querySelector('.ai-panel').hidden=false">Demander à KeePote</button></div></section>
+
 
 
 <section class="mi-proofbar" aria-label="Garanties">
@@ -65,7 +65,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   <div class="container">
     <div class="mi-section-head mi-center">
       <span class="mi-eyebrow">Choisir la prestation</span>
-      <h2>Déterminez le niveau d’étude correspondant à votre projet.</h2>
+      <h2>De quelle étude avez-vous besoin ?</h2>
       <p>Chaque formule correspond à un périmètre d’étude et à une phase précise du projet.</p>
     </div>
 
@@ -138,7 +138,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           <li><b>✓</b><span><strong>Attestation permis</strong><small>générée par Keeplanet</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>RC Pro &amp; décennale</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>ACV disponible en option</strong></span></li>
           <li class="mi-pack-muted"><b>+</b><span><strong>Fin de travaux disponible en option</strong></span></li>
         </ul>
@@ -156,7 +156,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Permis</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
           <li><b>✓</b><span><strong>Calcul complet RE2020</strong><small>Bbio + Cep + DH</small></span></li>
           <li><b>✓</b><span><strong>Fichiers pour la fin de travaux</strong><small>utilisés par le professionnel qui édite l’attestation finale</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
@@ -176,7 +176,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         </div>
         <ul class="mi-pack-list">
           <li><b>✓</b><span><strong>Tout le Pack Fin de travaux</strong></span></li>
-          <li><b>✓</b><span><strong>KeePote inclus</strong><small>IA RE2020 disponible instantanément + relais humain Keeplanet</small></span></li>
+          <li><b>✓</b><span><strong>KeePote inclus</strong><small>Assistant RE2020 pour vos questions générales</small></span></li>
           <li><b>✓</b><span><strong>Calcul ACV inclus</strong><small>Ic énergie + Ic bâtiment</small></span></li>
           <li><b>✓</b><span><strong>Modifications illimitées</strong><small>et conseils du thermicien</small></span></li>
           <li><b>✓</b><span><strong>Dimensionnement chauffage</strong><small>offert</small></span></li>
@@ -208,7 +208,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
           </tr>
         </thead>
         <tbody>
-          <tr><td>KeePote · IA RE2020 instantanée + relais humain</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>KeePote · assistant RE2020</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Calcul Bbio + DH</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Attestation permis générée par Keeplanet</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Conseils du thermicien</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
@@ -239,6 +239,7 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
   </div>
 </section>
 
+<section class="kp-editorial-support kp-editorial-support-photo"><div class="container kp-editorial-support-inner"><figure class="kp-editorial-photo"><img src="/assets/img/editorial/thermicien-conseil.webp" alt="Illustration d’un échange téléphonique autour des plans d’une maison" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Illustration générée</figcaption></figure><div><h2>Votre étude se fait en ligne. Les échanges aussi, si vous le souhaitez.</h2><p>Notre équipe reste joignable par téléphone et par e-mail. Nos thermiciens réalisent les études et, selon le pack choisi, vous conseillent sur les solutions techniques. KeePote peut aussi répondre à vos questions générales.</p><div class="kp-editorial-contact"><a href="tel:0806110559">0806 110 559</a><a href="mailto:info@keeplanet.fr">info@keeplanet.fr</a><button type="button" class="kp-editorial-chat" data-keepote-open>Poser une question à KeePote →</button></div></div></div></section>
 <section class="mi-section mi-info-section">
   <div class="container mi-info-grid">
     <div class="mi-info-card">
