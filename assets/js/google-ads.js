@@ -63,18 +63,29 @@ function clearAdsCookies(){
 }
 document.addEventListener('DOMContentLoaded',function(){
   const style=document.createElement('style');
-  style.textContent='#kp-ads-consent{position:fixed;bottom:16px;left:16px;z-index:10000;max-width:min(390px,calc(100vw - 32px));padding:16px;background:#fff;color:#26213b;border:1px solid #d9d4e6;border-radius:12px;box-shadow:0 8px 30px #0002;font:14px/1.45 system-ui,sans-serif}#kp-ads-consent[hidden]{display:none!important}#kp-ads-consent p{margin:6px 0 12px}#kp-ads-consent .kp-consent-actions{display:flex;gap:8px;flex-wrap:wrap}#kp-ads-consent button{background:#38227e;color:#fff;border:1px solid #38227e;border-radius:7px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}#kp-ads-settings{background:none;border:0;text-decoration:underline;color:inherit;font:inherit;cursor:pointer;padding:5px 0}';
+  style.textContent='#kp-ads-consent{position:fixed;bottom:16px;left:16px;z-index:10000;max-width:min(390px,calc(100vw - 32px));padding:16px;background:#fff;color:#26213b;border:1px solid #d9d4e6;border-radius:12px;box-shadow:0 8px 30px #0002;font:14px/1.45 system-ui,sans-serif}#kp-ads-consent[hidden]{display:none!important}#kp-ads-consent p{margin:6px 0 12px}#kp-ads-consent .kp-consent-actions{display:flex;gap:8px;flex-wrap:wrap}#kp-ads-consent button{background:#38227e;color:#fff;border:1px solid #38227e;border-radius:7px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}';
   document.head.appendChild(style);
   const box=document.createElement('section');box.id='kp-ads-consent';box.setAttribute('aria-label','Préférences publicitaires');box.hidden=!!choice;
   box.innerHTML='<strong>Cookies publicitaires</strong><p>Google Ads mesure l’efficacité de nos publicités. Sans votre accord, les cookies publicitaires restent désactivés et seuls des signaux de mesure sans cookie sont transmis à Google pour modéliser les conversions. Vous pouvez accepter ou refuser sans conséquence sur nos services. <a href="/mentions-legales/" data-no-signup-popup>En savoir plus</a>.</p><div class="kp-consent-actions"><button type="button" data-choice="no">Refuser</button><button type="button" data-choice="yes">Accepter</button></div>';
   document.body.appendChild(box);
-  const settings=document.createElement('button');settings.id='kp-ads-settings';settings.type='button';settings.textContent='Préférences cookies';
-  const footer=document.querySelector('footer');(footer||document.body).appendChild(settings);
-  settings.addEventListener('click',()=>{box.hidden=!box.hidden;if(!box.hidden)box.querySelector('button').focus();});
+  const settings=Array.from(document.querySelectorAll('[data-kp-cookie-settings]'));
+  let openedBy=null;
+  function syncSettings(){settings.forEach(link=>link.setAttribute('aria-expanded',String(!box.hidden)));}
+  syncSettings();
+  settings.forEach(link=>link.addEventListener('click',e=>{
+    e.preventDefault();
+    openedBy=link;
+    box.hidden=!box.hidden;syncSettings();
+    if(!box.hidden)box.querySelector('button').focus();
+  }));
+  box.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&openedBy){box.hidden=true;syncSettings();openedBy.focus();openedBy=null;}
+  });
   box.addEventListener('click',e=>{
     const next=e.target.dataset.choice;if(next!=='yes'&&next!=='no')return;
     choice=next;try{localStorage.setItem(key,JSON.stringify({choice,expires:Date.now()+lifetime}));}catch(_){}
-    box.hidden=true;
+    box.hidden=true;syncSettings();
+    if(openedBy){openedBy.focus();openedBy=null;}
     g('consent','update',consent(next==='yes'));
     if(next==='no')clearAdsCookies();
   });
