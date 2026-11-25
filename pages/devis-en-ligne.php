@@ -197,6 +197,18 @@ $quoteConfig = [
 @media(max-width:700px){.devis-app .hero{padding:17px!important}.devis-app .final-prestation-lite[data-stage="ready"]{padding:20px!important}.devis-app .quote-ready-content{align-items:flex-start;gap:12px}.devis-app .quote-ready-icon{width:40px;height:40px}.devis-app .quote-calculate-btn{min-height:54px}}
 @media(prefers-reduced-motion:reduce){.devis-app .quote-infinity-run{animation:none;stroke-dasharray:none}.devis-app .quote-loader-line b{animation:none;width:100%}}
 
+
+/* Alternative forfaitaire pour un projet neuf d'une seule maison. */
+.devis-app .quote-single-house{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;margin:0 0 20px;padding:19px 20px;border:1px solid #d6e4ac;border-radius:17px;background:#f3f8e5}
+.devis-app .quote-single-house-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:#e4edc6;color:#435b0d}
+.devis-app .quote-single-house-copy strong{display:block;color:#38227e;font-size:16px;line-height:1.3}
+.devis-app .quote-single-house-copy p{margin:5px 0 0;color:#535b43;font-size:13px;line-height:1.55}
+.devis-app .quote-single-house-link.btn{min-height:46px;background:#98bf24!important;color:#253306!important;border:1px solid #98bf24!important;box-shadow:none!important;gap:9px;font-weight:800;text-align:center;white-space:normal;text-decoration:none;padding:12px 16px;border-radius:10px}
+.devis-app .quote-single-house-link.btn:hover{background:#a9ce3d!important}
+.devis-app .quote-single-house-link:focus-visible{outline:2px solid #38227e;outline-offset:3px}
+@media(max-width:850px){.devis-app .quote-single-house{grid-template-columns:auto minmax(0,1fr);gap:12px}.devis-app .quote-single-house-link{grid-column:2;justify-self:start}}
+@media(max-width:540px){.devis-app .quote-single-house{padding:15px;align-items:start}.devis-app .quote-single-house-icon{width:38px;height:38px}.devis-app .quote-single-house-link{grid-column:1/-1;width:100%;justify-content:center}}
+
 </style>
 <section class="devis-app" id="devis-app">
   <nav class="quote-steps-hook" id="quoteSteps" aria-label="Étapes"></nav>
@@ -211,4 +223,4 @@ $quoteConfig = [
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
 <script src="/assets/js/devis-calculateur-lite.php?v=24" defer></script>
-<script src="/assets/js/devis-site-lite.js?v=34" defer></script>
+<script src="/assets/js/devis-site-lite.js?v=35" defer></script>
