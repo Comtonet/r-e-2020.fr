@@ -186,6 +186,18 @@ $bonusValueLabel = number_format($bonusValue, 0, ',', ' ') . ' € TTC';
         <a class="btn mi-btn-outline mi-full" href="/inscription-maison/?pack=fdc-acv" data-no-signup-popup>Choisir le pack complet + ACV</a>
       </article>
     </div>
+
+    <aside class="mi-quote-panel" aria-labelledby="mi-quote-title">
+      <div class="mi-quote-symbol" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="20" height="26" rx="3"/><path d="M10 8h12v5H10zM11 18h2m6 0h2m-10 5h2m6 0h2"/></svg>
+      </div>
+      <div class="mi-quote-content">
+        <h3 id="mi-quote-title">Vous avez besoin d’un devis ?</h3>
+        <p>Plusieurs maisons, maisons jumelées, lotissement, extension ou projet particulier ? Calculez votre devis RE2020 en ligne et recevez-le par e-mail.</p>
+        <small>Gratuit et sans engagement.</small>
+      </div>
+      <a class="btn mi-quote-link" href="/devis-en-ligne/" data-no-signup-popup>Calculer mon devis <span aria-hidden="true">→</span></a>
+    </aside>
   </div>
 </section>
 
