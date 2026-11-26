@@ -8,6 +8,39 @@
 $legacy = require __DIR__ . '/actualites-archive.php';
 $new = [
     [
+        'slug'=>'re2020-arrete-radiateurs-numeriques-chaleur-fatale-novembre-2026',
+        'title'=>'RE2020 : un arrêté ouvre le calcul aux radiateurs numériques à récupération de chaleur',
+        'excerpt'=>'Publié le 15 novembre 2026, un arrêté adapte la méthode Th-BCE 2020 aux radiateurs numériques valorisant la chaleur d’équipements informatiques. Quels systèmes sont concernés et que vérifier en étude ?',
+        'date'=>'2026-11-26',
+        'source_name'=>'Légifrance, arrêté du 4 novembre 2026 publié au JO du 15 novembre 2026',
+        'source_url'=>'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000055088913',
+        'body'=><<<'HTML'
+<p><strong>Un arrêté du 4 novembre 2026, publié au Journal officiel du 15 novembre, modifie la méthode de calcul énergétique de la RE2020 pour tenir compte de radiateurs numériques récupérant la chaleur issue d’équipements informatiques.</strong> Le texte intervient dans le cadre des approbations de systèmes, dites « Titre V », et modifie la partie 16.14 de la méthode Th-BCE 2020. Il ne remplace pas les obligations générales de la RE2020.</p>
+<h2>Qu’est-ce qu’un radiateur numérique ?</h2>
+<p>Un radiateur numérique récupère la chaleur produite par des équipements informatiques qui réalisent des calculs. Cette chaleur est diffusée dans le local chauffé, avec, selon la conception du système, un appoint et des organes de régulation. Le sujet ne concerne donc pas tous les radiateurs électriques classiques : il s’agit de systèmes particuliers dont le fonctionnement doit être représenté par une méthode adaptée.</p>
+<p>Le bénéfice énergétique réel dépend notamment de la disponibilité de la chaleur informatique, de sa valorisation pendant les périodes où le bâtiment a besoin de chauffage et du fonctionnement des équipements complémentaires. L’existence d’une source de chaleur fatale ne suffit pas, à elle seule, à démontrer le respect du Cep, du Cep,nr ou des autres indicateurs d’un projet.</p>
+<h2>Que change exactement l’arrêté du 4 novembre 2026 ?</h2>
+<p>Le texte approuve une évolution de la modélisation réglementaire des <strong>radiateurs numériques à récupération de chaleur fatale</strong>. Là où la méthode citait auparavant le système Q.rad, la rédaction est élargie et précise le périmètre des systèmes concernés. Dans la partie modifiée figurent notamment <strong>Q.rad, développé par Qarnot Computing, et le radiateur RCE de Hestiia</strong>.</p>
+<p>C’est une possibilité nouvelle de modélisation des systèmes visés par le texte, pas une règle générale autorisant l’assimilation de n’importe quel émetteur électrique à une solution de récupération de chaleur. Les hypothèses de saisie doivent correspondre à l’équipement réellement prévu.</p>
+<h2>Quels contrôles pour le bureau d’études thermiques ?</h2>
+<ul>
+<li><strong>Vérifier le champ exact de la méthode :</strong> références de produits et configurations admises dans l’annexe réglementaire.</li>
+<li><strong>Identifier le système complet :</strong> génération de chaleur, récupération, régulation, émetteurs et appoint éventuel.</li>
+<li><strong>Confirmer la compatibilité logicielle :</strong> la version utilisée par le bureau d’études doit intégrer la méthode modifiée avant toute simulation qui prétend s’appuyer sur ces dispositions.</li>
+<li><strong>Analyser les résultats réglementaires :</strong> contrôler les indicateurs énergétiques et environnementaux du bâtiment, sans présumer de la conformité du seul fait du choix de l’équipement.</li>
+<li><strong>Préparer les justificatifs :</strong> conserver les données techniques et les hypothèses nécessaires à la cohérence entre conception et réalisation.</li>
+</ul>
+<p>La <a href="https://rt-re-batiment.developpement-durable.gouv.fr/faq-re2020-042-quelle-est-la-version-du-moteur-de-a576.html" target="_blank" rel="noopener">FAQ officielle RE2020 n°042</a> rappelle l’importance de vérifier les versions du moteur de calcul et des logiciels d’application.</p>
+<h2>Chauffage classique, chauffage numérique : ne pas confondre les deux</h2>
+<p>Un radiateur à inertie ou à effet Joule transforme l’électricité qu’il consomme en chaleur ; un radiateur numérique exploite aussi de la chaleur issue d’un traitement informatique. La méthode réglementaire distingue les caractéristiques de ces équipements. Pour les solutions ordinaires, notre <a href="/equipements-solutions-techniques/radiateurs-electriques-inertie-re2020-conformite-appoint/">dossier sur les radiateurs électriques à inertie en RE2020</a> détaille les difficultés possibles de conformité et les variantes à étudier.</p>
+<p>La nouvelle disposition ne crée pas une obligation d’installer un radiateur numérique. Elle n’exonère pas non plus d’étudier l’enveloppe, la ventilation, le confort d’été ni le bilan carbone des composants, qui restent des éléments structurants de la RE2020.</p>
+<h2>À retenir avant de choisir un système</h2>
+<p><strong>Le texte du 4 novembre 2026 est une évolution ciblée de la méthode de calcul</strong>, et non une réforme globale des seuils RE2020. Pour un projet neuf, il faut confirmer que la solution envisagée figure bien dans le périmètre de l’arrêté, que l’éditeur de logiciel prend en charge la méthode et que le résultat de l’étude demeure conforme dans son ensemble.</p>
+<p>Pour vérifier un projet de maison, consultez nos <a href="/tarifs-etude-thermique-re-2020/maison-individuelle-extensions/">études RE2020 pour maisons et extensions</a>. Les opérations plus complexes peuvent être étudiées via nos <a href="/tarifs-etude-thermique-re-2020/collectif-tertiaire/">prestations collectif et tertiaire</a>.</p>
+<p><strong>Source :</strong> <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000055088913" target="_blank" rel="noopener">arrêté du 4 novembre 2026, JO du 15 novembre 2026, Légifrance</a> ; <a href="https://rt-re-batiment.developpement-durable.gouv.fr/faq-re2020-042-quelle-est-la-version-du-moteur-de-a576.html" target="_blank" rel="noopener">portail RT-RE Bâtiment, FAQ n°042</a>.</p>
+HTML
+    ],
+    [
         'slug'=>'construction-logements-septembre-2026-permis-individuel-collectif',
         'title'=>'Construction neuve : les permis de logements progressent de 1,2 % en septembre 2026',
         'excerpt'=>'Selon le SDES, 31 428 logements ont été autorisés en septembre 2026 : +1,2 % sur un mois, avec des évolutions opposées pour l’individuel et le collectif.',
