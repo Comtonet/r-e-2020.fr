@@ -56,7 +56,7 @@ $old = <<<'JS'
 return{permis:base+reu+circ+san,pu:p,lignes:[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:base},{t:'Salle de réunion',d:'10 % de la surface',v:reu},{t:'Circulation et accueil',d:'25 % de la surface',v:circ},{t:'Sanitaires collectifs',d:'3,5 % de la surface',v:san}]}
 JS;
 $new = <<<'JS'
-const lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:base},{t:'Salle de réunion',d:'10 % de la surface',v:reu},{t:'Circulation et accueil',d:'25 % de la surface',v:circ},{t:'Sanitaires collectifs',d:'3,5 % de la surface',v:san}];return{permis:avecPlancher(base+reu+circ+san,lignes,262.5),pu:p,lignes}
+const lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:base},{t:'Salle de réunion',d:'10 % de la surface',v:reu},{t:'Circulation et accueil',d:'25 % de la surface',v:circ},{t:'Sanitaires collectifs',d:'3,5 % de la surface',v:san}];return{permis:avecPlancher(base+reu+circ+san,lignes,MIN_TERTIAIRE_TTC),pu:p,lignes}
 JS;
 qreplace($js, trim($old), trim($new));
 
@@ -65,7 +65,7 @@ $old = <<<'JS'
 SAN:{code:'SAN',nom:'Cabinet de santé',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:6,min:0,step:1}],notes:[],calc:parLocal(1.25,GRILLE_LOCAL)},
 JS;
 $new = <<<'JS'
-SAN:{code:'SAN',nom:'Cabinet de santé (dont kiné, véto, ...)',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:6,min:0,step:1},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=0?1.25:seuil(S/n,GRILLE_LOCAL,3.5),met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p}];const base=avecPlancher(S*p,lignes,262.5);if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:base+met,pu:p,lignes}}},
+SAN:{code:'SAN',nom:'Cabinet de santé (dont kiné, véto, ...)',fam:'tertiaire',desc:'Cabinets médicaux, maisons de santé, salles de soins.',champs:[F_SURF,{k:'n',l:'Nombre de cabinets ou salles de soins',t:'number',d:6,min:0,step:1},F_RESTO],notes:[],calc(v){const S=num(v.S),n=num(v.n),p=n<=0?1.25:seuil(S/n,GRILLE_LOCAL,3.5),met=v.resto==='oui'?(C.article_metre||100):0,lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p}];const base=avecPlancher(S*p,lignes,MIN_TERTIAIRE_TTC);if(met)lignes.push({t:'Article de métré – restauration',d:'1 × 100 €',v:met});return{permis:base+met,pu:p,lignes}}},
 JS;
 qreplace($js, trim($old), trim($new));
 
@@ -74,7 +74,7 @@ $old = <<<'JS'
 return{permis:S*p+met,pu:p,lignes:[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p},...(met?[{t:'Article de métré – réfectoire',d:'1 × 100 €',v:met}]:[])]}
 JS;
 $new = <<<'JS'
-const lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p},...(met?[{t:'Article de métré – réfectoire',d:'1 × 100 €',v:met}]:[])];return{permis:avecPlancher(S*p+met,lignes,262.5),pu:p,lignes}
+const lignes=[{t:'Surface × prix unitaire',d:`${nb(S)} m² × ${nb(p)} €/m²`,v:S*p},...(met?[{t:'Article de métré – réfectoire',d:'1 × 100 €',v:met}]:[])];return{permis:avecPlancher(S*p+met,lignes,MIN_TERTIAIRE_TTC),pu:p,lignes}
 JS;
 qreplace($js, trim($old), trim($new));
 
