@@ -97,7 +97,7 @@ return [
     'quote_collective_identique' => 50,
     'quote_plancher_tertiaire' => 262.50,
     'quote_minimum_ttc' => 262.50,
-    'quote_acompte_seuil_ttc' => 300.00,
+    'quote_acompte_seuil_ttc' => 500.00,
     'quote_acompte_pct_sous_seuil' => 100,
     'quote_acompte_pct_standard' => 30,
     'quote_social_forfait' => 200,
