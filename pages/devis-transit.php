@@ -39,7 +39,7 @@ if (!$isGeneralSignup && is_array($payload)) {
         $missing[] = 'Montant du devis invalide (minimum ' . number_format($minimumCentimes / 100, 2, ',', ' ') . ' € TTC)';
     } else {
         $centimes = (int) round((float) $total * 100);
-        $seuil = (int) round((float) cfg('quote_acompte_seuil_ttc', 300.00) * 100);
+        $seuil = (int) round((float) cfg('quote_acompte_seuil_ttc', 500.00) * 100);
         $pct = $centimes < $seuil ? (float) cfg('quote_acompte_pct_sous_seuil', 100) : (float) cfg('quote_acompte_pct_standard', 30);
         $payload['prix']['total_ttc'] = $centimes / 100;
         $payload['prix']['total_ht'] = round($centimes / 120, 2);
