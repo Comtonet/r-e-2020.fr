@@ -16,6 +16,7 @@ $quoteConfig = [
     'collective_complete_forfait' => (float) cfg('quote_collective_complete_forfait', 390),
     'collective_identique' => (float) cfg('quote_collective_identique', 50),
     'plancher_tertiaire' => (float) cfg('quote_plancher_tertiaire', 262.50),
+    'minimum_ttc' => (float) cfg('quote_minimum_ttc', 262.50),
     'social_forfait' => (float) cfg('quote_social_forfait', 200),
     'social_m2' => (float) cfg('quote_social_m2', 1.25),
     'power_a' => (float) cfg('quote_power_a', 39.18),
@@ -222,5 +223,5 @@ $quoteConfig = [
   <div class="infotip noprint" id="quoteInfotip" role="tooltip"><div class="infotip-body"></div></div>
 </section>
 <script>window.QUOTE_CONFIG = <?= json_encode($quoteConfig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
-<script src="/assets/js/devis-calculateur-lite.php?v=24" defer></script>
+<script src="/assets/js/devis-calculateur-lite.php?v=25" defer></script>
 <script src="/assets/js/devis-site-lite.js?v=36" defer></script>
