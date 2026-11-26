@@ -29,6 +29,25 @@ if (!$isGeneralSignup && !is_array($payload)) {
     $missing[] = 'Données du devis';
 }
 
+// Le formulaire ne presente pas l'acompte. Calcul serveur sur le TTC final,
+// supplément express compris. Le traitement de création doit recalculer le
+// devis et son acompte à partir de sa propre grille, sans faire confiance au POST.
+if (!$isGeneralSignup && is_array($payload)) {
+    $total = $payload['prix']['total_ttc'] ?? null;
+    $minimumCentimes = (int) round((float) cfg('quote_minimum_ttc', 262.50) * 100);
+    if (!is_numeric($total) || !is_finite((float) $total) || (float) $total < 0 || round((float) $total * 100) < $minimumCentimes) {
+        $missing[] = 'Montant du devis invalide (minimum ' . number_format($minimumCentimes / 100, 2, ',', ' ') . ' € TTC)';
+    } else {
+        $centimes = (int) round((float) $total * 100);
+        $seuil = (int) round((float) cfg('quote_acompte_seuil_ttc', 300.00) * 100);
+        $pct = $centimes < $seuil ? (float) cfg('quote_acompte_pct_sous_seuil', 100) : (float) cfg('quote_acompte_pct_standard', 30);
+        $payload['prix']['total_ttc'] = $centimes / 100;
+        $payload['prix']['total_ht'] = round($centimes / 120, 2);
+        $payload['prix']['acompte_pct'] = $pct;
+        $payload['prix']['acompte_ttc'] = round($centimes * $pct / 100) / 100;
+    }
+}
+
 if ($missing) {
     http_response_code(422);
     $missing = array_values(array_unique($missing));
@@ -53,6 +72,9 @@ $target = 'https://espace-client.keeplanet.fr/pages/ajout-projet/traitement-devi
 $fields = [];
 foreach ($_POST as $key => $value) {
     if (is_scalar($value)) $fields[$key] = (string)$value;
+}
+if (!$isGeneralSignup && is_array($payload)) {
+    $fields['devis_payload'] = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 ?>
 <section class="section">
